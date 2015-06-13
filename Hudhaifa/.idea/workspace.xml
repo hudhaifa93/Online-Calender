@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="0f968640-98d2-43f7-b942-398734d63f0e" name="Default" comment="" />
+    <list default="true" readonly="true" id="0f968640-98d2-43f7-b942-398734d63f0e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Notification Bar/css/animate.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Notification Bar/css/fullcalendar.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Notification Bar/css/material-design-iconic-font.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Notification Bar/css/socicon.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Notification Bar/css/sweet-alert.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Notification Bar/index.html" afterPath="$PROJECT_DIR$/Notification Bar/index.html" />
+    </list>
     <ignored path="Hudhaifa.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,7 +29,35 @@
     <favorites_list name="Hudhaifa" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Notification Bar/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="294" column="39" selection-start="12584" selection-end="12584" vertical-scroll-proportion="-0.18715596" vertical-offset="5100" max-vertical-offset="14858">
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#li#4;n#ul#0;n#li#2;n#ul#0;n#header#0;n#body#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#li#4;n#ul#0;n#li#2;n#ul#0;n#header#0;n#body#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#div#0;n#li#4;n#ul#0;n#li#2;n#ul#0;n#header#0;n#body#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#3;n#div#1;n#div#0;n#div#0;n#li#4;n#ul#0;n#li#2;n#ul#0;n#header#0;n#body#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#4;n#div#1;n#div#0;n#div#0;n#li#4;n#ul#0;n#li#2;n#ul#0;n#header#0;n#body#0;n#!!top" expanded="true" />
+                <marker date="1434202476632" expanded="true" signature="28154:29513" placeholder="..." />
+                <marker date="1434202476632" expanded="true" signature="28402:29399" placeholder="..." />
+                <marker date="1434202476632" expanded="true" signature="28415:28592" placeholder="..." />
+                <marker date="1434202476632" expanded="true" signature="28468:28578" placeholder="..." />
+                <marker date="1434202476632" expanded="true" signature="28605:28797" placeholder="..." />
+                <marker date="1434202476632" expanded="true" signature="28671:28783" placeholder="..." />
+                <marker date="1434202476632" expanded="true" signature="28810:28976" placeholder="..." />
+                <marker date="1434202476632" expanded="true" signature="28854:28962" placeholder="..." />
+                <marker date="1434202476632" expanded="true" signature="28989:29166" placeholder="..." />
+                <marker date="1434202476632" expanded="true" signature="29042:29152" placeholder="..." />
+                <marker date="1434202476632" expanded="true" signature="29179:29389" placeholder="..." />
+                <marker date="1434202476632" expanded="true" signature="29267:29375" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -33,6 +68,12 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/meeting.html" />
+        <option value="$PROJECT_DIR$/Notification Bar/css/animate.min.css" />
+        <option value="$PROJECT_DIR$/Notification Bar/css/fullcalendar.css" />
+        <option value="$PROJECT_DIR$/Notification Bar/css/sweet-alert.min.css" />
+        <option value="$PROJECT_DIR$/Notification Bar/css/material-design-iconic-font.min.css" />
+        <option value="$PROJECT_DIR$/Notification Bar/css/socicon.min.css" />
+        <option value="$PROJECT_DIR$/Notification Bar/index.html" />
       </list>
     </option>
   </component>
@@ -76,6 +117,48 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="Hudhaifa" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hudhaifa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hudhaifa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Notification Bar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hudhaifa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hudhaifa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Notification Bar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hudhaifa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hudhaifa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -157,14 +240,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2489019" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2489019" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -196,39 +279,69 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/meeting.html">
+    <entry file="file://$PROJECT_DIR$/Notification Bar/css/fullcalendar.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="16" selection-start="431" selection-end="431" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="986">
-          <folding>
-            <element signature="n#style#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#table#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#1;n#table#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#2;n#table#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#3;n#table#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#3;n#tr#3;n#table#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#td#0;n#tr#4;n#table#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state line="976" column="1" selection-start="23460" selection-end="23460" vertical-scroll-proportion="0.9441708" vertical-offset="16017" max-vertical-offset="16694">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/bootstrap.min.css">
+    <entry file="file://$PROJECT_DIR$/Notification Bar/css/sweet-alert.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="22" selection-start="187" selection-end="187" vertical-scroll-proportion="0.11724138" vertical-offset="0" max-vertical-offset="580" />
+        <state line="0" column="9022" selection-start="9022" selection-end="9022" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="596">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/meeting.html">
+    <entry file="file://$PROJECT_DIR$/Notification Bar/css/material-design-iconic-font.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="16" selection-start="283" selection-end="283" vertical-scroll-proportion="0.20411664" vertical-offset="85" max-vertical-offset="986">
+        <state line="4" column="32343" selection-start="32630" selection-end="32630" vertical-scroll-proportion="0.11409396" vertical-offset="0" max-vertical-offset="596">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Notification Bar/css/socicon.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="3346" selection-start="3346" selection-end="3346" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="596">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Notification Bar/css/animate.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="53150" selection-start="53311" selection-end="53311" vertical-scroll-proportion="0.14261745" vertical-offset="0" max-vertical-offset="596">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Notification Bar/css/app.min.2.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="49368">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Notification Bar/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="294" column="39" selection-start="12584" selection-end="12584" vertical-scroll-proportion="-0.18715596" vertical-offset="5100" max-vertical-offset="14858">
           <folding>
-            <element signature="n#style#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#table#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#1;n#table#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#2;n#table#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#3;n#table#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#td#3;n#tr#3;n#table#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#td#0;n#tr#4;n#table#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#li#4;n#ul#0;n#li#2;n#ul#0;n#header#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#li#4;n#ul#0;n#li#2;n#ul#0;n#header#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#1;n#div#0;n#div#0;n#li#4;n#ul#0;n#li#2;n#ul#0;n#header#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#3;n#div#1;n#div#0;n#div#0;n#li#4;n#ul#0;n#li#2;n#ul#0;n#header#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#4;n#div#1;n#div#0;n#div#0;n#li#4;n#ul#0;n#li#2;n#ul#0;n#header#0;n#body#0;n#!!top" expanded="true" />
+            <marker date="1434202476632" expanded="true" signature="28154:29513" placeholder="..." />
+            <marker date="1434202476632" expanded="true" signature="28402:29399" placeholder="..." />
+            <marker date="1434202476632" expanded="true" signature="28415:28592" placeholder="..." />
+            <marker date="1434202476632" expanded="true" signature="28468:28578" placeholder="..." />
+            <marker date="1434202476632" expanded="true" signature="28605:28797" placeholder="..." />
+            <marker date="1434202476632" expanded="true" signature="28671:28783" placeholder="..." />
+            <marker date="1434202476632" expanded="true" signature="28810:28976" placeholder="..." />
+            <marker date="1434202476632" expanded="true" signature="28854:28962" placeholder="..." />
+            <marker date="1434202476632" expanded="true" signature="28989:29166" placeholder="..." />
+            <marker date="1434202476632" expanded="true" signature="29042:29152" placeholder="..." />
+            <marker date="1434202476632" expanded="true" signature="29179:29389" placeholder="..." />
+            <marker date="1434202476632" expanded="true" signature="29267:29375" placeholder="..." />
           </folding>
         </state>
       </provider>
