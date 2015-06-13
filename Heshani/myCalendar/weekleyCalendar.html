@@ -1,0 +1,67 @@
+<html>
+<head>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<style>
+	.rowHeight{
+		height:5px !important;
+	}
+	</style>
+	
+	<script>
+	$( document ).ready(function() {
+	var tableHeader="<tr>"+
+        "<td height='64'>MONDAY</td>"+
+        "<td>TUESDAY</td>"+
+        "<td>WEDNESDAY</td>"+
+        "<td>THURSDAY</td>"+
+        "<td>FRIDAY</td>"+
+        "<td>SATURDAY</td>"+
+        "<td>SUNDAY</td>"+
+      	"</tr>";
+			
+  		var weeklyLines="";
+	  
+	  	
+		for(i=0;i<24;i++)
+	   {
+			weeklyLines += "<tr class='rowHeight'>"+
+			"<td>&nbsp;</td>"+
+			"<td>&nbsp;</td>"+
+			"<td>&nbsp;</td>"+
+			"<td>&nbsp;</td>"+
+			"<td>&nbsp;</td>"+
+			"<td>&nbsp;</td>"+
+			"<td>&nbsp;</td>"+
+		  	"</tr>";
+			
+			if(i==23)
+			{
+				$("#weeklyTable").html(tableHeader + weeklyLines)
+			}  
+	  }
+	    
+
+	  
+	  
+	  
+
+	});
+	
+	</script>
+
+<title>Weekley Calendar</title>
+</head>
+
+<body>
+ 
+    <table id="weeklyTable" class="table table-bordered" border="1">
+      
+   
+      
+    </table>
+ 
+
+</body>
+</html>
