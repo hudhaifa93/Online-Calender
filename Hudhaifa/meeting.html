@@ -2,52 +2,102 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	
+    <style type="text/css">
+<!--
+.style2 {
+	font-size: 14px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.style3 {font-size: 12px}
+-->
+    </style>
 </head>
 <body>
+<center>
+<div style="width:90%;">
+<form id="frmMeeting" style="background-color: rgba(224, 227, 228, 0.71);" >
 
-<form id="frmMeeting" style="background-color: rgba(224, 227, 228, 0.71);">
-
-    <table style="width:100%;">
-        <tr>
-            <td>Host</td>
-            <td>
-                <input type="text" id="hostText" class="form-control" name="hostText" placeholder="Host Name" style="width:250px">
-            </td>
-        </tr>
-        <tr>
-            <td>Subject</td>
+	<table width="90%" style="width:100%; border-collapse:separate; border-spacing:5px 10px; margin-top:20px;">
+	
+        <tr class="spacer">
+            <td width="8%">Author</td>
+            <td width="50%">
+                <input type="text" id="authorText" class="form-control" name="authorText" placeholder="Author Name" style="width:250px">
+          </td>
+		   <td>Subject</td>
             <td>
                 <input type="text" id="Subject" class="form-control" name="Subject" placeholder="Subject" style="width:250px">
             </td>
         </tr>
+	
         <tr>
             <td>Location</td>
             <td>
-                <input type="text" id="Location" name="Location" class="form-control"  placeholder="Location" style="width:250px">
+                <input type="text" id="Location" name="Location" class="form-control"  placeholder="Location" style="width:500px">
             </td>
         </tr>
+		
         <tr>
             <td>Start Date</td>
             <td>
-                <input type="text" id="StartDate" StartDate="Date" class="form-control"style="width:250px" />
-            </td>
-            <td>End Date</td>
+          <input type="text" id="StartDate" StartDate="Date" class="form-control" placeholder="Start Date" style="width:250px" /></td>
+            <td width="9%">End Date</td>
+            <td width="33%">
+                <input type="text" id="EndDate" name="EndDate" class="form-control" placeholder="End Date" style="width:250px" />
+          </td>
+        </tr>
+		
+		 <tr>
+            <td>Start Time</td>
             <td>
-                <input type="text" id="EndDate" name="EndDate" class="form-control"style="width:250px" />
-            </td>
+          <input type="text" id="StartTime" StartDate="Date" class="form-control" placeholder="Start Time" style="width:250px" /></td>
+            <td width="9%">End Time</td>
+            <td width="33%">
+                <input type="text" id="EndTime" name="EndDate" class="form-control" placeholder="End Time" style="width:250px" />
+          </td>
         </tr>
+		
         <tr>
+			  <td width="8%">Meeting Description</td>
             <td colspan="8">
-                <textarea id="Content" name="Content" style="width:800px"></textarea>
+                <textarea id="Description" class="form-control" placeholder="Description...." name="Description" style="width:87%"></textarea>
             </td>
         </tr>
+		
+        <tr>
+            <td>
+                
+              <div align="right">
+                <input type="checkbox" id="Recurring" name="Recurring">
+                
+              </div></td>
+		  <td>
+             <span class="style3">
+             <label> Recurring </label>
+            </span> </td>
+        </tr>
+		
+		<tr>
+		<td>Add Guest</td>
+		<td> <input type="text" id="addGuest" name="addGuest" class="form-control" placeholder="addGuest" style="width:250px;" /></td>
+		<td><button type="button" class="btn btn-primary btn-sm  style2" style="width:60px"> ADD</button></td>
+		</tr>
+		
+		<tr>
+		<td></td>
+		<td> <textarea id="inviteeEmail" class="form-control" placeholder="Invitees" name="inviteeEmail" style="width:87%"></textarea></td>
+		
+		</tr>
     </table>
-    <td>
-        <button type="button" class="btn btn-primary btn-sm"  onclick="javascript: validateSave()">Save</button>
-    </td>-
-
+	
+  <td> <button type="button" class="btn btn-primary btn-sm  style2" style="margin-left:795px"  onclick="javascript: validateSave()">SAVE</button> </td>
+  <p>&ensp;</p>
 </form>
+</div>
 
 
+<p>&nbsp;</p>
+</center>
 </body>
 </html>
