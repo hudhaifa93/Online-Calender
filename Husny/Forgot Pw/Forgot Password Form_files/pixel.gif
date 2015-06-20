@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<meta name="generator" content="Adobe GoLive 4">
+        <meta name="description" content="A comprehensive birding web site with an international focus. Trip reports, photos, news, articles, forums, blogs." />
+		<title>Surfbirds.com - Page not found!</title>
+		<style type="text/css">
+		body { font-family:Verdana, Geneva, sans-serif; margin:0; padding:0; }
+		a { color:#025ed1; }
+		p, a { font-size:11px; }
+		h3 { margin-top:0; padding-bottom:15px; font-size:20px; font-weight:normal; }
+		.bg-404page { background:url(/images/bg-404page.jpg) 0 0 no-repeat;
+			width:335px;
+			height:195px;
+			margin:0 auto;
+			padding:150px 330px 0 135px;
+		}
+		.photo-credit {
+			width:590px;
+			margin:0 auto;
+			text-align:right;
+			font-size:10px;
+			color:#999;
+			}
+		</style>
+		
+	</head>
+
+	<body bgcolor="white">
+		
+        <div class="bg-404page">		
+        	<h3>Oops, this page can't be found!</h3>
+            <p><a href="/">Return to the homepage</a>
+        </div>
+        
+        <div class="photo-credit">Cerulean Warbler by Brandon Holden</div>
+
+
+	<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-277553-1");
+pageTracker._trackPageview();
+} catch(err) {}</script></body>
+
+</html>
