@@ -23,7 +23,7 @@ var calendar = function (config){
                 week: "week",
                 day: "day"
             }
-        },
+        }, data=null,
         main = {
             _monthFirst : new Date(_date.getFullYear(), _date.getMonth(), 1, 0, 0, 0, 0),
             _monthLast : new Date(_date.getFullYear(), _date.getMonth()+1, 1, 0, 0, 0, -1)
@@ -36,7 +36,6 @@ var calendar = function (config){
         _head(self.id);
         _container(self.id);
     }
-
 
     function _head(t){
 
@@ -157,9 +156,14 @@ var calendar = function (config){
                 }
 
                 function skeleton(){
+                    debugger;
+                    var startDate;
+                    var endDate;
                     var h = ' <thead> ' +
                             '<tr>';
                     for (var c = 0; c < 7; c++){
+                        if(c==0){startDate = dateFormat(d)}
+                        if(c==6){endDate = dateFormat(d)}
                         h +=    '<td class="fc-day-number fc-'+dateFormat(d,'D')+getTenses(d)+'  " data-date="'+dateFormat(d)+'">'+d.getDate()+' </td>';
                         d.setDate(d.getDate()+1);
                     }
@@ -168,10 +172,20 @@ var calendar = function (config){
                         '<tbody>' +
                             '<tr>'+
                                 '<td></td>'+
+                                '<td></td>'+
+                                '<td></td>'+
+                                '<td></td>'+
+                                '<td></td>'+
+                                '<td></td>'+
+                                '<td></td>'+
                             '</tr>'+
                         '</tbody>';
 
                     return h;
+
+                    function getNoOfRowSpan(){
+                        
+                    }
                 }
 
 
@@ -190,9 +204,9 @@ var calendar = function (config){
     function dateFormat(d,format){
         var h = "";
         switch (format){
-            case "YYYY-m-d": return d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();break;
+            case "YYYY-m-d": return d.getFullYear() + "-" + (d.getMonth()> 10? "" :"0") + d.getMonth() + "-" + (d.getDate()> 10? "" :"0") + d.getDate();break;
             case "D" : return name.daysMin[d.getDay()];break;
-            default : return d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();break;
+            default : return d.getFullYear() + "-" + (d.getMonth()> 10? "" :"0") + d.getMonth() + "-" + (d.getDate()> 10? "" :"0") + d.getDate();break;
         }
 
     }
@@ -245,6 +259,8 @@ var calendar = function (config){
         });
 
         self.id.on('click','.fc-day',function(){
+            console.log($(this).index());
+            console.log( $(this).closest('.fc-week').index() );
             openModal($(this).data('date'));
         });
 
@@ -260,14 +276,28 @@ var calendar = function (config){
 
     }
 
+    function loadNotes(){
+      //  debugger;
+        $.ajax({
+            url : URL.base + "Event/getAllMeeting",
+            dataType:"JSON",
+            success : function(e){
+                data = e ;
+            }
+        });
+    }
+
 
     return (function(){
         self.options = $.extend(defaults,config);
         self.id = $("#"+self.options.id);
         self.id.data('year',_date.getFullYear());
         self.id.data('month',_date.getMonth());
-        Event();
-        drawCalender();
+        loadNotes();
+        $( document ).ajaxComplete(function() {
+            Event();
+            drawCalender();
+        });
     }());
 
 
