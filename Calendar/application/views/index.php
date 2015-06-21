@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="css/app.min.1.css"/>
     <link rel="stylesheet" href="css/app.min.2.css"/>
     <link rel="stylesheet" href="css/socicon.min.css"/>
+    <script>
+        URL = {
+            base :  "<?=base_url()?>",
+            current : "<?=current_url()?>"
+        }
+    </script>
 </head>
 <body>
 <div class="row">
@@ -65,7 +71,8 @@
     <script type="text/javascript" src="js/bootstrap.min.js" ></script>
 
     <script type="text/javascript" src="js/jquery-ui.custom.min.js" ></script>
-
+<script src='http://alasql.org/console/xlsx.core.min.js'></script>
+<script src='http://alasql.org/console/alasql.min.js'></script>
     <script type="text/javascript" src="js/calendar/main.js?v=1.1" ></script>
 
 

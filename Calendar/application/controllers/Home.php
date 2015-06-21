@@ -23,6 +23,10 @@ class Home extends CI_Controller {
 
     }
 
+    function month(){
+        $this->load->view('month');
+    }
+
 
 
 } 

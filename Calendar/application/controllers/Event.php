@@ -48,7 +48,11 @@ class Event extends CI_Controller {
     }
 
     function getAllMeeting(){
-        echo json_encode( $this->event->getAllMeeting());
+//        $result = $this->event->getAllMeeting();
+//        foreach($result as $row ):
+//            $d['']
+//        endforeach;
+        echo json_encode($this->event->getAllMeeting() );
     }
 
 

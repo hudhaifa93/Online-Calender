@@ -37,6 +37,12 @@ class Event_m extends CI_Model {
     }
 
     function getAllMeeting(){
+
+        $m_id = 2 ;
+        $q = " SELECT * FROM  note where createdby={$m_id} ";
+        return $this->db->query($q)->result();
+
+     /*
         //return $this->db->from('note')->get()->result();
         $memberId = $this->input->get('memberId');
         $type = $this->input->get('type');
@@ -53,7 +59,7 @@ class Event_m extends CI_Model {
 
 
         //returns result objects array
-        return $this->db->get()->result();
+        return $this->db->get()->result();*/
 
 
 

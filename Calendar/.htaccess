@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-   RewriteBase /Online-Calender/trunk/Calendar/
+   RewriteBase /Online-Calender/Calendar/
    # if your project is in server root then should be : RewriteBase/
    # if project is in folder then it should be : Rewrite/folder_name/
 
@@ -31,5 +31,5 @@
     # can be sent to index.php, and everything works as normal.
     # Submitted by: ElliotHaughin
 
-    ErrorDocument 404 /Online-Calender/trunk/Calendar/index.php
+    ErrorDocument 404 /Online-Calender/Calendar/index.php
 </IfModule>

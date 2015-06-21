@@ -107,7 +107,7 @@ var calendar = function (config){
         }
 
         function _body(){
-
+            var DayCount = alasql('SELECT NEW Date(startdate) as loopdate , COUNT(*) AS noofitems FROM ? GROUP BY startdate ',[data]);
             var d = main._monthFirst ;
             var weekday = d.getDay() != 0 ? d.getDay() - 1 : 6 ;
             var days = main._monthLast.getDate(),rows = Math.ceil((weekday + days) / 7)  ;
@@ -157,6 +157,9 @@ var calendar = function (config){
 
                 function skeleton(){
                     debugger;
+
+
+
                     var startDate;
                     var endDate;
                     var h = ' <thead> ' +
@@ -167,6 +170,11 @@ var calendar = function (config){
                         h +=    '<td class="fc-day-number fc-'+dateFormat(d,'D')+getTenses(d)+'  " data-date="'+dateFormat(d)+'">'+d.getDate()+' </td>';
                         d.setDate(d.getDate()+1);
                     }
+
+                    startDate = new Date(startDate);
+                    endDate = new Date(endDate);
+                    var MaxCount = alasql('SELECT MAX(noofitems) AS MaxItem FROM ? where loopdate >= ? AND loopdate <= ?',[DayCount,startDate,endDate]);
+
                     h +=  '</tr>'+
                         '</thead>' +
                         '<tbody>' +
@@ -183,9 +191,9 @@ var calendar = function (config){
 
                     return h;
 
-                    function getNoOfRowSpan(){
-                        
-                    }
+
+
+
                 }
 
 
@@ -204,9 +212,9 @@ var calendar = function (config){
     function dateFormat(d,format){
         var h = "";
         switch (format){
-            case "YYYY-m-d": return d.getFullYear() + "-" + (d.getMonth()> 10? "" :"0") + d.getMonth() + "-" + (d.getDate()> 10? "" :"0") + d.getDate();break;
+            case "YYYY-m-d": return d.getFullYear() + "-" + (d.getMonth()+1> 10? "" :"0") + (d.getMonth()+1) + "-" + (d.getDate()> 10? "" :"0") + d.getDate();break;
             case "D" : return name.daysMin[d.getDay()];break;
-            default : return d.getFullYear() + "-" + (d.getMonth()> 10? "" :"0") + d.getMonth() + "-" + (d.getDate()> 10? "" :"0") + d.getDate();break;
+            default : return d.getFullYear() + "-" + (d.getMonth()+1> 10? "" :"0") + (d.getMonth()+1)  + "-" + (d.getDate()> 10? "" :"0") + d.getDate();break;
         }
 
     }

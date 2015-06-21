@@ -25,6 +25,8 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `birthday`
 --
+CREATE DATABASE IF NOT EXISTS calendar ;
+USE calendar;
 
 CREATE TABLE IF NOT EXISTS `birthday` (
   `id` int(11) NOT NULL,
