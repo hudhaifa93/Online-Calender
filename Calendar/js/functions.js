@@ -35,3 +35,11 @@ function saveSimpleNote()
         }
     });
 }
+
+function setSessionsForAdvanceNote(date){
+    localStorage.setItem("tempSubject",  $("#Subject").val());
+    localStorage.setItem("tempDescription",  $("#description").val());
+    localStorage.setItem("tempClickedDate", date);
+    window.location.href = URL.base+"event/addNote";
+
+}

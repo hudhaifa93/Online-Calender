@@ -43,9 +43,9 @@
                             <input type="text" class="form-control" name="subject" id="Subject" placeholder="Subject"/>
                         </div>
                         <div class= "col-xs-12 form-group">
-                            <textarea class="form-control custom-control" placeholder="Description" name="description" id="Description" rows="5" style="resize:none"></textarea>
+                            <textarea class="form-control custom-control" placeholder="Description" name="description" id="description" rows="5" style="resize:none"></textarea>
                         </div>
-                        <a style="cursor: pointer" href="<?= base_url() ?>event/addNote" >Advance Options</a>
+                        <a style="cursor: pointer" class="advance-view" >Advance Options</a>
                     </form>
                 </div>
                 <div class="modal-footer">

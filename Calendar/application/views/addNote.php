@@ -14,6 +14,10 @@
     <script src="//cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.min.js"></script>
 
     <style type="text/css">
+        body{
+            width: 960px;
+            margin: 0px auto;   
+        }
         .bs-example{
             margin: 20px;
         }
@@ -167,30 +171,14 @@
 
 </head>
 <body>
-<div class="bs-example">
-    <!-- Button HTML (to Trigger Modal) -->
-    <a href="#myModal" class="btn btn-lg btn-primary" data-toggle="modal">Add Meeting</a>
+   <form role="form" id="frmMeeting">
 
-
-    <!-- Modal HTML -->
-    <div id="myModal" class="modal fade">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Add New Meeting</h4>
-                </div>
-                <div class="modal-body">
-                    <form role="form" id="frmMeeting">
-
-                        <div class="col-xs-6 form-group">
-                            <label>Host</label>
-                            <input type="text" class="form-control" name="HostName" id="HostName" placeholder="Host Name"/>
-                        </div>
                         <div class= "col-xs-6 form-group">
                             <label>Subject</label>
                             <input type="text" class="form-control" name="Subject" id="Subject" placeholder="Subject"/>
                         </div>
+                       <div class= "col-xs-6 form-group">
+                       </div>
                         <div class= "col-xs-12 form-group">
                             <label>Location</label>
                             <input type="text" class="form-control" name="Location" id="Location" placeholder="Location"/>
@@ -302,16 +290,13 @@
 
                     </form>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="javascript: validateSave()">Save changes</button>
-                </div>
+
+               <div class="col-xs-12 form-group">
+                   <button type="button" class="btn btn-primary" onclick="javascript: validateSave()">Save changes</button>
+               </div>
 
 
-            </div>
-        </div>
-    </div>
-</div>
+
+
 </body>
 </html>                                		                                		
