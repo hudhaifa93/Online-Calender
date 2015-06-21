@@ -20,9 +20,17 @@ class Event extends CI_Controller {
         $this->load->view('login');
     }
 
-    function addMeeting(){
-        $this->load->view('AddMeeting');
+    //main page modal
+    function insertSimpleNote(){
+        $id = $this->event->insertSimpleNote();
+        echo json_encode($id? array("success" => $id) : array( "failure" => "failure" ) );
     }
+
+    //note with advance options
+    function addNote(){
+        $this->load->view('addNote');
+    }
+
 
     function addMember(){
         echo json_encode($this->event->insertMember()? array("success" => "success") : array( "failure" => "failure" ) );

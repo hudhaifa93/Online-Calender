@@ -13,6 +13,24 @@ class Event_m extends CI_Model {
     function deleteEvent(){}
     function getEvent(){}
 
+
+    function insertSimpleNote(){
+
+        $d['subject'] = $this->input->post('subject');
+        $d['description'] = $this->input->post('description');
+        $d['timeslotid'] = $this->input->post('timeslotid');
+        $d['status'] = $this->input->post('status');
+        $d['startdate'] = $this->input->post('startdate');
+        $d['enddate'] = $this->input->post('enddate');
+        $d['createddate'] = $this->input->post('createddate');
+        $d['createdby'] = $this->input->post('createdby');
+        $d['notetype'] = $this->input->post('notetype');
+        $d['location'] = $this->input->post('location');
+
+        return $this->db->insert('note',$d)?  $this->db->insert_id() : false ;
+
+    }
+
     function getMeetingById(){
         $id = $this->input->get('id');
         return $this->db->from('note')->where('id',$id)->get()->first_row();
@@ -40,6 +58,7 @@ class Event_m extends CI_Model {
 
 
     }
+
 
     function insert(){
 
