@@ -253,6 +253,9 @@ var calendar = function (config){
             $("#ClickedDate").text(date);
             $(".ClickedDate").val(date);
             $("#CurrentDate").val(getOnlyCurrentDate());
+            $('.advance-view').click(function(){
+                setSessionsForAdvanceNote(date);
+            });
         }
 
     }
