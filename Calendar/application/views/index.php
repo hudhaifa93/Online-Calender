@@ -26,7 +26,8 @@
                     <h4 class="modal-title" id="TitleSubject"></h4>
                 </div>
                 <div class="modal-body">
-
+                    <p id="test"></p>
+                    <a type="text"  data-dismiss="modal">Advance Options</a>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -245,11 +245,13 @@ var calendar = function (config){
         });
 
         self.id.on('click','.fc-day',function(){
+            console.log($(this).data('date'));
             openModal($(this).data('date'));
         });
 
         function openModal(date){
-            $('#myModal').modal('show');
+            $('#CommonModal').modal('show');
+            $("#test").text(date);
         }
 
     }
