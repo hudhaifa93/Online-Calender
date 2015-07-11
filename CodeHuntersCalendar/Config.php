@@ -67,7 +67,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'calendar',
+	'database' => 'codehunterscalendar',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -83,10 +83,11 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
 /*
 'hostname' => 'mysql2.000webhost.com',
 	'username' => 'a4274464_oc',
 	'password' => '1qaz!QAZ',
 	'database' => 'a4274464_oc',
 
-    */
+*/
