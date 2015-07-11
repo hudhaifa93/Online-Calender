@@ -13,14 +13,13 @@ class Event extends Controller {
     }
 
     function getEvent(){
-        $result = $this->db->query("   SELECT * FROM  `note`  ");
-        //$r = $result->fetchAll();
-        echo "<pre>";
-        while ($row = $this->db->fetchObject($result) ){
+        $result = $this->db->query(" insert into note values(null,'','','','','','','','','','') ");
+      if($result){
 
-            print_r($row);
-        }
-        echo "</pre>";
+          echo "success";
+      }else
+          echo "failure";
+
     }
 
 } 

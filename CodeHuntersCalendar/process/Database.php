@@ -64,7 +64,7 @@ class Database {
 
         }catch(PDOException $ex) {
 
-            echo "An Error occured! : $this->last_query_PDO <br/>".$ex->getMessage();
+           return false;
 
         }
 
