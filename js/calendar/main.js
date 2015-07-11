@@ -1,7 +1,3 @@
-/**
- * Created by gowtham on 6/2/15.
- */
-
 var calendar = function (config) {
     'use strict';
     var $window = $(window);
@@ -321,7 +317,6 @@ var calendar = function (config) {
         });
     }
 
-
     return (function () {
         self.options = $.extend(defaults, config);
         self.id = $("#" + self.options.id);
@@ -332,15 +327,4 @@ var calendar = function (config) {
         drawCalender();
     }());
 
-
 };
-
-
-/*
-
- '<a class="fc-day-grid-event fc-event fc-not-start fc-end bgm-green fc-draggable">' +
- '<div class="fc-content"><span class="fc-title">Semester Exam</span>' +
- ' </div>' +
- '</a>'
-
- */
