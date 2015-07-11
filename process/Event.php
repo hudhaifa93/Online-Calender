@@ -13,8 +13,10 @@ class Event extends Controller {
 
     function getMonthlyEvents(){
 
-
-        $results = $this->db->query("  select * from `note` where `startdate` BETWEEN '".$this->post('start')."' AND '".$this->post('end')."' OR  ( DATE_FORMAT(`startdate`, '%m-%d') between DATE_FORMAT('".$this->post('start')."', '%m-%d') and DATE_FORMAT('".$this->post('end')."', '%m-%d') and `notetype` = 3 ) ORDER BY  DATE_FORMAT(`startdate`, '%m-%d') ");
+        $results = $this->db->query("  select * from `note` where
+          (  `startdate` BETWEEN '".$this->post('start')."' AND '".$this->post('end')."'
+          OR  ( DATE_FORMAT(`startdate`, '%m-%d') between DATE_FORMAT('".$this->post('start')."', '%m-%d') and DATE_FORMAT('".$this->post('end')."', '%m-%d') and `notetype` = 3 )
+           )  AND `status` = 1 ORDER BY DATE_FORMAT(`startdate`, '%m-%d')  ");
 
         while( $row = $results->fetchObject() ){
             if(@$start != $row->startdate){
