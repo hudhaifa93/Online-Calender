@@ -79,6 +79,25 @@
                 dateFormat: "yy mm d"
             });
 
+            $("#fullday").change(function() {
+                if(this.checked) {
+                    $("#timeAllocation").hide();
+                }
+                else
+                {
+                    $("#timeAllocation").show();
+                }
+            });
+            $("#addLocation").change(function() {
+                if(this.checked) {
+                    $("#locationAllocation").show();
+                }
+                else
+                {
+                    $("#locationAllocation").hide();
+                }
+            });
+
             var dataMessage = [
                 {"id":"1", "Name":"Heshani"},
                 {"id":"2", "Name":"Thwaraka"},
@@ -179,9 +198,15 @@
                         </div>
                        <div class= "col-xs-6 form-group">
                        </div>
-                        <div class= "col-xs-12 form-group">
-                            <label>Location</label>
-                            <input type="text" class="form-control" name="Location" id="Location" placeholder="Location"/>
+                       <div class= "col-xs-12 form-group">
+                           <label>Location</label>
+                           <input type="checkbox" id="addLocation">
+                       </div>
+                        <div id="locationAllocation" style="display:none    ">
+                            <div class= "col-xs-12 form-group">
+                                <label>Location</label>
+                                <input type="text" class="form-control" name="Location" id="Location" placeholder="Location"/>
+                            </div>
                         </div>
                         <div class="col-xs-6 form-group">
                             <label>Start Date</label>
@@ -191,6 +216,11 @@
                             <label>End Date</label>
                             <input type="text" class="form-control" name="EndDate" id="EndDate" placeholder="End Date"/>
                         </div>
+                       <div class= "col-xs-12 form-group">
+                           <label>Full Day</label>
+                           <input type="checkbox" id="fullday" checked="checked">
+                       </div>
+                        <div id="timeAllocation" style="display:none">
                         <div class="col-xs-6 form-group">
                             <label>Start Time</label>
                             <input type="text" class="form-control" name="StartTime" id="StartTime" placeholder="Start Time"/>
@@ -199,6 +229,7 @@
                             <label>End Time</label>
                             <input type="text" class="form-control" name="EndTime" id="EndTime" placeholder="End Time"/>
                         </div>
+                    </div>
                         <div class= "col-xs-12 form-group">
                             <label>Meeting Description</label>
                             <textarea class="form-control custom-control" name="Description" id="Description" rows="5" style="resize:none"></textarea>

@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="css/app.min.1.css"/>
     <link rel="stylesheet" href="css/app.min.2.css"/>
     <link rel="stylesheet" href="css/socicon.min.css"/>
+    <style>
+
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+            border-color: #eee #eee #0a6ebd;
+        }
+        .nav-tabs {
+            border-bottom: 1px solid #ddd;
+
+        }
+
+    </style>
 
 </head>
 <body>
@@ -27,31 +38,72 @@
                     <h4 class="modal-title" id="ClickedDate"></h4>
                 </div>
                 <div class="modal-body">
-                    <form role="form" id="noteForm">
 
-                        <input type=hidden name=timeslotid value="0">
-                        <input type=hidden name=status value="1">
-                        <input type=hidden class="ClickedDate" name=startdate value="">
-                        <input type=hidden class="ClickedDate" name=enddate value="">
-                        <input type=hidden id="CurrentDate" name=createddate value="">
-                        <input type=hidden name=createdby value="2">
-                        <input type=hidden name=notetype value="2">
-                        <input type=hidden name=location value="0">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="active"><a href="#eventTab" role="tab" data-toggle="tab">Event</a></li>
+                        <li><a href="#birthdayTab" role="tab" data-toggle="tab">Birthday</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="eventTab">
+                            <form role="form" id="eventForm">
+
+                                <input type=hidden name=timeslotid value="0">
+                                <input type=hidden name=status value="1">
+                                <input type=hidden class="ClickedDate" name=startdate value="">
+                                <input type=hidden class="ClickedDate" name=enddate value="">
+                                <input type=hidden id="CurrentDate" name=createddate value="">
+                                <input type=hidden name=createdby value="2">
+                                <input type=hidden name=notetype value="2">
+                                <input type=hidden name=location value="0">
 
 
 
-                        <div class= "col-xs-12 form-group">
-                            <input type="text" class="form-control" name="subject" id="Subject" placeholder="Subject"/>
+                                <div class= "col-xs-12 form-group">
+                                    <input type="text" class="form-control" name="subject" id="Subject" placeholder="Subject"/>
+                                </div>
+                                <div class= "col-xs-12 form-group">
+                                    <textarea class="form-control custom-control" placeholder="Description" name="description" id="description" rows="5" style="resize:none"></textarea>
+                                </div>
+                                <a style="cursor: pointer" class="advance-view" >Advance Options</a>
+                            </form>
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-sm btn-primary" onclick="saveBasicEvent()">Save</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
                         </div>
-                        <div class= "col-xs-12 form-group">
-                            <textarea class="form-control custom-control" placeholder="Description" name="description" id="description" rows="5" style="resize:none"></textarea>
+                        <div class="tab-pane" id="birthdayTab">
+                            <form role="form" id="birthdayForm">
+
+                                <input type=hidden name=timeslotid value="0">
+                                <input type=hidden name=status value="1">
+                                <input type=hidden class="ClickedDate" name=startdate value="">
+                                <input type=hidden class="ClickedDate" name=enddate value="">
+                                <input type=hidden id="CurrentDate" name=createddate value="">
+                                <input type=hidden name=createdby value="2">
+                                <input type=hidden name=notetype value="2">
+                                <input type=hidden name=location value="0">
+
+
+
+                                <div class= "col-xs-12 form-group">
+                                    <input type="text" class="form-control" name="subject" id="Subject" placeholder="Subject"/>
+                                </div>
+                                <div class= "col-xs-12 form-group">
+                                    <textarea class="form-control custom-control" placeholder="Description" name="description" id="description" rows="5" style="resize:none"></textarea>
+                                </div>
+                            </form>
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-sm btn-primary" onclick="saveBasicEvent()">Save</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
                         </div>
-                        <a style="cursor: pointer" class="advance-view" >Advance Options</a>
-                    </form>
+
+                    </div>
+
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-primary" onclick="saveBasicEvent()">Save</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
                 </div>
             </div>
         </div>

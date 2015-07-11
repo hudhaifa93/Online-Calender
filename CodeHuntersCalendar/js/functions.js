@@ -26,7 +26,7 @@ function saveBasicEvent()
         url: "/event/insertBasicEvent",//event.php
         type: "post",
         dataType: 'json',
-        data: $('#noteForm').serialize(), // provided this code executes in form.onsubmit event
+        data: $('#eventForm').serialize(), // provided this code executes in form.onsubmit event
         success: function (output) {
             alert("Simple Note Added");
         },
