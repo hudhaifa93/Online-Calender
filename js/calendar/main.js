@@ -290,6 +290,7 @@ var calendar = function (config) {
             $('#eventForm')[0].reset();
             $('#birthdayForm')[0].reset();
             $('#CommonModal').modal('show');
+            $('.nav-tabs a[href="#eventTab"]').tab('show');
             $("#ClickedDate").text(date);
             $(".ClickedDate").val(date);
             $(".CurrentDate").val(getOnlyCurrentDate());
