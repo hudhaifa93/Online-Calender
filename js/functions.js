@@ -86,7 +86,7 @@ function validateLogin(formName){
             //$('#'+formName)[0].reset();
             if(output.success > 0)
             {
-                window.location.href = "/Online-Calender/trunk/CodeHuntersCalendar/index.html";
+                window.location.href = "/Online-Calender/Calendar.html";
             }
             else{
                 showalert("An Error Occurred Please Contact Admin.","alert-danger","","");
