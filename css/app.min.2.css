@@ -2897,3 +2897,24 @@ div.fc-row {
   display: inline-block;
   vertical-align: middle;
 }
+
+.new_alert-success{
+    border: 1px solid rgb(124, 252, 124);
+    background: rgb(198, 253, 198);
+    position: fixed;
+    bottom: 100px;
+    right: 0;
+    padding: 20px 10px;
+    color:  green ;
+    font-size: 15px;
+}
+.new_alert-danger{
+    border: 1px solid #e4b9c0;
+    background: #e4b9c0;
+    position: fixed;
+    bottom: 100px;
+    right: 0;
+    padding: 20px 10px;
+    color:  #843534 ;
+    font-size: 15px;
+}

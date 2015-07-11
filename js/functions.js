@@ -2,22 +2,21 @@
  * Created by Hudhaifa Yoosuf on 6/21/15.
  */
 
-
 //
 
 function showalert(message, alerttype, id, type) {
-
-    $('#alert').append('<div id="alertdiv" class="alert ' + alerttype + '"><a class="close" data-dismiss="alert" aria-label="close">&times;</a><span>' + message + '</span></div>')
+    $("<div class='new_"+ alerttype +"' >"+ message +"</div>").appendTo('body');
+    if (type == "modal") $('#' + id).modal('toggle');
+  //  $('#alert').append('<div id="alertdiv" class="alert ' + alerttype + '"><a class="close" data-dismiss="alert" aria-label="close">&times;</a><span>' + message + '</span></div>')
 
     setTimeout(function () { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
         if (type == "modal") {
-            $('#' + id).modal('toggle');
             location.reload();
         }
         else if(type=="redirect"){
             window.location.href = id;
         }
-        $("#alertdiv").remove();
+        $(".new_alert_success").remove();
     }, 3000);
 }
 
@@ -54,6 +53,7 @@ function saveBasicEvent(formName) {
             debugger;
             $('#' + formName)[0].reset();
             if (output.success > 0) {
+
                 showalert(Message, "alert-success", "CommonModal", "modal");
             }
             else {
