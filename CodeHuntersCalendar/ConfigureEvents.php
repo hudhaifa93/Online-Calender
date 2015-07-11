@@ -202,11 +202,11 @@
         <div class="col-xs-12 form-group">
             <!-- <label>Location</label> -->
             <!-- <input type="text" class="form-control" name="Location" id="Location" placeholder="Location"/> -->
-            <input type="text" id="autocomplete" placeholder="Enter your address"/>
-            <input type="text" class="googleAddress" id="street"/>
-            <input type="text" class="googleAddress" id="city"/>
-            <input type="text" class="googleAddress" id="state"/>
-            <input type="text" class="googleAddress" id="country"/>
+            <input type="text" class="form-control" id="autocomplete" placeholder="Enter your address"/>
+            <input type="text" style="margin-top: 10px;margin-bottom: 10px;" class="googleAddress form-control" id="street"/>
+            <input style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="city"/>
+            <input style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="state"/>
+            <input style="float: left;  width: 25%;" type="text" class="googleAddress form-control" id="country"/>
         </div>
     </div>
     <div class="col-xs-6 form-group">
