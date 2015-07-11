@@ -29,9 +29,10 @@ class Event extends Controller {
     }
 
     function validateLogin(){
-
-        $id = $this->db->query("SELECT memberid FROM member_password_map WHERE username='".$_POST['loginUsername']."' and password='".$_POST['loginPassword']."'");
-        echo json_encode($id? array("success" => $this->db->fetchObject()->memberid) : array("failure" => "failure" ));
+        $hashPass = md5($_POST['loginPassword']);
+        echo "SELECT memberid FROM member_password_map WHERE username='".$_POST['loginUsername']."' and password='".$hashPass."'  ";
+        $id = $this->db->query("SELECT memberid FROM member_password_map WHERE username='".$_POST['loginUsername']."' and password='".$hashPass."'  ");
+        echo json_encode($id? array("success" => $this->db->fetchObject()) : array("failure" => "failure" ));
     }
 
     function createNewSignUp(){
