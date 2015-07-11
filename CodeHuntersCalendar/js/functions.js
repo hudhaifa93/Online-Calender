@@ -4,6 +4,18 @@
 
 
 //
+
+function showalert(message, alerttype) {
+
+    $('#alert').append('<div id="alertdiv" class="alert ' + alerttype + '"><a class="close" data-dismiss="alert" aria-label="close">&times;</a><span>' + message + '</span></div>')
+
+    setTimeout(function () { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
+
+        $("#alertdiv").remove();
+
+    }, 3000);
+}
+
 function getOnlyCurrentDate()
 {
     var d = new Date();
@@ -31,7 +43,8 @@ function saveBasicEvent()
             debugger;
             if(output.success > 0)
             {
-                alert("Simple Note Added");
+                showalert("Event Has Been Added Successfully.","alert-success");
+                //$('#CommonModal').modal('toggle');
             }
         },
         failure: function(){

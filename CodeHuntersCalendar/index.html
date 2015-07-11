@@ -38,6 +38,7 @@
                     <h4 class="modal-title" id="ClickedDate"></h4>
                 </div>
                 <div class="modal-body">
+                    <div id="alert"></div>
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="active"><a href="#eventTab" role="tab" data-toggle="tab">Event</a></li>
                         <li><a href="#birthdayTab" role="tab" data-toggle="tab">Birthday</a></li>
@@ -116,7 +117,6 @@
         $( document ).ready(function() {
             $("#birthdayCombo").birthdayPicker();
         });
-
 
         URL = {
             base : ""
