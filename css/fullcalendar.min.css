@@ -759,3 +759,9 @@ a.fc-more:hover {
     background: #fcf8e3;
     border-style: double
 }
+.fc-toolbar{
+    margin-top: 20px;
+}
+.panel {
+    margin-bottom: 20px;
+}
