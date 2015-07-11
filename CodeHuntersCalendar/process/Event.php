@@ -29,6 +29,13 @@ class Event extends Controller {
         echo json_encode( $data );
     }
 
+    function validateLogin(){
+
+        $id = $this->db->query("SELECT memberid FROM member_password_map WHERE username='".$_POST['loginUsername']."' and password='".$_POST['loginPassword']."'");
+        echo json_encode($id? array("success" => $this->db->fetchObject()->memberid) : array("failure" => "failure" ));
+    }
+
+
 
 
 } 
