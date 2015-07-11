@@ -1,46 +1,69 @@
 <html>
 <head>
 <title>Login</title>
-<body>
+
+</head>
+<body style="  width: 350;  margin: 0px auto;">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 
-<form name="loginForm">
+<div id="main" class="row">
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#loginTab" role="tab" data-toggle="tab">Login</a></li>
+    <li><a href="#SignUpTab" role="tab" data-toggle="tab">Sign Up</a></li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane active" id="loginTab">
+		<form name="loginForm">
+		<div class="col-xs-12">
+		<h3 span style="font-size: 16px;" class="">Enter your login credentials <strong>to sign in</strong></span></h3>	
+		</div>
+		<div class="col-xs-12">			
+			<input type="username" class="form-control" id="inputUsername" placeholder="Username">
+		  </div>
+		  
+		  <div class="col-xs-12">
+			<input type="password" style="margin-top: 10px;" class="form-control" id="inputPassword" placeholder="Password">
+			<input type="checkbox" style="margin-top: 10px;"> Keep me logged in
+			<div class="pull-right">		
+				<button type="button" style="margin-top:10px" class="btn btn-sm btn-primary">Login</button> 
+			</div>
+		  </div>
+		  	
+		</form>
+	</div>
+	 <div class="tab-pane" id="SignUpTab">
+		<form id="signupForm">
+		<div class="col-xs-12">
+			<h3 span="" style="font-size: 16px;" class="">It's <strong>FREE</strong> and always will be.</h3>
+		</div>
+		<div class="col-xs-12">
+		<input type="text" class="form-control" id="inputFirstname" placeholder="Firstname">
+		</div>	
+		<div class="col-xs-12">
+		<input type="text" style="margin-top: 10px;" class="form-control" id="inputLastname" placeholder="Lastname">
+		</div>	
+		<div class="col-xs-12">
+		<input type="text" style="margin-top: 10px;" class="form-control" id="inputEmail" placeholder="Email">
+		</div>			
+		<div class="col-xs-12">
+		<input type="text" style="margin-top: 10px;" class="form-control" id="inputpassword" placeholder="Desired Password">
+		</div>
+		<div class="col-xs-12">
+			<div class="pull-right">		
+		  <button type="button" style="margin-top: 10px;" class="btn btn-sm btn-primary">Sign Up</button> 
+		</div>		  
+		</div>			  
+		</form>
+	</div>
+</div>
+   
 
-<div class="logmod__heading">
-          <h3 span style="margin-left: 15px;" class="logmod__heading-subtitle">Enter your login credentials <strong>to sign in</strong></span></h3>
-        </div>
-		
-<div class="col-lg-4">
-    <label for="inputUsername">Username*</label>
-    <input type="username" class="form-control" id="inputUsername" placeholder="Username">
-  </div>
-  
-  <div class="col-lg-4">
-    <label for="inputPassword">Password*</label>
-    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-  </div>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox"> Keep me logged in
-    </label>
-  </div>
-  <button type="button" class="btn btn-info">Log In</button>
-  
-  
-  
-  <h3 style="margin-left: 18px;">Sign Up</h3><br>
-  <h4 style="margin-left: 18px;">It's free and always will be.</h4>
-  <div class="col-lg-3 form-group form-group-lg">
-    <input type="firstname" class="form-control" id="inputFirstname" placeholder="Firstname"><br>
-	<input type="lastname" class="form-control" id="inputLastname" placeholder="Lastname"><br>
-	<input type="lastname" class="form-control" id="inputLastname" placeholder="Email or mobile number"><br>
-	<input type="lastname" class="form-control" id="inputLastname" placeholder="Re-enter email or mobile number"><br>
-	<input type="password" class="form-control" id="inputPassword" placeholder="New password"><br>
-	<button type="button" class="btn btn-info btn-lg disabled">Large button</button>
-  </div>
-</form>
-
+	
+</div>
 </body>
+<script type="text/javascript" src="js/jquery.js" ></script>
+
+<script type="text/javascript" src="js/bootstrap.min.js" ></script>
 
 </head>
 </html>
