@@ -60,10 +60,10 @@ if(file_exists("./{$get->route}.php")){
     if(is_callable(array($obj,$get->method))){
         call_user_func(array($obj,$get->method));
     }else{
-        echo json_encode(['error'=>"Method not found"]);
+        echo json_encode( array('error'=>"Method not found"));
     }
 
 }else{
-    echo json_encode(['error'=>"Class not found"]);
+    echo json_encode( array('error'=>"Class not found"));
 }
 

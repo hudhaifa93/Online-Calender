@@ -6,7 +6,7 @@
  * Time: 12:21 PM
  */
 
-class Database {
+class database {
 
     const host="localhost";
     const username="root";

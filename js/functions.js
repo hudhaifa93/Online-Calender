@@ -16,7 +16,7 @@ function showalert(message, alerttype, id, type) {
         else if(type=="redirect"){
             window.location.href = id;
         }
-        $(".new_alert_success").remove();
+        $(".new_"+alerttype).remove();
     }, 3000);
 }
 
@@ -94,6 +94,7 @@ function validateLogin(formName) {
             debugger;
             //$('#'+formName)[0].reset();
             if (output.success > 0) {
+                localStorage.setItem("memberId", output.success);
                 window.location.href = "/Online-Calender/Calendar.html";
             }
             else {

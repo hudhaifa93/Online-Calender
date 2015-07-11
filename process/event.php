@@ -1,6 +1,6 @@
 <?php
 
-class Event extends Controller {
+class event extends controller {
 
     function __construct(){
         parent::__construct();

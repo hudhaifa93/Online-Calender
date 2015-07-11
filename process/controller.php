@@ -6,12 +6,12 @@
  * Time: 12:21 PM
  */
 
-class Controller {
+class controller {
 
     var $db = null;
 
     function __construct(){
-        $this->db = new Database();
+        $this->db = new database();
     }
 
     function post($name=""){
