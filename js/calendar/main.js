@@ -172,7 +172,7 @@ var calendar = function (config) {
                         var Cur_Date = dateFormat(d);
                         w += '<td>';
                         for (var m = 0; m < monthly_notes.length; m++) {
-                            if (monthly_notes[m].date == Cur_Date) {
+                            if (monthly_notes[m].date == Cur_Date  || dateFormat( new Date(monthly_notes[m].date) ,'m-d') == dateFormat(d,'m-d')  ) {
                                 var daynotes = monthly_notes[m].events;
                                 for (var s = 0; s < daynotes.length; s++) {
                                     var bgcolor = "bgm-purple";
@@ -188,7 +188,6 @@ var calendar = function (config) {
                                         '</div>' +
                                         '</a>';
                                 }
-                                break;
                             }
                         }
                         w += '</td>';
@@ -216,6 +215,9 @@ var calendar = function (config) {
         switch (format) {
             case "YYYY-m-d":
                 return d.getFullYear() + "-" + (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 10 ? "" : "0") + d.getDate();
+                break;
+            case "m-d":
+                return (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 10 ? "" : "0") + d.getDate();
                 break;
             case "D" :
                 return name.daysMin[d.getDay()];
