@@ -297,11 +297,25 @@ var calendar = function (config) {
         }
 
         function openModelForEdit(event) {
-            //eventdate
-            //subject
-            //description
-            //eventtype
-            alert(event.data("eventid"));
+            $('#eventForm')[0].reset();
+            $('#birthdayForm')[0].reset();
+            $('#CommonModal').modal('show');
+
+            $("#ClickedDate").text(event.data('eventdate'));
+            $(".ClickedDate").val(event.data('eventdate'));
+
+            if(event.data('eventtype')=="2")//note
+            {
+                $("#Subject").val(event.data('subject'));
+                $("#description").val(event.data('description'));
+                $('.nav-tabs a[href="#eventTab"]').tab('show');
+            }
+            else if(event.data('eventtype')=="3")//birthday
+            {
+                $("#BirthDayName").val(event.data('subject'));
+                $("#description").val(event.data('description'));
+                $('.nav-tabs a[href="#birthdayTab"]').tab('show');
+            }
         }
 
     }
