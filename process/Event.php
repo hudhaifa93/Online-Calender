@@ -11,10 +11,9 @@ class Event extends Controller {
         echo json_encode($id? array("success" => $this->db->last_id()) : array("failure" => "failure" ));
     }
 
-    function getMonthlyEvents($start="",$end=""){
-        $start = "2015-06-28";
-        $end = "2015-07-25";
-        $results = $this->db->query(" select * from note where `startdate` BETWEEN '$start' AND '$end'  order by startdate ");
+    function getMonthlyEvents(){
+
+        $results = $this->db->query(" select * from note where `startdate` BETWEEN '".$this->post('start')."' AND '".$this->post('end')."'  order by startdate ");
 
         while( $row = $results->fetchObject() ){
             if(@$start != $row->startdate){
