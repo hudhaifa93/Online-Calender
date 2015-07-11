@@ -103,12 +103,7 @@ function createNewSignUp(formName)
     var Message="";
     Message ="You Have Been Successfully Registered.";
 
-    if($("#inputpassword").val().length < 16 ){
-        showalert("Max Length For Password : 15","alert-danger","","");
-    }
-    else
-    {
-        $.ajax({
+    $.ajax({
             url: "process/index.php?route=event&method=createNewSignUp",//event.php
             type: "post",
             dataType: 'json',
@@ -128,7 +123,6 @@ function createNewSignUp(formName)
                 showalert("An Error Occurred Please Contact Admin.","alert-danger","","");
             }
         });
-    }
 }
 
 
