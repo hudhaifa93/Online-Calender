@@ -755,3 +755,7 @@ a.fc-more:hover {
 .fc-time-grid-event .fc-resizer:after {
     content: "="
 }
+.fc-today {
+    background: #fcf8e3;
+    border-style: double
+}

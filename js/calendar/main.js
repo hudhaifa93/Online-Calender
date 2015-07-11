@@ -74,8 +74,8 @@ var calendar = function (config) {
                 '<ul class="dropdown-menu dropdown-menu-right">' +
                 '<li class="active"><a data-view="month" href="">Month View</a></li>' +
                 '<li><a data-view="basicWeek" href="">Week View</a></li>' +
-                '<li><a data-view="agendaWeek" href="">Agenda Week View</a></li>' +
                 '<li><a data-view="basicDay" href="">Day View</a></li>' +
+                '<li><a data-view="agendaWeek" href="ViewAllBirthdays.html">Birth day View</a></li>' +
                 '<li><a data-view="agendaDay" href="">Agenda Day View</a></li>' +
                 '</ul>' +
                 '</li>' +
@@ -157,7 +157,7 @@ var calendar = function (config) {
                 function bg() {
                     var h = '<tr>';
                     for (var c = 0; c < 7; c++) {
-                        h += '<td class="fc-day ui-widget-content fc-' + dateFormat(d, 'D') + getTenses(d) + '   " data-date="' + dateFormat(d) + '"></td>';
+                        h += '<td class="fc-day ui-widget-content fc-' + dateFormat(d, 'D') + getTenses(d) +  '   " data-date="' + dateFormat(d) + '"></td>';
                         d.setDate(d.getDate() + 1);
                     }
                     d.setDate(d.getDate() - 7);
@@ -170,7 +170,7 @@ var calendar = function (config) {
                     var w = '';
                     for (var c = 0; c < 7; c++) {
                         var Cur_Date = dateFormat(d);
-                        w += '<td>';
+                        w += '<td  >';
                         for (var m = 0; m < monthly_notes.length; m++) {
                             if (monthly_notes[m].date == Cur_Date  || dateFormat( new Date(monthly_notes[m].date) ,'m-d') == dateFormat(d,'m-d')  ) {
                                 var daynotes = monthly_notes[m].events;

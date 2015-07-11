@@ -2920,3 +2920,5 @@ div.fc-row {
     font-size: 15px;
     z-index: 9999999;
 }
+small{ color:#A5A7B6; }
+a small {color:#0E26DA}
