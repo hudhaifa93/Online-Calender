@@ -9,6 +9,7 @@
  
  // url pattern domain.com/process/index.php?route="Class name"&method="Class Method name "
  // from submit using post method
+ // example http://localhost/calendar/process/?route=Event&method=getEvent
 
 function __autoload($class_name) {
     include $class_name . '.php';
