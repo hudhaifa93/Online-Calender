@@ -307,3 +307,11 @@ var calendar = function (config){
 };
 
 
+/*
+
+'<a class="fc-day-grid-event fc-event fc-not-start fc-end bgm-green fc-draggable">' +
+    '<div class="fc-content"><span class="fc-title">Semester Exam</span>' +
+    ' </div>' +
+    '</a>'
+
+    */
