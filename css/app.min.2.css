@@ -2902,19 +2902,21 @@ div.fc-row {
     border: 1px solid rgb(124, 252, 124);
     background: rgb(198, 253, 198);
     position: fixed;
-    bottom: 100px;
+    top: 100px;
     right: 0;
     padding: 20px 10px;
     color:  green ;
     font-size: 15px;
+    z-index: 9999999;
 }
 .new_alert-danger{
     border: 1px solid #e4b9c0;
     background: #e4b9c0;
     position: fixed;
-    bottom: 100px;
+    top: 100px;
     right: 0;
     padding: 20px 10px;
     color:  #843534 ;
     font-size: 15px;
+    z-index: 9999999;
 }
