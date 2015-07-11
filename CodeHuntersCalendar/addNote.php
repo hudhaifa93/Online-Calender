@@ -4,10 +4,10 @@
     <title>Example of Bootstrap 3 Modals</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="<?=base_url()?>css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="<?=base_url()?>js/jquery-ui.js"></script>
+    <script src="js/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css" />
@@ -152,7 +152,7 @@
 
         function validateSave(){
             $.ajax({
-            url:"<?=base_url()?>event/insertMeeting",
+            url:"event/insertMeeting",
             type: "post",
             dataType: 'json',
             data: $('#frmMeeting').serialize(), // provided this code executes in form.onsubmit event
