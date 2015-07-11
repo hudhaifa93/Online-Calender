@@ -3,10 +3,10 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="<?=base_url()?>css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="<?=base_url()?>js/jquery-ui.js"></script>
+    <script src="js/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css" />
@@ -172,7 +172,7 @@
 <script>
     function viewNote(noteid){
         $.ajax({
-            url : "<?=base_url()?>event/getMeeting?id="+noteid,
+            url : "event/getMeeting?id="+noteid,
             dataType : "json",
             type:"get",
             success : function(e){
@@ -192,7 +192,7 @@
 
     function viewAllNotes(){
         $.ajax({
-            url : "<?=base_url()?>event/getAllMeeting?memberId=2&type=Meeting",
+            url : "event/getAllMeeting?memberId=2&type=Meeting",
             dataType : "json",
             type: "get",
             success : function(e){
