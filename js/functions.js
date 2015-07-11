@@ -45,7 +45,7 @@ function saveBasicEvent(formName) {
     }
 
     $.ajax({
-        url: "process/index.php?route=event&method=validateLogin",//event.php
+        url: "process/index.php?route=event&method=insertBasicEvent",//event.php
         type: "post",
         dataType: 'json',
         data: $('#' + formName).serialize(), // provided this code executes in form.onsubmit event
@@ -103,27 +103,32 @@ function createNewSignUp(formName)
     var Message="";
     Message ="You Have Been Successfully Registered.";
 
-
-    $.ajax({
-        url: "process/index.php?route=event&method=createNewSignUp",//event.php
-        type: "post",
-        dataType: 'json',
-        data: $('#'+formName).serialize(), // provided this code executes in form.onsubmit event
-        success: function (output) {
-            debugger;
-            $('#'+formName)[0].reset();
-            if(output.success > 0)
-            {
-                showalert(Message,"alert-success","/Online-Calender/Calendar.html","redirect");
-            }
-            else{
+    if($("#inputpassword").val().length < 16 ){
+        showalert("Max Length For Password : 15","alert-danger","","");
+    }
+    else
+    {
+        $.ajax({
+            url: "process/index.php?route=event&method=createNewSignUp",//event.php
+            type: "post",
+            dataType: 'json',
+            data: $('#'+formName).serialize(), // provided this code executes in form.onsubmit event
+            success: function (output) {
+                debugger;
+                $('#'+formName)[0].reset();
+                if(output.success > 0)
+                {
+                    showalert(Message,"alert-success","/Online-Calender/Calendar.html","redirect");
+                }
+                else{
+                    showalert("An Error Occurred Please Contact Admin.","alert-danger","","");
+                }
+            },
+            failure: function(){
                 showalert("An Error Occurred Please Contact Admin.","alert-danger","","");
             }
-        },
-        failure: function(){
-            showalert("An Error Occurred Please Contact Admin.","alert-danger","","");
-        }
-    });
+        });
+    }
 }
 
 
