@@ -15,7 +15,7 @@ class Event extends Controller {
     function getEvent(){
         $result = $this->db->query(" insert into note values(null,'','','','','','','','','','') ");
       if($result){
-
+          echo $this->db->last_id();
           echo "success";
       }else
           echo "failure";

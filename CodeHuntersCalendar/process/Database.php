@@ -77,7 +77,7 @@ class Database {
             return $result->fetch(PDO::FETCH_OBJ);
     }
 
-    public function last_id(){return $this->stmt->lastInsertId();    }
+    public function last_id(){return $this->connection->lastInsertId();    }
 
     public function close_connection(){$this->stmt = null ;}
 
