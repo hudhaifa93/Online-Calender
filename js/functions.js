@@ -68,10 +68,17 @@ function saveBasicEvent(formName) {
 
 
 function setSessionsForAdvanceNote(date) {
+    localStorage.setItem("advanceID", "0");
     localStorage.setItem("tempSubject", $("#Subject").val());
     localStorage.setItem("tempDescription", $("#description").val());
     localStorage.setItem("tempClickedDate", date);
-    window.location.href = "event/addNote";
+    window.location.href = "/Online-Calender/ConfigureEvents.html";
+
+}
+
+function editAdvanceNote(id) {
+    localStorage.setItem("advanceID", id);
+    window.location.href = "/Online-Calender/ConfigureEvents.html";
 
 }
 

@@ -328,6 +328,10 @@ var calendar = function (config) {
             $("#ClickedDate").text(event.data('eventdate'));
             $(".ClickedDate").val(event.data('eventdate'));
 
+            $('.advance-view').click(function () {
+                editAdvanceNote(event.data('eventid'));
+            });
+
             if(event.data('eventtype')=="2")//note
             {
                 $("#Subject").val(event.data('subject'));
@@ -336,6 +340,7 @@ var calendar = function (config) {
                 $("#eventButton").attr("onclick","editBasicEvent('eventForm','"+event.data('eventid')+"')");
                 $("#eventButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
                 $("#eventButtonDelete").show();
+
             }
             else if(event.data('eventtype')=="3")//birthday
             {
@@ -346,10 +351,10 @@ var calendar = function (config) {
                 $("#birthdayButtonDelete").attr("onclick","deleteBasicEvent('birthdayForm','"+event.data('eventid')+"')");
                 $("#birthdayButtonDelete").show();
 
-                $("#Bdate").val(dateFormat(new Date(event.data('eventdate')),'d'));
-                $("#Bmonth").val(dateFormat(new Date(event.data('eventdate')),'m'));
-                $("#Byear").val(dateFormat(new Date(event.data('eventdate')),'y'));
             }
+            $("#Bdate").val(dateFormat(new Date(event.data('eventdate')),'d'));
+            $("#Bmonth").val(dateFormat(new Date(event.data('eventdate')),'m'));
+            $("#Byear").val(dateFormat(new Date(event.data('eventdate')),'y'));
         }
 
     }
