@@ -12,14 +12,25 @@ class Event extends Controller {
 
     }
 
-    function getEvent(){
-        $result = $this->db->query(" insert into note values(null,'','','','','','','','','','') ");
-      if($result){
-          echo $this->db->last_id();
-          echo "success";
-      }else
-          echo "failure";
 
+    function getMonthlyEvents($start,$end){
+        $start = "2015-06-28";
+        $end = "2015-07-25";
+        $results = $this->db->query(" select * from note where `startdate` BETWEEN '$start' AND '$end'  order by startdate ");
+
+        while( $row = $results->fetchObject() ){
+            if(@$start != $row->startdate){
+                if(isset($d)){
+                    $data[] = array( 'date'=> $start ,'events' => $d );
+                    unset($d);
+                }
+                $start = $row->startdate ;
+            }
+            $d[] = objectToArray($row) ;
+        }
+        echo json_encode( $data );
     }
+
+
 
 } 
