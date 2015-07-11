@@ -25,7 +25,7 @@ class Event extends Controller {
             }
             $d[] = objectToArray($row) ;
         }
-        echo json_encode( $data );
+        echo json_encode( isset($data) ? $data : array() );
     }
 
     function validateLogin(){
