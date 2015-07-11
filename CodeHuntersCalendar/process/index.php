@@ -7,7 +7,7 @@
  */
  
  
- // url pattern index.php?route="Class name"&method="Class Method name "
+ // url pattern domain.com/process/index.php?route="Class name"&method="Class Method name "
  // from submit using post method
 
 function __autoload($class_name) {
