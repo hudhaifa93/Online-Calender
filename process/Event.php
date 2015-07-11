@@ -63,5 +63,15 @@ class Event extends Controller {
 
     }
 
+    function deleteBasicEvent(){
 
+        $id = $this->db->query("UPDATE note SET status='0' WHERE id='".$_POST['id']."'");
+        if(is_object($id)){
+            echo json_encode($id? array("success" => "Deleted") : array("failure" => "failure" ));
+        }
+        else{
+            echo json_encode($id? array("success" => "failure") : array("failure" => "failure" ));
+        }
+
+    }
 } 

@@ -297,6 +297,8 @@ var calendar = function (config) {
             $(".CurrentDate").val(getOnlyCurrentDate());
             $("#eventButton").attr("onclick","saveBasicEvent('eventForm')");
             $("#birthdayButton").attr("onclick","saveBasicEvent('birthdayForm')");
+            $("#eventButtonDelete").hide();
+            $("#birthdayButtonDelete").hide();
             $('.advance-view').click(function () {
                 setSessionsForAdvanceNote(date);
             });
@@ -315,14 +317,18 @@ var calendar = function (config) {
                 $("#Subject").val(event.data('subject'));
                 $("#description").val(event.data('description'));
                 $('.nav-tabs a[href="#eventTab"]').tab('show');
-                $("#eventButton").attr("onclick","editBasicEvent('eventForm','"+event.data('eventid')+"')")
+                $("#eventButton").attr("onclick","editBasicEvent('eventForm','"+event.data('eventid')+"')");
+                $("#eventButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
+                $("#eventButtonDelete").show();
             }
             else if(event.data('eventtype')=="3")//birthday
             {
                 $("#BirthDayName").val(event.data('subject'));
                 $("#description").val(event.data('description'));
                 $('.nav-tabs a[href="#birthdayTab"]').tab('show');
-                $("#birthdayButton").attr("onclick","editBasicEvent('birthdayForm','"+event.data('eventid')+"')")
+                $("#birthdayButton").attr("onclick","editBasicEvent('birthdayForm','"+event.data('eventid')+"')");
+                $("#birthdayButtonDelete").attr("onclick","deleteBasicEvent('birthdayForm','"+event.data('eventid')+"')");
+                $("#birthdayButtonDelete").show();
             }
         }
 
