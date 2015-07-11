@@ -25,6 +25,7 @@ class Event extends Controller {
             }
             $d[] = objectToArray($row) ;
         }
+        $data[] = array( 'date'=> $start ,'events' => $d );
         echo json_encode( isset($data) ? $data : array() );
     }
 
