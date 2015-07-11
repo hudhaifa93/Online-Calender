@@ -220,6 +220,15 @@ var calendar = function (config) {
             case "m-d":
                 return (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 10 ? "" : "0") + d.getDate();
                 break;
+            case "y":
+                return d.getFullYear() ;
+                break;
+            case "m":
+                return (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) ;
+                break;
+            case "d":
+                return  (d.getDate() > 10 ? "" : "0") + d.getDate();
+                break;
             case "D" :
                 return name.daysMin[d.getDay()];
                 break;
@@ -295,6 +304,13 @@ var calendar = function (config) {
             $("#ClickedDate").text(date);
             $(".ClickedDate").val(date);
             $(".CurrentDate").val(getOnlyCurrentDate());
+
+            $("#Bdate").val(dateFormat(new Date(date),'d'));
+            $("#Bmonth").val(dateFormat(new Date(date),'m'));
+            $("#Byear").val(dateFormat(new Date(date),'y'));
+
+
+
             $("#eventButton").attr("onclick","saveBasicEvent('eventForm')");
             $("#birthdayButton").attr("onclick","saveBasicEvent('birthdayForm')");
             $("#eventButtonDelete").hide();
@@ -329,6 +345,10 @@ var calendar = function (config) {
                 $("#birthdayButton").attr("onclick","editBasicEvent('birthdayForm','"+event.data('eventid')+"')");
                 $("#birthdayButtonDelete").attr("onclick","deleteBasicEvent('birthdayForm','"+event.data('eventid')+"')");
                 $("#birthdayButtonDelete").show();
+
+                $("#Bdate").val(dateFormat(new Date(event.data('eventdate')),'d'));
+                $("#Bmonth").val(dateFormat(new Date(event.data('eventdate')),'m'));
+                $("#Byear").val(dateFormat(new Date(event.data('eventdate')),'y'));
             }
         }
 
