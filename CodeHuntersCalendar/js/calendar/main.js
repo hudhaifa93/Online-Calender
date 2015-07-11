@@ -270,10 +270,12 @@ var calendar = function (config){
         });
 
         function openModal(date){
+            $('#eventForm')[0].reset();
+            $('#birthdayForm')[0].reset();
             $('#CommonModal').modal('show');
             $("#ClickedDate").text(date);
             $(".ClickedDate").val(date);
-            $("#CurrentDate").val(getOnlyCurrentDate());
+            $(".CurrentDate").val(getOnlyCurrentDate());
             $('.advance-view').click(function(){
                 setSessionsForAdvanceNote(date);
             });
