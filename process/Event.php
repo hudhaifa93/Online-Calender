@@ -34,7 +34,16 @@ class Event extends Controller {
         echo json_encode($id? array("success" => $this->db->fetchObject()->memberid) : array("failure" => "failure" ));
     }
 
+    function createNewSignUp(){
+        $hashPass = md5($_POST['inputpassword']);
+        $result = $this->db->query(" insert into member values(null,'". $_POST['inputFirstname']."','".$_POST['inputLastname']."','1','0','0','". $_POST['inputEmail']."','')");
 
+        if(is_object($result)){
+            $id = $this->db->last_id();
+            $result = $this->db->query(" insert into member_password_map values('".$id."','". $_POST['inputEmail']."','".$hashPass."','1')");
+        }
+        echo json_encode($result? array("success" => $id) : array("failure" => "failure" ));
+    }
 
 
 } 
