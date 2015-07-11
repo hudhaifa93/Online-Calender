@@ -14,7 +14,7 @@ class Event_m extends CI_Model {
     function getEvent(){}
 
 
-    function insertSimpleNote(){
+    function insertBasicEvent(){
 
         $d['subject'] = $this->input->post('subject');
         $d['description'] = $this->input->post('description');

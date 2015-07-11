@@ -21,8 +21,8 @@ class Event extends CI_Controller {
     }
 
     //main page modal
-    function insertSimpleNote(){
-        $id = $this->event->insertSimpleNote();
+    function insertBasicEvent(){
+        $id = $this->event->insertBasicEvent();
         echo json_encode($id? array("success" => $id) : array( "failure" => "failure" ) );
     }
 

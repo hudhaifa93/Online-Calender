@@ -19,11 +19,11 @@ function getOnlyCurrentDate()
 }
 
 //main page modal save
-function saveSimpleNote()
+function saveBasicEvent()
 {
     debugger;
     $.ajax({
-        url: URL.base+"event/insertSimpleNote",//event.php
+        url: "/event/insertBasicEvent",//event.php
         type: "post",
         dataType: 'json',
         data: $('#noteForm').serialize(), // provided this code executes in form.onsubmit event
@@ -40,6 +40,6 @@ function setSessionsForAdvanceNote(date){
     localStorage.setItem("tempSubject",  $("#Subject").val());
     localStorage.setItem("tempDescription",  $("#description").val());
     localStorage.setItem("tempClickedDate", date);
-    window.location.href = URL.base+"event/addNote";
+    window.location.href ="event/addNote";
 
 }
