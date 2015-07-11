@@ -295,6 +295,8 @@ var calendar = function (config) {
             $("#ClickedDate").text(date);
             $(".ClickedDate").val(date);
             $(".CurrentDate").val(getOnlyCurrentDate());
+            $("#eventButton").attr("onclick","saveBasicEvent('eventForm')");
+            $("#birthdayButton").attr("onclick","saveBasicEvent('birthdayForm')");
             $('.advance-view').click(function () {
                 setSessionsForAdvanceNote(date);
             });
@@ -313,12 +315,14 @@ var calendar = function (config) {
                 $("#Subject").val(event.data('subject'));
                 $("#description").val(event.data('description'));
                 $('.nav-tabs a[href="#eventTab"]').tab('show');
+                $("#eventButton").attr("onclick","editBasicEvent('eventForm','"+event.data('eventid')+"')")
             }
             else if(event.data('eventtype')=="3")//birthday
             {
                 $("#BirthDayName").val(event.data('subject'));
                 $("#description").val(event.data('description'));
                 $('.nav-tabs a[href="#birthdayTab"]').tab('show');
+                $("#birthdayButton").attr("onclick","editBasicEvent('birthdayForm','"+event.data('eventid')+"')")
             }
         }
 

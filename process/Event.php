@@ -49,5 +49,17 @@ class Event extends Controller {
         echo json_encode($result? array("success" => $id) : array("failure" => "failure" ));
     }
 
+    function editBasicEvent(){
+
+        $id = $this->db->query("UPDATE note SET subject='". $_POST['subject']."',description='".$_POST['description']."' WHERE id='".$_POST['id']."'");
+        if(is_object($id)){
+            echo json_encode($id? array("success" => $_POST['id']) : array("failure" => "failure" ));
+        }
+        else{
+            echo json_encode($id? array("success" => "failure") : array("failure" => "failure" ));
+        }
+
+    }
+
 
 } 

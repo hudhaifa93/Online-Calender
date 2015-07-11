@@ -126,5 +126,36 @@ function createNewSignUp(formName)
         });
 }
 
+function editBasicEvent(formName,id) {
+    debugger;
+    var Message = "";
+    if (formName == "birthdayForm") {
+        $(".ClickedDate").val($("#Byear").val() + "-" + $("#Bmonth").val() + "-" + $("#Bdate").val());
+        Message = "Birthday Has Been Updated Successfully.";
+    }
+    else if (formName == "eventForm") {
+        Message = "Event Has Been Updated Successfully."
+    }
+
+    $.ajax({
+        url: "process/index.php?route=event&method=editBasicEvent",//event.php
+        type: "post",
+        dataType: 'json',
+        data: $('#' + formName).serialize()+"&id="+id, // provided this code executes in form.onsubmit event
+        success: function (output) {
+            debugger;
+            $('#' + formName)[0].reset();
+            if (output.success > 0) {
+                showalert(Message, "alert-success", "CommonModal", "modal");
+            }
+            else {
+                showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
+            }
+        },
+        failure: function () {
+            showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
+        }
+    });
+}
 
 
