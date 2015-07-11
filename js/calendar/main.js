@@ -8,7 +8,7 @@ var calendar = function (config) {
 
     var self = this,
         defaults,
-        _date = new Date(),
+        _date = new Date(),monthly_notes,
         name = {
             days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
             daysShort: [ "Sun" , "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ],
@@ -34,7 +34,22 @@ var calendar = function (config) {
         self.id.addClass("fc fc-ltr ui-widget");
         self.id.html("");
         _head(self.id);
-        _container(self.id);
+        var d = main._monthFirst;
+        var weekday = d.getDay() != 0 ? d.getDay() - 1 : 6;
+        var days = main._monthLast.getDate(), rows = Math.ceil((weekday + days) / 7);
+        var end = new Date(d) ;
+        end.setDate(d.getDate()+(rows*7));
+        $.ajax({
+            url : "process/?route=Event&method=getMonthlyEvents",
+            data:  { start : dateFormat(d), end: dateFormat(end) },
+            type : "post",
+            dataType: "json",
+            success : function(e){
+                monthly_notes = e;
+                _container(self.id);
+            }
+        });
+
     }
 
     function _head(t) {
@@ -111,16 +126,15 @@ var calendar = function (config) {
 
         function _body() {
 
-            var monthlynotes_ = '[{"date": "2015-07-11","events": [{"eventid":"1","type":"1","subject":"Apple"},{"eventid":"2","type":"1","subject":"bddf"},{"eventid":"3","type":"2","subject":"fdgdfg"},{"eventid":"4","type":"3","subject":"xcvxcv"}] },' +
-                '{"date": "2015-07-15","events": [{"eventid":"5","type":"3","subject":"Basic"},{"eventid":"6","type":"3","subject":"fdgdfg"},    {"eventid":"7","type":"2","subject":"xcvxcv"},{"eventid":"8","type":"1","subject":"SAS"}]}]';
-
-            var monthlynotes = JSON.parse(monthlynotes_);
 
             var d = main._monthFirst;
             var weekday = d.getDay() != 0 ? d.getDay() - 1 : 6;
             var days = main._monthLast.getDate(), rows = Math.ceil((weekday + days) / 7);
             if (d.getDay() != 0) d.setDate(d.getDate() - d.getDay());
-            console.log(d);
+
+
+
+
             var h = '<tr>' +
                 '<td class="ui-widget-content">' +
                 ' <div class="fc-day-grid-container">' +
@@ -169,14 +183,14 @@ var calendar = function (config) {
                     for (var c = 0; c < 7; c++) {
                         var Cur_Date = dateFormat(d);
                         w += '<td>';
-                        for (var m = 0; m < monthlynotes.length; m++) {
-                            if (monthlynotes[m].date == Cur_Date) {
-                                var daynotes = monthlynotes[m].events;
+                        for (var m = 0; m < monthly_notes.length; m++) {
+                            if (monthly_notes[m].date == Cur_Date) {
+                                var daynotes = monthly_notes[m].events;
                                 for (var s = 0; s < daynotes.length; s++) {
                                     var bgcolor = "bgm-purple";
-                                    if(daynotes[s].type == "1"){
+                                    if(daynotes[s].notetype == "1"){
                                         bgcolor = "bgm-red";
-                                    }else if(daynotes[s].type == "3"){
+                                    }else if(daynotes[s].notetype == "3"){
                                         bgcolor = "bgm-green";
                                     }
                                     w += '<a class="fc-day-grid-event fc-event fc-start fc-end '+bgcolor+' fc-draggable">' +
@@ -205,6 +219,10 @@ var calendar = function (config) {
                 return h;
             }
             return h;
+
+
+
+
         }
         t.append(htl);
     }
