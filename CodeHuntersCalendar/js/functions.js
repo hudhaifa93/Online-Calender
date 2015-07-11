@@ -21,14 +21,18 @@ function getOnlyCurrentDate()
 //main page modal save
 function saveBasicEvent()
 {
-    debugger;
+    //debugger;
     $.ajax({
-        url: "/event/insertBasicEvent",//event.php
+        url: "process/index.php?route=event&method=insertBasicEvent",//event.php
         type: "post",
         dataType: 'json',
         data: $('#eventForm').serialize(), // provided this code executes in form.onsubmit event
         success: function (output) {
-            alert("Simple Note Added");
+            debugger;
+            if(output.success > 0)
+            {
+                alert("Simple Note Added");
+            }
         },
         failure: function(){
             alert("Simple Note Not Added");

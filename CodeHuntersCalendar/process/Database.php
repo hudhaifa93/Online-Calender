@@ -11,7 +11,7 @@ class Database {
     const host="localhost";
     const username="root";
     const password="";
-    const dbname="calendar";
+    const dbname="codehunterscalendar";
 
     protected  $connection;
     protected $stmt;
