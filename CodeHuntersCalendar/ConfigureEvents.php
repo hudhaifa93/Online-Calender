@@ -198,7 +198,7 @@
         <label>Location</label>
         <input type="checkbox" id="addLocation">
     </div>
-    <div id="locationAllocation" style="display:none    ">
+    <div id="locationAllocation" style="display:none;">
         <div class="col-xs-12 form-group">
             <!-- <label>Location</label> -->
             <!-- <input type="text" class="form-control" name="Location" id="Location" placeholder="Location"/> -->
