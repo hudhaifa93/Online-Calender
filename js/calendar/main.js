@@ -174,6 +174,7 @@ var calendar = function (config) {
                         for (var m = 0; m < monthly_notes.length; m++) {
                             if (monthly_notes[m].date == Cur_Date  || dateFormat( new Date(monthly_notes[m].date) ,'m-d') == dateFormat(d,'m-d')  ) {
                                 var daynotes = monthly_notes[m].events;
+                                if( typeof daynotes == "object")
                                 for (var s = 0; s < daynotes.length; s++) {
                                     var bgcolor = "bgm-purple";
                                     if(daynotes[s].notetype == "1"){
