@@ -49,7 +49,6 @@ var calendar = function (config) {
                 _container(self.id);
             }
         });
-
     }
 
     function _head(t) {
@@ -125,15 +124,10 @@ var calendar = function (config) {
         }
 
         function _body() {
-
-
             var d = main._monthFirst;
             var weekday = d.getDay() != 0 ? d.getDay() - 1 : 6;
             var days = main._monthLast.getDate(), rows = Math.ceil((weekday + days) / 7);
             if (d.getDay() != 0) d.setDate(d.getDate() - d.getDay());
-
-
-
 
             var h = '<tr>' +
                 '<td class="ui-widget-content">' +
@@ -142,7 +136,6 @@ var calendar = function (config) {
             for (var r = 0; r < rows; r++) {
                 h += _row();
             }
-
 
             h += '</div>' +
                 '</div>' +
@@ -164,7 +157,6 @@ var calendar = function (config) {
                     '</table>' +
                     '</div>' +
                     '</div>';
-
 
                 function bg() {
                     var h = '<tr>';
@@ -193,7 +185,7 @@ var calendar = function (config) {
                                     }else if(daynotes[s].notetype == "3"){
                                         bgcolor = "bgm-green";
                                     }
-                                    w += '<a class="fc-day-grid-event fc-event fc-start fc-end '+bgcolor+' fc-draggable">' +
+                                    w += '<a class="fc-day-grid-event fc-event fc-start fc-end '+bgcolor+' fc-draggable editevent" data-eventid="'+daynotes[s].id+'" data-eventtype="'+daynotes[s].notetype+'" data-eventdate="'+daynotes[s].startdate+'" data-subject="'+daynotes[s].subject+'" data-description="'+daynotes[s].description+'">' +
                                         '<div class="fc-content">' +
                                         /* '<span class="fc-time">12a</span>'+*/
                                         '<span class="fc-title">' + daynotes[s].subject + '</span>' +
@@ -219,10 +211,6 @@ var calendar = function (config) {
                 return h;
             }
             return h;
-
-
-
-
         }
         t.append(htl);
     }
@@ -296,6 +284,10 @@ var calendar = function (config) {
             openModal($(this).data('date'));
         });
 
+        self.id.on('click', '.editevent', function () {
+            openModelForEdit($(this));
+        });
+
         function openModal(date) {
             $('#eventForm')[0].reset();
             $('#birthdayForm')[0].reset();
@@ -306,6 +298,14 @@ var calendar = function (config) {
             $('.advance-view').click(function () {
                 setSessionsForAdvanceNote(date);
             });
+        }
+
+        function openModelForEdit(event) {
+            //eventdate
+            //subject
+            //description
+            //eventtype
+            alert(event.data("eventid"));
         }
 
     }
