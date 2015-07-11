@@ -14,4 +14,12 @@ class Controller {
         $this->db = new Database();
     }
 
+    function post($name=""){
+        if(isset($_POST[$name])){
+            if(empty($_POST[$name])) return false;
+            else return $_POST[$name] ;
+        }
+        return false;
+    }
+
 } 
