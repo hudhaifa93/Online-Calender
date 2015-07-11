@@ -12,6 +12,7 @@ function showalert(message, alerttype, id, type) {
     setTimeout(function () { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
         if (type == "modal") {
             $('#' + id).modal('toggle');
+            location.reload();
         }
         else if(type=="redirect"){
             window.location.href = id;
