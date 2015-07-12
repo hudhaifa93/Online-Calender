@@ -57,10 +57,10 @@ var Week = function (config) {
         function _center() {
             return  '<div class="fc-center">' +
                 '<button type="button" class="fc-prev-button ui-button ui-state-default ui-corner-left ui-corner-right">' +
-                '<span class="ui-icon ui-icon-circle-triangle-w"></span></button>' +
+                '<span id="prevWeekView" class="ui-icon ui-icon-circle-triangle-w"></span></button>' +
                 '<h2>' + name.title + '</h2>' +
                 '<button type="button" class="fc-next-button ui-button ui-state-default ui-corner-left ui-corner-right">' +
-                '<span class="ui-icon ui-icon-circle-triangle-e"></span></button>' +
+                '<span id="nextWeekView" class="ui-icon ui-icon-circle-triangle-e"></span></button>' +
                 '</div>';
         }
 
@@ -305,12 +305,12 @@ var Week = function (config) {
     }
 
     function Event() {
-        self.id.on('click', '.ui-icon-circle-triangle-w', function () {
+        self.id.on('click', '#prevWeekView', function () {
             _weekStart.setDate(_weekStart.getDate() - 7);
             drawCalender();
         });
 
-        self.id.on('click', '.ui-icon-circle-triangle-e', function () {
+        self.id.on('click', '#nextWeekView', function () {
             _weekStart.setDate(_weekStart.getDate() + 7);
             drawCalender();
         });

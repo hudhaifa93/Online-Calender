@@ -52,10 +52,10 @@ var Day = function (config) {
         function _center() {
             return  '<div class="fc-center">' +
                 '<button type="button" class="fc-prev-button ui-button ui-state-default ui-corner-left ui-corner-right">' +
-                '<span class="ui-icon ui-icon-circle-triangle-w"></span></button>' +
+                '<span id="prevDayView" class="ui-icon ui-icon-circle-triangle-w"></span></button>' +
                 '<h2>' + name.title + '</h2>' +
                 '<button type="button" class="fc-next-button ui-button ui-state-default ui-corner-left ui-corner-right">' +
-                '<span class="ui-icon ui-icon-circle-triangle-e"></span></button>' +
+                '<span id="nextDayView" class="ui-icon ui-icon-circle-triangle-e"></span></button>' +
                 '</div>';
         }
 
@@ -253,12 +253,12 @@ var Day = function (config) {
     }
 
     function Event() {
-        self.id.on('click', '.ui-icon-circle-triangle-w', function () {
+        self.id.on('click', '#prevDayView', function () {
             _date.setDate(_date.getDate() - 1);
             drawCalender();
         });
 
-        self.id.on('click', '.ui-icon-circle-triangle-e', function () {
+        self.id.on('click', '#nextDayView', function () {
             _date.setDate(_date.getDate() + 1);
             drawCalender();
         });

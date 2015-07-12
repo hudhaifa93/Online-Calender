@@ -1,8 +1,3 @@
-/**
- * Created by gowtham on 6/14/15.
- */
-
-
 var Month = function (config) {
     'use strict';
     var $window = $(window);
@@ -65,10 +60,10 @@ var Month = function (config) {
         function _center() {
             return  '<div class="fc-center">' +
                 '<button type="button" class="fc-prev-button ui-button ui-state-default ui-corner-left ui-corner-right">' +
-                '<span class="ui-icon ui-icon-circle-triangle-w"></span></button>' +
+                '<span id="prevMonthView" class="ui-icon ui-icon-circle-triangle-w"></span></button>' +
                 '<h2>' + name.title + '</h2>' +
                 '<button type="button" class="fc-next-button ui-button ui-state-default ui-corner-left ui-corner-right">' +
-                '<span class="ui-icon ui-icon-circle-triangle-e"></span></button>' +
+                '<span id="nextMonthView" class="ui-icon ui-icon-circle-triangle-e"></span></button>' +
                 '</div>';
         }
 
@@ -230,7 +225,23 @@ var Month = function (config) {
     }
 
     function Event() {
-        self.id.on('click', '.ui-icon-circle-triangle-e', function () {
+        self.id.on('click', '#prevMonthView', function () {
+            var mon = self.id.data('month'),
+                year = self.id.data('year');
+
+            if (mon == 0) {
+                mon = 12;
+                year--;
+            } else
+                mon--;
+            self.id.data('year', year);
+            self.id.data('month', mon);
+            main._monthFirst = new Date(year, mon, 1, 0, 0, 0, 0);
+            main._monthLast = new Date(year, mon + 1, 1, 0, 0, 0, -1);
+            drawCalender();
+        });
+
+        self.id.on('click', '#nextMonthView', function () {
             var mon = self.id.data('month'),
                 year = self.id.data('year');
 
@@ -244,22 +255,6 @@ var Month = function (config) {
             main._monthFirst = new Date(year, mon, 1, 0, 0, 0, 0);
             main._monthLast = new Date(year, mon + 1, 1, 0, 0, 0, -1);
 
-            drawCalender();
-        });
-
-        self.id.on('click', '.ui-icon-circle-triangle-w', function () {
-            var mon = self.id.data('month'),
-                year = self.id.data('year');
-
-            if (mon == 0) {
-                mon = 12;
-                year--;
-            } else
-                mon--;
-            self.id.data('year', year);
-            self.id.data('month', mon);
-            main._monthFirst = new Date(year, mon, 1, 0, 0, 0, 0);
-            main._monthLast = new Date(year, mon + 1, 1, 0, 0, 0, -1);
             drawCalender();
         });
 
