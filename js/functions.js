@@ -201,8 +201,9 @@ getNotification();
 function getNotification(){
     setInterval(function(){
         $.ajax({
-            url : "process/?event.php?route=event&method=getCurrentEvent",
+            url : "process/?route=event&method=getCurrentEvent",
             type: "post",
+            date : { date : dateFormat(new Date()) },
             dataType: "json",
             success :function(e){
 

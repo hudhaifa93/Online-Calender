@@ -1,3 +1,10 @@
+var title_name = {
+    days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    daysShort: [ "Sun" , "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ],
+    daysMin: ["sun", "mon", "tue", "wed", "thu", "fri", "sat"],
+    months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+};
 var calendar = function (config) {
     'use strict';
     var $window = $(window);
@@ -375,7 +382,7 @@ function dateFormat(d, format) {
             return  (d.getDate() > 10 ? "" : "0") + d.getDate();
             break;
         case "D" :
-            return name.daysMin[d.getDay()];
+            return title_name.daysMin[d.getDay()];
             break;
         default :
             return d.getFullYear() + "-" + (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 10 ? "" : "0") + d.getDate();
