@@ -286,20 +286,28 @@ var Month = function (config) {
             $("#Bmonth").val(dateFormat(new Date(date),'m'));
             $("#Byear").val(dateFormat(new Date(date),'y'));
 
+            resetModalButton();
 
-
-            $("#eventButton").attr("onclick","saveBasicEvent('eventForm')");
-            $("#birthdayButton").attr("onclick","saveBasicEvent('birthdayForm')");
-            $("#eventButtonDelete").hide();
-            $("#birthdayButtonDelete").hide();
             $('.advance-view').click(function () {
                 setSessionsForAdvanceNote(date);
             });
         }
 
+        function resetModalButton(){
+            $("#eventButton").attr("onclick","saveBasicEvent('eventForm')");
+            $("#birthdayButton").attr("onclick","saveBasicEvent('birthdayForm')");
+            $("#meetingButton").attr("onclick","saveBasicEvent('meetingForm')");
+            $("#eventButtonDelete").hide();
+            $("#birthdayButtonDelete").hide();
+            $("#meetingButtonDelete").hide();
+        }
+
         function openModelForEdit(event) {
             debugger;
            // alert("editModal");
+
+            resetModalButton();
+
             $('#eventForm')[0].reset();
             $('#birthdayForm')[0].reset();
             $('#CommonModal').modal('show');
@@ -307,18 +315,18 @@ var Month = function (config) {
             $("#ClickedDate").text(event.data('eventdate'));
             $(".ClickedDate").val(event.data('eventdate'));
 
-            $('.advance-view').click(function () {
-                editAdvanceNote(event.data('eventid'));
-            });
-
             if(event.data('eventtype')=="1")//meeting
             {
-                $("#Subject").val(event.data('subject'));
-                $("#description").val(event.data('description'));
-                $('.nav-tabs a[href="#eventTab"]').tab('show');
-                $("#eventButton").attr("onclick","editBasicEvent('eventForm','"+event.data('eventid')+"')");
-                $("#eventButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
-                $("#eventButtonDelete").show();
+                $("#MeetingName").val(event.data('subject'));
+                $("#MeetingDescription").val(event.data('description'));
+                $('.nav-tabs a[href="#MeetingTab"]').tab('show');
+                $("#meetingButton").attr("onclick","editBasicEvent('meetingForm','"+event.data('eventid')+"')");
+                $("#meetingButtonDelete").attr("onclick","deleteBasicEvent('meetingForm','"+event.data('eventid')+"')");
+                $("#meetingButtonDelete").show();
+
+//                $('.advance-view').click(function () {
+//                    editAdvanceNote(event.data('eventid'));
+//                });
 
             }
             else if(event.data('eventtype')=="2")//note

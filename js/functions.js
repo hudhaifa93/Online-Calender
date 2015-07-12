@@ -20,7 +20,7 @@ function showalert(message, alerttype, id, type) {
     }, 3000);
 }
 
-function getOnlyCurrentDate() {
+    function getOnlyCurrentDate() {
     var d = new Date();
 
     var month = d.getMonth() + 1;
@@ -33,7 +33,7 @@ function getOnlyCurrentDate() {
     return output;
 }
 
-function dateFormat(d, format) {
+    function dateFormat(d, format) {
     var h = "";
     switch (format) {
         case "YYYY-m-d":
@@ -61,56 +61,29 @@ function dateFormat(d, format) {
 
 }
 
-function saveBasicEvent(formName) {
-    debugger;
-    var Message = "";
-    if (formName == "birthdayForm") {
-        $(".ClickedDate").val($("#Byear").val() + "-" + $("#Bmonth").val() + "-" + $("#Bdate").val());
-        Message = "Birthday Has Been Added Successfully.";
-    }
-    else if (formName == "eventForm") {
-        Message = "Event Has Been Added Successfully."
-    }
-
-    $.ajax({
-        url: "process/index.php?route=event&method=insertBasicEvent",//event.php
-        type: "post",
-        dataType: 'json',
-        data: $('#' + formName).serialize(), // provided this code executes in form.onsubmit event
-        success: function (output) {
-            debugger;
-            $('#' + formName)[0].reset();
-            if (output.success > 0) {
-
-                showalert(Message, "alert-success", "CommonModal", "modal");
-            }
-            else {
-                showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
-            }
-        },
-        failure: function () {
-            showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
-        }
-    });
-}
-
-
-function setSessionsForAdvanceNote(date) {
+    function setSessionsForAdvanceNote(date) {
     localStorage.setItem("advanceID", "0");
     localStorage.setItem("tempSubject", $("#Subject").val());
     localStorage.setItem("tempDescription", $("#description").val());
     localStorage.setItem("tempClickedDate", date);
     window.location.href = "/Online-Calender/ConfigureEvents.html";
-
 }
 
-function editAdvanceNote(id) {
+    function clearSessionsForAdvanceNote() {
+    localStorage.setItem("advanceID", "0");
+    localStorage.setItem("tempSubject", "0");
+    localStorage.setItem("tempDescription", "0");
+    localStorage.setItem("tempClickedDate", "0");
+    window.location.href = "/Online-Calender/ConfigureEvents.html";
+}
+
+    function editAdvanceNote(id) {
     localStorage.setItem("advanceID", id);
     window.location.href = "/Online-Calender/ConfigureEvents.html";
 
 }
 
-function validateLogin(formName) {
+    function validateLogin(formName) {
     debugger;
 
     $.ajax({
@@ -135,8 +108,8 @@ function validateLogin(formName) {
     });
 }
 
-function createNewSignUp(formName)
-{   debugger;
+    function createNewSignUp(formName){
+    debugger;
     var Message="";
     Message ="You Have Been Successfully Registered.";
 
@@ -162,7 +135,43 @@ function createNewSignUp(formName)
         });
 }
 
-function editBasicEvent(formName,id) {
+    function saveBasicEvent(formName) {
+    debugger;
+    var Message = "";
+    if (formName == "birthdayForm") {
+        $(".ClickedDate").val($("#Byear").val() + "-" + $("#Bmonth").val() + "-" + $("#Bdate").val());
+        Message = "Birthday Has Been Added Successfully.";
+    }
+    else if (formName == "eventForm") {
+        Message = "Event Has Been Added Successfully."
+    }
+    else if (formName == "meetingForm") {
+        Message = "Meeting Has Been Added Successfully."
+    }
+
+    $.ajax({
+        url: "process/index.php?route=event&method=insertBasicEvent",//event.php
+        type: "post",
+        dataType: 'json',
+        data: $('#' + formName).serialize(), // provided this code executes in form.onsubmit event
+        success: function (output) {
+            debugger;
+            $('#' + formName)[0].reset();
+            if (output.success > 0) {
+
+                showalert(Message, "alert-success", "CommonModal", "modal");
+            }
+            else {
+                showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
+            }
+        },
+        failure: function () {
+            showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
+        }
+    });
+}
+
+    function editBasicEvent(formName,id) {
     debugger;
     var Message = "";
     if (formName == "birthdayForm") {
@@ -172,7 +181,9 @@ function editBasicEvent(formName,id) {
     else if (formName == "eventForm") {
         Message = "Event Has Been Updated Successfully."
     }
-
+    else if (formName == "meetingForm") {
+        Message = "Meeting Has Been Added Successfully."
+    }
     $.ajax({
         url: "process/index.php?route=event&method=editBasicEvent",//event.php
         type: "post",
@@ -202,6 +213,9 @@ function editBasicEvent(formName,id) {
         }
         else if (formName == "eventForm") {
             Message = "Event Has Been Deleted Successfully."
+        }
+        else if (formName == "meetingForm") {
+            Message = "Meeting Has Been Deleted Successfully."
         }
 
         $.ajax({
@@ -304,7 +318,7 @@ function saveAdvanceEvent(formName){
             debugger;
             $('#' + formName)[0].reset();
             if (output.success > 0) {
-
+                clearSessionsForAdvanceNote();
                 showalert(Message, "alert-success", "/Online-Calender/Calendar.html", "redirect");
             }
             else {
