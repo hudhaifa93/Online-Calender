@@ -69,11 +69,9 @@ var weekview = function (config) {
                 '<li class="dropdown"><a href="" data-toggle="dropdown" aria-expanded="false">' +
                 '<i class="md md-more-vert"></i></a>' +
                 '<ul class="dropdown-menu dropdown-menu-right">' +
-                '<li class="active"><a data-view="basicWeek" href="">Week View</a></li>' +
                 '<li><a data-view="month" href="">Month View</a></li>' +
-                '<li><a data-view="agendaWeek" href="">Agenda Week View</a></li>' +
+                '<li class="active"><a data-view="basicWeek" href="">Week View</a></li>' +
                 '<li><a data-view="basicDay" href="">Day View</a></li>' +
-                '<li><a data-view="agendaDay" href="">Agenda Day View</a></li>' +
                 '</ul>' +
                 '</li>' +
                 '</ul> ';
@@ -307,14 +305,15 @@ var weekview = function (config) {
     }
 
     function Event() {
-        self.id.on('click', '.ui-icon-circle-triangle-e', function () {
-            alert("prev");
-        });
-
         self.id.on('click', '.ui-icon-circle-triangle-w', function () {
-            alert("next");
+            _weekStart.setDate(_weekStart.getDate() - 7);
+            drawCalender();
         });
 
+        self.id.on('click', '.ui-icon-circle-triangle-e', function () {
+            _weekStart.setDate(_weekStart.getDate() + 7);
+            drawCalender();
+        });
     }
 
     return (function () {

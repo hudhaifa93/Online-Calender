@@ -82,8 +82,6 @@ var calendar = function (config) {
                 '<li class="active"><a data-view="month" href="">Month View</a></li>' +
                 '<li><a data-view="basicWeek" href="">Week View</a></li>' +
                 '<li><a data-view="basicDay" href="">Day View</a></li>' +
-                '<li><a data-view="agendaWeek" href="ViewAllBirthdays.html">Birth day View</a></li>' +
-                '<li><a data-view="agendaDay" href="">Agenda Day View</a></li>' +
                 '</ul>' +
                 '</li>' +
                 '</ul> ';
@@ -113,6 +111,7 @@ var calendar = function (config) {
                 '<table>' +
                 '<thead>' +
                 ' <tr>';
+
             for (var i in name.daysShort)
                 h += '<th class="fc-day-header ui-widget-header fc-' + name.daysShort[i] + '">' + name.daysShort[i] + '</th>';
 
@@ -211,14 +210,14 @@ var calendar = function (config) {
 
                     return h;
                 }
+
                 return h;
             }
+
             return h;
         }
         t.append(htl);
     }
-
-
 
     function getTenses(d) {
         if (d.getMonth() == _date.getMonth())
