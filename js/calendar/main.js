@@ -63,5 +63,16 @@ function dateFormat(d, format) {
             return d.getFullYear() + "-" + (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 10 ? "" : "0") + d.getDate();
             break;
     }
+}
 
+function getTenses(d) {
+    if (d.getMonth() == _date.getMonth())
+        if (d.getDate() == _date.getDate())
+            return " fc-today ";
+        else if (d.getDate() > _date.getDate())
+            return " fc-future ";
+        else return " fc-past ";
+    else if (d.getMonth() > _date.getMonth())
+        return " fc-other-month fc-future ";
+    else return " fc-other-month fc-past ";
 }

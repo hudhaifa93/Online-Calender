@@ -127,6 +127,7 @@ var Month = function (config) {
                 '<td class="ui-widget-content">' +
                 ' <div class="fc-day-grid-container">' +
                 '<div class="fc-day-grid">';
+
             for (var r = 0; r < rows; r++) {
                 h += _row();
             }
@@ -201,27 +202,17 @@ var Month = function (config) {
 
                     return h;
                 }
+
                 return h;
             }
+
             return h;
         }
+
         t.append(htl);
     }
 
 
-
-    function getTenses(d) {
-        if (d.getMonth() == _date.getMonth())
-            if (d.getDate() == _date.getDate())
-                return " fc-today ";
-            else if (d.getDate() > _date.getDate())
-                return " fc-future ";
-            else return " fc-past ";
-        else if (d.getMonth() > _date.getMonth())
-            return " fc-other-month fc-future ";
-        else return " fc-other-month fc-past ";
-
-    }
 
     function Event() {
         self.id.on('click', '#prevMonthView', function () {

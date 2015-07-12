@@ -1,8 +1,3 @@
-/**
- * Created by gowtham on 6/2/15.
- */
-
-
 var calendar = function (config){
     'use strict';
     var $window = $(window);
@@ -41,7 +36,6 @@ var calendar = function (config){
         '</tfoot>'
     };
     Template.main = '';
-
 
     return (function(){
         self.options = $.extend(defaults,config);
