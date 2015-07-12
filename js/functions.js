@@ -197,4 +197,16 @@ function editBasicEvent(formName,id) {
         });
     }
 
+getNotification();
+function getNotification(){
+    setInterval(function(){
+        $.ajax({
+            url : "process/?event.php?route=event&method=getCurrentEvent",
+            type: "post",
+            dataType: "json",
+            success :function(e){
 
+            }
+        });
+    },60000)
+}

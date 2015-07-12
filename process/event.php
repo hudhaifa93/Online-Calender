@@ -1,6 +1,6 @@
 <?php
 
-class event extends controller {
+class Event extends Controller {
 
     function __construct(){
         parent::__construct();
@@ -74,4 +74,11 @@ class event extends controller {
         }
 
     }
+
+    function getCurrentEvent(){
+        if($date = $this->post('date'))
+        $result = $this->db->query("  select * from `note` where  DATE_FORMAT(startdate, '%m-%d')   = DATE_FORMAT('$date', '%m-%d')  ");
+        echo json_encode($result);
+    }
+
 } 
