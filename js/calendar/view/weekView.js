@@ -169,9 +169,32 @@ var Week = function (config) {
                         '<tbody>' +
                         '<tr>' +
                         '<td class="fc-axis" style="width: 40px;"></td>';
-
+                    debugger;
+                    var Cur_Date = new Date(_weekStart.getFullYear(), _weekStart.getMonth(), _weekStart.getDate(), 0, 0, 0, 0);
                     for (var c = 0; c < 7; c++){
-                        h += '<td></td>';
+                        var fe = '';
+                        for (var m = 0; m < weekly_notes.length; m++) {
+                            if (weekly_notes[m].date == dateFormat(Cur_Date) || dateFormat( new Date(weekly_notes[m].date) ,'m-d') == dateFormat(Cur_Date,'m-d')) {
+                                var daynotes = weekly_notes[m].events;
+                                for (var s = 0; s < daynotes.length; s++) {
+                                    if(daynotes[s].starttime == "0"){
+                                        fe += '<a class="fc-day-grid-event fc-event fc-start fc-end bgm-blue fc-draggable fc-resizable">' +
+                                            '<div class="fc-content">' +
+                                            '<span class="fc-title">' +
+                                            daynotes[s].subject +
+                                            '</span></div>' +
+                                            '<div class="fc-resizer"></div>' +
+                                            '</a>';
+                                    }
+                                }
+                            }
+                        }
+                        h += '<td>';
+                        if(fe !=''){
+                            h += '<div class="fc-event-container">'+ fe +'</div>';
+                        }
+                        h += '</td>';
+                        Cur_Date.setDate(Cur_Date.getDate() + 1);
                     }
 
                     h += '</tr>' +
