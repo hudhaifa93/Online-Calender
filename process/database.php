@@ -53,14 +53,15 @@ class database {
 
             if($parameter == "*"){
 
-                return $this->stmt = $this->connection->query($sql);
+                $this->stmt = $this->connection->query($sql);
 
             }else{
                 $this->stmt = $this->connection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
-                return $this->stmt->execute($parameter);
+                $this->stmt->execute($parameter);
             }
 
+            return $this->stmt;
 
         }catch(PDOException $ex) {
 

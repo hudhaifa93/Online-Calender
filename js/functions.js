@@ -199,15 +199,35 @@ function editBasicEvent(formName,id) {
 
 getNotification();
 function getNotification(){
+    getData();
     setInterval(function(){
+        getData();
+    },60000);
+
+    function getData(){
         $.ajax({
             url : "process/?route=event&method=getCurrentEvent",
             type: "post",
-            date : { date : dateFormat(new Date()) },
+            data : { date : dateFormat(new Date()) },
             dataType: "json",
             success :function(e){
-
+                if(e.length > 0 ){
+                    $.each(e,function(k,v){
+                        item = $('<a class="lv-item" href=""><div class="media">' +
+                            '<div class="pull-left">' +
+                            ' <img class="lv-img-sm" src="img/profile-pics/1.jpg" alt="">' +
+                            ' </div>' +
+                            ' <div class="media-body">' +
+                            '<div class="lv-title">'+ v.name +'</div>' +
+                            '<small class="lv-small">'+ v.description +'</small>' +
+                            ' </div>' +
+                            ' </div>' +
+                            '</a>');
+                        $('#notifications').find('.lv-body').append(item);
+                    });
+                    $('.tm-notification').find('.tmn-counts').html(e.length);
+                }
             }
         });
-    },60000)
+    }
 }
