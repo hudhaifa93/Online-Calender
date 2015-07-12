@@ -9,6 +9,8 @@ function getColorByEventType(type){
         return "bgm-green";
     }else if(type == "3"){
         return "bgm-yellow";
+    }else if(type == "4"){
+        return "bgm-blue";
     }else{
         return "bgm-purple";
     }
