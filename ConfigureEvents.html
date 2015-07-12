@@ -2,20 +2,25 @@
 <html lang="en">
 <head>
     <title>Example of Bootstrap 3 Modals</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">-->
+
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
 
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+
+    <script type="text/javascript" src="js/jquery.js"></script>
     <script src="js/jquery-ui.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css"/>
-    <script src="//cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script src="js/googleAddress.js"></script>
+    <script src="js/calendar/main.js"></script>
     <style type="text/css">
         body {
             width: 960px;
@@ -87,6 +92,12 @@
                 dateFormat: "yy mm d"
             });
 
+            $("#Subject").val(localStorage.getItem("tempSubject"));
+            $("textarea#Description").val(localStorage.getItem("tempDescription"));
+            var tempDate = localStorage.getItem("tempClickedDate");
+
+            $('#StartDate').datepicker("setDate", new Date(dateFormat(new Date(tempDate),'y'),dateFormat(new Date(tempDate),'m')-1,dateFormat(new Date(tempDate),'d')-1) );
+
             $("#fullday").change(function () {
                 if (this.checked) {
                     $("#timeAllocation").hide();
@@ -105,15 +116,18 @@
             });
 
             var dataMessage = [
-                {"id": "1", "Name": "Heshani"},
-                {"id": "2", "Name": "Thwaraka"},
-                {"id": "3", "Name": "Nifal"}
+                {"id": "1", "Name": "heshani@gmail.com"},
+                {"id": "2", "Name": "thwaraka@gmail.com"},
+                {"id": "3", "Name": "nifal@gmail.com"}
             ];
 
-            $("#InvList").html('');
+            $("#InvitedList").html('');
 
             $.each(dataMessage, function (index, item) {
-                $("#InvList").append($('<div class="tags" onclick="addToInvitedList(' + "'inv_" + item.id + "'" + ',' + "'" + item.Name + "'" + ')" id="inv_' + item.id + '" >' + item.Name + '</div>'));
+                var Email = item.Name;
+                var fullEmail = Email;
+                Email = Email.split("@");
+               $("#InvitedList").append($('<div class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="glyphicon glyphicon-trash" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')"></a></div>'));
             });
 
             $("#repeats")
@@ -151,19 +165,18 @@
 
         });
 
-        function addToInvitedList(id, name) {
+        function addToInvitedList() {
             debugger;
-            $("#InvitedList").append($('<div class="tags"  id="invited_' + id + '" >' + name + ' <a class="glyphicon glyphicon-trash" onclick="removeFromInvitedList(' + "'invited_" + id + "'" + ',' + "'" + name + "'" + ')"></a></div>'));
-            $("#" + id).remove();
+            var Email = $("#InviteeEmail").val();
+            var fullEmail = Email;
+            Email = Email.split("@");
+            $("#InvitedList").append($('<div class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="glyphicon glyphicon-trash" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')"></a></div>'));
+
         }
 
-        function removeFromInvitedList(id, name) {
+        function removeFromInvitedList(id) {
             debugger;
-            var idInv = id.replace('invited_', '');
-
-            $("#" + id).remove();
-            $("#InvList").append($('<div class="tags" onclick="addToInvitedList(' + "'" + idInv + "'" + ',' + "'" + name + "'" + ')" id="' + idInv + '" >' + name + '</div>'));
-
+            $("." + id+"List").remove();
         }
 
 
@@ -236,13 +249,10 @@
         <textarea class="form-control custom-control" name="Description" id="Description" rows="5"
                   style="resize:none"></textarea>
     </div>
-    <div class="col-xs-12 form-group">
-        <label>Invitees</label> -
-        <div id="InvList">
-        </div>
+    <div class="col-xs-6 form-group">
+        <input type="text" style="  width: 50%;  float: left;" class="form-control" name="InviteeEmail" id="InviteeEmail" placeholder="InviteeEmail"/><button type="button" style="  margin-left: 10px;  float: left;  margin-top: 2px;" class="btn btn-sm btn-primary"onclick="addToInvitedList()">Login</button>
     </div>
     <div class="col-xs-12 form-group">
-        <label>Invited List</label> -
         <div id="InvitedList">
         </div>
     </div>
