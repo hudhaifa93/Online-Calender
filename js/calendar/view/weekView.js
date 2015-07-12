@@ -169,7 +169,7 @@ var Week = function (config) {
                         '<tbody>' +
                         '<tr>' +
                         '<td class="fc-axis" style="width: 40px;"></td>';
-                    debugger;
+
                     var Cur_Date = new Date(_weekStart.getFullYear(), _weekStart.getMonth(), _weekStart.getDate(), 0, 0, 0, 0);
                     for (var c = 0; c < 7; c++){
                         var fe = '';

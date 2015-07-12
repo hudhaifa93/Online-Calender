@@ -119,6 +119,26 @@ var Day = function (config) {
                 '</tr>';
 
             function _fc_day_grid() {
+
+                var Cur_Date = new Date(_date.getFullYear(), _date.getMonth(), _date.getDate(), 0, 0, 0, 0);
+                var fe = '';
+                if(daily_notes.length >0){
+                    if (daily_notes[0].date == dateFormat(Cur_Date) || dateFormat( new Date(daily_notes[0].date) ,'m-d') == dateFormat(Cur_Date,'m-d')) {
+                        var _notes = daily_notes[0].events;
+                        for (var s = 0; s < _notes.length; s++) {
+                            if(_notes[s].starttime == "0"){
+                                fe += '<a class="fc-day-grid-event fc-event fc-start fc-end bgm-blue fc-draggable fc-resizable">' +
+                                    '<div class="fc-content">' +
+                                    '<span class="fc-title">' +
+                                    _notes[s].subject +
+                                    '</span></div>' +
+                                    '<div class="fc-resizer"></div>' +
+                                    '</a>';
+                            }
+                        }
+                    }
+                }
+
                 var h = '<div class="fc-day-grid">' +
                     '<div class="fc-row fc-week ui-widget-content" style="border-right-width: 1px; margin-right: 14px;">' +
                     '<div class="fc-bg">' +
@@ -138,7 +158,13 @@ var Day = function (config) {
                     '<tbody>' +
                     '<tr>' +
                     '<td class="fc-axis" style="width: 41px;"></td>' +
-                    '<td></td>' +
+                    '<td>';
+
+                if(fe != ''){
+                    h += '<div class="fc-event-container">'+ fe +'</div>';
+                }
+
+                h +='</td>' +
                     '</tr>' +
                     '</tbody>' +
                     '</table>' +
