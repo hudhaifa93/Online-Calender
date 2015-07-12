@@ -5,9 +5,9 @@ var title_name = {
     months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 };
+
 var calendar = function (config) {
     var defaults;
-
 
     function ViewEventHandler(){
         self.id = $("#"+self.options.id);
@@ -37,9 +37,6 @@ var calendar = function (config) {
     }());
 
 };
-
-
-
 
 function dateFormat(d, format) {
     var h = "";
