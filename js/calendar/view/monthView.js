@@ -77,9 +77,9 @@ var Month = function (config) {
                 '<li class="dropdown"><a href="" data-toggle="dropdown" aria-expanded="false">' +
                 '<i class="md md-more-vert"></i></a>' +
                 '<ul class="dropdown-menu dropdown-menu-right">' +
-                '<li class="active" ><a class="cal-view" data-view="month" href="">Month View</a></li>' +
-                '<li><a class="cal-view"  data-view="week" href="">Week View</a></li>' +
-                '<li><a class="cal-view"  data-view="day" href="">Day View</a></li>' +
+                '<li class="active" ><a class="cal-view" data-view="month" >Month View</a></li>' +
+                '<li><a class="cal-view"  data-view="week" >Week View</a></li>' +
+                '<li><a class="cal-view"  data-view="day">Day View</a></li>' +
                 '</ul>' +
                 '</li>' +
                 '</ul> ';
