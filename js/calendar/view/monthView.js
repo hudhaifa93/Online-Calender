@@ -212,7 +212,17 @@ var Month = function (config) {
         t.append(htl);
     }
 
-
+    function getTenses(d) {
+        if (d.getMonth() == _date.getMonth())
+            if (d.getDate() == _date.getDate())
+                return " fc-today ";
+            else if (d.getDate() > _date.getDate())
+                return " fc-future ";
+            else return " fc-past ";
+        else if (d.getMonth() > _date.getMonth())
+            return " fc-other-month fc-future ";
+        else return " fc-other-month fc-past ";
+    }
 
     function Event() {
         self.id.on('click', '#prevMonthView', function () {

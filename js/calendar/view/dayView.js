@@ -247,7 +247,19 @@ var Day = function (config) {
                         '<tr>' +
                         '<td class="fc-axis" style="width: 41px;"></td>' +
                         '<td>' +
-                        '<div class="fc-event-container"></div>' +
+                        '<div class="fc-event-container">' +
+
+                        '<a class="fc-time-grid-event fc-event fc-start fc-not-end bgm-orange fc-draggable" style="top: 0px; bottom: -960px; z-index: 1; left: 0%; right: 50%;">' +
+                        '<div class="fc-content">' +
+                        '<div class="fc-time" data-start="12:00" data-full="12:00 AM - 12:00 AM">' +
+                        '<span>12:00 - 12:00</span></div>' +
+                        '<div class="fc-title">Live TV Show</div>' +
+                        '</div>' +
+                        '<div class="fc-bg"></div>' +
+                        '</a>' +
+
+
+                        '</div>' +
                         '</td>' +
                         '</tr>' +
                         '</tbody>' +
