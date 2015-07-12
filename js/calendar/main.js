@@ -356,7 +356,6 @@ var calendar = function (config) {
         self.id = $("#" + self.options.id);
         self.id.data('year', _date.getFullYear());
         self.id.data('month', _date.getMonth());
-        // loadNotes();
         Event();
         drawCalender();
     }());
