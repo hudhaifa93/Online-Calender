@@ -225,7 +225,7 @@ function getNotification(){
                             '</a>');
                         $('#notifications').find('.lv-body').append(item);
                     });
-                    $('.tm-notification').find('.tmn-counts').html(e.length);
+                    $('.tm-notification').html( '<i class="tmn-counts" >'+e.length+'</i>');
                 }
             }
         });
