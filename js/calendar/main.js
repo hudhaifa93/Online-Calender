@@ -7,19 +7,39 @@ var title_name = {
 };
 var calendar = function (config) {
     var defaults;
-    return (function () {
-        if( typeof config.view == 'undefined' )
-            config.view = 'month';
 
+
+    function ViewEventHandler(){
+        self.id = $("#"+self.options.id);
+        self.id.on('click', '.cal-view', function () {
+            config.view = $(this).data('view') ;
+            render();
+        });
+    }
+
+    function render(){
         if(config.view ==  'month'){
             m = new Month(config);
         }else if(config.view == 'week')
             m = new Week(config);
+        else if(config.view == 'day')
+            m = new Day(config);
+    }
 
+    return (function () {
+        self.options = $.extend(defaults, config);
+        ViewEventHandler();
+        if( typeof config.view == 'undefined' )
+            config.view = 'month';
+
+        render();
 
     }());
 
 };
+
+
+
 
 function dateFormat(d, format) {
     var h = "";
