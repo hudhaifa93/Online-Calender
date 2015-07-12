@@ -117,4 +117,20 @@ class Event extends Controller {
             echo json_encode(array());
     }
 
+    function getAdvanceEventData(){
+       // print_r($_POST['id']);
+        $id = $this->db->query("SELECT * FROM note WHERE id='".$_POST['id']."'");
+        if(is_object($id))
+        {
+            while($r = $id->fetchObject()){
+                $d[] =  $r;
+            }
+            echo json_encode($id? array("success" => json_encode($d?$d : array())) : array("failure" => "failure" ));
+        }
+        else{
+            echo json_encode($id? array("success" => "No Data") : array("failure" => "failure" ));
+        }
+
+    }
+
 } 

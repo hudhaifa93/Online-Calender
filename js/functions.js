@@ -281,11 +281,15 @@ function saveAdvanceEvent(formName){
     var location;
     var street ,city,state,country;
 
+    var type =$('#Type').find("option:selected").val();;
 
-    if (formName == "frmMeeting") {
+    if (type == "1") {
         Message = "Meeting Has Been Added Successfully.";
-
     }
+    else if (type == "2") {
+        Message = "Note Has Been Added Successfully.";
+    }
+
     if($('#fullday:checkbox:checked').length > 0){
         timeslotid="0";
     }
@@ -328,3 +332,4 @@ function saveAdvanceEvent(formName){
         }
     });
 }
+

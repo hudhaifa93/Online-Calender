@@ -86,19 +86,15 @@
         $(document).ready(function () {
 
             $("#createdby").val(localStorage.getItem("memberId"));
+
             initialize();//Google Address Initilization
+
             $("#StartDate").datepicker({
                 dateFormat: "yy-mm-dd"
             });
             $("#EndDate").datepicker({
                 dateFormat: "yy-mm-dd"
             });
-
-            $("#Subject").val(localStorage.getItem("tempSubject"));
-            $("textarea#Description").val(localStorage.getItem("tempDescription"));
-            var tempDate = localStorage.getItem("tempClickedDate");
-
-            $('#StartDate').datepicker("setDate", new Date(dateFormat(new Date(tempDate),'y'),dateFormat(new Date(tempDate),'m')-1,dateFormat(new Date(tempDate),'d')-1) );
 
             $("#fullday").change(function () {
                 if (this.checked) {
@@ -109,6 +105,7 @@
                     $("#timeAllocation").show();
                 }
             });
+
             $("#addLocation").change(function () {
                 if (this.checked) {
                     $("#locationAllocation").show();
@@ -119,58 +116,37 @@
                 }
             });
 
-            $('#Type').on('change', function (e) {
-                var valueSelected = this.value;
-                $("#notetype").val(valueSelected);
-            });
+            if(localStorage.getItem("advanceID")==0){
 
-            var dataMessage = [
-                {"id": "1", "Name": "heshani@gmail.com"},
-                {"id": "2", "Name": "thwaraka@gmail.com"},
-                {"id": "3", "Name": "nifal@gmail.com"}
-            ];
+                $("#Subject").val(localStorage.getItem("tempSubject"));
+                $("textarea#Description").val(localStorage.getItem("tempDescription"));
+                var tempDate = localStorage.getItem("tempClickedDate");
+                $('#StartDate').datepicker("setDate", new Date(dateFormat(new Date(tempDate),'y'),dateFormat(new Date(tempDate),'m')-1,dateFormat(new Date(tempDate),'d')-1) );
 
-            $("#InvitedList").html('');
+                $('#Type').on('change', function (e) {
+                    var valueSelected = this.value;
+                    $("#notetype").val(valueSelected);
+                });
 
-            $.each(dataMessage, function (index, item) {
-                var Email = item.Name;
-                var fullEmail = Email;
-                Email = Email.split("@");
-               $("#InvitedList").append($('<div class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">&times</a></div>'));
-            });
+            }
+            else{
+                $("#notetype").attr("disabled", true);
 
-            $("#repeats")
-                .change(function () {
                     debugger;
-                    if ($("#repeats option:selected").val() == "week") {
-                        var combo = $("#repeatCombo");
-                        combo.empty();
-                        for (var i = 1; i < 11; i++) {
-                            combo.append($("<option />").val(i).text(i));
+                    $.ajax({
+                        url:"process/index.php?route=event&method=getAdvanceEventData",
+                        type: "post",
+                        dataType: 'json',
+                        data:"id="+localStorage.getItem("advanceID"),
+                        success: function (e) {
+                            debugger;
+                           var data = e;
                         }
-                    }
-                    else if ($("#repeats option:selected").val() == "day") {
-                        var combo = $("#repeatCombo");
-                        for (var i = 1; i < 31; i++) {
-                            combo.append($("<option />").val(i).text(i));
-                        }
-                    }
-                    else if ($("#repeats option:selected").val() == "year") {
-                        var combo = $("#repeatCombo");
-                        combo.empty();
-                        for (var i = 1; i < 5; i++) {
-                            combo.append($("<option />").val(i).text(i));
-                        }
-                    }
-                    else if ($("#repeats option:selected").val() == "month") {
-                        var combo = $("#repeatCombo");
-                        combo.empty();
-                        for (var i = 1; i < 24; i++) {
-                            combo.append($("<option />").val(i).text(i));
-                        }
-                    }
-                })
-                .change();
+                    });
+
+
+            }
+
 
         });
 
