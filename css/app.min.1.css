@@ -15894,3 +15894,8 @@ a.thumbnail.active {
 .panel-group[data-collapse-color="green"] .panel-collapse .panel-heading.active .panel-title > a:after {
   background: #4caf50;
 }
+
+.logo img{
+    width: 50px;
+    margin-top: -8px;
+}
