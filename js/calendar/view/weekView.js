@@ -1,4 +1,4 @@
-var weekview = function (config) {
+var Week = function (config) {
     'use strict';
     var $window = $(window);
     var self = this,

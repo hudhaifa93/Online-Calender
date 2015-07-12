@@ -13,7 +13,8 @@ var calendar = function (config) {
 
         if(config.view ==  'month'){
             m = new Month(config);
-        }
+        }else if(config.view == 'week')
+            m = new Week(config);
 
 
     }());
