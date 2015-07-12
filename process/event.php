@@ -7,7 +7,7 @@ class Event extends Controller {
     }
 
     function insertBasicEvent(){
-        $id = $this->db->query(" insert into note values(null,'". $_POST['subject']."','".$_POST['description']."','".$_POST['timeslotid']."','".$_POST['status']."','".$_POST['startdate']."','". $_POST['enddate']."','".$_POST['createddate']."','".$_POST['createdby']."','".$_POST['notetype']."','".$_POST['location']."') ");
+        $id = $this->db->query(" insert into note values(null,'". $_POST['subject']."','".$_POST['description']."','".$_POST['timeslotid']."','".$_POST['status']."','".$_POST['startdate']."','". $_POST['enddate']."',0,0,'".$_POST['createddate']."','".$_POST['createdby']."','".$_POST['notetype']."','".$_POST['location']."') ");
         echo json_encode($id? array("success" => $this->db->last_id()) : array("failure" => "failure" ));
     }
 
@@ -20,12 +20,12 @@ class Event extends Controller {
         if(is_object($result)){
             $id = $this->db->last_id();
 
-            $start = $_POST['StartDate'];
-            $end = $_POST['EndDate'];
+            $start = $_POST['startDate'];
+            $end = $_POST['endDate'];
             if($end==""){
                 $end=$start;
             }
-            $result = $this->db->query(" insert into note values(null,'". $_POST['Subject']."','".$_POST['Description']."','".$_POST['timeslotid']."','".$_POST['status']."','".$start."','".$end."','".$_POST['createddate']."','".$_POST['createdby']."','".$_POST['notetype']."','".$id."') ");
+            $result = $this->db->query(" insert into note values(null,'". $_POST['subject']."','".$_POST['description']."','".$_POST['timeslotid']."','".$_POST['status']."','".$start."','".$end."','".$_POST['createddate']."','".$_POST['createdby']."','".$_POST['notetype']."','".$id."') ");
             if(is_object($result))
             {
                $id = $this->db->last_id();
@@ -119,7 +119,8 @@ class Event extends Controller {
 
     function getAdvanceEventData(){
        // print_r($_POST['id']);
-        $id = $this->db->query("SELECT * FROM note WHERE id='".$_POST['id']."'");
+
+        $id = $this->db->query("SELECT * FROM note n,address a WHERE n.id='".$_POST['id']."' and n.location = a.id");
         if(is_object($id))
         {
             while($r = $id->fetchObject()){
