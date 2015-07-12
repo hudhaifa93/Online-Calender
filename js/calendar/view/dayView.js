@@ -262,16 +262,32 @@ var Day = function (config) {
                         for (var r = 0; r < notes.length; r++) {
                             if (notes[r].date == dateFormat(Cur_Date) || dateFormat( new Date(notes[r].date) ,'m-d') == dateFormat(Cur_Date,'m-d')) {
                                 var _notes = notes[r].events;
+                                var noOfItems =0;
                                 for (var s = 0; s < _notes.length; s++) {
                                     if(_notes[s].starttime != "0"){
-                                        ec += '<a class="fc-time-grid-event fc-event fc-start fc-not-end bgm-orange fc-draggable" style="top: 0px; bottom: -960px; z-index: 1; left: 0%; right: 50%;">' +
-                                            '<div class="fc-content">' +
-                                            '<div class="fc-time" data-start="10:00" data-full="12:00 AM - 12:00 AM">' +
-                                            '<span>12:00 - 12:00</span></div>' +
-                                            '<div class="fc-title">DAY TEST HARD CODED</div>' +
-                                            '</div>' +
-                                            '<div class="fc-bg"></div>' +
-                                            '</a>';
+                                        ++noOfItems;
+                                    }
+                                }
+
+                                if(noOfItems > 0){
+                                    var widthPortion = 100 / noOfItems;
+                                    var left = 0;
+                                    var right = 0;
+                                    var itemNo = 1;
+                                    for (var s = 0; s < _notes.length; s++) {
+                                        if(_notes[s].starttime != "0"){
+                                            left = right;
+                                            right = 100 - widthPortion * itemNo;
+                                            ec += '<a class="fc-time-grid-event fc-event fc-start fc-not-end bgm-orange fc-draggable" style="top: 0px; bottom: -960px; z-index: 1; left: '+left+'%; right: '+right+'%;">' +
+                                                '<div class="fc-content">' +
+                                                '<div class="fc-time" data-start="10:00" data-full="12:00 AM - 12:00 AM">' +
+                                                '<span>' + _notes[s].starttime + ' - ' + _notes[s].endtime + '</span></div>' +
+                                                '<div class="fc-title">'+_notes[s].subject+'</div>' +
+                                                '</div>' +
+                                                '<div class="fc-bg"></div>' +
+                                                '</a>';
+                                            ++itemNo;
+                                        }
                                     }
                                 }
                             }
