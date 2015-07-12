@@ -17,3 +17,27 @@ function getColorByEventType(type){
         return "bgm-purple";
     }
 }
+
+function getHourlyTime(time){
+    var Hours = parseInt(time / 100);
+    var Minutes  = time % 100;
+    if(Minutes <10){
+        Minutes = '0'+Minutes;
+    }
+    if(Hours == 0){
+        return '12:'+Minutes+' AM';
+    }else if(Hours < 10){
+        return '0'+Hours+':'+Minutes+' AM';
+    }else if(Hours < 12){
+        return Hours+':'+Minutes+' AM';
+    }else if(Hours == 12){
+        return '12:'+Minutes+' PM';
+    }else{
+        Hours = Hours -12;
+        if(Hours < 10){
+            return '0'+Hours+':'+Minutes+' PM';
+        }else if(Hours < 12){
+            return Hours+':'+Minutes+' PM';
+        }
+    }
+}

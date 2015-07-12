@@ -278,10 +278,15 @@ var Day = function (config) {
                                         if(_notes[s].starttime != "0"){
                                             left = right;
                                             right = 100 - widthPortion * itemNo;
-                                            ec += '<a class="fc-time-grid-event fc-event fc-start fc-not-end bgm-orange fc-draggable" style="top: 0px; bottom: -960px; z-index: 1; left: '+left+'%; right: '+right+'%;">' +
+                                            var startHours = parseInt(_notes[s].starttime / 100) + (_notes[s].starttime % 100)/60;
+                                            var top = startHours * 40;
+                                            var endHours = parseInt(_notes[s].endtime / 100) + (_notes[s].endtime % 100)/60;
+                                            var bottom = endHours * 40;
+
+                                            ec += '<a class="fc-time-grid-event fc-event fc-start fc-not-end fc-draggable '+getColorByEventType(_notes[s].notetype)+'" style="top:'+top+'px; bottom: -'+bottom+'px; z-index: 1; left: '+left+'%; right: '+right+'%;">' +
                                                 '<div class="fc-content">' +
                                                 '<div class="fc-time" data-start="10:00" data-full="12:00 AM - 12:00 AM">' +
-                                                '<span>' + _notes[s].starttime + ' - ' + _notes[s].endtime + '</span></div>' +
+                                                '<span>' + getHourlyTime(_notes[s].starttime) + ' - ' + getHourlyTime(_notes[s].endtime) + '</span></div>' +
                                                 '<div class="fc-title">'+_notes[s].subject+'</div>' +
                                                 '</div>' +
                                                 '<div class="fc-bg"></div>' +
