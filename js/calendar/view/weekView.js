@@ -28,7 +28,7 @@ var Week = function (config) {
         if (_weekStart.getDay() != 0) _weekStart.setDate(_weekStart.getDate() - _weekStart.getDay());
         _weekEnd = new Date(_weekStart.getFullYear(), _weekStart.getMonth(), _weekStart.getDate(), 0, 0, 0, 0);
         _weekEnd.setDate(_weekEnd.getDate() + 6);
-        name.title = name.monthsShort[ _weekStart.getMonth()] + "" + _weekStart.getDate() + " " + _weekStart.getFullYear() + " - " +  name.monthsShort[ _weekEnd.getMonth()] + "" + _weekEnd.getDate() + " " + _weekEnd.getFullYear();
+        name.title = name.monthsShort[ _weekStart.getMonth()] + " " + _weekStart.getDate() + ", " + _weekStart.getFullYear() + " - " +  name.monthsShort[ _weekEnd.getMonth()] + " " + _weekEnd.getDate() + ", " + _weekEnd.getFullYear();
         self.id.addClass("fc fc-ltr ui-widget");
         self.id.html("");
         _head(self.id);
