@@ -288,9 +288,14 @@ var Month = function (config) {
 
             resetModalButton();
 
-            $('.advance-view').click(function () {
+            $('#advance-view-meeting').click(function () {
                 setSessionsForAdvanceNote(date);
             });
+
+            $('#advance-view-note').click(function () {
+                setSessionsForAdvanceNote(date);
+            });
+
         }
 
         function resetModalButton(){
@@ -324,9 +329,9 @@ var Month = function (config) {
                 $("#meetingButtonDelete").attr("onclick","deleteBasicEvent('meetingForm','"+event.data('eventid')+"')");
                 $("#meetingButtonDelete").show();
 
-//                $('.advance-view').click(function () {
-//                    editAdvanceNote(event.data('eventid'));
-//                });
+                $('#advance-view-meeting').click(function () {
+                    editAdvanceNote(event.data('eventid'));
+                });
 
             }
             else if(event.data('eventtype')=="2")//note
@@ -337,6 +342,10 @@ var Month = function (config) {
                 $("#eventButton").attr("onclick","editBasicEvent('eventForm','"+event.data('eventid')+"')");
                 $("#eventButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
                 $("#eventButtonDelete").show();
+
+                $('#advance-view-note').click(function () {
+                    editAdvanceNote(event.data('eventid'));
+                });
 
             }
             else if(event.data('eventtype')=="3")//birthday

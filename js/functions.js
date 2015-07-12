@@ -74,13 +74,11 @@ function showalert(message, alerttype, id, type) {
     localStorage.setItem("tempSubject", "0");
     localStorage.setItem("tempDescription", "0");
     localStorage.setItem("tempClickedDate", "0");
-    window.location.href = "/Online-Calender/ConfigureEvents.html";
 }
 
-    function editAdvanceNote(id) {
+function editAdvanceNote(id) {
     localStorage.setItem("advanceID", id);
     window.location.href = "/Online-Calender/ConfigureEvents.html";
-
 }
 
     function validateLogin(formName) {
