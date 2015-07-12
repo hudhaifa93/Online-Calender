@@ -171,26 +171,21 @@ var Month = function (config) {
                         w += '<td  >';
                         for (var m = 0; m < monthly_notes.length; m++) {
                             if (monthly_notes[m].date == Cur_Date  || dateFormat( new Date(monthly_notes[m].date) ,'m-d') == dateFormat(d,'m-d')  ) {
-                                var daynotes = monthly_notes[m].events;
-                                if( typeof daynotes == "object")
-                                    for (var s = 0; s < daynotes.length; s++) {
-                                        var bgcolor = "bgm-purple";
-                                        if(daynotes[s].notetype == "1"){
-                                            bgcolor = "bgm-red";
-                                        }else if(daynotes[s].notetype == "3"){
-                                            bgcolor = "bgm-green";
-                                        }
-                                        w += '<a class="fc-day-grid-event fc-event fc-start fc-end '+bgcolor+' fc-draggable editevent" data-eventid="'+daynotes[s].id+'" data-eventtype="'+daynotes[s].notetype+'" data-eventdate="'+daynotes[s].startdate+'" data-subject="'+daynotes[s].subject+'" data-description="'+daynotes[s].description+'">' +
+                                var _notes = monthly_notes[m].events;
+                                if( typeof _notes == "object"){
+                                    for (var s = 0; s < _notes.length; s++) {
+                                        w += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ getColorByEventType(_notes[s].notetype) + '" data-eventid="'+_notes[s].id+'" data-eventtype="'+_notes[s].notetype+'" data-eventdate="'+_notes[s].startdate+'" data-subject="'+_notes[s].subject+'" data-description="'+_notes[s].description+'">' +
                                             '<div class="fc-content">';
 
-                                        if(daynotes[s].starttime != "0"){
-                                            w += '<span class="fc-time">'+daynotes[s].starttime +'-'+daynotes[s].endtime+'</span>';
+                                        if(_notes[s].starttime != "0"){
+                                            w += '<span class="fc-time">'+_notes[s].starttime +'-'+_notes[s].endtime+'</span>';
                                         }
 
-                                        w += '<span class="fc-title">' + daynotes[s].subject + '</span>' +
+                                        w += '<span class="fc-title">' + _notes[s].subject + '</span>' +
                                             '</div>' +
                                             '</a>';
                                     }
+                                }
                             }
                         }
                         w += '</td>';

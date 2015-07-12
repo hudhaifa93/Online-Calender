@@ -122,16 +122,19 @@ var Day = function (config) {
 
                 var Cur_Date = new Date(_date.getFullYear(), _date.getMonth(), _date.getDate(), 0, 0, 0, 0);
                 var fe = '';
-                if(daily_notes.length >0){
-                    if (daily_notes[0].date == dateFormat(Cur_Date) || dateFormat( new Date(daily_notes[0].date) ,'m-d') == dateFormat(Cur_Date,'m-d')) {
-                        var _notes = daily_notes[0].events;
+                for (var r = 0; r < daily_notes.length; r++) {
+                    if (daily_notes[r].date == dateFormat(Cur_Date) || dateFormat( new Date(daily_notes[r].date) ,'m-d') == dateFormat(Cur_Date,'m-d')) {
+                        var _notes = daily_notes[r].events;
                         for (var s = 0; s < _notes.length; s++) {
                             if(_notes[s].starttime == "0"){
-                                fe += '<a class="fc-day-grid-event fc-event fc-start fc-end bgm-blue fc-draggable fc-resizable">' +
+                                fe += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable  '+ getColorByEventType(_notes[s].notetype) + ' ">' +
                                     '<div class="fc-content">' +
                                     '<span class="fc-title">' +
-                                    _notes[s].subject +
-                                    '</span></div>' +
+                                    _notes[s].subject;
+                                if(_notes[s].description != ''){
+                                    fe += ' : ' + _notes[s].description;
+                                }
+                                fe += '</span></div>' +
                                     '<div class="fc-resizer"></div>' +
                                     '</a>';
                             }
@@ -260,22 +263,6 @@ var Day = function (config) {
         }
 
         t.append(htl);
-    }
-
-    function dateFormat(d, format) {
-        var h = "";
-        switch (format) {
-            case "YYYY-m-d":
-                return d.getFullYear() + "-" + (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 10 ? "" : "0") + d.getDate();
-                break;
-            case "D" :
-                return name.daysMin[d.getDay()];
-                break;
-            default :
-                return d.getFullYear() + "-" + (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 10 ? "" : "0") + d.getDate();
-                break;
-        }
-
     }
 
     function Event() {

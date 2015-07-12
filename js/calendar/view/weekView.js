@@ -175,13 +175,13 @@ var Week = function (config) {
                         var fe = '';
                         for (var m = 0; m < weekly_notes.length; m++) {
                             if (weekly_notes[m].date == dateFormat(Cur_Date) || dateFormat( new Date(weekly_notes[m].date) ,'m-d') == dateFormat(Cur_Date,'m-d')) {
-                                var daynotes = weekly_notes[m].events;
-                                for (var s = 0; s < daynotes.length; s++) {
-                                    if(daynotes[s].starttime == "0"){
-                                        fe += '<a class="fc-day-grid-event fc-event fc-start fc-end bgm-blue fc-draggable fc-resizable">' +
+                                var _notes = weekly_notes[m].events;
+                                for (var s = 0; s < _notes.length; s++) {
+                                    if(_notes[s].starttime == "0"){
+                                        fe += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(_notes[s].notetype) + '">' +
                                             '<div class="fc-content">' +
                                             '<span class="fc-title">' +
-                                            daynotes[s].subject +
+                                            _notes[s].subject +
                                             '</span></div>' +
                                             '<div class="fc-resizer"></div>' +
                                             '</a>';
@@ -309,22 +309,6 @@ var Week = function (config) {
         }
 
         t.append(htl);
-    }
-
-    function dateFormat(d, format) {
-        var h = "";
-        switch (format) {
-            case "YYYY-m-d":
-                return d.getFullYear() + "-" + (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 10 ? "" : "0") + d.getDate();
-                break;
-            case "D" :
-                return name.daysMin[d.getDay()];
-                break;
-            default :
-                return d.getFullYear() + "-" + (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 10 ? "" : "0") + d.getDate();
-                break;
-        }
-
     }
 
     function Event() {
