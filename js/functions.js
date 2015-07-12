@@ -212,6 +212,7 @@ function getNotification(){
             dataType: "json",
             success :function(e){
                 if(e.length > 0 ){
+                    $('#notifications').find('.lv-body').html("");
                     $.each(e,function(k,v){
                         item = $('<a class="lv-item" href=""><div class="media">' +
                             '<div class="pull-left">' +
@@ -219,7 +220,7 @@ function getNotification(){
                             ' </div>' +
                             ' <div class="media-body">' +
                             '<div class="lv-title">'+ v.name +'</div>' +
-                            '<small class="lv-small">'+ v.description +'</small>' +
+                            '<small class="lv-small">'+ v.subject +'</small>' +
                             ' </div>' +
                             ' </div>' +
                             '</a>');
