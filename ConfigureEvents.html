@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Example of Bootstrap 3 Modals</title>
+    <title>Configure Events</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
 
@@ -20,7 +20,7 @@
     <script src="js/jquery-ui.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script src="js/googleAddress.js"></script>
-    <script src="js/calendar/main.js"></script>
+    <script src="js/functions.js"></script>
     <style type="text/css">
         body {
             width: 960px;
@@ -84,12 +84,14 @@
     <script>
 
         $(document).ready(function () {
+
+            $("#createdby").val(localStorage.getItem("memberId"));
             initialize();//Google Address Initilization
             $("#StartDate").datepicker({
-                dateFormat: "yy mm d"
+                dateFormat: "yy-mm-dd"
             });
             $("#EndDate").datepicker({
-                dateFormat: "yy mm d"
+                dateFormat: "yy-mm-dd"
             });
 
             $("#Subject").val(localStorage.getItem("tempSubject"));
@@ -101,6 +103,7 @@
             $("#fullday").change(function () {
                 if (this.checked) {
                     $("#timeAllocation").hide();
+                    $("#timeAllocation input").val("");
                 }
                 else {
                     $("#timeAllocation").show();
@@ -112,6 +115,7 @@
                 }
                 else {
                     $("#locationAllocation").hide();
+                    $("#locationAllocation input").val("");
                 }
             });
 
@@ -127,7 +131,7 @@
                 var Email = item.Name;
                 var fullEmail = Email;
                 Email = Email.split("@");
-               $("#InvitedList").append($('<div class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="glyphicon glyphicon-trash" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')"></a></div>'));
+               $("#InvitedList").append($('<div class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">&times</a></div>'));
             });
 
             $("#repeats")
@@ -170,7 +174,7 @@
             var Email = $("#InviteeEmail").val();
             var fullEmail = Email;
             Email = Email.split("@");
-            $("#InvitedList").append($('<div class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="glyphicon glyphicon-trash" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')"></a></div>'));
+            $("#InvitedList").append($('<div class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">&times</a></div>'));
 
         }
 
@@ -180,26 +184,15 @@
         }
 
 
-        function validateSave() {
-            $.ajax({
-                url: "event/insertMeeting",
-                type: "post",
-                dataType: 'json',
-                data: $('#frmMeeting').serialize(), // provided this code executes in form.onsubmit event
-                success: function (output) {
-                    alert("Meeting Added");
-                },
-                failure: function () {
-                    alert("Meeting Not Added");
-                }
-            });
-        }
-
     </script>
 
 </head>
 <body>
 <form role="form" id="frmMeeting">
+
+    <input type=hidden name=status value="1">
+    <input type=hidden name=createdby id="createdby" value="">
+    <input type=hidden name=notetype value="1">
 
     <div class="col-xs-6 form-group">
         <label>Subject</label>
@@ -213,13 +206,11 @@
     </div>
     <div id="locationAllocation" style="display:none;">
         <div class="col-xs-12 form-group">
-            <!-- <label>Location</label> -->
-            <!-- <input type="text" class="form-control" name="Location" id="Location" placeholder="Location"/> -->
             <input type="text" class="form-control" id="autocomplete" placeholder="Enter your address"/>
-            <input type="text" style="margin-top: 10px;margin-bottom: 10px;" class="googleAddress form-control" id="street"/>
-            <input style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="city"/>
-            <input style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="state"/>
-            <input style="float: left;  width: 25%;" type="text" class="googleAddress form-control" id="country"/>
+            <input type="text"  style="margin-top: 10px;margin-bottom: 10px;" class="googleAddress form-control" id="street"/>
+            <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="city"/>
+            <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="state"/>
+            <input  style="float: left;  width: 25%;" type="text" class="googleAddress form-control" id="country"/>
         </div>
     </div>
     <div class="col-xs-6 form-group">
@@ -250,7 +241,7 @@
                   style="resize:none"></textarea>
     </div>
     <div class="col-xs-6 form-group">
-        <input type="text" style="  width: 50%;  float: left;" class="form-control" name="InviteeEmail" id="InviteeEmail" placeholder="InviteeEmail"/><button type="button" style="  margin-left: 10px;  float: left;  margin-top: 2px;" class="btn btn-sm btn-primary"onclick="addToInvitedList()">Login</button>
+        <input type="text" style="  width: 50%;  float: left;" class="form-control"  id="InviteeEmail" placeholder="InviteeEmail"/><button type="button" style="  margin-left: 10px;  float: left;  margin-top: 2px;" class="btn btn-sm btn-primary"onclick="addToInvitedList()">Add to List</button>
     </div>
     <div class="col-xs-12 form-group">
         <div id="InvitedList">
@@ -258,98 +249,11 @@
     </div>
 
 
-    <div class="col-xs-12 form-group">
-        <table width="80%" style="width:100%; border-collapse:separate; border-spacing:5px 10px; margin-top:20px;">
-            <td width="11%">
-                <tr>
-                    <td>Repeats</td>
-                    <td width="89%" style="width:30%">
-                        <select name="" id="repeats" class="form-control" style="width:30%;">
-                            <option value="day">Daily</option>
-                            <option value="week">Weekly</option>
-                            <option value="month">Monthly</option>
-                            <option value="year">Yearly</option>
-                        </select></td>
-                </tr>
-
-                <tr>
-                    <td>Repeat Every</td>
-                    <td><select name="" id="repeatCombo" class="form-control" style="width:30%;">
-
-                        </select> weeks
-                    </td>
-                </tr>
-                <tr>
-                    <td>Repeat On</td>
-                    <td>
-                        <label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox1"
-                                                              value="option1">S</label>
-                        <label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox2"
-                                                              value="option2">M</label>
-                        <label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox3"
-                                                              value="option3">T</label>
-                        <label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox4"
-                                                              value="option4">W</label>
-                        <label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox5"
-                                                              value="option5">T</label>
-                        <label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox6"
-                                                              value="option6">F</label>
-                        <label class="checkbox-inline"><input type="checkbox" id="inlineCheckbox7"
-                                                              value="option7">S</label>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Starts On</td>
-                    <td><input type="text" id="startsOn" name="startsOn" class="form-control" placeholder="Starts On"
-                               style="width:250px;"/></td>
-                </tr>
-                <tr>
-
-                    <td> Ends On</td>
-                    <td>
-
-
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                Never
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                After<input type="text" id="startsOn" name="startsOn" class="form-control"
-                                            style="width:100px;"/>occurences
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-                                On<input type="text" id="startsOn" name="startsOn" class="form-control"
-                                         style="width:100px;"/>
-                            </label>
-                        </div>
-
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <button type="submit" class="btn btn-primary btn-sm  style2"
-                                onclick="javascript: validateSave()" ty>SAVE
-                        </button>
-
-                </tr>
-        </table>
-    </div>
-
-
 </form>
 
 
 <div class="col-xs-12 form-group">
-    <button type="button" class="btn btn-primary" onclick="javascript: validateSave()">Save changes</button>
+    <button type="button" class="btn btn-sm btn-primary" onclick="javascript: saveAdvanceEvent('frmMeeting')">Create</button>
 </div>
 
 

@@ -33,6 +33,34 @@ function getOnlyCurrentDate() {
     return output;
 }
 
+function dateFormat(d, format) {
+    var h = "";
+    switch (format) {
+        case "YYYY-m-d":
+            return d.getFullYear() + "-" + (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 10 ? "" : "0") + d.getDate();
+            break;
+        case "m-d":
+            return (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 10 ? "" : "0") + d.getDate();
+            break;
+        case "y":
+            return d.getFullYear() ;
+            break;
+        case "m":
+            return (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) ;
+            break;
+        case "d":
+            return  (d.getDate() > 10 ? "" : "0") + d.getDate();
+            break;
+        case "D" :
+            return title_name.daysMin[d.getDay()];
+            break;
+        default :
+            return d.getFullYear() + "-" + (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 10 ? "" : "0") + d.getDate();
+            break;
+    }
+
+}
+
 function saveBasicEvent(formName) {
     debugger;
     var Message = "";
@@ -231,4 +259,60 @@ function getNotification(){
             }
         });
     }
+}
+
+function saveAdvanceEvent(formName){
+    debugger;
+    var Message = "";
+    var createddate = getOnlyCurrentDate();
+    var timeslotid;
+    var location;
+    var street ,city,state,country;
+
+
+    if (formName == "frmMeeting") {
+        Message = "Meeting Has Been Added Successfully.";
+
+    }
+    if($('#fullday:checkbox:checked').length > 0){
+        timeslotid="0";
+    }
+    else
+    {
+        timeslotid="0";
+    }
+
+    if($('#addLocation:checkbox:checked').length > 0){
+
+        street = $("#street").val();
+        city = $("#city").val();
+        state = $("#state").val();
+        country = $("#country").val();
+        location +="&street="+street+"&city="+city+"&state="+state+"&country="+country;
+
+    }
+    else{
+        location = "&street=0&city=0&state=0&country=0";
+    }
+
+    $.ajax({
+        url: "process/index.php?route=event&method=insertAdvanceEvent",//event.php
+        type: "post",
+        dataType: 'json',
+        data: $('#' + formName).serialize()+"&createddate="+createddate+"&timeslotid="+timeslotid+location, // provided this code executes in form.onsubmit event
+        success: function (output) {
+            debugger;
+            $('#' + formName)[0].reset();
+            if (output.success > 0) {
+
+                showalert(Message, "alert-success", "/Online-Calender/Calendar.html", "redirect");
+            }
+            else {
+                showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
+            }
+        },
+        failure: function () {
+            showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
+        }
+    });
 }

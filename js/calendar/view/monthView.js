@@ -274,6 +274,7 @@ var Month = function (config) {
         });
 
         function openModal(date) {
+            //alert("normalModal");
             $('#eventForm')[0].reset();
             $('#birthdayForm')[0].reset();
             $('#CommonModal').modal('show');
@@ -298,6 +299,8 @@ var Month = function (config) {
         }
 
         function openModelForEdit(event) {
+            debugger;
+           // alert("editModal");
             $('#eventForm')[0].reset();
             $('#birthdayForm')[0].reset();
             $('#CommonModal').modal('show');
@@ -309,7 +312,17 @@ var Month = function (config) {
                 editAdvanceNote(event.data('eventid'));
             });
 
-            if(event.data('eventtype')=="2")//note
+            if(event.data('eventtype')=="1")//meeting
+            {
+                $("#Subject").val(event.data('subject'));
+                $("#description").val(event.data('description'));
+                $('.nav-tabs a[href="#eventTab"]').tab('show');
+                $("#eventButton").attr("onclick","editBasicEvent('eventForm','"+event.data('eventid')+"')");
+                $("#eventButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
+                $("#eventButtonDelete").show();
+
+            }
+            else if(event.data('eventtype')=="2")//note
             {
                 $("#Subject").val(event.data('subject'));
                 $("#description").val(event.data('description'));

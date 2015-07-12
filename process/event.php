@@ -11,6 +11,36 @@ class Event extends Controller {
         echo json_encode($id? array("success" => $this->db->last_id()) : array("failure" => "failure" ));
     }
 
+    function insertAdvanceEvent(){
+
+//        print_r($_POST);
+
+        $result = $this->db->query(" insert into address values(null,'". $_POST['street']."','".$_POST['city']."','". $_POST['state']."','". $_POST['country']."')");
+
+        if(is_object($result)){
+            $id = $this->db->last_id();
+
+            $start = $_POST['StartDate'];
+            $end = $_POST['EndDate'];
+            if($end==""){
+                $end=$start;
+            }
+            $result = $this->db->query(" insert into note values(null,'". $_POST['Subject']."','".$_POST['Description']."','".$_POST['timeslotid']."','".$_POST['status']."','".$start."','".$end."','".$_POST['createddate']."','".$_POST['createdby']."','".$_POST['notetype']."','".$id."') ");
+            if(is_object($result))
+            {
+               $id = $this->db->last_id();
+            }
+            else{
+                $this->db->query("DELETE FROM address WHERE id='$id'");
+            }
+
+        }
+        echo json_encode($result? array("success" => $id) : array("failure" => "failure" ));
+
+    }
+
+
+
     function getMonthlyEvents(){
 
         $results = $this->db->query("  select * from `note` where
