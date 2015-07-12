@@ -319,8 +319,6 @@ var Week = function (config) {
     return (function () {
         self.options = $.extend(defaults, config);
         self.id = $("#" + self.options.id);
-        self.id.data('year', _date.getFullYear());
-        self.id.data('month', _date.getMonth());
         Event();
         drawCalender();
     }());

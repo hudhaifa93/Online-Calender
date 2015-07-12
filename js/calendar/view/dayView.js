@@ -1,12 +1,10 @@
-var Week = function (config) {
+var Day = function (config) {
     'use strict';
     var $window = $(window);
     var self = this,
         defaults,
         _date = new Date(),
-        _weekStart = new Date(),
-        _weekEnd = new Date(),
-        weekly_notes,
+        daily_notes,
         data = null,
         name = {
             days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
@@ -25,20 +23,17 @@ var Week = function (config) {
         };
 
     function drawCalender() {
-        if (_weekStart.getDay() != 0) _weekStart.setDate(_weekStart.getDate() - _weekStart.getDay());
-        _weekEnd = new Date(_weekStart.getFullYear(), _weekStart.getMonth(), _weekStart.getDate(), 0, 0, 0, 0);
-        _weekEnd.setDate(_weekEnd.getDate() + 6);
-        name.title = name.monthsShort[ _weekStart.getMonth()] + "" + _weekStart.getDate() + " " + _weekStart.getFullYear() + " - " +  name.monthsShort[ _weekEnd.getMonth()] + "" + _weekEnd.getDate() + " " + _weekEnd.getFullYear();
+        name.title = name.months[ _date.getMonth()] + " " + _date.getDate() + ", " + _date.getFullYear();
         self.id.addClass("fc fc-ltr ui-widget");
         self.id.html("");
         _head(self.id);
         $.ajax({
             url : "process/?route=Event&method=getMonthlyEvents",
-            data:  { start : dateFormat(_weekStart), end: dateFormat(_weekEnd) },
+            data:  { start : dateFormat(_date), end: dateFormat(_date) },
             type : "post",
             dataType: "json",
             success : function(e){
-                weekly_notes = e;
+                daily_notes = e;
                 _container(self.id);
             }
         });
@@ -70,8 +65,8 @@ var Week = function (config) {
                 '<i class="md md-more-vert"></i></a>' +
                 '<ul class="dropdown-menu dropdown-menu-right">' +
                 '<li><a data-view="month" href="">Month View</a></li>' +
-                '<li class="active"><a data-view="basicWeek" href="">Week View</a></li>' +
-                '<li><a data-view="basicDay" href="">Day View</a></li>' +
+                '<li><a data-view="basicWeek" href="">Week View</a></li>' +
+                '<li class="active"><a data-view="basicDay" href="">Day View</a></li>' +
                 '</ul>' +
                 '</li>' +
                 '</ul> ';
@@ -82,7 +77,7 @@ var Week = function (config) {
 
     function _container(t) {
         var htl = '<div class="fc-view-container" style="">' +
-            '<div class="fc-view fc-agendaWeek-view fc-agenda-view">' +
+            '<div class="fc-view fc-agendaDay-view fc-agenda-view">' +
             '<table>' +
             '<thead>' +
             _title_bar() +
@@ -101,15 +96,9 @@ var Week = function (config) {
                 '<table>' +
                 '<thead>' +
                 '<tr>' +
-                '<th class="fc-axis ui-widget-header" style="width: 40px;"></th>';
-
-            var wkday = new Date(_weekStart.getFullYear(), _weekStart.getMonth(), _weekStart.getDate(), 0, 0, 0, 0);
-
-            for (var i in name.daysShort){
-                h += '<th class="fc-day-header ui-widget-header fc-' + name.daysShort[i] + '">' + name.daysShort[i] + ' '+ wkday.getMonth() + '/' + wkday.getDate() + '</th>';
-                wkday.setDate(wkday.getDate() + 1);
-            }
-            h += '</tr>' +
+                '<th class="fc-axis ui-widget-header" style="width: 40px;"></th>' +
+                '<th class="fc-day-header ui-widget-header fc-' + name.daysShort[_date.getDay()] + '">' + name.days[_date.getDay()] + '</th>' +
+                '</tr>' +
                 '</thead>' +
                 '</table>' +
                 '</div>' +
@@ -132,55 +121,30 @@ var Week = function (config) {
             function _fc_day_grid() {
                 var h = '<div class="fc-day-grid">' +
                     '<div class="fc-row fc-week ui-widget-content" style="border-right-width: 1px; margin-right: 14px;">' +
-                    fc_bg() +
-                    fc_content_skeleton() +
+                    '<div class="fc-bg">' +
+                    '<table>' +
+                    '<tbody>' +
+                    '<tr>' +
+                    '<td class="fc-axis ui-widget-content" style="width: 41px;">' +
+                    '<span>all-day</span>' +
+                    '</td>' +
+                    '<td class="fc-day ui-widget-content fc-sun fc-today ui-state-highlight" data-date="2015-06-14"></td>' +
+                    '</tr>' +
+                    '</tbody>' +
+                    '</table>' +
+                    '</div>' +
+                    '<div class="fc-content-skeleton">' +
+                    '<table>' +
+                    '<tbody>' +
+                    '<tr>' +
+                    '<td class="fc-axis" style="width: 41px;"></td>' +
+                    '<td></td>' +
+                    '</tr>' +
+                    '</tbody>' +
+                    '</table>' +
+                    '</div>' +
                     '</div>' +
                     '</div>';
-
-                function fc_bg() {
-                    var h = '<div class="fc-bg">' +
-                        '<table>' +
-                        '<tbody>' +
-                        '<tr>' +
-                        '<td class="fc-axis ui-widget-content" style="width: 40px;"><span>all-day</span></td>';
-
-                    var fc_bg_Date = new Date(_weekStart.getFullYear(), _weekStart.getMonth(), _weekStart.getDate(), 0, 0, 0, 0);
-                    for (var c = 0; c < 7; c++) {
-                        if(_date.getDay() == c){
-                            h += '<td class="fc-day ui-widget-content fc-sun fc-today ui-state-highlight" data-date="2015-06-14"></td>';
-                        }
-                        else{
-                            h += '<td class="fc-day ui-widget-content fc-tue fc-future" data-date="2015-06-16"></td>';
-                        }
-                        fc_bg_Date.setDate(fc_bg_Date.getDate() + 1);
-                    }
-
-                    h += '</tr>' +
-                        '</tbody>' +
-                        '</table>' +
-                        '</div>';
-
-                    return h;
-                }
-
-                function fc_content_skeleton() {
-                    var h = '<div class="fc-content-skeleton">' +
-                        '<table>' +
-                        '<tbody>' +
-                        '<tr>' +
-                        '<td class="fc-axis" style="width: 40px;"></td>';
-
-                    for (var c = 0; c < 7; c++){
-                        h += '<td></td>';
-                    }
-
-                    h += '</tr>' +
-                        '</tbody>' +
-                        '</table>' +
-                        '</div>';
-
-                    return h;
-                }
 
                 return h;
             }
@@ -200,20 +164,9 @@ var Week = function (config) {
                         '<table>' +
                         '<tbody>' +
                         '<tr>' +
-                        '<td class="fc-axis ui-widget-content" style="width: 40px;"></td>';
-
-                    var fc_bg_Date = new Date(_weekStart.getFullYear(), _weekStart.getMonth(), _weekStart.getDate(), 0, 0, 0, 0);
-                    for (var c = 0; c < 7; c++) {
-                        if(_date.getDay() == c){
-                            h += '<td class="fc-day ui-widget-content fc-sun fc-today ui-state-highlight" data-date="2015-06-14"></td>';
-                        }
-                        else{
-                            h += '<td class="fc-day ui-widget-content fc-mon fc-future" data-date="2015-06-15"></td>';
-                        }
-                        fc_bg_Date.setDate(fc_bg_Date.getDate() + 1);
-                    }
-
-                    h += '</tr>' +
+                        '<td class="fc-axis ui-widget-content" style="width: 40px;"></td>' +
+                        '<td class="fc-day ui-widget-content fc-sun fc-today ui-state-highlight" data-date="2015-06-14"></td>' +
+                        '</tr>' +
                         '</tbody>' +
                         '</table>' +
                         '</div>';
@@ -263,19 +216,14 @@ var Week = function (config) {
                         '<table>' +
                         '<tbody>' +
                         '<tr>' +
-                        '<td class="fc-axis" style="width: 40px;"></td>';
-
-                    for (var c = 0; c < 7; c++) {
-                        h += '<td>' +
-                            '<div class="fc-event-container"></div>' +
-                            '</td>';
-                    }
-
-                    h += '</tr>' +
+                        '<td class="fc-axis" style="width: 41px;"></td>' +
+                        '<td>' +
+                        '<div class="fc-event-container"></div>' +
+                        '</td>' +
+                        '</tr>' +
                         '</tbody>' +
                         '</table>' +
-                        '</div>';
-
+                        '</div>' ;
                     return h;
                 }
 
@@ -306,12 +254,12 @@ var Week = function (config) {
 
     function Event() {
         self.id.on('click', '.ui-icon-circle-triangle-w', function () {
-            _weekStart.setDate(_weekStart.getDate() - 7);
+            _date.setDate(_date.getDate() - 1);
             drawCalender();
         });
 
         self.id.on('click', '.ui-icon-circle-triangle-e', function () {
-            _weekStart.setDate(_weekStart.getDate() + 7);
+            _date.setDate(_date.getDate() + 1);
             drawCalender();
         });
     }
@@ -319,8 +267,6 @@ var Week = function (config) {
     return (function () {
         self.options = $.extend(defaults, config);
         self.id = $("#" + self.options.id);
-        self.id.data('year', _date.getFullYear());
-        self.id.data('month', _date.getMonth());
         Event();
         drawCalender();
     }());
