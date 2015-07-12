@@ -4,7 +4,7 @@ var Day = function (config) {
     var self = this,
         defaults,
         _date = new Date(),
-        daily_notes,
+        notes,
         data = null,
         name = {
             days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
@@ -33,7 +33,7 @@ var Day = function (config) {
             type : "post",
             dataType: "json",
             success : function(e){
-                daily_notes = e;
+                notes = e;
                 _container(self.id);
             }
         });
@@ -122,9 +122,9 @@ var Day = function (config) {
 
                 var Cur_Date = new Date(_date.getFullYear(), _date.getMonth(), _date.getDate(), 0, 0, 0, 0);
                 var fe = '';
-                for (var r = 0; r < daily_notes.length; r++) {
-                    if (daily_notes[r].date == dateFormat(Cur_Date) || dateFormat( new Date(daily_notes[r].date) ,'m-d') == dateFormat(Cur_Date,'m-d')) {
-                        var _notes = daily_notes[r].events;
+                for (var r = 0; r < notes.length; r++) {
+                    if (notes[r].date == dateFormat(Cur_Date) || dateFormat( new Date(notes[r].date) ,'m-d') == dateFormat(Cur_Date,'m-d')) {
+                        var _notes = notes[r].events;
                         for (var s = 0; s < _notes.length; s++) {
                             if(_notes[s].starttime == "0"){
                                 fe += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable  '+ getColorByEventType(_notes[s].notetype) + ' ">' +
@@ -248,23 +248,38 @@ var Day = function (config) {
                         '<td class="fc-axis" style="width: 41px;"></td>' +
                         '<td>' +
                         '<div class="fc-event-container">' +
-
-                        '<a class="fc-time-grid-event fc-event fc-start fc-not-end bgm-orange fc-draggable" style="top: 0px; bottom: -960px; z-index: 1; left: 0%; right: 50%;">' +
-                        '<div class="fc-content">' +
-                        '<div class="fc-time" data-start="12:00" data-full="12:00 AM - 12:00 AM">' +
-                        '<span>12:00 - 12:00</span></div>' +
-                        '<div class="fc-title">Live TV Show</div>' +
-                        '</div>' +
-                        '<div class="fc-bg"></div>' +
-                        '</a>' +
-
-
+                        fc_event_container() +
                         '</div>' +
                         '</td>' +
                         '</tr>' +
                         '</tbody>' +
                         '</table>' +
                         '</div>' ;
+
+                    function fc_event_container(){
+                        var ec = '';
+                        var Cur_Date = new Date(_date.getFullYear(), _date.getMonth(), _date.getDate(), 0, 0, 0, 0);
+                        for (var r = 0; r < notes.length; r++) {
+                            if (notes[r].date == dateFormat(Cur_Date) || dateFormat( new Date(notes[r].date) ,'m-d') == dateFormat(Cur_Date,'m-d')) {
+                                var _notes = notes[r].events;
+                                for (var s = 0; s < _notes.length; s++) {
+                                    if(_notes[s].starttime != "0"){
+                                        ec += '<a class="fc-time-grid-event fc-event fc-start fc-not-end bgm-orange fc-draggable" style="top: 0px; bottom: -960px; z-index: 1; left: 0%; right: 50%;">' +
+                                            '<div class="fc-content">' +
+                                            '<div class="fc-time" data-start="10:00" data-full="12:00 AM - 12:00 AM">' +
+                                            '<span>12:00 - 12:00</span></div>' +
+                                            '<div class="fc-title">DAY TEST HARD CODED</div>' +
+                                            '</div>' +
+                                            '<div class="fc-bg"></div>' +
+                                            '</a>';
+                                    }
+                                }
+                            }
+                        }
+
+                        return ec;
+                    }
+
                     return h;
                 }
 
