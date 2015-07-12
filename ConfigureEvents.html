@@ -119,6 +119,11 @@
                 }
             });
 
+            $('#Type').on('change', function (e) {
+                var valueSelected = this.value;
+                $("#notetype").val(valueSelected);
+            });
+
             var dataMessage = [
                 {"id": "1", "Name": "heshani@gmail.com"},
                 {"id": "2", "Name": "thwaraka@gmail.com"},
@@ -192,14 +197,14 @@
 
     <input type=hidden name=status value="1">
     <input type=hidden name=createdby id="createdby" value="">
-    <input type=hidden name=notetype value="1">
+    <input type=hidden id="notetype" name=notetype value="">
 
     <div class="col-xs-12 form-group">
         <label>Type</label>
-        <select name="" id="" class="form-control" style="width:30%;">
+        <select name="" id="Type" class="form-control" style="width:30%;">
             <option value="1">Meeting</option>
             <option value="2">Note</option>
-            <option value="3">Birthday</option>
+            <!--<option value="3">Birthday</option>-->
         </select>
     </div>
 
