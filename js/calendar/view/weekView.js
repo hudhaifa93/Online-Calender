@@ -6,7 +6,7 @@ var Week = function (config) {
         _date = new Date(),
         _weekStart = new Date(),
         _weekEnd = new Date(),
-        weekly_notes,
+        notes,
         data = null,
         name = {
             days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
@@ -38,7 +38,7 @@ var Week = function (config) {
             type : "post",
             dataType: "json",
             success : function(e){
-                weekly_notes = e;
+                notes = e;
                 _container(self.id);
             }
         });
@@ -173,9 +173,9 @@ var Week = function (config) {
                     var Cur_Date = new Date(_weekStart.getFullYear(), _weekStart.getMonth(), _weekStart.getDate(), 0, 0, 0, 0);
                     for (var c = 0; c < 7; c++){
                         var fe = '';
-                        for (var m = 0; m < weekly_notes.length; m++) {
-                            if (weekly_notes[m].date == dateFormat(Cur_Date) || dateFormat( new Date(weekly_notes[m].date) ,'m-d') == dateFormat(Cur_Date,'m-d')) {
-                                var _notes = weekly_notes[m].events;
+                        for (var m = 0; m < notes.length; m++) {
+                            if (notes[m].date == dateFormat(Cur_Date) || dateFormat( new Date(notes[m].date) ,'m-d') == dateFormat(Cur_Date,'m-d')) {
+                                var _notes = notes[m].events;
                                 for (var s = 0; s < _notes.length; s++) {
                                     if(_notes[s].starttime == "0"){
                                         fe += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(_notes[s].notetype) + '">' +
