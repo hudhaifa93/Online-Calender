@@ -1,10 +1,10 @@
 var Month = function (config) {
     'use strict';
     var $window = $(window);
-
     var self = this,
         defaults,
-        _date = new Date(),monthly_notes,
+        _date = new Date(),
+        notes,
         name = {
             days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
             daysShort: [ "Sun" , "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ],
@@ -41,7 +41,7 @@ var Month = function (config) {
             type : "post",
             dataType: "json",
             success : function(e){
-                monthly_notes = e;
+                notes = e;
                 _container(self.id);
             }
         });
@@ -169,9 +169,9 @@ var Month = function (config) {
                     for (var c = 0; c < 7; c++) {
                         var Cur_Date = dateFormat(d);
                         w += '<td  >';
-                        for (var m = 0; m < monthly_notes.length; m++) {
-                            if (monthly_notes[m].date == Cur_Date  || dateFormat( new Date(monthly_notes[m].date) ,'m-d') == dateFormat(d,'m-d')  ) {
-                                var _notes = monthly_notes[m].events;
+                        for (var m = 0; m < notes.length; m++) {
+                            if (notes[m].date == Cur_Date  || dateFormat( new Date(notes[m].date) ,'m-d') == dateFormat(d,'m-d')  ) {
+                                var _notes = notes[m].events;
                                 if( typeof _notes == "object"){
                                     for (var s = 0; s < _notes.length; s++) {
                                         w += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ getColorByEventType(_notes[s].notetype) + '" data-eventid="'+_notes[s].id+'" data-eventtype="'+_notes[s].notetype+'" data-eventdate="'+_notes[s].startdate+'" data-subject="'+_notes[s].subject+'" data-description="'+_notes[s].description+'">' +
