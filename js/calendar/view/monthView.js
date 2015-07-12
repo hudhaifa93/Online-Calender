@@ -181,9 +181,13 @@ var Month = function (config) {
                                             bgcolor = "bgm-green";
                                         }
                                         w += '<a class="fc-day-grid-event fc-event fc-start fc-end '+bgcolor+' fc-draggable editevent" data-eventid="'+daynotes[s].id+'" data-eventtype="'+daynotes[s].notetype+'" data-eventdate="'+daynotes[s].startdate+'" data-subject="'+daynotes[s].subject+'" data-description="'+daynotes[s].description+'">' +
-                                            '<div class="fc-content">' +
-                                            /* '<span class="fc-time">12a</span>'+*/
-                                            '<span class="fc-title">' + daynotes[s].subject + '</span>' +
+                                            '<div class="fc-content">';
+
+                                        if(daynotes[s].starttime != "0"){
+                                            w += '<span class="fc-time">'+daynotes[s].starttime +'-'+daynotes[s].endtime+'</span>';
+                                        }
+
+                                        w += '<span class="fc-title">' + daynotes[s].subject + '</span>' +
                                             '</div>' +
                                             '</a>';
                                     }
