@@ -277,9 +277,10 @@ function saveAdvanceEvent(formName){
     debugger;
     var Message = "";
     var createddate = getOnlyCurrentDate();
-    var timeslotid;
+    var timeslot;
     var location;
     var street ,city,state,country;
+    var locationid;
 
     var type =$('#Type').find("option:selected").val();;
 
@@ -291,11 +292,12 @@ function saveAdvanceEvent(formName){
     }
 
     if($('#fullday:checkbox:checked').length > 0){
-        timeslotid="0";
+        //fullday
+        timeslot="&timeslotid=0&starttime=0&endtime=0";
     }
     else
-    {
-        timeslotid="0";
+    {   //time entered
+        timeslot="&timeslotid=1&starttime="+$("#StartTime").val();+"&endtime="+$("#End").val();
     }
 
     if($('#addLocation:checkbox:checked').length > 0){
@@ -304,18 +306,19 @@ function saveAdvanceEvent(formName){
         city = $("#city").val();
         state = $("#state").val();
         country = $("#country").val();
-        location +="&street="+street+"&city="+city+"&state="+state+"&country="+country;
-
+        location ="&street="+street+"&city="+city+"&state="+state+"&country="+country;
     }
     else{
-        location = "&street=0&city=0&state=0&country=0";
+        location = "&street=0&city=0&state=0&country=0&locationid=0";
     }
+        //locationid = $("#locationId").val();
+        //url = "process/index.php?route=event&method=updateAdvanceEvent";
 
     $.ajax({
-        url: "process/index.php?route=event&method=insertAdvanceEvent",//event.php
+        url: "process/index.php?route=event&method=insertAdvanceEvent",
         type: "post",
         dataType: 'json',
-        data: $('#' + formName).serialize()+"&createddate="+createddate+"&timeslotid="+timeslotid+location, // provided this code executes in form.onsubmit event
+        data: $('#' + formName).serialize()+"&createddate="+createddate+timeslot+location, // provided this code executes in form.onsubmit event
         success: function (output) {
             debugger;
             $('#' + formName)[0].reset();

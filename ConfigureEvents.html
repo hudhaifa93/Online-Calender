@@ -67,7 +67,9 @@
         <script>
 
             $(document).ready(function () {
+
                 $("#createdby").val(localStorage.getItem("memberId"));
+
                 initialize();//Google Address Initilization
 
                 $("#StartDate").datepicker({
@@ -76,6 +78,7 @@
                 $("#EndDate").datepicker({
                     dateFormat: "yy-mm-dd"
                 });
+
                 $("#fullday").change(function () {
                     if (this.checked) {
                         $("#timeAllocation").hide();
@@ -97,11 +100,11 @@
                 });
 
                 if(localStorage.getItem("advanceID")==0){
-
-                    $("#Subject").val(localStorage.getItem("tempSubject"));
-                    $("textarea#Description").val(localStorage.getItem("tempDescription"));
+                    $("#advanceButton").attr("onclick","javascript: saveAdvanceEvent('frmMeeting')");
+                    //$("#Subject").val(localStorage.getItem("tempSubject"));
+                    // $("textarea#Description").val(localStorage.getItem("tempDescription"));
                     var tempDate = localStorage.getItem("tempClickedDate");
-                    $('#StartDate').datepicker("setDate", new Date(dateFormat(new Date(tempDate),'y'),dateFormat(new Date(tempDate),'m')-1,dateFormat(new Date(tempDate),'d')-1) );
+                    $('#StartDate').datepicker("setDate", new Date(dateFormat(new Date(tempDate),'y'),dateFormat(new Date(tempDate),'m'),dateFormat(new Date(tempDate),'d')) );
 
                     $('#Type').on('change', function (e) {
                         var valueSelected = this.value;
@@ -111,16 +114,19 @@
                 }
                 else{
                     $("#Type").prop("disabled", true);
-
+                    //$("#advanceButton").attr("onclick","javascript: updateAdvanceEvent('frmMeeting')");
+                    debugger;
                     $.ajax({
                         url:"process/index.php?route=event&method=getAdvanceEventData",
                         type: "post",
                         dataType: 'json',
                         data:"id="+localStorage.getItem("advanceID"),
                         success: function (e) {
+                            debugger;
                             var data = e;
                             data = JSON.parse(data.success);
                             data = data[0];
+                            console.log(data);
                             $('#Type').val(data.notetype);
                             $('#Subject').val(data.subject);
                             if(data.location=="0"){
@@ -131,6 +137,7 @@
                             {
                                 $('#addLocation').prop('checked', true);
                                 $("#locationAllocation").show();
+                                $("#locationId").val(data.locationid);
                             }
 
                             if(data.timeslotid=="0"){
@@ -146,6 +153,7 @@
                             $('#EndDate').datepicker("setDate", new Date(dateFormat(new Date(data.enddate),'y'),dateFormat(new Date(data.enddate),'m')-1,dateFormat(new Date(data.enddate),'d')-1) );
                             $("textarea#Description").val(data.description);
 
+
                             $('#street').val(data.street);
                             $('#city').val(data.city);
                             $('#state').val(data.state);
@@ -154,9 +162,14 @@
                             $('#StartTime').val(data.starttime);
                             $('#EndTime').val(data.endtime);
 
+
                         }
                     });
+
+
                 }
+
+
             });
 
             function addToInvitedList() {
@@ -165,83 +178,98 @@
                 var fullEmail = Email;
                 Email = Email.split("@");
                 $("#InvitedList").append($('<div class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">&times</a></div>'));
+
             }
 
             function removeFromInvitedList(id) {
                 debugger;
                 $("." + id+"List").remove();
             }
+
+
         </script>
     </head>
     <body>
-        <form role="form" id="frmMeeting">
-            <input type=hidden name=status value="1">
-            <input type=hidden name=createdby id="createdby" value="">
-            <input type=hidden id="notetype" name=notetype value="">
-            <div class="col-xs-12 form-group">
-                <label>Type</label>
-                <select name="" id="Type" class="form-control" style="width:30%;">
-                    <option value="1">Meeting</option>
-                    <option value="2">Note</option>
-                    <!--<option value="3">Birthday</option>-->
-                </select>
-            </div>
-            <div class="col-xs-6 form-group">
-                <label>Subject</label>
-                <input type="text" class="form-control" name="subject" id="Subject" placeholder="Subject"/>
-            </div>
-            <div class="col-xs-6 form-group">
-            </div>
-            <div class="col-xs-12 form-group">
-                <label>Location</label>
-                <input type="checkbox" id="addLocation">
-            </div>
-            <div id="locationAllocation" style="display:none;">
-                <div class="col-xs-12 form-group">
-                    <input type="text" class="form-control" id="autocomplete" placeholder="Enter your address"/>
-                    <input type="text"  style="margin-top: 10px;margin-bottom: 10px;" class="googleAddress form-control" id="street"/>
-                    <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="city"/>
-                    <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="state"/>
-                    <input  style="float: left;  width: 25%;" type="text" class="googleAddress form-control" id="country"/>
-                </div>
-            </div>
-            <div class="col-xs-6 form-group">
-                <label>Start Date</label>
-                <input type="text" class="form-control" name="startDate" id="StartDate" placeholder="Start Date"/>
-            </div>
-            <div class="col-xs-6 form-group">
-                <label>End Date</label>
-                <input type="text" class="form-control" name="endDate" id="EndDate" placeholder="End Date"/>
-            </div>
-            <div class="col-xs-12 form-group">
-                <label>Full Day</label>
-                <input type="checkbox" id="fullday" checked="checked">
-            </div>
-            <div id="timeAllocation" style="display:none">
-                <div class="col-xs-6 form-group">
-                    <label>Start Time</label>
-                    <input type="text" class="form-control" name="startTime" id="StartTime" placeholder="Start Time"/>
-                </div>
-                <div class="col-xs-6 form-group">
-                    <label>End Time</label>
-                    <input type="text" class="form-control" name="endTime" id="EndTime" placeholder="End Time"/>
-                </div>
-            </div>
-            <div class="col-xs-12 form-group">
-                <label>Meeting Description</label>
-                <textarea class="form-control custom-control" name="description" id="Description" rows="5"
-                          style="resize:none"></textarea>
-            </div>
-            <div class="col-xs-6 form-group">
-                <input type="text" style="  width: 50%;  float: left;" class="form-control"  id="InviteeEmail" placeholder="InviteeEmail"/><button type="button" style="  margin-left: 10px;  float: left;  margin-top: 2px;" class="btn btn-sm btn-primary"onclick="addToInvitedList()">Add to List</button>
-            </div>
-            <div class="col-xs-12 form-group">
-                <div id="InvitedList">
-                </div>
-            </div>
-        </form>
+    <form role="form" id="frmMeeting">
+
+        <input type=hidden name=status value="1">
+        <input type=hidden name=createdby id="createdby" value="">
+        <input type=hidden id="notetype" name=notetype value="2">
+        <input type=hidden id="locationId"  value="">
+
+
         <div class="col-xs-12 form-group">
-            <button type="button" class="btn btn-sm btn-primary" onclick="javascript: saveAdvanceEvent('frmMeeting')">Create</button>
+            <label>Type</label>
+            <select name="" id="Type" class="form-control" style="width:30%;">
+                <option value="1">Meeting</option>
+                <option value="2">Note</option>
+                <!--<option value="3">Birthday</option>-->
+            </select>
         </div>
+
+
+        <div class="col-xs-6 form-group">
+            <label>Subject</label>
+            <input type="text" class="form-control" name="subject" id="Subject" placeholder="Subject"/>
+        </div>
+        <div class="col-xs-6 form-group">
+        </div>
+        <div class="col-xs-12 form-group">
+            <label>Location</label>
+            <input type="checkbox" id="addLocation">
+        </div>
+        <div id="locationAllocation" style="display:none;">
+            <div class="col-xs-12 form-group">
+                <input type="text" class="form-control" id="autocomplete" placeholder="Enter your address"/>
+                <input type="text"  style="margin-top: 10px;margin-bottom: 10px;" class="googleAddress form-control" id="street"/>
+                <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="city"/>
+                <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="state"/>
+                <input  style="float: left;  width: 25%;" type="text" class="googleAddress form-control" id="country"/>
+            </div>
+        </div>
+        <div class="col-xs-6 form-group">
+            <label>Start Date</label>
+            <input type="text" class="form-control" name="startDate" id="StartDate" placeholder="Start Date"/>
+        </div>
+        <div class="col-xs-6 form-group">
+            <label>End Date</label>
+            <input type="text" class="form-control" name="endDate" id="EndDate" placeholder="End Date"/>
+        </div>
+        <div class="col-xs-12 form-group">
+            <label>Full Day</label>
+            <input type="checkbox" id="fullday" checked="checked">
+        </div>
+        <div id="timeAllocation" style="display:none">
+            <div class="col-xs-6 form-group">
+                <label>Start Time</label>
+                <input type="text" class="form-control" name="startTime" id="StartTime" placeholder="Start Time"/>
+            </div>
+            <div class="col-xs-6 form-group">
+                <label>End Time</label>
+                <input type="text" class="form-control" name="endTime" id="EndTime" placeholder="End Time"/>
+            </div>
+        </div>
+        <div class="col-xs-12 form-group">
+            <label>Meeting Description</label>
+            <textarea class="form-control custom-control" name="description" id="Description" rows="5"
+                      style="resize:none"></textarea>
+        </div>
+        <div class="col-xs-6 form-group">
+            <input type="text" style="  width: 50%;  float: left;" class="form-control"  id="InviteeEmail" placeholder="InviteeEmail"/><button type="button" style="  margin-left: 10px;  float: left;  margin-top: 2px;" class="btn btn-sm btn-primary"onclick="addToInvitedList()">Add to List</button>
+        </div>
+        <div class="col-xs-12 form-group">
+            <div id="InvitedList">
+            </div>
+        </div>
+
+
+    </form>
+
+
+    <div class="col-xs-12 form-group">
+        <button type="button" id="advanceButton" class="btn btn-sm btn-primary" onclick="">Create</button>
+    </div>
+
+
     </body>
 </html>                                		                                		
