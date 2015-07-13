@@ -86,8 +86,6 @@ class Event extends Controller {
 
     }
 
-
-
     function getMonthlyEvents(){
 
         $results = $this->db->query("  select * from `note` where
@@ -178,6 +176,10 @@ class Event extends Controller {
         else{
             echo json_encode($id? array("success" => "No Data") : array("failure" => "failure" ));
         }
+
+    }
+
+    function getAllEvents(){
 
     }
 

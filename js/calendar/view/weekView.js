@@ -245,7 +245,6 @@ var Week = function (config) {
                 }
 
                 function fc_slats(){
-                    debugger;
                     var h = '<div class="fc-slats">' +
                         '<table>' +
                         '<tbody>';
@@ -286,18 +285,26 @@ var Week = function (config) {
                         '<table>' +
                         '<tbody>' +
                         '<tr>' +
-                        '<td class="fc-axis" style="width: 40px;"></td>';
-
-                    for (var c = 0; c < 7; c++) {
-                        h += '<td>' +
-                        '<div class="fc-event-container"></div>' +
-                        '</td>';
-                    }
-
-                    h += '</tr>' +
+                        '<td class="fc-axis" style="width: 40px;"></td>' +
+                        fc_event_container() +
+                        '</tr>' +
                         '</tbody>' +
                         '</table>' +
                         '</div>';
+
+                    function fc_event_container(){
+                        var ec = '';
+                        for (var c = 0; c < 7; c++) {
+                            ec += '<td>' +
+                                '<div class="fc-event-container">';
+
+
+                            ec += '</div>' +
+                                '</td>';
+                        }
+
+                        return ec;
+                    }
 
                     return h;
                 }
@@ -331,3 +338,13 @@ var Week = function (config) {
     }());
 
 };
+
+function getAllEvents(notes_){
+    var _events = [];
+    for (var n = 0; n < notes_.length; n++) {
+        var _notes = notes_[n].events;
+        for (var n = 0; n < notes_.length; n++) {
+
+        }
+    }
+}

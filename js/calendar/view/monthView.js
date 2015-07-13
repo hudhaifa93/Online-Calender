@@ -178,8 +178,9 @@ var Month = function (config) {
                                         w += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ getColorByEventType(_notes[s].notetype) + '" data-eventid="'+_notes[s].id+'" data-eventtype="'+_notes[s].notetype+'" data-eventdate="'+_notes[s].startdate+'" data-subject="'+_notes[s].subject+'" data-description="'+_notes[s].description+'">' +
                                             '<div class="fc-content">';
 
-                                        if(_notes[s].starttime != "0"){
-                                            w += '<span class="fc-time">'+_notes[s].starttime +'-'+_notes[s].endtime+'</span>';
+                                        if(_notes[s].starttime != "0" && _notes[s].endtime != "0"){
+                                            //w += '<span class="fc-time">' + getHourlyTime(_notes[s].starttime) + '-' + getHourlyTime(_notes[s].endtime) + '</span>';
+                                            w += '<span class="fc-time">' + getHourlyTime(_notes[s].starttime) + '</span>';
                                         }
 
                                         w += '<span class="fc-title">' + _notes[s].subject + '</span>' +

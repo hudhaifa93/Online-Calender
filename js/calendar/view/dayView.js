@@ -204,7 +204,6 @@ var Day = function (config) {
                 }
 
                 function fc_slats(){
-                    debugger;
                     var h = '<div class="fc-slats">' +
                         '<table>' +
                         '<tbody>';
@@ -262,37 +261,34 @@ var Day = function (config) {
                         for (var r = 0; r < notes.length; r++) {
                             if (notes[r].date == dateFormat(Cur_Date) || dateFormat( new Date(notes[r].date) ,'m-d') == dateFormat(Cur_Date,'m-d')) {
                                 var _notes = notes[r].events;
+                                var _events = [];
                                 var noOfItems =0;
                                 for (var s = 0; s < _notes.length; s++) {
-                                    if(_notes[s].starttime != "0"){
+                                    if(_notes[s].starttime != "0" && _notes[s].endtime != "0"){
+                                        _events.push(_notes[s]);
                                         ++noOfItems;
                                     }
                                 }
 
-                                if(noOfItems > 0){
-                                    var widthPortion = 100 / noOfItems;
-                                    var left = 0;
-                                    var right = 0;
-                                    var itemNo = 1;
-                                    for (var s = 0; s < _notes.length; s++) {
-                                        if(_notes[s].starttime != "0"){
-                                            left = right;
-                                            right = 100 - widthPortion * itemNo;
-                                            var startHours = parseInt(_notes[s].starttime / 100) + (_notes[s].starttime % 100)/60;
-                                            var top = startHours * 40;
-                                            var endHours = parseInt(_notes[s].endtime / 100) + (_notes[s].endtime % 100)/60;
-                                            var bottom = endHours * 40;
+                                if(_events.length > 0){
+                                    var widthPortion = 100 / _events.length;
+                                    var left = 0, right = 0, top = 0, bottom = 0, startHours = 0, endHours = 0;
+                                    for (var s = 0; s < _events.length; s++) {
+                                        startHours = parseInt(_events[s].starttime / 100) + (_events[s].starttime % 100)/60;
+                                        endHours = parseInt(_events[s].endtime / 100) + (_events[s].endtime % 100)/60;
+                                        left = right;
+                                        right = 100 - (widthPortion * (s+1));
+                                        top = startHours * 40;
+                                        bottom = endHours * 40;
 
-                                            ec += '<a class="fc-time-grid-event fc-event fc-start fc-not-end fc-draggable '+getColorByEventType(_notes[s].notetype)+'" style="top:'+top+'px; bottom: -'+bottom+'px; z-index: 1; left: '+left+'%; right: '+right+'%;">' +
-                                                '<div class="fc-content">' +
-                                                '<div class="fc-time" data-start="10:00" data-full="12:00 AM - 12:00 AM">' +
-                                                '<span>' + getHourlyTime(_notes[s].starttime) + ' - ' + getHourlyTime(_notes[s].endtime) + '</span></div>' +
-                                                '<div class="fc-title">'+_notes[s].subject+'</div>' +
-                                                '</div>' +
-                                                '<div class="fc-bg"></div>' +
-                                                '</a>';
-                                            ++itemNo;
-                                        }
+                                        ec += '<a class="fc-time-grid-event fc-event fc-start fc-not-end fc-draggable ' + getColorByEventType(_events[s].notetype)+'" style="top:'+top+'px; bottom: -'+bottom+'px; z-index: 1; left: '+left+'%; right: '+right+'%;">' +
+                                              '<div class="fc-content">' +
+                                              '<div class="fc-time" data-start="10:00" data-full="12:00 AM - 12:00 AM">' +
+                                              '<span>' + getHourlyTime(_events[s].starttime) + ' - ' + getHourlyTime(_events[s].endtime) + '</span></div>' +
+                                              '<div class="fc-title">' + _events[s].subject + '</div>' +
+                                              '</div>' +
+                                              '<div class="fc-bg"></div>' +
+                                              '</a>';
                                     }
                                 }
                             }
