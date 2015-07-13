@@ -104,7 +104,7 @@
                     //$("#Subject").val(localStorage.getItem("tempSubject"));
                     // $("textarea#Description").val(localStorage.getItem("tempDescription"));
                     var tempDate = localStorage.getItem("tempClickedDate");
-                    $('#StartDate').datepicker("setDate", new Date(dateFormat(new Date(tempDate),'y'),dateFormat(new Date(tempDate),'m'),dateFormat(new Date(tempDate),'d')) );
+                    $('#StartDate').datepicker("setDate", new Date(dateFormat(new Date(tempDate),'y'),dateFormat(new Date(tempDate),'m')-1,dateFormat(new Date(tempDate),'d')) );
 
                     $('#Type').on('change', function (e) {
                         var valueSelected = this.value;
@@ -149,8 +149,8 @@
                                 $('#fullday').prop('checked', false);
                                 $("#timeAllocation").show();
                             }
-                            $('#StartDate').datepicker("setDate", new Date(dateFormat(new Date(data.startdate),'y'),dateFormat(new Date(data.startdate),'m')-1,dateFormat(new Date(data.startdate),'d')-1) );
-                            $('#EndDate').datepicker("setDate", new Date(dateFormat(new Date(data.enddate),'y'),dateFormat(new Date(data.enddate),'m')-1,dateFormat(new Date(data.enddate),'d')-1) );
+                            $('#StartDate').datepicker("setDate", new Date(dateFormat(new Date(data.startdate),'y'),dateFormat(new Date(data.startdate),'m'),dateFormat(new Date(data.startdate),'d')) );
+                            $('#EndDate').datepicker("setDate", new Date(dateFormat(new Date(data.enddate),'y'),dateFormat(new Date(data.enddate),'m'),dateFormat(new Date(data.enddate),'d')) );
                             $("textarea#Description").val(data.description);
 
 
