@@ -63,6 +63,28 @@
                 max-height: 420px;
                 overflow-y: auto;
             }
+            .new_alert-success{
+                border: 1px solid rgb(124, 252, 124);
+                background: rgb(198, 253, 198);
+                position: fixed;
+                top: 100px;
+                right: 0;
+                padding: 20px 10px;
+                color:  green ;
+                font-size: 15px;
+                z-index: 9999999;
+            }
+            .new_alert-danger{
+                border: 1px solid #e4b9c0;
+                background: #e4b9c0;
+                position: fixed;
+                top: 100px;
+                right: 0;
+                padding: 20px 10px;
+                color:  #843534 ;
+                font-size: 15px;
+                z-index: 9999999;
+            }
         </style>
         <script>
 
@@ -99,22 +121,23 @@
                     }
                 });
 
+                //new
                 if(localStorage.getItem("advanceID")==0){
                     $("#advanceButton").attr("onclick","javascript: saveAdvanceEvent('frmMeeting')");
                     //$("#Subject").val(localStorage.getItem("tempSubject"));
                     // $("textarea#Description").val(localStorage.getItem("tempDescription"));
                     var tempDate = localStorage.getItem("tempClickedDate");
                     $('#StartDate').datepicker("setDate", new Date(dateFormat(new Date(tempDate),'y'),dateFormat(new Date(tempDate),'m')-1,dateFormat(new Date(tempDate),'d')) );
-
+                    $('#EndDate').datepicker("setDate", new Date(dateFormat(new Date(tempDate),'y'),dateFormat(new Date(tempDate),'m')-1,dateFormat(new Date(tempDate),'d')) );
                     $('#Type').on('change', function (e) {
                         var valueSelected = this.value;
                         $("#notetype").val(valueSelected);
                     });
 
                 }
-                else{
+                else{//update
                     $("#Type").prop("disabled", true);
-                    //$("#advanceButton").attr("onclick","javascript: updateAdvanceEvent('frmMeeting')");
+                    $("#advanceButton").attr("onclick","javascript: updateAdvanceEvent('frmMeeting')");
                     debugger;
                     $.ajax({
                         url:"process/index.php?route=event&method=getAdvanceEventData",
@@ -130,8 +153,10 @@
                             $('#Type').val(data.notetype);
                             $('#Subject').val(data.subject);
                             if(data.location=="0"){
+                                debugger;
                                 $('#addLocation').prop('checked', false);
                                 $("#locationAllocation").hide();
+                                $("#locationId").val("0");
                             }
                             else
                             {
@@ -149,8 +174,8 @@
                                 $('#fullday').prop('checked', false);
                                 $("#timeAllocation").show();
                             }
-                            $('#StartDate').datepicker("setDate", new Date(dateFormat(new Date(data.startdate),'y'),dateFormat(new Date(data.startdate),'m'),dateFormat(new Date(data.startdate),'d')) );
-                            $('#EndDate').datepicker("setDate", new Date(dateFormat(new Date(data.enddate),'y'),dateFormat(new Date(data.enddate),'m'),dateFormat(new Date(data.enddate),'d')) );
+                            $('#StartDate').datepicker("setDate", new Date(dateFormat(new Date(data.startdate),'y'),dateFormat(new Date(data.startdate),'m')-1,dateFormat(new Date(data.startdate),'d')) );
+                            $('#EndDate').datepicker("setDate", new Date(dateFormat(new Date(data.enddate),'y'),dateFormat(new Date(data.enddate),'m')-1,dateFormat(new Date(data.enddate),'d')) );
                             $("textarea#Description").val(data.description);
 
 
@@ -242,11 +267,11 @@
         <div id="timeAllocation" style="display:none">
             <div class="col-xs-6 form-group">
                 <label>Start Time</label>
-                <input type="text" class="form-control" name="startTime" id="StartTime" placeholder="Start Time"/>
+                <input type="text" class="form-control" name="" id="StartTime" placeholder="Start Time"/>
             </div>
             <div class="col-xs-6 form-group">
                 <label>End Time</label>
-                <input type="text" class="form-control" name="endTime" id="EndTime" placeholder="End Time"/>
+                <input type="text" class="form-control" name="" id="EndTime" placeholder="End Time"/>
             </div>
         </div>
         <div class="col-xs-12 form-group">

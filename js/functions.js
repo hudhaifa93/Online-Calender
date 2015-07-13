@@ -237,8 +237,8 @@ function editAdvanceNote(id) {
         });
     }
 
-getNotification();
-function getNotification(){
+    getNotification();
+    function getNotification(){
     getData();
     setInterval(function(){
         getData();
@@ -297,7 +297,7 @@ function saveAdvanceEvent(formName){
     }
     else
     {   //time entered
-        timeslot="&timeslotid=1&starttime="+$("#StartTime").val();+"&endtime="+$("#End").val();
+        timeslot="&timeslotid=1&starttime="+$("#StartTime").val();+"&endtime="+$("#EndTime").val();
     }
 
     if($('#addLocation:checkbox:checked').length > 0){
@@ -311,8 +311,6 @@ function saveAdvanceEvent(formName){
     else{
         location = "&street=0&city=0&state=0&country=0&locationid=0";
     }
-        //locationid = $("#locationId").val();
-        //url = "process/index.php?route=event&method=updateAdvanceEvent";
 
     $.ajax({
         url: "process/index.php?route=event&method=insertAdvanceEvent",
@@ -336,3 +334,67 @@ function saveAdvanceEvent(formName){
     });
 }
 
+function updateAdvanceEvent(formName){
+
+    var Message = "";
+    var timeslot;
+    var location;
+    var street ,city,state,country;
+    var locationid;
+    var noteid = localStorage.getItem("advanceID");
+
+    var type =$('#Type').find("option:selected").val();
+
+    if (type == "1") {
+        Message = "Meeting Has Been Updated Successfully.";
+    }
+    else if (type == "2") {
+        Message = "Note Has Been Updated Successfully.";
+    }
+
+    if($('#fullday:checkbox:checked').length > 0){
+        //fullday
+        timeslot="&timeslotid=0&starttime=0&endtime=0";
+    }
+    else{   //time entered
+        timeslot="&timeslotid=1&starttime="+$("#StartTime").val()+"&endtime="+$("#EndTime").val();
+    }
+
+    if($('#addLocation:checkbox:checked').length > 0){
+        //location entered
+        locationid = $("#locationId").val();
+        street = $("#street").val();
+        city = $("#city").val();
+        state = $("#state").val();
+        country = $("#country").val();
+        location ="&street="+street+"&city="+city+"&state="+state+"&country="+country+"&locationid="+locationid+"&locationflag=N";
+    }
+    else{
+        //no location
+        locationid = $("#locationId").val();
+        location = "&street=0&city=0&state=0&country=0&locationid="+locationid+"&locationflag=U";
+    }
+   // console.log($('#' + formName).serialize());
+    $.ajax({
+        url: "process/index.php?route=event&method=updateAdvanceEvent",
+        type: "post",
+        dataType: 'json',
+        data: $('#' + formName).serialize()+timeslot+location+"&noteid="+noteid, // provided this code executes in form.onsubmit event
+        success: function (output) {
+            debugger;
+            $('#' + formName)[0].reset();
+            if (output.success > 0) {
+                clearSessionsForAdvanceNote();
+                showalert(Message, "alert-success", "/Online-Calender/Calendar.html", "redirect");
+            }
+            else {
+                showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
+            }
+        },
+        failure: function () {
+            showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
+        }
+    });
+
+
+}

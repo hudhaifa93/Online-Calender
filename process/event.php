@@ -55,19 +55,35 @@ class Event extends Controller {
 
     function updateAdvanceEvent(){
 
-        if($_POST['locationid']=="0"){
+        $locationid = $_POST['locationid'];
+        $locationflag  = $_POST['locationflag'];
 
-        }
-        else{
-            $id = $this->db->query("UPDATE address SET street='".$_POST['street']."',city='".$_POST['city']."',state='".$_POST['state']."',country='".$_POST['country']."' WHERE id='".$_POST['locationid']."'");
-        }
+        if($locationid=="0" && $locationflag=="N"){
 
-        if(is_object($id)){
-            echo json_encode($id? array("success" => $_POST['locationid']) : array("failure" => "failure" ));
+
+            $result = $this->db->query(" insert into address values(null,'". $_POST['street']."','".$_POST['city']."','". $_POST['state']."','". $_POST['country']."')");
+            if(is_object($result)){
+                $id = $this->db->last_id();
+                $result = $this->db->query("UPDATE note SET subject='". $_POST['subject']."',description='".$_POST['description']."' WHERE id='".$_POST['noteid']."'");
+            }
         }
-        else{
-            echo json_encode($id? array("success" => "failure") : array("failure" => "failure" ));
+        elseif ($locationid=="0" && $locationflag=="U"){
+            $result = $this->db->query("UPDATE note SET subject='". $_POST['subject']."',description='".$_POST['description']."' WHERE id='".$_POST['noteid']."'");
+            if(is_object($result)){
+                $id = $_POST['noteid'];
+            }
         }
+        elseif($locationflag=="N"){
+            $result = $this->db->query("UPDATE address SET street='". $_POST['street']."',city='".$_POST['city']."',state='".$_POST['state']."',country='".$_POST['country']."' WHERE id='$locationid'");
+            if(is_object($result)){
+                $result = $this->db->query("UPDATE note SET subject='". $_POST['subject']."',description='".$_POST['description']."' WHERE id='".$_POST['noteid']."'");
+                if(is_object($result)){
+                    $id = $_POST['noteid'];
+                }
+            }
+        }
+        echo json_encode($result? array("success" => $id) : array("failure" => "failure" ));
+
     }
 
 
