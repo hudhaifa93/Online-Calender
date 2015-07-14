@@ -179,7 +179,22 @@ class Event extends Controller {
 
     }
 
-    function getAllEvents(){
+    function getAllNotesByStartDateAndEndDate(){
+        $results = $this->db->query("
+        SELECT * FROM `note`
+        WHERE (
+        ((DATE_FORMAT(`startdate`,'%y,%m,%d') BETWEEN DATE_FORMAT('".$this->post('start')."','%y,%m,%d') AND DATE_FORMAT('".$this->post('end')."','%y,%m,%d')) OR DATE_FORMAT(`enddate`,'%y,%m,%d') BETWEEN DATE_FORMAT('".$this->post('start')."','%y,%m,%d') AND DATE_FORMAT('".$this->post('end')."','%y,%m,%d'))
+        OR
+        (((DATE_FORMAT(`startdate`,'%m,%d') BETWEEN DATE_FORMAT('".$this->post('start')."','%m,%d') AND DATE_FORMAT('".$this->post('end')."','%m,%d'))) AND `notetype` In (3))
+        )
+        AND `status` = 1 AND `createdby` = 2
+        ");
+
+        while($r = $results->fetchObject()){
+            $d[] =  $r;
+        }
+
+        echo json_encode($d?$d : array());
 
     }
 
