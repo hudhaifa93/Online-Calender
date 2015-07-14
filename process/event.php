@@ -12,8 +12,6 @@ class Event extends Controller {
     }
 
     function insertAdvanceEvent(){
-       // print_r($_POST);
-
       $locationid = $_POST['locationid'];
         if($locationid!="0"){//location is present
         $result = $this->db->query(" insert into address values(null,'". $_POST['street']."','".$_POST['city']."','". $_POST['state']."','". $_POST['country']."')");
@@ -127,7 +125,6 @@ class Event extends Controller {
     }
 
     function editBasicEvent(){
-
         $id = $this->db->query("UPDATE note SET subject='". $_POST['subject']."',description='".$_POST['description']."' WHERE id='".$_POST['id']."'");
         if(is_object($id)){
             echo json_encode($id? array("success" => $_POST['id']) : array("failure" => "failure" ));
@@ -135,11 +132,9 @@ class Event extends Controller {
         else{
             echo json_encode($id? array("success" => "failure") : array("failure" => "failure" ));
         }
-
     }
 
     function deleteBasicEvent(){
-
         $id = $this->db->query("UPDATE note SET status='0' WHERE id='".$_POST['id']."'");
         if(is_object($id)){
             echo json_encode($id? array("success" => "Deleted") : array("failure" => "failure" ));
@@ -147,7 +142,6 @@ class Event extends Controller {
         else{
             echo json_encode($id? array("success" => "failure") : array("failure" => "failure" ));
         }
-
     }
 
     function getCurrentEvent(){
@@ -163,8 +157,6 @@ class Event extends Controller {
     }
 
     function getAdvanceEventData(){
-
-
         $id = $this->db->query("SELECT n.*,a.id as locationid,a.street,a.city,a.state,a.country FROM note n,address a WHERE n.id='".$_POST['id']."' and n.location = a.id");
         if(is_object($id))
         {
@@ -176,7 +168,6 @@ class Event extends Controller {
         else{
             echo json_encode($id? array("success" => "No Data") : array("failure" => "failure" ));
         }
-
     }
 
     function getAllNotesByStartDateAndEndDate(){
