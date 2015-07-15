@@ -182,6 +182,9 @@ class Event extends Controller {
         AND `status` = 1 AND `createdby` = 2
         ");
 
+       // SELECT * FROM `note` WHERE `notetype` In (3) AND (DATE_FORMAT(`startdate`,'%m-%d') between DATE_FORMAT('2015-07-12','%m-%d') AND  DATE_FORMAT('2015-07-13','%m-%d')) AND `status` = 1 AND `createdby` = 2
+
+
         while($r = $results->fetchObject()){
             $d[] =  $r;
         }
