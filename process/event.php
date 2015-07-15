@@ -24,7 +24,7 @@ class Event extends Controller {
                     $end=$start;
                 }
 
-                $result = $this->db->query(" insert into note values(null,'". $_POST['subject']."','".$_POST['description']."','".$_POST['timeslotid']."','".$_POST['status']."','".$start."','".$end."','".$_POST['starttime']."','".$_POST['endTime']."','".$_POST['createddate']."','".$_POST['createdby']."','".$_POST['notetype']."','".$id."') ");
+                $result = $this->db->query(" insert into note values(null,'". $_POST['subject']."','".$_POST['description']."','".$_POST['timeslotid']."','".$_POST['status']."','".$start."','".$end."','".$_POST['starttime']."','".$_POST['endtime']."','".$_POST['createddate']."','".$_POST['createdby']."','".$_POST['notetype']."','".$id."') ");
                 if(is_object($result))
                 {
                     $id = $this->db->last_id();
@@ -41,7 +41,7 @@ class Event extends Controller {
                 $end=$start;
             }
 
-            $result = $this->db->query(" insert into note values(null,'". $_POST['subject']."','".$_POST['description']."','".$_POST['timeslotid']."','".$_POST['status']."','".$start."','".$end."','".$_POST['starttime']."','".$_POST['endTime']."','".$_POST['createddate']."','".$_POST['createdby']."','".$_POST['notetype']."','0') ");
+            $result = $this->db->query(" insert into note values(null,'". $_POST['subject']."','".$_POST['description']."','".$_POST['timeslotid']."','".$_POST['status']."','".$start."','".$end."','".$_POST['starttime']."','".$_POST['endtime']."','".$_POST['createddate']."','".$_POST['createdby']."','".$_POST['notetype']."','0') ");
             if(is_object($result))
             {
                 $id = $this->db->last_id();
@@ -58,15 +58,15 @@ class Event extends Controller {
 
         if($locationid=="0" && $locationflag=="N"){
 
-
             $result = $this->db->query(" insert into address values(null,'". $_POST['street']."','".$_POST['city']."','". $_POST['state']."','". $_POST['country']."')");
             if(is_object($result)){
                 $id = $this->db->last_id();
-                $result = $this->db->query("UPDATE note SET subject='". $_POST['subject']."',description='".$_POST['description']."' WHERE id='".$_POST['noteid']."'");
+                $result = $this->db->query("UPDATE note SET subject='". $_POST['subject']."',description='".$_POST['description']."',timeslotid='".$_POST['timeslotid']."',status='".$_POST['status']."',startdate='".$_POST['startDate']."',enddate='".$_POST['endDate']."',starttime='".$_POST['starttime']."',endtime='".$_POST['endtime']."',location='".$id."' WHERE id='".$_POST['noteid']."'");
             }
         }
         elseif ($locationid=="0" && $locationflag=="U"){
-            $result = $this->db->query("UPDATE note SET subject='". $_POST['subject']."',description='".$_POST['description']."' WHERE id='".$_POST['noteid']."'");
+            print_r($_POST);
+            $result = $this->db->query("UPDATE note SET subject='". $_POST['subject']."',description='".$_POST['description']."',timeslotid='".$_POST['timeslotid']."',status='".$_POST['status']."',startdate='".$_POST['startDate']."',enddate='".$_POST['endDate']."',starttime='".$_POST['starttime']."',endtime='".$_POST['endtime']."' WHERE id='".$_POST['noteid']."'");
             if(is_object($result)){
                 $id = $_POST['noteid'];
             }
@@ -74,7 +74,16 @@ class Event extends Controller {
         elseif($locationflag=="N"){
             $result = $this->db->query("UPDATE address SET street='". $_POST['street']."',city='".$_POST['city']."',state='".$_POST['state']."',country='".$_POST['country']."' WHERE id='$locationid'");
             if(is_object($result)){
-                $result = $this->db->query("UPDATE note SET subject='". $_POST['subject']."',description='".$_POST['description']."' WHERE id='".$_POST['noteid']."'");
+                $result = $this->db->query("UPDATE note SET subject='". $_POST['subject']."',description='".$_POST['description']."',timeslotid='".$_POST['timeslotid']."',status='".$_POST['status']."',startdate='".$_POST['startDate']."',enddate='".$_POST['endDate']."',starttime='".$_POST['starttime']."',endtime='".$_POST['endtime']."' WHERE id='".$_POST['noteid']."'");
+                if(is_object($result)){
+                    $id = $_POST['noteid'];
+                }
+            }
+        }
+        elseif($locationflag=="U"){
+            $result = $this->db->query("DELETE FROM address WHERE id='$locationid'");
+            if(is_object($result)){
+                $result = $this->db->query("UPDATE note SET subject='". $_POST['subject']."',description='".$_POST['description']."',timeslotid='".$_POST['timeslotid']."',status='".$_POST['status']."',startdate='".$_POST['startDate']."',enddate='".$_POST['endDate']."',starttime='".$_POST['starttime']."',endtime='".$_POST['endtime']."',location='0' WHERE id='".$_POST['noteid']."'");
                 if(is_object($result)){
                     $id = $_POST['noteid'];
                 }
