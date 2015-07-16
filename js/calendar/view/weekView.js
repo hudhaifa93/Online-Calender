@@ -108,7 +108,7 @@ var Week = function (config) {
             var wkday = new Date(_weekStart.getFullYear(), _weekStart.getMonth(), _weekStart.getDate(), 0, 0, 0, 0);
 
             for (var i in name.daysShort){
-                h += '<th class="fc-day-header ui-widget-header fc-' + name.daysShort[i] + '">' + name.daysShort[i] + ' '+ wkday.getMonth() + '/' + wkday.getDate() + '</th>';
+                h += '<th class="fc-day-header ui-widget-header fc-' + name.daysShort[i] + '">' + name.daysShort[i] + ' '+ (wkday.getMonth()+1) + '/' + wkday.getDate() + '</th>';
                 wkday.setDate(wkday.getDate() + 1);
             }
             h += '</tr>' +
