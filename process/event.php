@@ -181,28 +181,24 @@ class Event extends Controller {
 
     function getAllNotesByStartDateAndEndDate(){
         $results = $this->db->query("
-        SELECT * FROM `note`
-        WHERE (
-        ((DATE_FORMAT(`startdate`,'%y,%m,%d') BETWEEN DATE_FORMAT('".$this->post('start')."','%y,%m,%d') AND DATE_FORMAT('".$this->post('end')."','%y,%m,%d')) OR DATE_FORMAT(`enddate`,'%y,%m,%d') BETWEEN DATE_FORMAT('".$this->post('start')."','%y,%m,%d') AND DATE_FORMAT('".$this->post('end')."','%y,%m,%d'))
+        SELECT * FROM `note` WHERE
+        (
+        (
+        DATE_FORMAT(`startdate`,'%y,%m,%d') BETWEEN DATE_FORMAT('2015-07-12','%y,%m,%d') AND DATE_FORMAT('2015-07-13','%y,%m,%d')
+        OR
+        DATE_FORMAT(`enddate`,'%y,%m,%d') BETWEEN DATE_FORMAT('2015-07-12','%y,%m,%d') AND DATE_FORMAT('2015-07-13','%y,%m,%d')
+        OR
+        DATE_FORMAT('2015-07-12','%y,%m,%d') BETWEEN DATE_FORMAT(`startdate`,'%y,%m,%d') AND DATE_FORMAT(`enddate`,'%y,%m,%d')
+        OR
+        DATE_FORMAT('2015-07-13','%y,%m,%d') BETWEEN DATE_FORMAT(`startdate`,'%y,%m,%d') AND DATE_FORMAT(`enddate`,'%y,%m,%d')
+        )
         OR
         (
-        `notetype` In (3) AND DATE_FORMAT(`startdate`,'%m-%d') >= DATE_FORMAT('2015-07-13','%m-%d') AND DATE_FORMAT(`startdate`,'%m-%d') <= DATE_FORMAT('2015-07-13','%m-%d')
+        `notetype` In (3) AND DATE_FORMAT(`startdate`,'%m-%d') between DATE_FORMAT('2015-07-12','%m-%d') AND  DATE_FORMAT('2015-07-13','%m-%d')
+        )
         )
         AND `status` = 1 AND `createdby` = 2
         ");
-
-        //SELECT * FROM `note` WHERE `notetype` In (3) AND (DATE_FORMAT(`startdate`,'%m-%d') between DATE_FORMAT('2015-07-12','%m-%d') AND  DATE_FORMAT('2015-07-13','%m-%d')) AND `status` = 1 AND `createdby` = 2
-
-        //SELECT * FROM `note` WHERE
-        //DATE_FORMAT(`startdate`,'%y,%m,%d') BETWEEN DATE_FORMAT('2015-07-12','%y,%m,%d') AND DATE_FORMAT('2015-07-13','%y,%m,%d')
-        //OR
-        //DATE_FORMAT(`enddate`,'%y,%m,%d') BETWEEN DATE_FORMAT('2015-07-12','%y,%m,%d') AND DATE_FORMAT('2015-07-13','%y,%m,%d')
-        //OR
-        //DATE_FORMAT('2015-07-12','%y,%m,%d') BETWEEN DATE_FORMAT(`startdate`,'%y,%m,%d') AND DATE_FORMAT(`enddate`,'%y,%m,%d')
-        //OR
-        //DATE_FORMAT('2015-07-13','%y,%m,%d') BETWEEN DATE_FORMAT(`startdate`,'%y,%m,%d') AND DATE_FORMAT(`enddate`,'%y,%m,%d')
-
-
 
         while($r = $results->fetchObject()){
             $d[] =  $r;
