@@ -297,7 +297,7 @@ function saveAdvanceEvent(formName){
     }
     else
     {   //time entered
-        timeslot="&timeslotid=1&starttime="+$("#StartTime").val();+"&endtime="+$("#EndTime").val();
+        timeslot="&timeslotid=1&starttime="+$("#StartTime").val()+"&endtime="+$("#EndTime").val();
     }
 
     if($('#addLocation:checkbox:checked').length > 0){
