@@ -146,7 +146,7 @@ var Day = function (config) {
                     '<tbody>' +
                     '<tr>' +
                     '<td class="fc-axis ui-widget-content" style="width: 41px;">' +
-                    '<span>all-day</span>' +
+                    '<span>All-Day</span>' +
                     '</td>' +
                     '<td class="fc-day ui-widget-content fc-sun fc-today ui-state-highlight" data-date="2015-06-14"></td>' +
                     '</tr>' +
@@ -176,7 +176,7 @@ var Day = function (config) {
             }
 
             function _fc_time_grid_container(){
-                var h = '<div class="fc-time-grid-container" style="height: 920px;">' +
+                var h = '<div class="fc-time-grid-container" style="height: 960px;">' +
                     '<div class="fc-time-grid">' +
                     fc_bg() +
                     fc_slats() +
@@ -224,6 +224,19 @@ var Day = function (config) {
                             '<td class="ui-widget-content"></td>' +
                             '</tr>';
                         if(c==11 && zone =='AM' ){
+                            h += '<tr>' +
+                                '<td class="fc-axis fc-time ui-widget-content" style="width: 40px;">' +
+                                '<span>' +
+                                '12PM' +
+                                '</span>' +
+                                '</td>' +
+                                '<td class="ui-widget-content"></td>' +
+                                '</tr>' +
+                                '<tr class="fc-minor">' +
+                                '<td class="fc-axis fc-time ui-widget-content" style="width: 40px;"></td>' +
+                                '<td class="ui-widget-content"></td>' +
+                                '</tr>';
+
                             c = 0;
                             zone = 'PM';
                         }

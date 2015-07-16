@@ -142,7 +142,7 @@ var Week = function (config) {
                     '<table>' +
                     '<tbody>' +
                     '<tr>' +
-                    '<td class="fc-axis ui-widget-content" style="width: 40px;"><span>all-day</span></td>';
+                    '<td class="fc-axis ui-widget-content" style="width: 40px;"><span>All-Day</span></td>';
 
                     var fc_bg_Date = new Date(_weekStart.getFullYear(), _weekStart.getMonth(), _weekStart.getDate(), 0, 0, 0, 0);
                     for (var c = 0; c < 7; c++) {
@@ -209,7 +209,7 @@ var Week = function (config) {
             }
 
             function _fc_time_grid_container(){
-                var h = '<div class="fc-time-grid-container" style="height: 920px;">' +
+                var h = '<div class="fc-time-grid-container" style="height: 960px;">' +
                     '<div class="fc-time-grid">' +
                     fc_bg() +
                     fc_slats() +
@@ -249,7 +249,7 @@ var Week = function (config) {
                         '<table>' +
                         '<tbody>';
 
-                    var zone = 'am';
+                    var zone = 'AM';
                     for (var c = 0; c < 12; c++) {
                         h += '<tr>' +
                         '<td class="fc-axis fc-time ui-widget-content" style="width: 40px;">' +
@@ -267,9 +267,21 @@ var Week = function (config) {
                         '<td class="fc-axis fc-time ui-widget-content" style="width: 40px;"></td>' +
                         '<td class="ui-widget-content"></td>' +
                         '</tr>';
-                        if(c==11 && zone =='am' ){
+                        if(c==11 && zone =='AM' ){
+                            h += '<tr>' +
+                                '<td class="fc-axis fc-time ui-widget-content" style="width: 40px;">' +
+                                '<span>' +
+                                '12PM' +
+                                '</span>' +
+                                '</td>' +
+                                '<td class="ui-widget-content"></td>' +
+                                '</tr>' +
+                                '<tr class="fc-minor">' +
+                                '<td class="fc-axis fc-time ui-widget-content" style="width: 40px;"></td>' +
+                                '<td class="ui-widget-content"></td>' +
+                                '</tr>';
                             c = 0;
-                            zone = 'pm';
+                            zone = 'PM';
                         }
                     }
 
