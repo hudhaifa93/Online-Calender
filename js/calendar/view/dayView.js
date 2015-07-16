@@ -205,7 +205,7 @@ var Day = function (config) {
                         '<table>' +
                         '<tbody>';
 
-                    var zone = 'am';
+                    var zone = 'AM';
                     for (var c = 0; c < 12; c++) {
                         h += '<tr>' +
                             '<td class="fc-axis fc-time ui-widget-content" style="width: 40px;">' +
@@ -223,9 +223,9 @@ var Day = function (config) {
                             '<td class="fc-axis fc-time ui-widget-content" style="width: 40px;"></td>' +
                             '<td class="ui-widget-content"></td>' +
                             '</tr>';
-                        if(c==11 && zone =='am' ){
+                        if(c==11 && zone =='AM' ){
                             c = 0;
-                            zone = 'pm';
+                            zone = 'PM';
                         }
                     }
 
