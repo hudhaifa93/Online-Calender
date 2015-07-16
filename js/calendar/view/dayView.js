@@ -258,7 +258,7 @@ var Day = function (config) {
                         var _events = [];
                         var noOfItems =0;
                         for (var n = 0; n < notes.length; n++) {
-                            if(notes[n].starttime != "0" && notes[n].endtime != "0"){
+                            if(notes[n].endtime != "0"){
                                 _events.push(notes[n]);
                                 ++noOfItems;
                             }
