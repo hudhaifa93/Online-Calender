@@ -32,12 +32,14 @@ var Week = function (config) {
         self.id.addClass("fc fc-ltr ui-widget");
         self.id.html("");
         _head(self.id);
+        var memberId = localStorage.getItem("memberId");
         $.ajax({
-            url : "process/?route=Event&method=getMonthlyEvents",
-            data:  { start : dateFormat(_weekStart), end: dateFormat(_weekEnd) },
+            url : "process/?route=Event&method=getAllNotesByStartDateAndEndDate",
+            data:  { start : dateFormat(_weekStart), end: dateFormat(_weekEnd), MemberId: memberId},
             type : "post",
             dataType: "json",
             success : function(e){
+                debugger;
                 notes = e;
                 _container(self.id);
             }
@@ -173,20 +175,19 @@ var Week = function (config) {
                     var Cur_Date = new Date(_weekStart.getFullYear(), _weekStart.getMonth(), _weekStart.getDate(), 0, 0, 0, 0);
                     for (var c = 0; c < 7; c++){
                         var fe = '';
-                        for (var m = 0; m < notes.length; m++) {
-                            if (notes[m].date == dateFormat(Cur_Date) || dateFormat( new Date(notes[m].date) ,'m-d') == dateFormat(Cur_Date,'m-d')) {
-                                var _notes = notes[m].events;
-                                for (var s = 0; s < _notes.length; s++) {
-                                    if(_notes[s].starttime == "0"){
-                                        fe += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(_notes[s].notetype) + '">' +
-                                            '<div class="fc-content">' +
-                                            '<span class="fc-title">' +
-                                            _notes[s].subject +
-                                            '</span></div>' +
-                                            '<div class="fc-resizer"></div>' +
-                                            '</a>';
+                        debugger;
+                        for (var n = 0; n < notes.length; n++) {
+                            if(dateFormat(Cur_Date,'m-d')>= dateFormat(new Date(notes[n].startdate),'m-d') && dateFormat(Cur_Date,'m-d')<= dateFormat(new Date(notes[n].enddate),'m-d') && notes[n].starttime == "0" && notes[n].endtime == "0"){
+                                fe += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(notes[n].notetype) + '">' +
+                                    '<div class="fc-content">' +
+                                    '<span class="fc-title">' +
+                                    notes[n].subject;
+                                    if(notes[n].description != ''){
+                                        fe += ' : ' + notes[n].description;
                                     }
-                                }
+                                    fe += '</span></div>' +
+                                    '<div class="fc-resizer"></div>' +
+                                    '</a>';
                             }
                         }
                         h += '<td>';
@@ -306,13 +307,46 @@ var Week = function (config) {
 
                     function fc_event_container(){
                         var ec = '';
+                        var Cur_Date = new Date(_weekStart.getFullYear(), _weekStart.getMonth(), _weekStart.getDate(), 0, 0, 0, 0);
+
                         for (var c = 0; c < 7; c++) {
+                            var _events = [];
+                            var noOfItems =0;
+                            for (var n = 0; n < notes.length; n++) {
+                                if(dateFormat(Cur_Date)>= dateFormat(new Date(notes[n].startdate)) && dateFormat(Cur_Date)<= dateFormat(new Date(notes[n].enddate)) && notes[n].endtime != "0"){
+                                    _events.push(notes[n]);
+                                    ++noOfItems;
+                                }
+                            }
+
                             ec += '<td>' +
                                 '<div class="fc-event-container">';
 
+                            if(_events.length > 0){
+                                var widthPortion = 100 / _events.length;
+                                var left = 0, right = 0, top = 0, bottom = 0, startHours = 0, endHours = 0;
+                                for (var s = 0; s < _events.length; s++) {
+                                    startHours = parseInt(_events[s].starttime / 100) + (_events[s].starttime % 100)/60;
+                                    endHours = parseInt(_events[s].endtime / 100) + (_events[s].endtime % 100)/60;
+                                    left = 0;
+                                    right = 0;
+                                    top = startHours * 40;
+                                    bottom = endHours * 40;
+
+                                    ec += '<a class="fc-time-grid-event fc-event fc-start fc-not-end fc-draggable ' + getColorByEventType(_events[s].notetype)+'" style="top:'+top+'px; bottom: -'+bottom+'px; z-index: 1; left: '+left+'%; right: '+right+'%;">' +
+                                        '<div class="fc-content">' +
+                                        '<div class="fc-time" data-start="10:00" data-full="12:00 AM - 12:00 AM">' +
+                                        '<span>' + getHourlyTime(_events[s].starttime) + ' - ' + getHourlyTime(_events[s].endtime) + '</span></div>' +
+                                        '<div class="fc-title">' + _events[s].subject + '</div>' +
+                                        '</div>' +
+                                        '<div class="fc-bg"></div>' +
+                                        '</a>';
+                                }
+                            }
 
                             ec += '</div>' +
                                 '</td>';
+                            Cur_Date.setDate(Cur_Date.getDate() + 1);
                         }
 
                         return ec;
