@@ -184,17 +184,17 @@ class Event extends Controller {
         SELECT * FROM `note` WHERE
         (
         (
-        DATE_FORMAT(`startdate`,'%y,%m,%d') BETWEEN DATE_FORMAT('2015-07-12','%y,%m,%d') AND DATE_FORMAT('2015-07-13','%y,%m,%d')
+        DATE_FORMAT(`startdate`,'%y,%m,%d') BETWEEN DATE_FORMAT('".$this->post('start')."','%y,%m,%d') AND DATE_FORMAT('".$this->post('end')."','%y,%m,%d')
         OR
-        DATE_FORMAT(`enddate`,'%y,%m,%d') BETWEEN DATE_FORMAT('2015-07-12','%y,%m,%d') AND DATE_FORMAT('2015-07-13','%y,%m,%d')
+        DATE_FORMAT(`enddate`,'%y,%m,%d') BETWEEN DATE_FORMAT('".$this->post('start')."','%y,%m,%d') AND DATE_FORMAT('".$this->post('end')."','%y,%m,%d')
         OR
-        DATE_FORMAT('2015-07-12','%y,%m,%d') BETWEEN DATE_FORMAT(`startdate`,'%y,%m,%d') AND DATE_FORMAT(`enddate`,'%y,%m,%d')
+        DATE_FORMAT('".$this->post('start')."','%y,%m,%d') BETWEEN DATE_FORMAT(`startdate`,'%y,%m,%d') AND DATE_FORMAT(`enddate`,'%y,%m,%d')
         OR
-        DATE_FORMAT('2015-07-13','%y,%m,%d') BETWEEN DATE_FORMAT(`startdate`,'%y,%m,%d') AND DATE_FORMAT(`enddate`,'%y,%m,%d')
+        DATE_FORMAT('".$this->post('end')."','%y,%m,%d') BETWEEN DATE_FORMAT(`startdate`,'%y,%m,%d') AND DATE_FORMAT(`enddate`,'%y,%m,%d')
         )
         OR
         (
-        `notetype` In (3) AND DATE_FORMAT(`startdate`,'%m-%d') between DATE_FORMAT('2015-07-12','%m-%d') AND  DATE_FORMAT('2015-07-13','%m-%d')
+        `notetype` In (3) AND DATE_FORMAT(`startdate`,'%m-%d') between DATE_FORMAT('".$this->post('start')."','%m-%d') AND  DATE_FORMAT('".$this->post('end')."','%m-%d')
         )
         )
         AND `status` = 1 AND `createdby` = 2

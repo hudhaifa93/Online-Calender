@@ -1,6 +1,21 @@
+-- phpMyAdmin SQL Dump
+-- version 4.1.12
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jul 16, 2015 at 06:30 AM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.11
 
-CREATE database IF NOT EXISTS `codehunterscalendar`;
-use `codehunterscalendar`;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
 --
 -- Database: `codehunterscalendar`
 --
@@ -99,15 +114,15 @@ CREATE TABLE IF NOT EXISTS `note` (
 --
 
 INSERT INTO `note` (`id`, `subject`, `description`, `timeslotid`, `status`, `startdate`, `enddate`, `starttime`, `endtime`, `createddate`, `createdby`, `notetype`, `location`) VALUES
-(1, 'Project Estimation', '', 1, 1, '2015-06-14', '2015-06-16', 0, 0, '2015-06-14', 2, 1, 0),
-(8, 'Planning', '', 0, 0, '2015-06-01', '2015-06-02', 0, 0, '2015-06-01', 2, 1, 0),
-(9, 'test1111', 'etsg', 0, 0, '0000-00-00', '0000-00-00', 0, 0, '0000-00-00', 2, 2, 0),
-(10, 'ghg', 'ghgh', 0, 0, '2015-06-25', '0000-00-00', 0, 0, '0000-00-00', 2, 1, 0),
-(11, 'ytuytu', 'ytuytu', 0, 0, '0000-06-25', '0000-00-00', 0, 0, '0000-00-00', 2, 3, 0),
-(12, '', '', 0, 0, '0000-00-00', '0000-00-00', 0, 0, '0000-00-00', 2, 1, 0),
-(13, 'GGGG', 'ghghghg', 0, 1, '2015-06-02', '2015-06-02', 0, 0, '2015-07-11', 2, 2, 0),
-(14, 'XXXXXXXXXXXXXXXX', 'mnbmnbmbnm', 0, 1, '2015-07-01', '2015-07-01', 0, 0, '2015-07-12', 2, 2, 0),
-(15, 'Nifakjk  ', '', 0, 1, '2015-07-12', '2015-07-12', 0, 0, '2015-07-12', 2, 3, 0);
+(1, 'Project Estimation', 'June to July', 1, 1, '2015-06-14', '2015-07-16', 1100, 1245, '2015-06-14', 2, 1, 0),
+(2, 'Planning', 'Two days', 0, 1, '2015-06-01', '2015-06-02', 0, 0, '2015-06-01', 2, 1, 0),
+(3, 'Hidhaifa Bday', '', 0, 1, '0000-07-15', '0000-07-15', 0, 0, '0000-00-00', 2, 3, 0),
+(4, 'WorkShop', '5Days - 7 Hours', 1, 1, '2015-06-25', '2015-06-30', 1000, 1700, '0000-00-00', 2, 1, 0),
+(5, 'Thwaraka Yogarajah', '', 0, 1, '2015-07-12', '2015-07-12', 0, 0, '0000-00-00', 2, 3, 0),
+(6, 'Deleted Event', '', 0, 0, '2015-07-01', '2015-07-14', 0, 0, '0000-00-00', 2, 1, 0),
+(7, 'Shared Event', '', 0, 3, '2015-07-13', '2015-07-13', 0, 0, '2015-07-11', 2, 2, 0),
+(8, 'Sprint 3 Meeting', 'Sprint 3 Meeting Description', 1, 1, '2015-07-12', '2015-07-12', 1000, 1100, '2015-07-12', 2, 2, 0),
+(9, 'Nifal Nizar', '', 0, 1, '2015-07-13', '2015-07-13', 0, 0, '2015-07-12', 2, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -155,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `note_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `note_type`
@@ -164,4 +179,10 @@ CREATE TABLE IF NOT EXISTS `note_type` (
 INSERT INTO `note_type` (`id`, `description`) VALUES
 (1, 'Meeting'),
 (2, 'Note'),
-(3, 'BirthDay');
+(3, 'BirthDay'),
+(4, 'Anniversary'),
+(5, 'Other');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
