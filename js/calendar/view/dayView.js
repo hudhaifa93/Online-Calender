@@ -27,9 +27,10 @@ var Day = function (config) {
         self.id.addClass("fc fc-ltr ui-widget");
         self.id.html("");
         _head(self.id);
+        var memberId = localStorage.getItem("memberId");
         $.ajax({
             url : "process/?route=Event&method=getAllNotesByStartDateAndEndDate",
-            data:  { start : dateFormat(_date), end: dateFormat(_date) },
+            data:  { start : dateFormat(_date), end: dateFormat(_date), MemberId: memberId},
             type : "post",
             dataType: "json",
             success : function(e){
