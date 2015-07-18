@@ -7,7 +7,7 @@ var title_name = {
 };
 
 var calendar = function (config) {
-    var defaults;
+    var defaults,view;
 
     function ViewEventHandler(){
         self.id = $("#"+self.options.id);
@@ -18,12 +18,13 @@ var calendar = function (config) {
     }
 
     function render(){
+        view = null;
         if(config.view ==  'month'){
-            m = new Month(config);
+            view = new Month(config);
         }else if(config.view == 'week')
-            m = new Week(config);
+            view = new Week(config);
         else if(config.view == 'day')
-            m = new Day(config);
+            view = new Day(config);
     }
 
     return (function () {
