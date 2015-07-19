@@ -159,10 +159,15 @@ class Event extends Controller {
             while($r = $result->fetchObject()){
                 $d[] =  $r;
             }
-
-            echo json_encode($d?$d : array());
-        }else
-            echo json_encode(array());
+        }
+        $share = $this->shareEvent();
+        if(is_array($d)){
+            if(is_array($share))
+                $d =array_merge($d,$share);
+            echo json_encode($d);
+        }else if(is_array($share))
+            echo json_encode($share);
+        else echo json_encode(array());
     }
 
     function getAdvanceEventData(){
@@ -241,5 +246,42 @@ class Event extends Controller {
         }
    }
 
+    function share(){
+        if(strlen($this->post('email')) > 0 ){
+            $email = explode(',',$this->post('email'));
+            $id = $this->post('id');
+            $type = $this->post('type');
+            foreach($email as $k => $e){
+                if($k != 0 ) $mail .= ",";
+                $mail .= "'$e'";
+            }
+            $q = "INSERT INTO share_note
+SELECT id AS member_id, $id AS event_id, ( SELECT  `createdby` FROM note WHERE id =$id) AS shared_id, 0 AS status FROM member
+WHERE email IN ($mail)";
+            echo $q;
+           echo json_encode($this->db->query($q) ? array('success'=>true) : array('success'=>false) );
 
-} 
+        }
+        echo json_encode(array('success'=>false));
+    }
+
+    function shareEvent(){
+        $u = session::get('user');
+        $result=$this->db->query(" select note.* ,concat(member.firstname , ' ' , member.lastname) as name   from share_note left outer join note on share_note.event_id = note.id left outer join member on share_note.shared_id = member.id
+        where member_id = {$u['id']} and share_note.`status` = 0");
+        while( $r =$result->fetchObject()){
+            $d[] = $r;
+        }
+        return $d;
+        //echo json_encode($d?$d : array());
+    }
+
+}
+/*
+$email = new email();
+$email->from('from address');
+$email->to('to addrss');
+$email->subject('subject');
+$email->message('message body');
+$email->send();
+*/

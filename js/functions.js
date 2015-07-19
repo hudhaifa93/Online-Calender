@@ -275,6 +275,30 @@ function showalert(message, alerttype, id, type) {
                 }
             }
         });
+//        $.ajax({
+//            url : "process/?route=event&method=shareEvent",
+//            type: "post",
+//            dataType: "json",
+//            success :function(e){
+//                if(e.length > 0 ){
+//                    $('#notifications').find('.lv-body').html("");
+//                    $.each(e,function(k,v){
+//                        item = $('<a class="lv-item" href=""><div class="media">' +
+//                            '<div class="pull-left">' +
+//                            ' <img class="lv-img-sm" src="img/profile-pics/1.jpg" alt="">' +
+//                            ' </div>' +
+//                            ' <div class="media-body">' +
+//                            '<div class="lv-title">'+ v.name +'</div>' +
+//                            '<small class="lv-small">'+ v.subject +'</small>' +
+//                            ' </div>' +
+//                            ' </div>' +
+//                            '</a>');
+//                        $('#notifications').find('.lv-body').append(item);
+//                    });
+//                    $('.tm-notification').html( '<i class="tmn-counts" >'+e.length+'</i>');
+//                }
+//            }
+//        });
     }
 }
 
@@ -469,9 +493,6 @@ function logout(){
 share();
 function share(){
     $('body').on( 'click' , '.share' ,function(e){
-
-        console.log($(this).data('id'));
-        console.log($(this).data('type'));
         $('#share').modal('show');
         m=$('#share').find('.modal-body');
         frm=$('<form >').append('<input type="email" name="email" > <button id="share_from" type="button"  >Share</button>');
