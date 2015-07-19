@@ -94,7 +94,8 @@ function editAdvanceNote(id) {
             //$('#'+formName)[0].reset();
             if (output.success > 0) {
                 localStorage.setItem("memberId", output.success);
-                window.location.href = "/Online-Calender/Calendar.html";
+                location.reload();
+                //window.location.href = "/Online-Calender/Calendar.html";
             }
             else {
                 showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
