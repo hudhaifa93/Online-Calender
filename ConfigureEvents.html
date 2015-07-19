@@ -149,8 +149,8 @@
                             debugger;
                             var data = e;
                             data = JSON.parse(data.success);
-                           // data = data[0];
-                            console.log(data);
+                            data = data[0];
+                            //console.log(data);
                             $('#Type').val(data.notetype);
                             $('#Subject').val(data.subject);
                             if(data.location=="0"){
