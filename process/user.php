@@ -1,0 +1,71 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Gowtham
+ * Date: 7/18/15
+ * Time: 11:55 AM
+ */
+
+class user extends controller {
+
+    var $user = null;
+    var $time;
+
+    function __construct(){
+        parent::__construct();
+    }
+
+    function validateLogin(){
+        $hashPass = md5($_POST['loginPassword']);
+        $id = $this->db->query("SELECT memberid ,member.*  FROM member_password_map join member on member.id = member_password_map.memberid  WHERE username='".$_POST['loginUsername']."' and password='".$hashPass."'   ");
+        if($id){
+            $u = $this->db->fetchObject();
+            $user['id'] = $u->memberid ;
+            $user['name'] = $u->firstname." ".$u->lastname ;
+            $user['email'] = $u->email ;
+            session::set('user',$user);
+        }
+        echo json_encode($id? array("success" => $u->memberid) : array("failure" => "failure" ));
+    }
+
+    function createNewSignUp(){
+        $hashPass = md5($_POST['inputpassword']);
+        $result = $this->db->query(" insert into member values(null,'". $_POST['inputFirstname']."','".$_POST['inputLastname']."','1','0','0','". $_POST['inputEmail']."','')");
+
+        if(is_object($result)){
+            $id = $this->db->last_id();
+            $result = $this->db->query(" insert into member_password_map values('".$id."','". $_POST['inputEmail']."','".$hashPass."','1')");
+
+            $user['id'] = $id ;
+            $user['email'] = $_POST['inputEmail'] ;
+            $user['name'] = $_POST['inputFirstname']." ".$_POST['inputLastname'] ;
+            session::set('user',$user);
+        }
+        echo json_encode($result? array("success" => $id) : array("failure" => "failure" ));
+    }
+
+    function isLogin(){
+        if(is_null($this->user))
+            return false;
+        else
+            return true;
+    }
+
+    function get($key){
+        if(is_null($this->user) || strlen($key) < 1 )
+            return null;
+        else{
+            $user = $this->user;
+            if(isset($user[$key]))
+                return $user[$key];
+            else
+                return null;
+        }
+    }
+
+    function logout(){
+        echo "logout";
+        session::destroy();
+    }
+
+} 
