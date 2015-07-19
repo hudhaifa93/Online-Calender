@@ -183,6 +183,18 @@ INSERT INTO `note_type` (`id`, `description`) VALUES
 (4, 'Anniversary'),
 (5, 'Other');
 
+
+--
+-- Table structure for table `share_note`
+--
+
+CREATE TABLE `share_note` (
+	`member_id` INT(11) NOT NULL,
+	`event_id` INT(11) NOT NULL,
+	`shared_id` INT(11) NOT NULL,
+	`status` INT(11) NOT NULL
+)ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
