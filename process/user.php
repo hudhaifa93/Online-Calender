@@ -17,15 +17,15 @@ class user extends controller {
 
     function validateLogin(){
         $hashPass = md5($_POST['loginPassword']);
-        $id = $this->db->query("SELECT memberid ,member.*  FROM member_password_map join member on member.id = member_password_map.memberid  WHERE username='".$_POST['loginUsername']."' and password='".$hashPass."'   ");
-        if($id){
-            $u = $this->db->fetchObject();
+        $this->db->query("SELECT memberid ,member.*  FROM member_password_map join member on member.id = member_password_map.memberid  WHERE username='".$_POST['loginUsername']."' and password='".$hashPass."'   ");
+        $u = $this->db->fetchObject();
+        if(is_object($u)){
             $user['id'] = $u->memberid ;
             $user['name'] = $u->firstname." ".$u->lastname ;
             $user['email'] = $u->email ;
             session::set('user',$user);
         }
-        echo json_encode($id? array("success" => $u->memberid) : array("failure" => "failure" ));
+        echo json_encode(is_object($u)? array("success" => $u->memberid) : array("failure" => "failure" ));
     }
 
     function createNewSignUp(){
@@ -64,8 +64,7 @@ class user extends controller {
     }
 
     function logout(){
-        echo "logout";
-        session::destroy();
+        session::remove('user');
     }
 
 } 

@@ -42,7 +42,6 @@ class session {
     }
 
     static function destroy(){
-        self::remove('user');
         session_destroy();
     }
 
