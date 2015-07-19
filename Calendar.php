@@ -24,6 +24,9 @@
                 <li class="logo">
                     <a href="Calendar.html">CODE HUNTERS</a>
                 </li>
+                <li class="col-md-offset-4">
+                    <input type="text">
+                </li>
                 <li class="pull-right">
                     <ul class="top-menu">
                         <li class="dropdown">
