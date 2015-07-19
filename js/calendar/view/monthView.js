@@ -35,9 +35,11 @@ var Month = function (config) {
         var days = main._monthLast.getDate(), rows = Math.ceil((weekday + days) / 7);
         var end = new Date(d) ;
         end.setDate(d.getDate()+(rows*7));
+        var memberId = localStorage.getItem("memberId");
+        debugger;
         $.ajax({
-            url : "process/?route=Event&method=getMonthlyEvents",
-            data:  { start : dateFormat(d), end: dateFormat(end) },
+            url : "process/?route=Event&method=getAllNotesByStartDateAndEndDate",
+            data:  { start : dateFormat(d), end: dateFormat(end), MemberId: memberId},
             type : "post",
             dataType: "json",
             success : function(e){
@@ -168,26 +170,22 @@ var Month = function (config) {
                     var h = ' <thead> <tr>';
                     var w = '';
                     for (var c = 0; c < 7; c++) {
-                        var Cur_Date = dateFormat(d);
+                        debugger;
+                        var Cur_Date = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, 0, 0);
                         w += '<td  >';
-                        for (var m = 0; m < notes.length; m++) {
-                            if (notes[m].date == Cur_Date  || dateFormat( new Date(notes[m].date) ,'m-d') == dateFormat(d,'m-d')  ) {
-                                var _notes = notes[m].events;
-                                if( typeof _notes == "object"){
-                                    for (var s = 0; s < _notes.length; s++) {
-                                        w += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ getColorByEventType(_notes[s].notetype) + '" data-eventid="'+_notes[s].id+'" data-eventtype="'+_notes[s].notetype+'" data-eventdate="'+_notes[s].startdate+'" data-subject="'+_notes[s].subject+'" data-description="'+_notes[s].description+'">' +
-                                            '<div class="fc-content">';
+                        debugger;
+                        for (var n = 0; n < notes.length; n++) {
+                            if(dateFormat(Cur_Date,'m-d')>= dateFormat(new Date(notes[n].startdate),'m-d') && dateFormat(Cur_Date,'m-d')<= dateFormat(new Date(notes[n].enddate),'m-d')){
+                                w += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ getColorByEventType(notes[n].notetype) + '" data-eventid="'+notes[n].id+'" data-eventtype="'+notes[n].notetype+'" data-eventdate="'+notes[n].startdate+'" data-subject="'+notes[n].subject+'" data-description="'+notes[n].description+'">' +
+                                    '<div class="fc-content">';
 
-                                        if(_notes[s].starttime != "0" && _notes[s].endtime != "0"){
-                                            //w += '<span class="fc-time">' + getHourlyTime(_notes[s].starttime) + '-' + getHourlyTime(_notes[s].endtime) + '</span>';
-                                            w += '<span class="fc-time">' + getHourlyTime(_notes[s].starttime) + '</span>';
-                                        }
-
-                                        w += '<span class="fc-title">' + _notes[s].subject + '</span>' +
-                                            '</div>' +
-                                            '</a>';
-                                    }
+                                if(notes[n].starttime != "0" && notes[n].endtime != "0"){
+                                    w += '<span class="fc-time">' + getHourlyTime(notes[n].starttime) + '</span>';
                                 }
+
+                                w += '<span class="fc-title">' + notes[n].subject + '</span>' +
+                                    '</div>' +
+                                    '</a>';
                             }
                         }
                         w += '</td>';
@@ -371,23 +369,11 @@ var Month = function (config) {
 
     }
 
-    function loadNotes() {
-        //  debugger;
-        $.ajax({
-            url: URL.base + "Event/getAllMeeting",
-            dataType: "JSON",
-            success: function (e) {
-                data = e;
-            }
-        });
-    }
-
     return (function () {
         self.options = $.extend(defaults, config);
         self.id = $("#" + self.options.id);
         self.id.data('year', _date.getFullYear());
         self.id.data('month', _date.getMonth());
-        // loadNotes();
         Event();
         drawCalender();
     }());

@@ -197,7 +197,7 @@ class Event extends Controller {
         `notetype` In (3) AND DATE_FORMAT(`startdate`,'%m-%d') between DATE_FORMAT('".$this->post('start')."','%m-%d') AND  DATE_FORMAT('".$this->post('end')."','%m-%d')
         )
         )
-        AND `status` = 1 AND `createdby` = ".$this->post('MemberId')."
+        AND `status` = 1 AND `createdby` = ".$this->post('MemberId')." order by `starttime` , `endtime`-`starttime`
         ");
 
         while($r = $results->fetchObject()){
