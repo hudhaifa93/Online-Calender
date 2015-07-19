@@ -398,3 +398,35 @@ function updateAdvanceEvent(formName){
 
 
 }
+
+function inviteList(){
+
+    var noteid = localStorage.getItem("advanceID");
+    var email = [] ;
+
+    $( ".tags" ).each(function( index ) {
+
+        var str = $( this ).text();
+        str = str.split("x");
+        //console.log( index + ": " + str[0] );
+        email.push({
+            "noteid" : noteid,
+            "email" : str[0],
+            "status" : 0 });
+        });
+
+    $.ajax({
+        url: "process/index.php?route=event&method=inviteMembers",
+        type: "post",
+        dataType: 'json',
+        data: { inviteArray : email}, // provided this code executes in form.onsubmit event
+        success: function (output) {
+
+        },
+        failure: function () {
+
+        }
+    });
+
+
+}

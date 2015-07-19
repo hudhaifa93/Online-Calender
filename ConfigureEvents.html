@@ -143,12 +143,13 @@
                         url:"process/index.php?route=event&method=getAdvanceEventData",
                         type: "post",
                         dataType: 'json',
+                        async:false,
                         data:"id="+localStorage.getItem("advanceID"),
                         success: function (e) {
                             debugger;
                             var data = e;
                             data = JSON.parse(data.success);
-                            data = data[0];
+                           // data = data[0];
                             console.log(data);
                             $('#Type').val(data.notetype);
                             $('#Subject').val(data.subject);
@@ -187,22 +188,55 @@
                             $('#StartTime').val(data.starttime);
                             $('#EndTime').val(data.endtime);
 
-
+                            loadInvitee();
                         }
                     });
+
+
 
 
                 }
 
 
+
+
             });
+
+            function loadInvitee(){
+                $.ajax({
+                    url: "process/index.php?route=event&method=getinvitebynoteid",
+                    type: "post",
+                    dataType: 'json',
+                    data: "noteid="+localStorage.getItem("advanceID"), // provided this code executes in form.onsubmit event
+                    success: function (e) {
+                        debugger;
+                        var data = e;
+                        data = JSON.parse(data.success);
+
+                        $("#InvitedList").html('');
+
+                        $.each( data, function( key, value ) {
+                            debugger;
+                            var Email = value.email;
+                            var fullEmail = Email;
+                            Email = Email.split("@");
+                            $("#InvitedList").append($('<div class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
+                        });
+
+
+                    },
+                    failure: function () {
+
+                    }
+                });
+            }
 
             function addToInvitedList() {
                 debugger;
                 var Email = $("#InviteeEmail").val();
                 var fullEmail = Email;
                 Email = Email.split("@");
-                $("#InvitedList").append($('<div class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">&times</a></div>'));
+                $("#InvitedList").append($('<div class="tags ' + Email[0] + 'List" >' + fullEmail + '<a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
 
             }
 
@@ -215,85 +249,101 @@
         </script>
     </head>
     <body>
-    <form role="form" id="frmMeeting">
+    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+        <li class="active"><a href="#event" data-toggle="tab">Event</a></li>
+        <li><a href="#invites" data-toggle="tab">Invite</a></li>
+    </ul>
 
-        <input type=hidden name=status value="1">
-        <input type=hidden name=createdby id="createdby" value="">
-        <input type=hidden id="notetype" name=notetype value="2">
-        <input type=hidden id="locationId"  value="">
+    <div id="my-tab-content" class="tab-content">
+        <div class="tab-pane active" id="event">
+            <form role="form" id="frmMeeting">
 
-
-        <div class="col-xs-12 form-group">
-            <label>Type</label>
-            <select name="" id="Type" class="form-control" style="width:30%;">
-                <option value="1">Meeting</option>
-                <option value="2">Note</option>
-                <!--<option value="3">Birthday</option>-->
-            </select>
-        </div>
+                <input type=hidden name=status value="1">
+                <input type=hidden name=createdby id="createdby" value="">
+                <input type=hidden id="notetype" name=notetype value="2">
+                <input type=hidden id="locationId"  value="">
 
 
-        <div class="col-xs-6 form-group">
-            <label>Subject</label>
-            <input type="text" class="form-control" name="subject" id="Subject" placeholder="Subject"/>
-        </div>
-        <div class="col-xs-6 form-group">
-        </div>
-        <div class="col-xs-12 form-group">
-            <label>Location</label>
-            <input type="checkbox" id="addLocation">
-        </div>
-        <div id="locationAllocation" style="display:none;">
-            <div class="col-xs-12 form-group">
-                <input type="text" class="form-control" id="autocomplete" placeholder="Enter your address"/>
-                <input type="text"  style="margin-top: 10px;margin-bottom: 10px;" class="googleAddress form-control" id="street"/>
-                <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="city"/>
-                <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="state"/>
-                <input  style="float: left;  width: 25%;" type="text" class="googleAddress form-control" id="country"/>
-            </div>
-        </div>
-        <div class="col-xs-6 form-group">
-            <label>Start Date</label>
-            <input type="text" class="form-control" name="startDate" id="StartDate" placeholder="Start Date"/>
-        </div>
-        <div class="col-xs-6 form-group">
-            <label>End Date</label>
-            <input type="text" class="form-control" name="endDate" id="EndDate" placeholder="End Date"/>
-        </div>
-        <div class="col-xs-12 form-group">
-            <label>Full Day</label>
-            <input type="checkbox" id="fullday" checked="checked">
-        </div>
-        <div id="timeAllocation" style="display:none">
-            <div class="col-xs-6 form-group">
-                <label>Start Time</label>
-                <input type="text" class="form-control" name="" id="StartTime" placeholder="Start Time"/>
-            </div>
-            <div class="col-xs-6 form-group">
-                <label>End Time</label>
-                <input type="text" class="form-control" name="" id="EndTime" placeholder="End Time"/>
-            </div>
-        </div>
-        <div class="col-xs-12 form-group">
-            <label>Meeting Description</label>
-            <textarea class="form-control custom-control" name="description" id="Description" rows="5"
-                      style="resize:none"></textarea>
-        </div>
-        <div class="col-xs-6 form-group">
-            <input type="text" style="  width: 50%;  float: left;" class="form-control"  id="InviteeEmail" placeholder="InviteeEmail"/><button type="button" style="  margin-left: 10px;  float: left;  margin-top: 2px;" class="btn btn-sm btn-primary"onclick="addToInvitedList()">Add to List</button>
-        </div>
-        <div class="col-xs-12 form-group">
-            <div id="InvitedList">
-            </div>
-        </div>
+                <div class="col-xs-12 form-group">
+                    <label>Type</label>
+                    <select name="" id="Type" class="form-control" style="width:30%;">
+                        <option value="1">Meeting</option>
+                        <option value="2">Note</option>
+                        <!--<option value="3">Birthday</option>-->
+                    </select>
+                </div>
 
 
-    </form>
+                <div class="col-xs-6 form-group">
+                    <label>Subject</label>
+                    <input type="text" class="form-control" name="subject" id="Subject" placeholder="Subject"/>
+                </div>
+                <div class="col-xs-6 form-group">
+                </div>
+                <div class="col-xs-12 form-group">
+                    <label>Location</label>
+                    <input type="checkbox" id="addLocation">
+                </div>
+                <div id="locationAllocation" style="display:none;">
+                    <div class="col-xs-12 form-group">
+                        <input type="text" class="form-control" id="autocomplete" placeholder="Enter your address"/>
+                        <input type="text"  style="margin-top: 10px;margin-bottom: 10px;" class="googleAddress form-control" id="street"/>
+                        <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="city"/>
+                        <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="state"/>
+                        <input  style="float: left;  width: 25%;" type="text" class="googleAddress form-control" id="country"/>
+                    </div>
+                </div>
+                <div class="col-xs-6 form-group">
+                    <label>Start Date</label>
+                    <input type="text" class="form-control" name="startDate" id="StartDate" placeholder="Start Date"/>
+                </div>
+                <div class="col-xs-6 form-group">
+                    <label>End Date</label>
+                    <input type="text" class="form-control" name="endDate" id="EndDate" placeholder="End Date"/>
+                </div>
+                <div class="col-xs-12 form-group">
+                    <label>Full Day</label>
+                    <input type="checkbox" id="fullday" checked="checked">
+                </div>
+                <div id="timeAllocation" style="display:none">
+                    <div class="col-xs-6 form-group">
+                        <label>Start Time</label>
+                        <input type="text" class="form-control" name="" id="StartTime" placeholder="Start Time"/>
+                    </div>
+                    <div class="col-xs-6 form-group">
+                        <label>End Time</label>
+                        <input type="text" class="form-control" name="" id="EndTime" placeholder="End Time"/>
+                    </div>
+                </div>
+                <div class="col-xs-12 form-group">
+                    <label>Meeting Description</label>
+                    <textarea class="form-control custom-control" name="description" id="Description" rows="5"
+                              style="resize:none"></textarea>
+                </div>
 
+                <div class="col-xs-12 form-group">
+                    <button type="button" id="advanceButton" class="btn btn-sm btn-primary" onclick="">Create</button>
+                </div>
 
-    <div class="col-xs-12 form-group">
-        <button type="button" id="advanceButton" class="btn btn-sm btn-primary" onclick="">Create</button>
+            </form>
+        </div>
+        <div class="tab-pane" id="invites">
+            <form id="inviteeForm" style="margin-top:10px">
+                <div class="col-xs-6 form-group">
+                    <input type="text" style="  width: 50%;  float: left;" class="form-control"  id="InviteeEmail" placeholder="InviteeEmail"/><button type="button" style="  margin-left: 10px;  float: left;  margin-top: 2px;" class="btn btn-sm btn-primary"onclick="addToInvitedList()">Add to List</button>
+                    <button type="button" style="  margin-left: 10px;  float: left;  margin-top: 2px;" class="btn btn-sm btn-primary"onclick="inviteList()">Invite</button>
+                </div>
+                <div class="col-xs-12 form-group">
+                    <div id="InvitedList">
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+
+
+
+
 
 
     </body>

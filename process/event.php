@@ -208,4 +208,34 @@ class Event extends Controller {
 
     }
 
+    function inviteMembers(){
+
+      $inviteList = $this->post('inviteArray');
+
+        foreach ($inviteList as &$value) {
+            $result = $this->db->query(" insert into note_invitee_map values('".$value[noteid]."','".$value[email]."','".$value[status]."')");
+        }
+
+        echo json_encode($result? array("success" => "success") : array("failure" => "failure" ));
+
+    }
+
+    function getinvitebynoteid(){
+        //print_r($_POST['noteid']);
+        $result = $this->db->query("SELECT * FROM note_invitee_map where noteid='".$_POST['noteid']."'");
+        //print_r($result);
+        if(is_object($result))
+        {
+            while($r = $result->fetchObject()){
+                $d[] =  $r;
+            }
+
+            echo json_encode($result? array("success" => json_encode($d?$d : array())) : array("failure" => "failure" ));
+        }
+        else{
+            echo json_encode($result? array("success" => "No Data") : array("failure" => "failure" ));
+        }
+   }
+
+
 } 
