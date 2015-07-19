@@ -430,3 +430,63 @@ function inviteList(){
 
 
 }
+
+
+logout();
+function logout(){
+    $('.logout').click(function(e){
+        $.ajax({
+            url : "process/?route=user&method=logout",
+            success : function(){
+                location.reload();
+            }
+        });
+        return false;
+    });
+}
+
+share();
+function share(){
+    $('body').on( 'click' , '.share' ,function(e){
+
+        console.log($(this).data('id'));
+        console.log($(this).data('type'));
+        $('#share').modal('show');
+        m=$('#share').find('.modal-body');
+        frm=$('<form >').append('<input type="email" name="email" > <button id="share_from" type="button"  >Share</button>');
+        frm.data('id',$(this).data('id'));
+        frm.data('type',$(this).data('type'));
+        m.html(frm);
+    })
+        .on('click','#share_from',function(){
+            $('#share').modal('hide');
+            frm = $(this).closest('form');
+            data = frm.serialize()+"&id="+frm.data('id')+"&type="+frm.data('type');
+            $.ajax({
+                url : 'process/?route=event&method=share' ,
+                type:'post',
+                data : frm.serialize()+"&id="+frm.data('id')+"&type="+frm.data('type') ,
+                success: function(e){
+                    console.log(e);
+                }
+            });
+            return false;
+        });
+
+}
+/*
+
+ <div id="share" class="modal fade">
+ <div class="modal-dialog modal-lg">
+ <div class="modal-content">
+ <div class="modal-header">
+ <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+ <h4 class="modal-title" > Share </h4>
+ </div>
+ <div class="modal-body" >
+ <input type="email" multiple  >
+ </div>
+ </div>
+ </div>
+ </div>
+ */

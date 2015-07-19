@@ -271,6 +271,7 @@ var Month = function (config) {
 
         function openModal(date) {
             //alert("normalModal");
+            $('.share').remove();
             $('#eventForm')[0].reset();
             $('#birthdayForm')[0].reset();
             $('#CommonModal').modal('show');
@@ -313,7 +314,7 @@ var Month = function (config) {
             $('#eventForm')[0].reset();
             $('#birthdayForm')[0].reset();
             $('#CommonModal').modal('show');
-
+            $('.share').remove();
             $("#ClickedDate").text(event.data('eventdate'));
             $(".ClickedDate").val(event.data('eventdate'));
 
@@ -333,6 +334,10 @@ var Month = function (config) {
             }
             else if(event.data('eventtype')=="2")//note
             {
+                var btn=$('<button class="share btn btn-primary  " type="button" > Share </button>');
+                btn.data('id',event.data('eventid'));
+                btn.data('type',event.data('eventtype'));
+                $('#eventButton').closest('.modal-body').find('#description').after(btn);
                 $("#Subject").val(event.data('subject'));
                 $("#description").val(event.data('description'));
                 $('.nav-tabs a[href="#eventTab"]').tab('show');
@@ -347,6 +352,10 @@ var Month = function (config) {
             }
             else if(event.data('eventtype')=="3")//birthday
             {
+                var btn=$('<button class="share btn btn-primary  " type="button"  > Share </button>');
+                btn.data('id',event.data('eventid'));
+                btn.data('type',event.data('eventtype'));
+                $('#birthdayButton').closest('.modal-body').find('#BirthDayName').after(btn);
                 $("#BirthDayName").val(event.data('subject'));
                 $("#description").val(event.data('description'));
                 $('.nav-tabs a[href="#birthdayTab"]').tab('show');
