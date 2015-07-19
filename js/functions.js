@@ -94,8 +94,10 @@ function editAdvanceNote(id) {
             //$('#'+formName)[0].reset();
             if (output.success > 0) {
                 localStorage.setItem("memberId", output.success);
+                localStorage.setItem("advanceID", "0");
                 location.reload();
                 //window.location.href = "/Online-Calender/Calendar.html";
+
             }
             else {
                 showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
@@ -122,6 +124,8 @@ function editAdvanceNote(id) {
                 $('#'+formName)[0].reset();
                 if(output.success > 0)
                 {
+                    localStorage.setItem("memberId", output.success);
+                    localStorage.setItem("advanceID", "0");
                     showalert(Message,"alert-success","/Online-Calender/Calendar.html","redirect");
                 }
                 else{
@@ -322,6 +326,7 @@ function saveAdvanceEvent(formName){
             debugger;
             $('#' + formName)[0].reset();
             if (output.success > 0) {
+                inviteList(output.success,"N");
                 clearSessionsForAdvanceNote();
                 showalert(Message, "alert-success", "/Online-Calender/Calendar.html", "redirect");
             }
@@ -385,6 +390,7 @@ function updateAdvanceEvent(formName){
             debugger;
             $('#' + formName)[0].reset();
             if (output.success > 0) {
+                inviteList(output.success,"U");
                 clearSessionsForAdvanceNote();
                 showalert(Message, "alert-success", "/Online-Calender/Calendar.html", "redirect");
             }
@@ -400,8 +406,8 @@ function updateAdvanceEvent(formName){
 
 }
 
-function inviteList(){
-
+function inviteList(noteid,flag){
+    debugger
     var noteid = localStorage.getItem("advanceID");
     var email = [] ;
 
