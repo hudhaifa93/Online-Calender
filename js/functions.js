@@ -37,25 +37,25 @@ function showalert(message, alerttype, id, type) {
     var h = "";
     switch (format) {
         case "YYYY-m-d":
-            return d.getFullYear() + "-" + (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 10 ? "" : "0") + d.getDate();
+            return d.getFullYear() + "-" + (d.getMonth() + 1 > 9 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 9 ? "" : "0") + d.getDate();
             break;
         case "m-d":
-            return (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 10 ? "" : "0") + d.getDate();
+            return (d.getMonth() + 1 > 9 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 9 ? "" : "0") + d.getDate();
             break;
         case "y":
             return d.getFullYear() ;
             break;
         case "m":
-            return (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) ;
+            return (d.getMonth() + 1 > 9 ? "" : "0") + (d.getMonth() + 1) ;
             break;
         case "d":
-            return  (d.getDate() > 10 ? "" : "0") + d.getDate();
+            return  (d.getDate() > 9 ? "" : "0") + d.getDate();
             break;
         case "D" :
             return title_name.daysMin[d.getDay()];
             break;
         default :
-            return d.getFullYear() + "-" + (d.getMonth() + 1 > 10 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 10 ? "" : "0") + d.getDate();
+            return d.getFullYear() + "-" + (d.getMonth() + 1 > 9 ? "" : "0") + (d.getMonth() + 1) + "-" + (d.getDate() > 9 ? "" : "0") + d.getDate();
             break;
     }
 

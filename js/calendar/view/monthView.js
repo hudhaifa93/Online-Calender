@@ -169,11 +169,12 @@ var Month = function (config) {
                 function skeleton() {
                     var h = ' <thead> <tr>';
                     var w = '';
+                    debugger;
                     for (var c = 0; c < 7; c++) {
-                        debugger;
+
                         var Cur_Date = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, 0, 0);
                         w += '<td  >';
-                        debugger;
+
                         for (var n = 0; n < notes.length; n++) {
                             if(dateFormat(Cur_Date,'m-d')>= dateFormat(new Date(notes[n].startdate),'m-d') && dateFormat(Cur_Date,'m-d')<= dateFormat(new Date(notes[n].enddate),'m-d')){
                                 w += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ getColorByEventType(notes[n].notetype) + '" data-eventid="'+notes[n].id+'" data-eventtype="'+notes[n].notetype+'" data-eventdate="'+notes[n].startdate+'" data-subject="'+notes[n].subject+'" data-description="'+notes[n].description+'">' +
