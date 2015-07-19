@@ -85,7 +85,7 @@ function editAdvanceNote(id) {
     debugger;
 
     $.ajax({
-        url: "process/index.php?route=event&method=validateLogin",//event.php
+        url: "process/index.php?route=user&method=validateLogin",//event.php
         type: "post",
         dataType: 'json',
         data: $('#' + formName).serialize(), // provided this code executes in form.onsubmit event
@@ -112,7 +112,7 @@ function editAdvanceNote(id) {
     Message ="You Have Been Successfully Registered.";
 
     $.ajax({
-            url: "process/index.php?route=event&method=createNewSignUp",//event.php
+            url: "process/index.php?route=user&method=createNewSignUp",//event.php
             type: "post",
             dataType: 'json',
             data: $('#'+formName).serialize(), // provided this code executes in form.onsubmit event

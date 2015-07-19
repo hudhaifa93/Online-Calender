@@ -15899,3 +15899,7 @@ a.thumbnail.active {
     width: 50px;
     margin-top: -8px;
 }
+.share{
+    float: right;
+    margin: -50px 10px 10px 10px;
+}
