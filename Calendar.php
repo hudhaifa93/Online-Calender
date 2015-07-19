@@ -186,8 +186,8 @@
                     <div class="modal-body">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="active"><a href="#eventTab" role="tab" data-toggle="tab">Note</a></li>
-                            <li><a href="#MeetingTab" role="tab" data-toggle="tab">Meeting</a></li>
-                            <li><a href="#birthdayTab" role="tab" data-toggle="tab">Birthday</a></li>
+<!--                            <li><a href="#MeetingTab" role="tab" data-toggle="tab">Meeting</a></li>-->
+                            <li><a href="#birthdayTab" role="tab" data-toggle="tab">Birthday / Anniversary</a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="eventTab">
@@ -214,30 +214,30 @@
                                     <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
-                            <div class="tab-pane" id="MeetingTab">
-                                <form role="form" id="meetingForm">
-                                    <input type=hidden class="createdby" name="createdby" value="">
-                                    <input type=hidden name=timeslotid value="0">
-                                    <input type=hidden name=status value="1">
-                                    <input type=hidden class="ClickedDate" name=startdate value="">
-                                    <input type=hidden class="ClickedDate" name=enddate value="">
-                                    <input type=hidden class="CurrentDate" name=createddate value="">
-                                    <input type=hidden name=notetype value="1">
-                                    <input type=hidden name=location value="0">
-                                    <div class= "col-xs-12 form-group">
-                                        <input type="text" class="form-control" name="subject" id="MeetingName" placeholder="Meeting Name"/>
-                                    </div>
-                                    <div class= "col-xs-12 form-group">
-                                        <textarea class="form-control custom-control" placeholder="Description" name="description" id="MeetingDescription" rows="5" style="resize:none"></textarea>
-                                    </div>
-                                    <a style="cursor: pointer" id="advance-view-meeting" >Advance Options</a>
-                                </form>
-                                <div class="pull-right">
-                                    <button type="button" class="btn btn-sm btn-primary" id="meetingButton" onclick="saveBasicEvent('meetingForm')">Save</button>
-                                    <button type="button" style="display:none" class="btn btn-sm btn-danger" id="meetingButtonDelete" onclick="">Delete</button>
-                                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
+<!--                            <div class="tab-pane" id="MeetingTab">-->
+<!--                                <form role="form" id="meetingForm">-->
+<!--                                    <input type=hidden class="createdby" name="createdby" value="">-->
+<!--                                    <input type=hidden name=timeslotid value="0">-->
+<!--                                    <input type=hidden name=status value="1">-->
+<!--                                    <input type=hidden class="ClickedDate" name=startdate value="">-->
+<!--                                    <input type=hidden class="ClickedDate" name=enddate value="">-->
+<!--                                    <input type=hidden class="CurrentDate" name=createddate value="">-->
+<!--                                    <input type=hidden name=notetype value="1">-->
+<!--                                    <input type=hidden name=location value="0">-->
+<!--                                    <div class= "col-xs-12 form-group">-->
+<!--                                        <input type="text" class="form-control" name="subject" id="MeetingName" placeholder="Meeting Name"/>-->
+<!--                                    </div>-->
+<!--                                    <div class= "col-xs-12 form-group">-->
+<!--                                        <textarea class="form-control custom-control" placeholder="Description" name="description" id="MeetingDescription" rows="5" style="resize:none"></textarea>-->
+<!--                                    </div>-->
+<!--                                    <a style="cursor: pointer" id="advance-view-meeting" >Advance Options</a>-->
+<!--                                </form>-->
+<!--                                <div class="pull-right">-->
+<!--                                    <button type="button" class="btn btn-sm btn-primary" id="meetingButton" onclick="saveBasicEvent('meetingForm')">Save</button>-->
+<!--                                    <button type="button" style="display:none" class="btn btn-sm btn-danger" id="meetingButtonDelete" onclick="">Delete</button>-->
+<!--                                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <div class="tab-pane" id="birthdayTab">
                                 <form role="form" id="birthdayForm">
                                     <input type=hidden class="createdby" name="createdby" value="">

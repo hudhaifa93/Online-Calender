@@ -76,7 +76,7 @@ function showalert(message, alerttype, id, type) {
     localStorage.setItem("tempClickedDate", "0");
 }
 
-function editAdvanceNote(id) {
+    function editAdvanceNote(id) {
     localStorage.setItem("advanceID", id);
     window.location.href = "/Online-Calender/ConfigureEvents.html";
 }
@@ -126,7 +126,7 @@ function editAdvanceNote(id) {
                 {
                     localStorage.setItem("memberId", output.success);
                     localStorage.setItem("advanceID", "0");
-                    showalert(Message,"alert-success","/Online-Calender/Calendar.html","redirect");
+                    showalert(Message,"alert-success","/Online-Calender/","redirect");
                 }
                 else{
                     showalert("An Error Occurred Please Contact Admin.","alert-danger","","");
@@ -328,7 +328,7 @@ function saveAdvanceEvent(formName){
             if (output.success > 0) {
                 inviteList(output.success,"N");
                 clearSessionsForAdvanceNote();
-                showalert(Message, "alert-success", "/Online-Calender/Calendar.html", "redirect");
+                showalert(Message, "alert-success", "/Online-Calender/", "redirect");
             }
             else {
                 showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
@@ -392,7 +392,7 @@ function updateAdvanceEvent(formName){
             if (output.success > 0) {
                 inviteList(output.success,"U");
                 clearSessionsForAdvanceNote();
-                showalert(Message, "alert-success", "/Online-Calender/Calendar.html", "redirect");
+                showalert(Message, "alert-success", "/Online-Calender/", "redirect");
             }
             else {
                 showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
@@ -408,7 +408,7 @@ function updateAdvanceEvent(formName){
 
 function inviteList(noteid,flag){
     debugger
-    
+
     var email = [] ;
     var str ="";
     $( ".tags" ).each(function( index ) {
