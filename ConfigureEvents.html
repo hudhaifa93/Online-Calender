@@ -220,7 +220,7 @@
                             var Email = value.email;
                             var fullEmail = Email;
                             Email = Email.split("@");
-                            $("#InvitedList").append($('<div class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
+                            $("#InvitedList").append($('<div data-status="'+value.status+'" class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
                         });
 
 
@@ -321,9 +321,6 @@
                               style="resize:none"></textarea>
                 </div>
 
-                <div class="col-xs-12 form-group">
-                    <button type="button" id="advanceButton" class="btn btn-sm btn-primary" onclick="">Create</button>
-                </div>
 
             </form>
         </div>
@@ -338,6 +335,9 @@
                     </div>
                 </div>
             </form>
+        </div>
+        <div class="col-xs-12 form-group">
+            <button type="button" id="advanceButton" class="btn btn-sm btn-primary" onclick="">Create</button>
         </div>
     </div>
 

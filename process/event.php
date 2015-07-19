@@ -210,10 +210,14 @@ class Event extends Controller {
 
     function inviteMembers(){
 
-      $inviteList = $this->post('inviteArray');
+        $inviteList = $this->post('inviteArray');
+        $noteid=$inviteList[0][noteid];
+        $result = $this->db->query("DELETE FROM note_invitee_map WHERE noteid='$noteid'");
+        if(is_object($result)){
 
-        foreach ($inviteList as &$value) {
-            $result = $this->db->query(" insert into note_invitee_map values('".$value[noteid]."','".$value[email]."','".$value[status]."')");
+            foreach ($inviteList as &$value) {
+                $result = $this->db->query(" insert into note_invitee_map values('".$value[noteid]."','".$value[email]."','".$value[status]."')");
+            }
         }
 
         echo json_encode($result? array("success" => "success") : array("failure" => "failure" ));
