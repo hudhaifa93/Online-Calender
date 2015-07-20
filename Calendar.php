@@ -25,7 +25,7 @@
                     <a href="Calendar.html">CODE HUNTERS</a>
                 </li>
                 <li class="col-md-offset-4">
-                    <input type="text">
+                    <input type="text" id="txtSearch">
                 </li>
                 <li class="pull-right">
                     <ul class="top-menu">

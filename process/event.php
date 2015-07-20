@@ -186,6 +186,8 @@ class Event extends Controller {
 
     function getAllNotesByStartDateAndEndDate(){
         $results = $this->db->query("
+
+        (
         SELECT * FROM `note` WHERE
         (
         (
@@ -202,7 +204,43 @@ class Event extends Controller {
         `notetype` In (3) AND DATE_FORMAT(`startdate`,'%m-%d') between DATE_FORMAT('".$this->post('start')."','%m-%d') AND  DATE_FORMAT('".$this->post('end')."','%m-%d')
         )
         )
-        AND `status` = 1 AND `createdby` = ".$this->post('MemberId')." order by `starttime` , `endtime`-`starttime`
+        AND `status` = 1 AND  `repeat` = '' AND `createdby` = ".$this->post('MemberId')." order by `starttime` , `endtime`-`starttime`
+        )
+
+        union
+
+        (
+        SELECT * FROM `note`
+        WHERE
+        (
+        DATE_FORMAT(`startdate`,'%m,%d') BETWEEN DATE_FORMAT('".$this->post('start')."','%m,%d') AND DATE_FORMAT('".$this->post('end')."','%m,%d')
+        OR
+        DATE_FORMAT(`enddate`,'%m,%d') BETWEEN DATE_FORMAT('".$this->post('start')."','%m,%d') AND DATE_FORMAT('".$this->post('end')."','%m,%d')
+        OR
+        DATE_FORMAT('".$this->post('start')."','%m,%d') BETWEEN DATE_FORMAT(`startdate`,'%m,%d') AND DATE_FORMAT(`enddate`,'%m,%d')
+        OR
+        DATE_FORMAT('".$this->post('end')."','%m,%d') BETWEEN DATE_FORMAT(`startdate`,'%m,%d') AND DATE_FORMAT(`enddate`,'%m,%d')
+        )
+        AND `status` = 1 AND  `repeat` = 'y' AND `createdby` = ".$this->post('MemberId')." order by `starttime` , `endtime`-`starttime`
+        )
+
+        union
+
+        (
+        SELECT * FROM `note`
+        WHERE
+        (
+        DATE_FORMAT(`startdate`,'%d') BETWEEN DATE_FORMAT('".$this->post('start')."','%d') AND DATE_FORMAT('".$this->post('end')."','%d')
+        OR
+        DATE_FORMAT(`enddate`,'%d') BETWEEN DATE_FORMAT('".$this->post('start')."','%d') AND DATE_FORMAT('".$this->post('end')."','%d')
+        OR
+        DATE_FORMAT('".$this->post('start')."','%d') BETWEEN DATE_FORMAT(`startdate`,'%d') AND DATE_FORMAT(`enddate`,'%d')
+        OR
+        DATE_FORMAT('".$this->post('end')."','%d') BETWEEN DATE_FORMAT(`startdate`,'%d') AND DATE_FORMAT(`enddate`,'%d')
+        )
+        AND `status` = 1 AND  `repeat` = 'm' AND `createdby` = ".$this->post('MemberId')." order by `starttime` , `endtime`-`starttime`
+        )
+
         ");
 
         while($r = $results->fetchObject()){
