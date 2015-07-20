@@ -231,7 +231,7 @@ function showalert(message, alerttype, id, type) {
                 debugger;
                 $('#' + formName)[0].reset();
                 if (output.success == "Deleted") {
-                    showalert(Message, "alert-success", "CommonModal", "modal");
+                    showalert(Message, "alert-success", "CommonViewModal", "modal");
                 }
                 else {
                     showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
