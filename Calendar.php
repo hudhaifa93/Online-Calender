@@ -16,6 +16,20 @@
             .nav-tabs {
                 border-bottom: 1px solid #ddd;
             }
+            #txtSearch {
+                border: 0;
+                height: 40px;
+                padding: 0 10px 0 40px;
+                font-size: 18px;
+                width: 500px;
+                border-radius: 2px;
+                color: white;
+                background-color: rgba(255, 255, 255, 0.26);
+                background-image: url("././img/icons/search.png");
+                background-repeat: no-repeat;
+                background-position: 10px center;
+            }
+
         </style>
     </head>
     <body>
@@ -24,7 +38,7 @@
                 <li class="logo">
                     <a href="Calendar.html">CODE HUNTERS</a>
                 </li>
-                <li class="col-md-offset-4">
+                <li style="margin-left: 15.333333%;">
                     <input type="text" id="txtSearch">
                 </li>
                 <li class="pull-right">
