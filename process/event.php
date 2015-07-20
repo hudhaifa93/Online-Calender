@@ -373,7 +373,7 @@ class Event extends Controller {
     }
 
     function getAllBirthDaysByMemberId(){
-        $results = $this->db->query("SELECT * FROM `note` WHERE `notetype`=3 AND `status`=1 `id`='".$_POST['memberid']."'");
+        $results = $this->db->query("SELECT * FROM `note` WHERE `notetype`=3 AND `status`= 1 AND `createdby`='".$_POST['memberid']."'  ");
         while($r = $results->fetchObject()){
             $d[] =  $r;
         }
