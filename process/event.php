@@ -241,6 +241,23 @@ class Event extends Controller {
         AND `status` = 1 AND  `repeat` = 'm' AND `createdby` = ".$this->post('MemberId')." order by `starttime` , `endtime`-`starttime`
         )
 
+        union
+
+        (
+        SELECT * FROM `note`
+        WHERE
+        (
+        DATE_FORMAT(`startdate`,'%W') BETWEEN DATE_FORMAT('".$this->post('start')."','%W') AND DATE_FORMAT('".$this->post('end')."','%W')
+        OR
+        DATE_FORMAT(`enddate`,'%W') BETWEEN DATE_FORMAT('".$this->post('start')."','%W') AND DATE_FORMAT('".$this->post('end')."','%W')
+        OR
+        DATE_FORMAT('".$this->post('start')."','%W') BETWEEN DATE_FORMAT(`startdate`,'%W') AND DATE_FORMAT(`enddate`,'%W')
+        OR
+        DATE_FORMAT('".$this->post('end')."','%W') BETWEEN DATE_FORMAT(`startdate`,'%W') AND DATE_FORMAT(`enddate`,'%W')
+        )
+        AND `status` = 1 AND  `repeat` = 'w' AND `createdby` = ".$this->post('MemberId')." order by `starttime` , `endtime`-`starttime`
+        )
+
         ");
 
         while($r = $results->fetchObject()){
