@@ -338,7 +338,7 @@ class Event extends Controller {
         $result = $this->db->query("DELETE FROM shared_calendar WHERE memberid='$memberId'");
         if(is_object($result)){
             foreach ($sharedMembersList as &$value) {
-                $result = $this->db->query("INSERT INTO shared_calendar values('".$memberId."','".$value[sharedmemberid]."','0')");
+                $result = $this->db->query("INSERT INTO shared_calendar values('".$memberId."','".$value[sharedmemberemail]."','0')");
             }
         }
         echo json_encode($result? array("success" => "success") : array("failure" => "failure" ));
@@ -346,7 +346,6 @@ class Event extends Controller {
 
     function getSharedMemberIds(){
         $result = $this->db->query("SELECT * FROM shared_calendar where memberid='".$_POST['memberid']."'");
-        //print_r($result);
         if(is_object($result))
         {
             while($r = $result->fetchObject()){
