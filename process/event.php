@@ -249,7 +249,7 @@ class Event extends Controller {
         SELECT * FROM `note`
         WHERE
         (
-        DATE_FORMAT(`startdate`,'%W') BETWEEN DATE_FORMAT('".$this->post('start')."','%W') AND DATE_FORMAT('".$this->post('end')."','%W')
+        DATE_FORMAT(`startdate`,'%y,%m,%d') BETWEEN DATE_FORMAT('".$this->post('start')."','%W') AND DATE_FORMAT('".$this->post('end')."','%W')
         OR
         DATE_FORMAT(`enddate`,'%W') BETWEEN DATE_FORMAT('".$this->post('start')."','%W') AND DATE_FORMAT('".$this->post('end')."','%W')
         OR

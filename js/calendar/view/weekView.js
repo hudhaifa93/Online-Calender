@@ -190,7 +190,21 @@ var Week = function (config) {
                                         '<div class="fc-resizer"></div>' +
                                         '</a>';
                                 }
-                            }else{
+                            }else if(notes[n].repeat == "W"){
+                                if(dateFormat(Cur_Date,'D')>= dateFormat(new Date(notes[n].startdate),'D') && dateFormat(Cur_Date,'D')<= dateFormat(new Date(notes[n].enddate),'D') && notes[n].starttime == "0" && notes[n].endtime == "0"){
+                                    fe += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(notes[n].notetype) + '">' +
+                                        '<div class="fc-content">' +
+                                        '<span class="fc-title">' +
+                                        notes[n].subject;
+                                    if(notes[n].description != ''){
+                                        fe += ' : ' + notes[n].description;
+                                    }
+                                    fe += '</span></div>' +
+                                        '<div class="fc-resizer"></div>' +
+                                        '</a>';
+                                }
+                            }
+                            else{
                                 if(dateFormat(Cur_Date,'m-d')>= dateFormat(new Date(notes[n].startdate),'m-d') && dateFormat(Cur_Date,'m-d')<= dateFormat(new Date(notes[n].enddate),'m-d') && notes[n].starttime == "0" && notes[n].endtime == "0"){
                                     fe += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(notes[n].notetype) + '">' +
                                         '<div class="fc-content">' +
@@ -333,7 +347,11 @@ var Week = function (config) {
                                     if(notes[n].repeat == "M" && dateFormat(Cur_Date,'d')>= dateFormat(new Date(notes[n].startdate),'d') && dateFormat(Cur_Date,'d')<= dateFormat(new Date(notes[n].enddate),'d')){
                                         _events.push(notes[n]);
                                         ++noOfItems;
-                                    }else if(dateFormat(Cur_Date)>= dateFormat(new Date(notes[n].startdate)) && dateFormat(Cur_Date)<= dateFormat(new Date(notes[n].enddate))){
+                                    }else if(notes[n].repeat == "W" && dateFormat(Cur_Date,'D')>= dateFormat(new Date(notes[n].startdate),'D') && dateFormat(Cur_Date,'D')<= dateFormat(new Date(notes[n].enddate),'D')){
+                                        _events.push(notes[n]);
+                                        ++noOfItems;
+                                    }
+                                    else if(dateFormat(Cur_Date)>= dateFormat(new Date(notes[n].startdate)) && dateFormat(Cur_Date)<= dateFormat(new Date(notes[n].enddate))){
                                         _events.push(notes[n]);
                                         ++noOfItems;
                                     }
