@@ -319,6 +319,7 @@
 
         $(document).ready(function () {
             $(".createdby").val(localStorage.getItem("memberId"));
+            $('[data-toggle="tooltip"]').tooltip();
         });
 
     </script>
