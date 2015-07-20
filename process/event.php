@@ -276,7 +276,6 @@ class Event extends Controller {
         $noteid=$inviteList[0][noteid];
         $result = $this->db->query("DELETE FROM note_invitee_map WHERE noteid='$noteid'");
         if(is_object($result)){
-
             foreach ($inviteList as &$value) {
                 $result = $this->db->query(" insert into note_invitee_map values('".$value[noteid]."','".$value[email]."','".$value[status]."')");
             }
@@ -331,6 +330,18 @@ class Event extends Controller {
         }
         return $d;
         //echo json_encode($d?$d : array());
+    }
+
+    function setSharedMemberIds(){
+        $sharedMembersList = $this->post('sharedmemberslist');
+        $memberId = $this->post('memberid');
+        $result = $this->db->query("DELETE FROM shared_calendar WHERE memberid='$memberId'");
+        if(is_object($result)){
+            foreach ($sharedMembersList as &$value) {
+                $result = $this->db->query("INSERT INTO shared_calendar values('".$memberId."','".$value[sharedmemberid]."','0')");
+            }
+        }
+        echo json_encode($result? array("success" => "success") : array("failure" => "failure" ));
     }
 
     function getSharedMemberIds(){
