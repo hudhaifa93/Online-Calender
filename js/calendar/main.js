@@ -25,6 +25,8 @@ var calendar = function (config) {
             view = new Week(config);
         else if(config.view == 'day')
             view = new Day(config);
+        else if(config.view == 'birthday')
+            view = new BirthDay(config);
     }
 
     return (function () {

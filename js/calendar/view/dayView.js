@@ -34,7 +34,6 @@ var Day = function (config) {
             type : "post",
             dataType: "json",
             success : function(e){
-                debugger;
                 notes = e;
                 _container(self.id);
             }
@@ -66,9 +65,10 @@ var Day = function (config) {
                 '<li class="dropdown"><a href="" data-toggle="dropdown" aria-expanded="false">' +
                 '<i class="md md-more-vert"></i></a>' +
                 '<ul class="dropdown-menu dropdown-menu-right">' +
-                '<li><a data-view="month" href="">Month View</a></li>' +
-                '<li><a data-view="basicWeek" href="">Week View</a></li>' +
-                '<li class="active"><a data-view="basicDay" href="">Day View</a></li>' +
+                '<li><a class="cal-view" data-view="month" >Month View</a></li>' +
+                '<li><a class="cal-view"  data-view="week" >Week View</a></li>' +
+                '<li class="active" ><a class="cal-view"  data-view="day">Day View</a></li>' +
+                '<li><a class="cal-view"  data-view="birthday">Birthday View</a></li>' +
                 '</ul>' +
                 '</li>' +
                 '</ul> ';
@@ -121,7 +121,6 @@ var Day = function (config) {
                 '</tr>';
 
             function _fc_day_grid() {
-                debugger;
                 var fe = '';
                 for (var n = 0; n < notes.length; n++) {
                     if(notes[n].starttime == "0" && notes[n].endtime == "0"){
@@ -266,7 +265,6 @@ var Day = function (config) {
                         '</div>' ;
 
                     function fc_event_container(){
-                        debugger;
                         var ec = '';
                         var _events = [];
                         var noOfItems =0;

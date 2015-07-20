@@ -39,7 +39,6 @@ var Week = function (config) {
             type : "post",
             dataType: "json",
             success : function(e){
-                debugger;
                 notes = e;
                 _container(self.id);
             }
@@ -72,8 +71,9 @@ var Week = function (config) {
                 '<i class="md md-more-vert"></i></a>' +
                 '<ul class="dropdown-menu dropdown-menu-right">' +
                 '<li><a class="cal-view" data-view="month" >Month View</a></li>' +
-                '<li class="active"><a class="cal-view" data-view="week" >Week View</a></li>' +
-                '<li><a  class="cal-view" data-view="day" >Day View</a></li>' +
+                '<li class="active" ><a class="cal-view"  data-view="week" >Week View</a></li>' +
+                '<li><a class="cal-view"  data-view="day">Day View</a></li>' +
+                '<li><a class="cal-view"  data-view="birthday">Birthday View</a></li>' +
                 '</ul>' +
                 '</li>' +
                 '</ul> ';
@@ -175,7 +175,7 @@ var Week = function (config) {
                     var Cur_Date = new Date(_weekStart.getFullYear(), _weekStart.getMonth(), _weekStart.getDate(), 0, 0, 0, 0);
                     for (var c = 0; c < 7; c++){
                         var fe = '';
-                        debugger;
+
                         for (var n = 0; n < notes.length; n++) {
                             var tooltip = '';
                             if(notes[n].starttime != "0" && notes[n].endtime != "0"){
@@ -349,7 +349,7 @@ var Week = function (config) {
                         for (var c = 0; c < 7; c++) {
                             var _events = [];
                             var noOfItems =0;
-                            debugger;
+
                             for (var n = 0; n < notes.length; n++) {
                                 if(notes[n].endtime != "0"){
                                     if(notes[n].repeat == "M" && dateFormat(Cur_Date,'d')>= dateFormat(new Date(notes[n].startdate),'d') && dateFormat(Cur_Date,'d')<= dateFormat(new Date(notes[n].enddate),'d')){

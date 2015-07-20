@@ -359,12 +359,7 @@ class Event extends Controller {
     }
 
     function getSharedMemberDetailsByMemberId(){
-
-
         $result = $this->db->query("SELECT * FROM `member` WHERE `id` IN(SELECT memberid FROM shared_calendar where sharedmemberemail = (SELECT `email` FROM `member` WHERE id='".$_POST['memberid']."'))  ");
-
-
-
         if(is_object($result))
         {
             while($r = $result->fetchObject()){
@@ -375,6 +370,14 @@ class Event extends Controller {
         else{
             echo json_encode($result? array("success" => "No Data") : array("failure" => "failure" ));
         }
+    }
+
+    function getAllBirthDaysByMemberId(){
+        $results = $this->db->query("SELECT * FROM `note` WHERE `notetype`=3 AND `status`=1 `id`='".$_POST['memberid']."'");
+        while($r = $results->fetchObject()){
+            $d[] =  $r;
+        }
+        echo json_encode($d?$d : array());
     }
 
 }

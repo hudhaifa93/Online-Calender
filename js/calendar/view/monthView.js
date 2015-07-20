@@ -36,7 +36,6 @@ var Month = function (config) {
         var end = new Date(d) ;
         end.setDate(d.getDate()+(rows*7));
         var memberId = localStorage.getItem("memberId");
-        debugger;
         $.ajax({
             url : "process/?route=Event&method=getAllNotesByStartDateAndEndDate",
             data:  { start : dateFormat(d), end: dateFormat(end), MemberId: memberId},
@@ -77,6 +76,7 @@ var Month = function (config) {
                 '<li class="active" ><a class="cal-view" data-view="month" >Month View</a></li>' +
                 '<li><a class="cal-view"  data-view="week" >Week View</a></li>' +
                 '<li><a class="cal-view"  data-view="day">Day View</a></li>' +
+                '<li><a class="cal-view"  data-view="birthday">Birthday View</a></li>' +
                 '</ul>' +
                 '</li>' +
                 '</ul> ';
@@ -169,7 +169,7 @@ var Month = function (config) {
                 function skeleton() {
                     var h = ' <thead> <tr>';
                     var w = '';
-                    debugger;
+
                     for (var c = 0; c < 7; c++) {
 
                         var Cur_Date = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, 0, 0);
@@ -367,9 +367,6 @@ var Month = function (config) {
 
         }
         function openModelForEdit(event) {
-            debugger;
-           // alert("editModal");
-
             resetModalButton();
 
             $('#eventForm')[0].reset();
