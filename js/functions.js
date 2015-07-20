@@ -537,7 +537,6 @@ function ShareCalenderList(memberid){
 }
 
 function loadShareCalenderList(memberid){
-    debugger;
     $("#InvitedList").html('');
     $.ajax({
         url: "process/index.php?route=event&method=getSharedMemberIds",
@@ -546,7 +545,7 @@ function loadShareCalenderList(memberid){
         async:false,
         data: "memberid="+memberid, // provided this code executes in form.onsubmit event
         success: function (e) {
-            debugger;
+
             var data = e;
             data = JSON.parse(data.success);
 
@@ -566,6 +565,43 @@ function loadShareCalenderList(memberid){
 
         }
     });
+}
+
+function loadSharedCalenderList(memberid){
+    debugger;
+    $("#sharedList").html('');
+    $.ajax({
+        url: "process/index.php?route=event&method=getSharedMemberDetailsByMemberId",
+        type: "post",
+        dataType: 'json',
+        async:false,
+        data: "memberid="+memberid, // provided this code executes in form.onsubmit event
+        success: function (e) {
+            debugger;
+            var data = e;
+            data = JSON.parse(data.success);
+            $.each( data, function( key, value ) {
+               $("#sharedList").append($("<input type='checkbox' style='margin-right: 10px;' class='shareCheckBox' id='"+value.id+"' ><label id='label"+value.id+"'>"+value.firstname+" "+value.lastname+"</label><br>"));
+            });
+        },
+        failure: function () {
+
+        }
+    });
+}
+
+function drawSharedCalender(){
+    var sharedClicked = [];
+    $('.shareCheckBox').each(function(i, obj) {
+       if(this.checked){
+           sharedClicked.push({
+               "memberid" : this.id,
+               "name" : $("#label"+this.id).text()
+           });
+       }
+    });
+    localStorage.setItem("sharedClicked",JSON.stringify(sharedClicked));
+    $('#ViewShareModal').modal('hide');
 }
 
 logout();

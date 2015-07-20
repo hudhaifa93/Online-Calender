@@ -32,6 +32,7 @@
             .bootstrap-tagsinput {
                 width: 100%;
             }
+
             .tags {
                 float: left;
                 margin-right: 2px;
@@ -391,13 +392,16 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="" >Share My Calender</h4>
+                        <h4 class="modal-title" id="" >Calendars Shared With Me</h4>
                     </div>
                     <div class="modal-body">
 
-                        Load Here
+                        <div id="sharedList">
+
+                        </div>
 
                         <div class="pull-right">
+                            <button type="button" class="btn btn-sm btn-primary" id="" onclick="drawSharedCalender()">View</button>
                             <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -430,6 +434,7 @@
 
             $(".createdby").val(localStorage.getItem("memberId"));
             loadShareCalenderList(localStorage.getItem("memberId"));
+            loadSharedCalenderList(localStorage.getItem("memberId"));
             $("#shareCalenderButton").attr("onclick","ShareCalenderList('"+localStorage.getItem("memberId")+"')");
 
             $(".shareCal").click(function(e) {
