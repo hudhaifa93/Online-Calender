@@ -77,6 +77,7 @@ function showalert(message, alerttype, id, type) {
 }
 
     function editAdvanceNote(id) {
+
     localStorage.setItem("advanceID", id);
     window.location.href = "/Online-Calender/ConfigureEvents.html";
 }
@@ -310,6 +311,7 @@ function saveAdvanceEvent(formName){
     var location;
     var street ,city,state,country;
     var locationid;
+    var repeatData;
 
     var type =$('#Type').find("option:selected").val();;
 
@@ -341,11 +343,21 @@ function saveAdvanceEvent(formName){
         location = "&street=0&city=0&state=0&country=0&locationid=0";
     }
 
+    if($('#repeat:checkbox:checked').length > 0){
+
+        var repeats = $('#repeats').find("option:selected").val();
+        repeatData ="&repeat="+repeats;
+    }
+    else{
+        repeatData="&repeat=";
+    }
+
     $.ajax({
         url: "process/index.php?route=event&method=insertAdvanceEvent",
         type: "post",
         dataType: 'json',
-        data: $('#' + formName).serialize()+"&createddate="+createddate+timeslot+location, // provided this code executes in form.onsubmit event
+        async:false,
+        data: $('#' + formName).serialize()+"&createddate="+createddate+timeslot+location+repeatData, // provided this code executes in form.onsubmit event
         success: function (output) {
             debugger;
             $('#' + formName)[0].reset();
@@ -366,11 +378,13 @@ function saveAdvanceEvent(formName){
 
 function updateAdvanceEvent(formName){
 
+    var createddate = getOnlyCurrentDate();
     var Message = "";
     var timeslot;
     var location;
     var street ,city,state,country;
     var locationid;
+    var repeatid;
     var noteid = localStorage.getItem("advanceID");
 
     var type =$('#Type').find("option:selected").val();
@@ -404,12 +418,21 @@ function updateAdvanceEvent(formName){
         locationid = $("#locationId").val();
         location = "&street=0&city=0&state=0&country=0&locationid="+locationid+"&locationflag=U";
     }
-   // console.log($('#' + formName).serialize());
+
+    if($('#repeat:checkbox:checked').length > 0){
+
+        var repeats = $('#repeats').find("option:selected").val();
+        repeatData ="&repeat="+repeats;
+    }
+    else{
+        repeatData="&repeat=";
+    }
     $.ajax({
         url: "process/index.php?route=event&method=updateAdvanceEvent",
         type: "post",
         dataType: 'json',
-        data: $('#' + formName).serialize()+timeslot+location+"&noteid="+noteid, // provided this code executes in form.onsubmit event
+        async:false,
+        data: $('#' + formName).serialize()+timeslot+location+"&noteid="+noteid+repeatData, // provided this code executes in form.onsubmit event
         success: function (output) {
             debugger;
             $('#' + formName)[0].reset();

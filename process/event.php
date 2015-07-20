@@ -7,14 +7,14 @@ class Event extends Controller {
     }
 
     function insertBasicEvent(){
-        $id = $this->db->query(" insert into note values(null,'". $_POST['subject']."','".$_POST['description']."','".$_POST['timeslotid']."','".$_POST['status']."','".$_POST['startdate']."','". $_POST['enddate']."',0,0,'".$_POST['createddate']."','".$_POST['createdby']."','".$_POST['notetype']."','".$_POST['location']."') ");
+        $id = $this->db->query(" insert into note values(null,'". $_POST['subject']."','".$_POST['description']."','".$_POST['timeslotid']."','".$_POST['status']."','".$_POST['startdate']."','". $_POST['enddate']."',0,0,'".$_POST['createddate']."','".$_POST['createdby']."','".$_POST['notetype']."','".$_POST['location']."','') ");
         echo json_encode($id? array("success" => $this->db->last_id()) : array("failure" => "failure" ));
     }
 
     function insertAdvanceEvent(){
       $locationid = $_POST['locationid'];
         if($locationid!="0"){//location is present
-        $result = $this->db->query(" insert into address values(null,'". $_POST['street']."','".$_POST['city']."','". $_POST['state']."','". $_POST['country']."')");
+            $result = $this->db->query(" insert into address values(null,'". $_POST['street']."','".$_POST['city']."','". $_POST['state']."','". $_POST['country']."')");
             if(is_object($result)){
                 $id = $this->db->last_id();
 
@@ -24,7 +24,8 @@ class Event extends Controller {
                     $end=$start;
                 }
 
-                $result = $this->db->query(" insert into note values(null,'". $_POST['subject']."','".$_POST['description']."','".$_POST['timeslotid']."','".$_POST['status']."','".$start."','".$end."','".$_POST['starttime']."','".$_POST['endtime']."','".$_POST['createddate']."','".$_POST['createdby']."','".$_POST['notetype']."','".$id."') ");
+                 $result = $this->db->query(" insert into note values(null,'". $_POST['subject']."','".$_POST['description']."','".$_POST['timeslotid']."','".$_POST['status']."','".$start."','".$end."','".$_POST['starttime']."','".$_POST['endtime']."','".$_POST['createddate']."','".$_POST['createdby']."','".$_POST['notetype']."','".$id."','". $_POST['repeat']."') ");
+
                 if(is_object($result))
                 {
                     $id = $this->db->last_id();
@@ -41,10 +42,12 @@ class Event extends Controller {
                 $end=$start;
             }
 
-            $result = $this->db->query(" insert into note values(null,'". $_POST['subject']."','".$_POST['description']."','".$_POST['timeslotid']."','".$_POST['status']."','".$start."','".$end."','".$_POST['starttime']."','".$_POST['endtime']."','".$_POST['createddate']."','".$_POST['createdby']."','".$_POST['notetype']."','0') ");
+            $result = $this->db->query(" insert into note values(null,'". $_POST['subject']."','".$_POST['description']."','".$_POST['timeslotid']."','".$_POST['status']."','".$start."','".$end."','".$_POST['starttime']."','".$_POST['endtime']."','".$_POST['createddate']."','".$_POST['createdby']."','".$_POST['notetype']."','0','". $_POST['repeat']."') ");
+
             if(is_object($result))
             {
                 $id = $this->db->last_id();
+
             }
         }
         echo json_encode($result? array("success" => $id) : array("failure" => "failure" ));
@@ -55,18 +58,17 @@ class Event extends Controller {
 
         $locationid = $_POST['locationid'];
         $locationflag  = $_POST['locationflag'];
-
         if($locationid=="0" && $locationflag=="N"){
 
             $result = $this->db->query(" insert into address values(null,'". $_POST['street']."','".$_POST['city']."','". $_POST['state']."','". $_POST['country']."')");
             if(is_object($result)){
                 $id = $this->db->last_id();
-                $result = $this->db->query("UPDATE note SET subject='". $_POST['subject']."',description='".$_POST['description']."',timeslotid='".$_POST['timeslotid']."',status='".$_POST['status']."',startdate='".$_POST['startDate']."',enddate='".$_POST['endDate']."',starttime='".$_POST['starttime']."',endtime='".$_POST['endtime']."',location='".$id."' WHERE id='".$_POST['noteid']."'");
+                $result = $this->db->query("UPDATE note SET `repeat`='". $_POST['repeat']."',subject='". $_POST['subject']."',description='".$_POST['description']."',timeslotid='".$_POST['timeslotid']."',status='".$_POST['status']."',startdate='".$_POST['startDate']."',enddate='".$_POST['endDate']."',starttime='".$_POST['starttime']."',endtime='".$_POST['endtime']."',location='".$id."' WHERE id='".$_POST['noteid']."'");
             }
         }
         elseif ($locationid=="0" && $locationflag=="U"){
-            print_r($_POST);
-            $result = $this->db->query("UPDATE note SET subject='". $_POST['subject']."',description='".$_POST['description']."',timeslotid='".$_POST['timeslotid']."',status='".$_POST['status']."',startdate='".$_POST['startDate']."',enddate='".$_POST['endDate']."',starttime='".$_POST['starttime']."',endtime='".$_POST['endtime']."' WHERE id='".$_POST['noteid']."'");
+
+            $result = $this->db->query("UPDATE note SET `repeat`='". $_POST['repeat']."',subject='". $_POST['subject']."',description='".$_POST['description']."',timeslotid='".$_POST['timeslotid']."',status='".$_POST['status']."',startdate='".$_POST['startDate']."',enddate='".$_POST['endDate']."',starttime='".$_POST['starttime']."',endtime='".$_POST['endtime']."' WHERE id='".$_POST['noteid']."'");
             if(is_object($result)){
                 $id = $_POST['noteid'];
             }
@@ -74,7 +76,7 @@ class Event extends Controller {
         elseif($locationflag=="N"){
             $result = $this->db->query("UPDATE address SET street='". $_POST['street']."',city='".$_POST['city']."',state='".$_POST['state']."',country='".$_POST['country']."' WHERE id='$locationid'");
             if(is_object($result)){
-                $result = $this->db->query("UPDATE note SET subject='". $_POST['subject']."',description='".$_POST['description']."',timeslotid='".$_POST['timeslotid']."',status='".$_POST['status']."',startdate='".$_POST['startDate']."',enddate='".$_POST['endDate']."',starttime='".$_POST['starttime']."',endtime='".$_POST['endtime']."' WHERE id='".$_POST['noteid']."'");
+                $result = $this->db->query("UPDATE note SET `repeat`='". $_POST['repeat']."',subject='". $_POST['subject']."',description='".$_POST['description']."',timeslotid='".$_POST['timeslotid']."',status='".$_POST['status']."',startdate='".$_POST['startDate']."',enddate='".$_POST['endDate']."',starttime='".$_POST['starttime']."',endtime='".$_POST['endtime']."' WHERE id='".$_POST['noteid']."'");
                 if(is_object($result)){
                     $id = $_POST['noteid'];
                 }
@@ -83,14 +85,14 @@ class Event extends Controller {
         elseif($locationflag=="U"){
             $result = $this->db->query("DELETE FROM address WHERE id='$locationid'");
             if(is_object($result)){
-                $result = $this->db->query("UPDATE note SET subject='". $_POST['subject']."',description='".$_POST['description']."',timeslotid='".$_POST['timeslotid']."',status='".$_POST['status']."',startdate='".$_POST['startDate']."',enddate='".$_POST['endDate']."',starttime='".$_POST['starttime']."',endtime='".$_POST['endtime']."',location='0' WHERE id='".$_POST['noteid']."'");
+                $result = $this->db->query("UPDATE note SET `repeat`='". $_POST['repeat']."',subject='". $_POST['subject']."',description='".$_POST['description']."',timeslotid='".$_POST['timeslotid']."',status='".$_POST['status']."',startdate='".$_POST['startDate']."',enddate='".$_POST['endDate']."',starttime='".$_POST['starttime']."',endtime='".$_POST['endtime']."',location='0' WHERE id='".$_POST['noteid']."'");
                 if(is_object($result)){
                     $id = $_POST['noteid'];
                 }
             }
         }
-        echo json_encode($result? array("success" => $id) : array("failure" => "failure" ));
 
+        echo json_encode($result? array("success" => $id) : array("failure" => "failure" ));
     }
 
     function getMonthlyEvents(){

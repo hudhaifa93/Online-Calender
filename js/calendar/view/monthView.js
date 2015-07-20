@@ -334,14 +334,21 @@ var Month = function (config) {
 
             if(event.data('eventtype')=="1")//meeting
             {
-                $("#MeetingName").val(event.data('subject'));
-                $("#MeetingDescription").val(event.data('description'));
-                $('.nav-tabs a[href="#MeetingTab"]').tab('show');
-                $("#meetingButton").attr("onclick","editBasicEvent('meetingForm','"+event.data('eventid')+"')");
-                $("#meetingButtonDelete").attr("onclick","deleteBasicEvent('meetingForm','"+event.data('eventid')+"')");
-                $("#meetingButtonDelete").show();
+//                $("#MeetingName").val(event.data('subject'));
+//                $("#MeetingDescription").val(event.data('description'));
+//                $('.nav-tabs a[href="#MeetingTab"]').tab('show');
+//                $("#meetingButton").attr("onclick","editBasicEvent('meetingForm','"+event.data('eventid')+"')");
+//                $("#meetingButtonDelete").attr("onclick","deleteBasicEvent('meetingForm','"+event.data('eventid')+"')");
+//                $("#meetingButtonDelete").show();
 
-                $('#advance-view-meeting').click(function () {
+                $("#Subject").val(event.data('subject'));
+                $("#description").val(event.data('description'));
+                $('.nav-tabs a[href="#eventTab"]').tab('show');
+                $("#eventButton").attr("onclick","editBasicEvent('eventForm','"+event.data('eventid')+"')");
+                $("#eventButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
+                $("#eventButtonDelete").show();
+
+                $('#advance-view-note').click(function () {
                     editAdvanceNote(event.data('eventid'));
                 });
 

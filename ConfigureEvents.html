@@ -121,6 +121,16 @@
                     }
                 });
 
+                $("#repeat").change(function () {
+                    if (this.checked) {
+                        $("#repeatAllocation").show();
+                    }
+                    else {
+                        $("#repeatAllocation").hide();
+                    }
+                });
+
+
                 //new
                 if(localStorage.getItem("advanceID")==0){
                     $("#advanceButton").attr("onclick","javascript: saveAdvanceEvent('frmMeeting')");
@@ -175,6 +185,19 @@
                                 $('#fullday').prop('checked', false);
                                 $("#timeAllocation").show();
                             }
+
+                            if(data.repeat==""){
+                                $('#repeat').prop('checked', false);
+                                $("#repeatAllocation").hide();
+                                $("#repeatId").val("");
+                            }
+                            else
+                            {
+                                $('#repeat').prop('checked', true);
+                                $("#repeatAllocation").show();
+                                $("#repeatId").val(data.repeat);
+                            }
+
                             $('#StartDate').datepicker("setDate", new Date(dateFormat(new Date(data.startdate),'y'),dateFormat(new Date(data.startdate),'m')-1,dateFormat(new Date(data.startdate),'d')) );
                             $('#EndDate').datepicker("setDate", new Date(dateFormat(new Date(data.enddate),'y'),dateFormat(new Date(data.enddate),'m')-1,dateFormat(new Date(data.enddate),'d')) );
                             $("textarea#Description").val(data.description);
@@ -198,7 +221,38 @@
                 }
 
 
-
+//                $("#repeats")
+//                        .change(function () {
+//                            debugger;
+//                            if ($("#repeats option:selected").val() == "week") {
+//                                var combo = $("#repeatCombo");
+//                                combo.empty();
+//                                for (var i = 1; i < 11; i++) {
+//                                    combo.append($("<option />").val(i).text(i));
+//                                }
+//                            }
+//                            else if ($("#repeats option:selected").val() == "day") {
+//                                var combo = $("#repeatCombo");
+//                                for (var i = 1; i < 31; i++) {
+//                                    combo.append($("<option />").val(i).text(i));
+//                                }
+//                            }
+//                            else if ($("#repeats option:selected").val() == "Y") {
+//                                var combo = $("#repeatCombo");
+//                                combo.empty();
+//                                for (var i = 1; i < 5; i++) {
+//                                    combo.append($("<option />").val(i).text(i));
+//                                }
+//                            }
+//                            else if ($("#repeats option:selected").val() == "M") {
+//                                var combo = $("#repeatCombo");
+//                                combo.empty();
+//                                for (var i = 1; i < 24; i++) {
+//                                    combo.append($("<option />").val(i).text(i));
+//                                }
+//                            }
+//                        })
+//                        .change();
 
             });
 
@@ -262,6 +316,7 @@
                 <input type=hidden name=createdby id="createdby" value="">
                 <input type=hidden id="notetype" name=notetype value="1">
                 <input type=hidden id="locationId"  value="">
+                <input type=hidden id="repeatId"  value="">
 
 
                 <div class="col-xs-12 form-group">
@@ -314,6 +369,36 @@
                         <label>End Time</label>
                         <input type="text" class="form-control" name="" id="EndTime" placeholder="End Time"/>
                     </div>
+                </div>
+                <div class="col-xs-12 form-group">
+                    <label>Repeat</label>
+                    <input type="checkbox" id="repeat" >
+                </div>
+                <div id="repeatAllocation" style="display:none">
+                    <div class="col-xs-6 form-group">
+                    <div class="panel panel-default" style="" >
+                            <div class="panel-body" style="">
+                                <div class="col-xs-6 form-group">
+                                 <strong>Repeats:</strong>
+                                 </div>
+                                <div class="col-xs-6 form-group">
+                                 <select name="" id="repeats" class="form-control" style="">
+                                      <option value="M">Monthly</option>
+                                     <option value="W">Weekly</option>
+                                      <option value="Y">Yearly</option>
+                                 </select>
+                                 </div>
+                                <!--<div class="col-xs-6 form-group">-->
+                                    <!--<strong>Repeats Every</strong>-->
+                                <!--</div>-->
+                                <!--<div class="col-xs-6 form-group">-->
+                                    <!--<select name="" id="repeatCombo" class="form-control" style="">-->
+
+                                    <!--</select>-->
+                                <!--</div>-->
+                        </div>
+                    </div>
+                </div>
                 </div>
                 <div class="col-xs-12 form-group">
                     <label>Meeting Description</label>
