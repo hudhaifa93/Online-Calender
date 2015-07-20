@@ -196,7 +196,7 @@
                                 <div class="listview">
                                     <div class="lv-header">Profile</div>
                                     <div class="lv-body c-overflow" tabindex="1" style="overflow: hidden; outline: none;">
-                                        <a class="lv-item viewShareCal" href="">
+                                        <a class="lv-item viewshareCal" href="">
                                             <div class="media">
                                                 <div class="pull-left">
                                                     <i class="glyphicon glyphicon-log-out " style="color: #f44336" ></i>
@@ -386,6 +386,26 @@
             </div>
         </div>
 
+        <div id="ViewShareModal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="" >Share My Calender</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        Load Here
+
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+
     </body>
 
     <script type="text/javascript" src="js/jquery.js" ></script>
@@ -417,6 +437,14 @@
                 $('#ShareModal').modal('show');
                 return false;
             } );
+
+            $(".viewshareCal").click(function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('#ViewShareModal').modal('show');
+                return false;
+            } );
+
 
         });
 
