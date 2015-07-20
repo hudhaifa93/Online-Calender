@@ -351,17 +351,20 @@ var Month = function (config) {
                 $("#ViewSubject").text(event.data('subject'));
                 $("#ViewDescription").text(event.data('description'));
                 $('#editButton').attr("onclick","editAdvanceNote("+event.data('eventid')+")");
+                $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
             }
             if(event.data('eventtype')=="2"){
                 $("#viewHead").text("Note");
                 $("#ViewSubject").text(event.data('subject'));
                 $("#ViewDescription").text(event.data('description'));
                 $('#editButton').attr("onclick","editAdvanceNote("+event.data('eventid')+")");
+                $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
             }
             if(event.data('eventtype')=="3"){
                 $("#viewHead").text("Birthday");
                 $("#ViewSubject").text(event.data('subject'));
                 $("#ViewDescription").text(dateFormat(new Date(event.data('eventdate')),'d')+" - "+dateFormat(new Date(event.data('eventdate')),'m')+" - "+dateFormat(new Date(event.data('eventdate')),'y'));
+                $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
             }
 
 

@@ -340,6 +340,7 @@
                         </div>
                         <div class="pull-right">
                             <button type="button" class="btn btn-sm btn-primary" id="editButton" onclick="">Edit</button>
+                            <button type="button" class="btn btn-sm btn-danger" id="viewButtonDelete" onclick="">Delete</button>
                             <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
