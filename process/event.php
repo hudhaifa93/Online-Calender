@@ -301,7 +301,7 @@ class Event extends Controller {
         else{
             echo json_encode($result? array("success" => "No Data") : array("failure" => "failure" ));
         }
-   }
+    }
 
     function share(){
         if(strlen($this->post('email')) > 0 ){
@@ -313,8 +313,8 @@ class Event extends Controller {
                 $mail .= "'$e'";
             }
             $q = "INSERT INTO share_note
-SELECT id AS member_id, $id AS event_id, ( SELECT  `createdby` FROM note WHERE id =$id) AS shared_id, 0 AS status FROM member
-WHERE email IN ($mail)";
+            SELECT id AS member_id, $id AS event_id, ( SELECT  `createdby` FROM note WHERE id =$id) AS shared_id, 0 AS status FROM member
+            WHERE email IN ($mail)";
             echo $q;
            echo json_encode($this->db->query($q) ? array('success'=>true) : array('success'=>false) );
 
@@ -331,6 +331,21 @@ WHERE email IN ($mail)";
         }
         return $d;
         //echo json_encode($d?$d : array());
+    }
+
+    function getSharedMemberIds(){
+        $result = $this->db->query("SELECT * FROM shared_calendar where memberid='".$_POST['memberid']."'");
+        //print_r($result);
+        if(is_object($result))
+        {
+            while($r = $result->fetchObject()){
+                $d[] =  $r;
+            }
+            echo json_encode($result? array("success" => json_encode($d?$d : array())) : array("failure" => "failure" ));
+        }
+        else{
+            echo json_encode($result? array("success" => "No Data") : array("failure" => "failure" ));
+        }
     }
 
 }
