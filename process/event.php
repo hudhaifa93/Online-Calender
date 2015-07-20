@@ -206,7 +206,7 @@ class Event extends Controller {
         `notetype` In (3) AND DATE_FORMAT(`startdate`,'%m-%d') between DATE_FORMAT('".$this->post('start')."','%m-%d') AND  DATE_FORMAT('".$this->post('end')."','%m-%d')
         )
         )
-        AND `status` = 1 AND  `repeat` = '' AND `createdby` = ".$this->post('MemberId')." order by `starttime` , `endtime`-`starttime`
+        AND `status` = 1 AND  `repeat` = '' AND `createdby` IN( ".$this->post('MemberId').") ORDER BY `starttime` , `endtime`-`starttime`
         )
 
         union
@@ -223,7 +223,7 @@ class Event extends Controller {
         OR
         DATE_FORMAT('".$this->post('end')."','%m,%d') BETWEEN DATE_FORMAT(`startdate`,'%m,%d') AND DATE_FORMAT(`enddate`,'%m,%d')
         )
-        AND `status` = 1 AND  `repeat` = 'Y' AND `createdby` = ".$this->post('MemberId')." order by `starttime` , `endtime`-`starttime`
+        AND `status` = 1 AND  `repeat` = 'Y' AND `createdby` IN(".$this->post('MemberId').") ORDER BY `starttime` , `endtime`-`starttime`
         )
 
         union
@@ -240,7 +240,7 @@ class Event extends Controller {
         OR
         DATE_FORMAT('".$this->post('end')."','%d') BETWEEN DATE_FORMAT(`startdate`,'%d') AND DATE_FORMAT(`enddate`,'%d')
         )
-        AND `status` = 1 AND  `repeat` = 'M' AND `createdby` = ".$this->post('MemberId')." order by `starttime` , `endtime`-`starttime`
+        AND `status` = 1 AND  `repeat` = 'M' AND `createdby` IN(".$this->post('MemberId').") ORDER BY `starttime` , `endtime`-`starttime`
         )
 
         union
@@ -257,7 +257,7 @@ class Event extends Controller {
         OR
         DATE_FORMAT('".$this->post('end')."','%W') BETWEEN DATE_FORMAT(`startdate`,'%W') AND DATE_FORMAT(`enddate`,'%W')
         )
-        AND `status` = 1 AND  `repeat` = 'W' AND `createdby` = ".$this->post('MemberId')." order by `starttime` , `endtime`-`starttime`
+        AND `status` = 1 AND  `repeat` = 'W' AND `createdby` IN(".$this->post('MemberId').") ORDER BY `starttime` , `endtime`-`starttime`
         )
 
         ");
