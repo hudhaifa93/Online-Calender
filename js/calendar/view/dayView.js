@@ -281,6 +281,15 @@ var Day = function (config) {
                             var widthPortion = 100 / _events.length;
                             var left = 0, right = 0, top = 0, bottom = 0, startHours = 0, endHours = 0;
                             for (var s = 0; s < _events.length; s++) {
+                                var tooltip = '';
+                                if(_events[s].starttime != "0" && _events[s].endtime != "0"){
+                                    tooltip += 'Time : ' + getHourlyTime(_events[s].starttime) + ' to ' + getHourlyTime(_events[s].endtime) + '\n';
+                                }
+                                tooltip += 'Subject : ' + _events[s].subject;
+                                if(_events[s].description != ""){
+                                    tooltip += '\nDescription : ' + _events[s].description;
+                                }
+
                                 startHours = parseInt(_events[s].starttime / 100) + (_events[s].starttime % 100)/60;
                                 endHours = parseInt(_events[s].endtime / 100) + (_events[s].endtime % 100)/60;
                                 left = widthPortion * s;
@@ -288,7 +297,7 @@ var Day = function (config) {
                                 top = startHours * 40;
                                 bottom = endHours * 40;
 
-                                ec += '<a class="fc-time-grid-event fc-event fc-start fc-not-end fc-draggable ' + getColorByEventType(_events[s].notetype)+'" style="top:'+top+'px; bottom: -'+bottom+'px; z-index: 1; left: '+left+'%; right: '+right+'%;">' +
+                                ec += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-time-grid-event fc-event fc-start fc-not-end fc-draggable ' + getColorByEventType(_events[s].notetype)+'" style="top:'+top+'px; bottom: -'+bottom+'px; z-index: 1; left: '+left+'%; right: '+right+'%;">' +
                                     '<div class="fc-content">' +
                                     '<div class="fc-time" data-start="10:00" data-full="12:00 AM - 12:00 AM">' +
                                     '<span>' + getHourlyTime(_events[s].starttime) + ' - ' + getHourlyTime(_events[s].endtime) + '</span></div>' +

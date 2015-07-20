@@ -177,9 +177,17 @@ var Week = function (config) {
                         var fe = '';
                         debugger;
                         for (var n = 0; n < notes.length; n++) {
+                            var tooltip = '';
+                            if(notes[n].starttime != "0" && notes[n].endtime != "0"){
+                                tooltip += 'Time : ' + getHourlyTime(notes[n].starttime) + ' to ' + getHourlyTime(notes[n].endtime) + '\n';
+                            }
+                            tooltip += 'Subject : ' + notes[n].subject;
+                            if(notes[n].description != ""){
+                                tooltip += '\nDescription : ' + notes[n].description;
+                            }
                             if(notes[n].repeat == "M"){
                                 if(dateFormat(Cur_Date,'d')>= dateFormat(new Date(notes[n].startdate),'d') && dateFormat(Cur_Date,'d')<= dateFormat(new Date(notes[n].enddate),'d') && notes[n].starttime == "0" && notes[n].endtime == "0"){
-                                    fe += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(notes[n].notetype) + '">' +
+                                    fe += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(notes[n].notetype) + '">' +
                                         '<div class="fc-content">' +
                                         '<span class="fc-title">' +
                                         notes[n].subject;
@@ -192,7 +200,7 @@ var Week = function (config) {
                                 }
                             }else if(notes[n].repeat == "W"){
                                 if(dateFormat(Cur_Date,'D')>= dateFormat(new Date(notes[n].startdate),'D') && dateFormat(Cur_Date,'D')<= dateFormat(new Date(notes[n].enddate),'D') && notes[n].starttime == "0" && notes[n].endtime == "0"){
-                                    fe += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(notes[n].notetype) + '">' +
+                                    fe += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(notes[n].notetype) + '">' +
                                         '<div class="fc-content">' +
                                         '<span class="fc-title">' +
                                         notes[n].subject;
@@ -206,7 +214,7 @@ var Week = function (config) {
                             }
                             else{
                                 if(dateFormat(Cur_Date,'m-d')>= dateFormat(new Date(notes[n].startdate),'m-d') && dateFormat(Cur_Date,'m-d')<= dateFormat(new Date(notes[n].enddate),'m-d') && notes[n].starttime == "0" && notes[n].endtime == "0"){
-                                    fe += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(notes[n].notetype) + '">' +
+                                    fe += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(notes[n].notetype) + '">' +
                                         '<div class="fc-content">' +
                                         '<span class="fc-title">' +
                                         notes[n].subject;
@@ -365,6 +373,15 @@ var Week = function (config) {
                                 var widthPortion = 100 / _events.length;
                                 var left = 0, right = 0, top = 0, bottom = 0, startHours = 0, endHours = 0;
                                 for (var s = 0; s < _events.length; s++) {
+                                    var tooltip = '';
+                                    if(_events[s].starttime != "0" && _events[s].endtime != "0"){
+                                        tooltip += 'Time : ' + getHourlyTime(_events[s].starttime) + ' to ' + getHourlyTime(_events[s].endtime) + '\n';
+                                    }
+                                    tooltip += 'Subject : ' + _events[s].subject;
+                                    if(_events[s].description != ""){
+                                        tooltip += '\nDescription : ' + _events[s].description;
+                                    }
+
                                     startHours = parseInt(_events[s].starttime / 100) + (_events[s].starttime % 100)/60;
                                     endHours = parseInt(_events[s].endtime / 100) + (_events[s].endtime % 100)/60;
                                     left = 0;
@@ -372,7 +389,7 @@ var Week = function (config) {
                                     top = startHours * 40;
                                     bottom = endHours * 40;
 
-                                    ec += '<a class="fc-time-grid-event fc-event fc-start fc-not-end fc-draggable ' + getColorByEventType(_events[s].notetype)+'" style="top:'+top+'px; bottom: -'+bottom+'px; z-index: 1; left: '+left+'%; right: '+right+'%;">' +
+                                    ec += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-time-grid-event fc-event fc-start fc-not-end fc-draggable ' + getColorByEventType(_events[s].notetype)+'" style="top:'+top+'px; bottom: -'+bottom+'px; z-index: 1; left: '+left+'%; right: '+right+'%;">' +
                                         '<div class="fc-content">' +
                                         '<div class="fc-time" data-start="10:00" data-full="12:00 AM - 12:00 AM">' +
                                         '<span>' + getHourlyTime(_events[s].starttime) + ' - ' + getHourlyTime(_events[s].endtime) + '</span></div>' +
