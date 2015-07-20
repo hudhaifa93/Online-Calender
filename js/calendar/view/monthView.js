@@ -176,17 +176,32 @@ var Month = function (config) {
                         w += '<td  >';
 
                         for (var n = 0; n < notes.length; n++) {
-                            if(dateFormat(Cur_Date,'m-d')>= dateFormat(new Date(notes[n].startdate),'m-d') && dateFormat(Cur_Date,'m-d')<= dateFormat(new Date(notes[n].enddate),'m-d')){
-                                w += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ getColorByEventType(notes[n].notetype) + '" data-eventid="'+notes[n].id+'" data-eventtype="'+notes[n].notetype+'" data-eventdate="'+notes[n].startdate+'" data-subject="'+notes[n].subject+'" data-description="'+notes[n].description+'">' +
-                                    '<div class="fc-content">';
+                            if(notes[n].repeat == "M"){
+                                if(dateFormat(Cur_Date,'d')>= dateFormat(new Date(notes[n].startdate),'d') && dateFormat(Cur_Date,'d')<= dateFormat(new Date(notes[n].enddate),'d')){
+                                    w += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ getColorByEventType(notes[n].notetype) + '" data-eventid="'+notes[n].id+'" data-eventtype="'+notes[n].notetype+'" data-eventdate="'+notes[n].startdate+'" data-subject="'+notes[n].subject+'" data-description="'+notes[n].description+'">' +
+                                        '<div class="fc-content">';
 
-                                if(notes[n].starttime != "0" && notes[n].endtime != "0"){
-                                    w += '<span class="fc-time">' + getHourlyTime(notes[n].starttime) + '</span>';
+                                    if(notes[n].starttime != "0" && notes[n].endtime != "0"){
+                                        w += '<span class="fc-time">' + getHourlyTime(notes[n].starttime) + '</span>';
+                                    }
+
+                                    w += '<span class="fc-title">' + notes[n].subject + '</span>' +
+                                        '</div>' +
+                                        '</a>';
                                 }
+                            }else{
+                                if(dateFormat(Cur_Date,'m-d')>= dateFormat(new Date(notes[n].startdate),'m-d') && dateFormat(Cur_Date,'m-d')<= dateFormat(new Date(notes[n].enddate),'m-d')){
+                                    w += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ getColorByEventType(notes[n].notetype) + '" data-eventid="'+notes[n].id+'" data-eventtype="'+notes[n].notetype+'" data-eventdate="'+notes[n].startdate+'" data-subject="'+notes[n].subject+'" data-description="'+notes[n].description+'">' +
+                                        '<div class="fc-content">';
 
-                                w += '<span class="fc-title">' + notes[n].subject + '</span>' +
-                                    '</div>' +
-                                    '</a>';
+                                    if(notes[n].starttime != "0" && notes[n].endtime != "0"){
+                                        w += '<span class="fc-time">' + getHourlyTime(notes[n].starttime) + '</span>';
+                                    }
+
+                                    w += '<span class="fc-title">' + notes[n].subject + '</span>' +
+                                        '</div>' +
+                                        '</a>';
+                                }
                             }
                         }
                         w += '</td>';
