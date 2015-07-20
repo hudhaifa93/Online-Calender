@@ -447,7 +447,14 @@
             $(".viewshareCal").click(function(e) {
                 e.preventDefault();
                 e.stopPropagation();
+                var sharedobject = jQuery.parseJSON(localStorage.getItem("sharedClicked"));
+                debugger;
+                $('.shareCheckBox').prop('checked', false);
+                $.each(sharedobject, function(index, value) {
+                    $('#'+value.memberid).prop('checked', true);
+                });
                 $('#ViewShareModal').modal('show');
+
                 return false;
             } );
 
