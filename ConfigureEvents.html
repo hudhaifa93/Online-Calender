@@ -291,7 +291,7 @@
                 var fullEmail = Email;
                 Email = Email.split("@");
                 $("#InvitedList").append($('<div class="tags ' + Email[0] + 'List" >' + fullEmail + '<a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
-
+                $("#InviteeEmail").val("")
             }
 
             function removeFromInvitedList(id) {

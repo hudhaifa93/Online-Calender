@@ -499,6 +499,72 @@ function inviteList(noteid,flag){
 
 }
 
+function ShareCalenderList(memberid){
+    debugger
+    var email = [] ;
+    var str ="";
+    $( ".tags" ).each(function( index ) {
+        debugger;
+
+            str = $( this ).text();
+            str = str.split("x");
+            email.push({
+                "memberid" : memberid,
+                "sharedmemberemail" : str[0],
+                "status" : $( this ).data('status') });
+
+    });
+    if(email.length>0){
+        $.ajax({
+            url: "process/index.php?route=event&method=setSharedMemberIds",
+            type: "post",
+            dataType: 'json',
+            data: { sharedMembersList : email}, // provided this code executes in form.onsubmit event
+            success: function (output) {
+                if(output="success"){
+                    showalert("Calender Shared", "alert-success", "", "");
+                }
+                else
+                {
+                    showalert("Calender Not Shared", "alert-danger", "", "");
+                }
+            },
+            failure: function () {
+                showalert("Calender Not Shared", "alert-danger", "", "");
+            }
+        });
+    }
+}
+
+function loadShareCalenderList(memberid){
+    debugger;
+    $.ajax({
+        url: "process/index.php?route=event&method=getSharedMemberIds",
+        type: "post",
+        dataType: 'json',
+        data: "memberid="+memberid, // provided this code executes in form.onsubmit event
+        success: function (e) {
+            debugger;
+            var data = e;
+            data = JSON.parse(data.success);
+
+            $("#InvitedList").html('');
+
+            $.each( data, function( key, value ) {
+                debugger;
+                var Email = value.sharedmemberemail;
+                var fullEmail = Email;
+                Email = Email.split("@");
+                $("#InvitedList").append($('<div data-status="'+value.status+'" class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
+            });
+
+
+        },
+        failure: function () {
+
+        }
+    });
+}
 
 logout();
 function logout(){
@@ -511,6 +577,10 @@ function logout(){
         });
         return false;
     });
+}
+
+function openShareModal(){
+    $('#shareCalenderModal').modal('show');
 }
 
 share();

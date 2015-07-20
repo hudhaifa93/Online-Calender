@@ -29,6 +29,44 @@
                 background-repeat: no-repeat;
                 background-position: 10px center;
             }
+            .bootstrap-tagsinput {
+                width: 100%;
+            }
+            .tags {
+                float: left;
+                margin-right: 2px;
+                margin-bottom: 7px;
+                margin-top: 1px;
+                height: 22px;
+                border-radius: 4px;
+                border: 1px solid #cccccc;
+                font: normal 14px/20px 'Sanchez';
+                background: #ebeaea;
+                background: -o-linear-gradient(top, #C4CDE0, #C4CDE0);
+                background: -webkit-linear-gradient(top, #C4CDE0, #C4CDE0);
+                background: -moz-linear-gradient(top, #C4CDE0, #C4CDE0);
+                background: -ms-linear-gradient(top, #C4CDE0, #C4CDE0);
+                background: linear-gradient(top, #C4CDE0, #C4CDE0);
+                filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr="#C4CDE0", endColorStr="#C4CDE0");
+                border-color: #cccccc;
+                cursor: pointer;
+                box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.3);
+                padding-left: 6px;
+                padding-right: 28px;
+                position: relative;
+            }
+            .tags .delete {
+                display: block;
+                width: 20px;
+                height: 20px;
+                float: right;
+                background: url('../Content/images/panel_tools.png') no-repeat -16px 0px;
+                margin-left: 6px;
+                border-left: 1px solid #ccc;
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
 
         </style>
     </head>
@@ -158,6 +196,26 @@
                                 <div class="listview">
                                     <div class="lv-header">Profile</div>
                                     <div class="lv-body c-overflow" tabindex="1" style="overflow: hidden; outline: none;">
+                                        <a class="lv-item viewShareCal" href="">
+                                            <div class="media">
+                                                <div class="pull-left">
+                                                    <i class="glyphicon glyphicon-log-out " style="color: #f44336" ></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <small class="lv-small">View Shared Calendars</small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="lv-item shareCal" href="" >
+                                            <div class="media" onclick="">
+                                                <div class="pull-left">
+                                                    <i class="glyphicon glyphicon-log-out " style="color: #f44336" ></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <small class="lv-small">Share Calendar</small>
+                                                </div>
+                                            </div>
+                                        </a>
                                         <a class="lv-item logout" href="">
                                             <div class="media">
                                                 <div class="pull-left">
@@ -231,30 +289,7 @@
                                     <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
-<!--                            <div class="tab-pane" id="MeetingTab">-->
-<!--                                <form role="form" id="meetingForm">-->
-<!--                                    <input type=hidden class="createdby" name="createdby" value="">-->
-<!--                                    <input type=hidden name=timeslotid value="0">-->
-<!--                                    <input type=hidden name=status value="1">-->
-<!--                                    <input type=hidden class="ClickedDate" name=startdate value="">-->
-<!--                                    <input type=hidden class="ClickedDate" name=enddate value="">-->
-<!--                                    <input type=hidden class="CurrentDate" name=createddate value="">-->
-<!--                                    <input type=hidden name=notetype value="1">-->
-<!--                                    <input type=hidden name=location value="0">-->
-<!--                                    <div class= "col-xs-12 form-group">-->
-<!--                                        <input type="text" class="form-control" name="subject" id="MeetingName" placeholder="Meeting Name"/>-->
-<!--                                    </div>-->
-<!--                                    <div class= "col-xs-12 form-group">-->
-<!--                                        <textarea class="form-control custom-control" placeholder="Description" name="description" id="MeetingDescription" rows="5" style="resize:none"></textarea>-->
-<!--                                    </div>-->
-<!--                                    <a style="cursor: pointer" id="advance-view-meeting" >Advance Options</a>-->
-<!--                                </form>-->
-<!--                                <div class="pull-right">-->
-<!--                                    <button type="button" class="btn btn-sm btn-primary" id="meetingButton" onclick="saveBasicEvent('meetingForm')">Save</button>-->
-<!--                                    <button type="button" style="display:none" class="btn btn-sm btn-danger" id="meetingButtonDelete" onclick="">Delete</button>-->
-<!--                                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>-->
-<!--                                </div>-->
-<!--                            </div>-->
+
                             <div class="tab-pane" id="birthdayTab">
                                 <form role="form" id="birthdayForm">
                                     <input type=hidden class="createdby" name="createdby" value="">
@@ -287,6 +322,31 @@
                 </div>
             </div>
         </div>
+
+        <div id="CommonViewModal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="viewHead" ></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class= "col-xs-12 form-group">
+                            <label type="text" class="form-control" id="ViewSubject"> </label>
+                        </div>
+                        <div class= "col-xs-12 form-group">
+                            <label class="form-control custom-control" id="ViewDescription"></label>
+                        </div>
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-sm btn-primary" id="editButton" onclick="">Edit</button>
+                            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+
         <div id="share" class="modal fade">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -300,6 +360,32 @@
                 </div>
             </div>
         </div>
+
+        <div id="ShareModal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="" >Share My Calender</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class= "col-xs-6 form-group">
+                            <input type="text" style="  width: 50%;  float: left;" class="form-control"  id="InviteeEmail" placeholder="InviteeEmail"/><button type="button" style="  margin-left: 10px;  float: left;  margin-top: 2px;" class="btn btn-sm btn-primary"onclick="addToInvitedList()">Add to List</button>
+                        </div>
+                        <div class= "col-xs-12 form-group">
+                            <div id="InvitedList">
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-sm btn-primary" id="shareCalenderButton" onclick="">Share</button>
+                            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+
     </body>
 
     <script type="text/javascript" src="js/jquery.js" ></script>
@@ -320,7 +406,33 @@
         $(document).ready(function () {
             $(".createdby").val(localStorage.getItem("memberId"));
             $('[data-toggle="tooltip"]').tooltip();
+            loadShareCalenderList(localStorage.getItem("memberId"));
+            $("#shareCalenderButton").attr("onclick","ShareCalenderList('"+localStorage.getItem("memberId")+"')");
+
+            $(".shareCal").click(function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('#ShareModal').modal('show');
+                return false;
+            } );
+
         });
+
+        function addToInvitedList() {
+            debugger;
+            var Email = $("#InviteeEmail").val();
+            var fullEmail = Email;
+            Email = Email.split("@");
+            $("#InvitedList").append($('<div data-status="0" class="tags ' + Email[0] + 'List" >' + fullEmail + '<a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
+            $("#InviteeEmail").val("");
+        }
+
+        function removeFromInvitedList(id) {
+            debugger;
+            $("." + id+"List").remove();
+        }
+
+
 
     </script>
 

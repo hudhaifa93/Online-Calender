@@ -333,12 +333,14 @@ class Event extends Controller {
     }
 
     function setSharedMemberIds(){
-        $sharedMembersList = $this->post('sharedmemberslist');
-        $memberId = $this->post('memberid');
+        $sharedMembersList = $this->post('sharedMembersList');
+        $memberId=$sharedMembersList[0][memberid];
+        //$sharedMembersList = $this->post('sharedmemberslist');
+        //$memberId = $this->post('memberid');
         $result = $this->db->query("DELETE FROM shared_calendar WHERE memberid='$memberId'");
         if(is_object($result)){
             foreach ($sharedMembersList as &$value) {
-                $result = $this->db->query("INSERT INTO shared_calendar values('".$memberId."','".$value[sharedmemberemail]."','0')");
+                $result = $this->db->query("INSERT INTO shared_calendar values('".$memberId."','".$value[sharedmemberemail]."','".$value[status]."')");
             }
         }
         echo json_encode($result? array("success" => "success") : array("failure" => "failure" ));

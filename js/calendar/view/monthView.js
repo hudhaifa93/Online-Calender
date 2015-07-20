@@ -303,7 +303,7 @@ var Month = function (config) {
         });
 
         self.id.on('click', '.editevent', function () {
-            openModelForEdit($(this));
+            openModelForView($(this));
         });
 
         function openModal(date) {
@@ -342,6 +342,30 @@ var Month = function (config) {
             $("#meetingButtonDelete").hide();
         }
 
+        function openModelForView(event){
+            resetModalButton();
+            $('#CommonViewModal').modal('show');
+            if(event.data('eventtype')=="1")//meeting
+            {
+                $("#viewHead").text("Meeting");
+                $("#ViewSubject").text(event.data('subject'));
+                $("#ViewDescription").text(event.data('description'));
+                $('#editButton').attr("onclick","editAdvanceNote("+event.data('eventid')+")");
+            }
+            if(event.data('eventtype')=="2"){
+                $("#viewHead").text("Note");
+                $("#ViewSubject").text(event.data('subject'));
+                $("#ViewDescription").text(event.data('description'));
+                $('#editButton').attr("onclick","editAdvanceNote("+event.data('eventid')+")");
+            }
+            if(event.data('eventtype')=="3"){
+                $("#viewHead").text("Birthday");
+                $("#ViewSubject").text(event.data('subject'));
+                $("#ViewDescription").text(dateFormat(new Date(event.data('eventdate')),'d')+" - "+dateFormat(new Date(event.data('eventdate')),'m')+" - "+dateFormat(new Date(event.data('eventdate')),'y'));
+            }
+
+
+        }
         function openModelForEdit(event) {
             debugger;
            // alert("editModal");
