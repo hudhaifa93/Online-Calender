@@ -177,17 +177,32 @@ var Week = function (config) {
                         var fe = '';
                         debugger;
                         for (var n = 0; n < notes.length; n++) {
-                            if(dateFormat(Cur_Date,'m-d')>= dateFormat(new Date(notes[n].startdate),'m-d') && dateFormat(Cur_Date,'m-d')<= dateFormat(new Date(notes[n].enddate),'m-d') && notes[n].starttime == "0" && notes[n].endtime == "0"){
-                                fe += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(notes[n].notetype) + '">' +
-                                    '<div class="fc-content">' +
-                                    '<span class="fc-title">' +
-                                    notes[n].subject;
+                            if(notes[n].repeat == "M"){
+                                if(dateFormat(Cur_Date,'d')>= dateFormat(new Date(notes[n].startdate),'d') && dateFormat(Cur_Date,'d')<= dateFormat(new Date(notes[n].enddate),'d') && notes[n].starttime == "0" && notes[n].endtime == "0"){
+                                    fe += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(notes[n].notetype) + '">' +
+                                        '<div class="fc-content">' +
+                                        '<span class="fc-title">' +
+                                        notes[n].subject;
                                     if(notes[n].description != ''){
                                         fe += ' : ' + notes[n].description;
                                     }
                                     fe += '</span></div>' +
-                                    '<div class="fc-resizer"></div>' +
-                                    '</a>';
+                                        '<div class="fc-resizer"></div>' +
+                                        '</a>';
+                                }
+                            }else{
+                                if(dateFormat(Cur_Date,'m-d')>= dateFormat(new Date(notes[n].startdate),'m-d') && dateFormat(Cur_Date,'m-d')<= dateFormat(new Date(notes[n].enddate),'m-d') && notes[n].starttime == "0" && notes[n].endtime == "0"){
+                                    fe += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(notes[n].notetype) + '">' +
+                                        '<div class="fc-content">' +
+                                        '<span class="fc-title">' +
+                                        notes[n].subject;
+                                    if(notes[n].description != ''){
+                                        fe += ' : ' + notes[n].description;
+                                    }
+                                    fe += '</span></div>' +
+                                        '<div class="fc-resizer"></div>' +
+                                        '</a>';
+                                }
                             }
                         }
                         h += '<td>';
@@ -312,10 +327,16 @@ var Week = function (config) {
                         for (var c = 0; c < 7; c++) {
                             var _events = [];
                             var noOfItems =0;
+                            debugger;
                             for (var n = 0; n < notes.length; n++) {
-                                if(dateFormat(Cur_Date)>= dateFormat(new Date(notes[n].startdate)) && dateFormat(Cur_Date)<= dateFormat(new Date(notes[n].enddate)) && notes[n].endtime != "0"){
-                                    _events.push(notes[n]);
-                                    ++noOfItems;
+                                if(notes[n].endtime != "0"){
+                                    if(notes[n].repeat == "M" && dateFormat(Cur_Date,'d')>= dateFormat(new Date(notes[n].startdate),'d') && dateFormat(Cur_Date,'d')<= dateFormat(new Date(notes[n].enddate),'d')){
+                                        _events.push(notes[n]);
+                                        ++noOfItems;
+                                    }else if(dateFormat(Cur_Date)>= dateFormat(new Date(notes[n].startdate)) && dateFormat(Cur_Date)<= dateFormat(new Date(notes[n].enddate))){
+                                        _events.push(notes[n]);
+                                        ++noOfItems;
+                                    }
                                 }
                             }
 
@@ -384,13 +405,3 @@ var Week = function (config) {
     }());
 
 };
-
-function getAllEvents(notes_){
-    var _events = [];
-    for (var n = 0; n < notes_.length; n++) {
-        var _notes = notes_[n].events;
-        for (var n = 0; n < notes_.length; n++) {
-
-        }
-    }
-}
