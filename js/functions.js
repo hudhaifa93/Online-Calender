@@ -538,10 +538,12 @@ function ShareCalenderList(memberid){
 
 function loadShareCalenderList(memberid){
     debugger;
+    $("#InvitedList").html('');
     $.ajax({
         url: "process/index.php?route=event&method=getSharedMemberIds",
         type: "post",
         dataType: 'json',
+        async:false,
         data: "memberid="+memberid, // provided this code executes in form.onsubmit event
         success: function (e) {
             debugger;

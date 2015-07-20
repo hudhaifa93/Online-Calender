@@ -404,8 +404,10 @@
         });
 
         $(document).ready(function () {
-            $(".createdby").val(localStorage.getItem("memberId"));
+
             $('[data-toggle="tooltip"]').tooltip();
+
+            $(".createdby").val(localStorage.getItem("memberId"));
             loadShareCalenderList(localStorage.getItem("memberId"));
             $("#shareCalenderButton").attr("onclick","ShareCalenderList('"+localStorage.getItem("memberId")+"')");
 
