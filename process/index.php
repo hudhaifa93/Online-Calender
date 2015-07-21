@@ -5,11 +5,11 @@
  * Date: 7/11/15
  * Time: 8:53 AM
  */
- error_reporting(0);
- 
- // url pattern domain.com/process/index.php?route="Class name"&method="Class Method name "
- // from submit using post method
- // example http://localhost/calendar/process/?route=Event&method=getEvent
+//error_reporting(0);
+
+// url pattern domain.com/process/index.php?route="Class name"&method="Class Method name "
+// from submit using post method
+// example http://localhost/calendar/process/?route=Event&method=getEvent
 
 
 
@@ -39,7 +39,7 @@ if ( ! function_exists('objectToArray'))
 
 
 function __autoload($class_name) {
-    include $class_name . '.php';
+    include strtolower($class_name) . '.php';
 }
 
 // get from GET method and save into $gat Object
@@ -51,8 +51,9 @@ foreach($_GET as $k => $v)
 $post = new stdClass();
 foreach($_POST as $k => $v)
     $post->$k = $v ;
-
+$get->route = strtolower($get->route);
 if(file_exists("./{$get->route}.php")){
+
     require_once "./{$get->route}.php";
 
     $obj = new $get->route();
