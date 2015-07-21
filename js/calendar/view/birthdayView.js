@@ -139,7 +139,6 @@ var BirthDay = function (config) {
 
                 var b = '';
                 var Cur_Date = new Date(_date.getFullYear(), _date.getMonth(), _date.getDate(), 0, 0, 0, 0);
-                var Cur_Month = Cur_Date.getMonth();
                 var _isFound = false;
                 var _CurBday = _bday[Cur_Date.getMonth()];
 
@@ -191,11 +190,18 @@ var BirthDay = function (config) {
                     Cur_Date = new Date(Cur_Date.getFullYear(), Cur_Date.getMonth() + 1, 1);
                 }
                 
-                while(Cur_Date.getMonth() == Cur_Month){
-                    if(Cur_Date.getMonth() == Cur_Month){
-                        
+                _CurBday = _bday[Cur_Date.getMonth()];
+                while(Cur_Date.getMonth() == _date.getMonth()){
+                    if(Cur_Date.getMonth() == _date.getMonth()){
+                        for(var i=0;i<_CurBday.length;i++){
+                            if(dateFormat(_date,'m-d') > dateFormat(new Date(_CurBday[i].startdate),'m-d')){
+                            
+                            }
+                        }
                     }else{
-                        
+                        for(var i=0;i<_CurBday.length;i++){
+                            
+                        }
                     }
                
                     if (Cur_Date.getMonth() == 11) {
