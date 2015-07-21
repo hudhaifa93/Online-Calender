@@ -189,21 +189,44 @@ var BirthDay = function (config) {
                 } else {
                     Cur_Date = new Date(Cur_Date.getFullYear(), Cur_Date.getMonth() + 1, 1);
                 }
-                
-                _CurBday = _bday[Cur_Date.getMonth()];
+            
                 while(Cur_Date.getMonth() == _date.getMonth()){
+                    _CurBday = _bday[Cur_Date.getMonth()];
+                    _isFound = false;
                     if(Cur_Date.getMonth() == _date.getMonth()){
                         for(var i=0;i<_CurBday.length;i++){
                             if(dateFormat(_date,'m-d') > dateFormat(new Date(_CurBday[i].startdate),'m-d')){
-                            
+                                if(!_isFound){
+                                    b += '<div>' +
+                                        '<div>' + months[Cur_Date.getMonth()] + '</div>';
+                                    _isFound = true;
+                                }
+                                b += '<div>' +
+                                    '<span>' +
+                                    _CurBday[i].subject;
+                                    '</span>' +
+                                    '</div>';
                             }
                         }
                     }else{
                         for(var i=0;i<_CurBday.length;i++){
-                            
+                            if(!_isFound){
+                                b += '<div>' +
+                                    '<div>' + months[Cur_Date.getMonth()] + '</div>';
+                                _isFound = true;
+                            }
+                            b += '<div>' +
+                                '<span>' +
+                                _CurBday[i].subject;
+                                '</span>' +
+                                '</div>';
                         }
                     }
                
+                    if(_isFound){
+                        b += '</div>';
+                    }
+                
                     if (Cur_Date.getMonth() == 11) {
                         Cur_Date = new Date(Cur_Date.getFullYear() + 1, 0, 1);
                     } else {
