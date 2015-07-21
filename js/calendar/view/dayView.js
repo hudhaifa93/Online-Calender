@@ -123,7 +123,16 @@ var Day = function (config) {
                 var fe = '';
                 for (var n = 0; n < notes.length; n++) {
                     if(notes[n].starttime == "0" && notes[n].endtime == "0"){
-                        fe += '<a class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable  '+ getColorByEventType(notes[n].notetype) + ' ">' +
+                        var tooltip = '';
+                        if(notes[n].starttime != "0" && notes[n].endtime != "0"){
+                            tooltip += 'Time : ' + getHourlyTime(notes[n].starttime) + ' to ' + getHourlyTime(notes[n].endtime) + '\n';
+                        }
+                        tooltip += 'Subject : ' + notes[n].subject;
+                        if(notes[n].description != ""){
+                            tooltip += '\nDescription : ' + notes[n].description;
+                        }
+
+                        fe += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable  '+ getColorByEventType(notes[n].notetype) + ' ">' +
                             '<div class="fc-content">' +
                             '<span class="fc-title">' +
                             notes[n].subject;
