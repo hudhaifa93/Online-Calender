@@ -235,7 +235,7 @@ var BirthDay = function (config) {
                                         '<div class="panel-heading" style="background-color: #F44336;color: white;padding: 10px;text-align: left;margin-top: 10px;"><strong>' + name.months[Cur_Date.getMonth()] + '</strong></div>';
                                     _isFound = true;
                                 }
-                                
+
                                 b += '<div class="panel-body">' +
                                     '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
                                     '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + ' ';
