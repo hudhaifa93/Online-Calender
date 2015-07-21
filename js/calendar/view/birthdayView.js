@@ -191,18 +191,20 @@ var BirthDay = function (config) {
                     Cur_Date = new Date(Cur_Date.getFullYear(), Cur_Date.getMonth() + 1, 1);
                 }
                 
+                while(Cur_Date.getMonth() == Cur_Month){
+                    if(Cur_Date.getMonth() == Cur_Month){
+                        
+                    }else{
+                        
+                    }
+               
+                    if (Cur_Date.getMonth() == 11) {
+                        Cur_Date = new Date(Cur_Date.getFullYear() + 1, 0, 1);
+                    } else {
+                        Cur_Date = new Date(Cur_Date.getFullYear(), Cur_Date.getMonth() + 1, 1);
+                    }
+                }
                 
-                //Cur_Date.setDate(Cur_Date.getMonth() + 1);
-                //while(Cur_Date.getMonth() == Cur_Month){
-                //    Cur_Date.setDate(Cur_Date.getMonth() + 1);
-                //}
-
-                //if (now.getMonth() == 11) {
-                //    var current = new Date(now.getFullYear() + 1, 0, 1);
-                //} else {
-                //    var current = new Date(now.getFullYear(), now.getMonth() + 1, 1);
-                //}
-
                 h += b;
 
                 h += '</tbody>' +
