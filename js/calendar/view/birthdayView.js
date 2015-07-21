@@ -275,7 +275,8 @@ function getAge(bday){
     if(_bdate.getFullYear() > 0 && _bdate.getFullYear() < _today.getFullYear()){
         debugger;
         var age = parseInt(parseInt(_today.getFullYear()) - parseInt(_bdate.getFullYear()));
-        h += '<strong style="float:right;margin-right: 10px;">Turning ' +  age + ' Years.</strong>' ;
+        var nextBdate = new Date(_today.getFullYear(),_bdate.getMonth(),_bdate.getDate(),0,0,0);
+        h += '<strong style="float:right;margin-right: 10px;">' + nextBdate.toDateString() + '<small> | Turning ' +  age + ' Years.</small></strong>' ;
     }
 
     return h;
