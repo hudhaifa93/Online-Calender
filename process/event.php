@@ -156,20 +156,7 @@ class Event extends Controller {
     }
 
     function getCurrentEvent(){
-        if($date = $this->post('date')){
-            $result = $this->db->query(" select note.* ,concat(member.firstname , ' ' , member.lastname) as name  from `note` join member  on member.id = note.createdby WHERE  DATE_FORMAT(startdate, '%m-%d')   = DATE_FORMAT('$date', '%m-%d')  ");
-            while($r = $result->fetchObject()){
-                $d[] =  $r;
-            }
-        }
-        $share = $this->shareEvent();
-        if(is_array($d)){
-            if(is_array($share))
-                $d =array_merge($d,$share);
-            echo json_encode($d);
-        }else if(is_array($share))
-            echo json_encode($share);
-        else echo json_encode(array());
+       echo json_encode($this->sharedCalendar()) ;
     }
 
     function getAdvanceEventData(){
@@ -334,11 +321,11 @@ class Event extends Controller {
 
     function setSharedMemberIds(){
         $sharedMembersList = $this->post('sharedMembersList');
-        $memberId=$sharedMembersList[0][memberid];
+        $memberId=$sharedMembersList[0]['memberid'];
         $result = $this->db->query("DELETE FROM shared_calendar WHERE memberid='$memberId'");
         if(is_object($result)){
             foreach ($sharedMembersList as &$value) {
-                $result = $this->db->query("INSERT INTO shared_calendar values('".$memberId."','".$value[sharedmemberemail]."','".$value[status]."')");
+                $result = $this->db->query("INSERT INTO shared_calendar values('".$memberId."','".$value['sharedmemberemail']."','".$value['status']."')");
             }
         }
         echo json_encode($result? array("success" => "success") : array("failure" => "failure" ));
@@ -380,6 +367,17 @@ class Event extends Controller {
         echo json_encode($d?$d : array());
     }
 
+    function sharedCalendar(){
+        $user = session::get('user');
+        $this->db->query("select member.id , CONCAT(member.firstname ,' ', member.lastname) as name from shared_calendar join member on shared_calendar.memberid = member.id where sharedmemberemail='".$user['email']."' and shared_calendar.status = 0  ");
+        while($r = $this->db->fetchObject()){
+            $r->share = 1 ;
+            $r->subject = $r->name.' shared is calendar' ;
+            $d[] = $r;
+        }
+
+        return isset($d)?$d : array();
+    }
 }
 /*
 $email = new email();
@@ -388,4 +386,20 @@ $email->to('to addrss');
 $email->subject('subject');
 $email->message('message body');
 $email->send();
+
+if($date = $this->post('date')){
+    $result = $this->db->query(" select note.* ,concat(member.firstname , ' ' , member.lastname) as name  from `note` join member  on member.id = note.createdby WHERE  DATE_FORMAT(startdate, '%m-%d')   = DATE_FORMAT('$date', '%m-%d')  ");
+    while($r = $result->fetchObject()){
+        $d[] =  $r;
+    }
+}
+$share = $this->shareEvent();
+$share1 = $this->sharedCalendar();
+if(is_array($d)){
+    if(is_array($share))
+        $d =array_merge($d,$share);
+    echo json_encode($d);
+}else if(is_array($share))
+    echo json_encode($share);
+else echo json_encode(array());
 */

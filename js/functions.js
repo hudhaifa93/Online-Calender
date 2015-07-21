@@ -260,7 +260,8 @@ function showalert(message, alerttype, id, type) {
                 if(e.length > 0 ){
                     $('#notifications').find('.lv-body').html("");
                     $.each(e,function(k,v){
-                        item = $('<a class="lv-item" href=""><div class="media">' +
+                        item = $('<a class="lv-item"></a>');
+                        $('<div class="media">' +
                             '<div class="pull-left">' +
                             ' <img class="lv-img-sm" src="img/profile-pics/1.jpg" alt="">' +
                             ' </div>' +
@@ -268,38 +269,33 @@ function showalert(message, alerttype, id, type) {
                             '<div class="lv-title">'+ v.name +'</div>' +
                             '<small class="lv-small">'+ v.subject +'</small>' +
                             ' </div>' +
-                            ' </div>' +
-                            '</a>');
+                            ' </div>' ).appendTo(item);
+                        if(typeof  v.share != 'undefined'){
+                            item.data('member_id', v.id).data('share',true).addClass('sharedCalendar');
+                        }
                         $('#notifications').find('.lv-body').append(item);
                     });
                     $('.tm-notification').html( '<i class="tmn-counts" >'+e.length+'</i>');
                 }
             }
         });
-//        $.ajax({
-//            url : "process/?route=event&method=shareEvent",
-//            type: "post",
-//            dataType: "json",
-//            success :function(e){
-//                if(e.length > 0 ){
-//                    $('#notifications').find('.lv-body').html("");
-//                    $.each(e,function(k,v){
-//                        item = $('<a class="lv-item" href=""><div class="media">' +
-//                            '<div class="pull-left">' +
-//                            ' <img class="lv-img-sm" src="img/profile-pics/1.jpg" alt="">' +
-//                            ' </div>' +
-//                            ' <div class="media-body">' +
-//                            '<div class="lv-title">'+ v.name +'</div>' +
-//                            '<small class="lv-small">'+ v.subject +'</small>' +
-//                            ' </div>' +
-//                            ' </div>' +
-//                            '</a>');
-//                        $('#notifications').find('.lv-body').append(item);
-//                    });
-//                    $('.tm-notification').html( '<i class="tmn-counts" >'+e.length+'</i>');
-//                }
-//            }
-//        });
+        $('#notifications').on('click','.sharedCalendar',function(){
+            BootstrapDialog.show({
+                title: 'Default Title',
+                message: 'Click buttons below.',
+                buttons: [{
+                    label: 'Title 1',
+                    action: function(dialog) {
+                        dialog.setTitle('Title 1');
+                    }
+                }, {
+                    label: 'Title 2',
+                    action: function(dialog) {
+                        dialog.setTitle('Title 2');
+                    }
+                }]
+            });
+        });
     }
 }
 
