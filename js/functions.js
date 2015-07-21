@@ -543,17 +543,19 @@ function loadShareCalenderList(memberid){
         success: function (e) {
 
             var data = e;
+            debugger;
             data = JSON.parse(data.success);
 
             $("#InvitedList").html('');
-
             $.each( data, function( key, value ) {
-                debugger;
-                var Email = value.sharedmemberemail;
-                var fullEmail = Email;
-                Email = Email.split("@");
-                $("#InvitedList").append($('<div data-status="'+value.status+'" class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
-            });
+                    debugger;
+                    var Email = value.sharedmemberemail;
+                    var fullEmail = Email;
+                    Email = Email.split("@");
+                    $("#InvitedList").append($('<div data-status="'+value.status+'" class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
+                });
+
+
 
 
         },
@@ -576,9 +578,17 @@ function loadSharedCalenderList(memberid){
             debugger;
             var data = e;
             data = JSON.parse(data.success);
-            $.each( data, function( key, value ) {
-               $("#sharedList").append($("<input type='checkbox' style='margin-right: 10px;' class='shareCheckBox' id='"+value.id+"' ><label id='label"+value.id+"'>"+value.firstname+" "+value.lastname+"</label><br>"));
-            });
+            if(data=="" || data==[])
+            {
+                $("#sharedList").append("<div>Calenders Not Shared With  You.</div>");
+                localStorage.setItem("sharedClicked","");
+            }
+            else
+            {
+                $.each( data, function( key, value ) {
+                   $("#sharedList").append($("<input type='checkbox' style='margin-right: 10px;' class='shareCheckBox' id='"+value.id+"' ><label id='label"+value.id+"'>"+value.firstname+" "+value.lastname+"</label><br>"));
+                });
+            }
         },
         failure: function () {
 

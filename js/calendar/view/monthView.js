@@ -352,21 +352,50 @@ var Month = function (config) {
                 $("#viewHead").text("Meeting");
                 $("#ViewSubject").text(event.data('subject'));
                 $("#ViewDescription").text(event.data('description'));
-                $('#editButton').attr("onclick","editAdvanceNote("+event.data('eventid')+")");
-                $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
+                if(event.data('createdby')==localStorage.getItem("memberId"))
+                {
+                    $('#editButton').attr("onclick","editAdvanceNote("+event.data('eventid')+")");
+                    $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
+                    $('#editButton').show();
+                    $("#viewButtonDelete").show();
+                }
+                else
+                {
+                    $('#editButton').hide();
+                    $("#viewButtonDelete").hide();
+                }
+
             }
             if(event.data('eventtype')=="2"){
                 $("#viewHead").text("Note");
                 $("#ViewSubject").text(event.data('subject'));
                 $("#ViewDescription").text(event.data('description'));
+                if(event.data('createdby')==localStorage.getItem("memberId"))
+                {
                 $('#editButton').attr("onclick","editAdvanceNote("+event.data('eventid')+")");
                 $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
+                    $('#editButton').show();
+                    $("#viewButtonDelete").show();
+                }
+                 else
+                {
+                    $('#editButton').hide();
+                    $("#viewButtonDelete").hide();
+                }
             }
             if(event.data('eventtype')=="3"){
                 $("#viewHead").text("Birthday");
                 $("#ViewSubject").text(event.data('subject'));
                 $("#ViewDescription").text(dateFormat(new Date(event.data('eventdate')),'d')+" - "+dateFormat(new Date(event.data('eventdate')),'m')+" - "+dateFormat(new Date(event.data('eventdate')),'y'));
-                $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
+                if(event.data('createdby')==localStorage.getItem("memberId"))
+                {
+                    $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
+                    $("#viewButtonDelete").show();
+                }
+                else
+                {
+                    $("#viewButtonDelete").hide();
+                }
             }
 
 
