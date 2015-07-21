@@ -190,6 +190,12 @@ var BirthDay = function (config) {
                 //    Cur_Date.setDate(Cur_Date.getMonth() + 1);
                 //}
 
+                //if (now.getMonth() == 11) {
+                //    var current = new Date(now.getFullYear() + 1, 0, 1);
+                //} else {
+                //    var current = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+                //}
+
                 h += b;
 
                 h += '</tbody>' +
