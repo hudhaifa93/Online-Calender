@@ -27,10 +27,9 @@ var BirthDay = function (config) {
         self.id.addClass("fc fc-ltr ui-widget");
         self.id.html("");
         _head(self.id);
-        var memberId = localStorage.getItem("memberId");
         $.ajax({
             url : "process/?route=Event&method=getAllBirthDaysByMemberId",
-            data:  { memberid: memberId},
+            data:  { memberid: getMemberIds()},
             type : "post",
             dataType: "json",
             success : function(e){
