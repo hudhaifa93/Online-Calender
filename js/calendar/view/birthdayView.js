@@ -125,7 +125,7 @@ var BirthDay = function (config) {
                 var h = '<div>' +
                     '<div>' +
                     '<table>' +
-                    '<tbody>';
+                    '<tbody style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif">';
 
                 var _bday = [];
                 for(var i=0;i<12;i++){ _bday.push([]);}
@@ -152,7 +152,7 @@ var BirthDay = function (config) {
                             _isFound = true;
                         }
                         b += '<div class="panel-body">' +
-                            '<strong>' + _CurBday[i].subject + '</strong>' +
+                            '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + '</strong>' +
                             '</div>';
                     }
                 }
@@ -170,7 +170,7 @@ var BirthDay = function (config) {
                             _isFound = true;
                         }
                         b += '<div class="panel-body">' +
-                            '<strong>' +  _CurBday[i].subject + '</strong>' +
+                            '<strong style="float: left;margin-left: 10px;">' +  _CurBday[i].subject + '</strong>' +
                         '</div>';
                     }
                 }
@@ -198,7 +198,7 @@ var BirthDay = function (config) {
                                         _isFound = true;
                                     }
                                     b += '<div class="panel-body">' +
-                                        '<strong>' +  _CurBday[i].subject + '</strong>' +
+                                        '<strong style="float: left;margin-left: 10px;">' +  _CurBday[i].subject + '</strong>' +
                                         '</div>';
                                 }
                             }
@@ -210,7 +210,7 @@ var BirthDay = function (config) {
                                     _isFound = true;
                                 }
                                 b += '<div class="panel-body">' +
-                                    '<strong>' + _CurBday[i].subject + '</strong>' +
+                                    '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + '</strong>' +
                                     '</div>';
                             }
                         }
