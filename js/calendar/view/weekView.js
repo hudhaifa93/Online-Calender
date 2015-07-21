@@ -190,12 +190,19 @@ var Week = function (config) {
                             if(notes[n].repeat == "M"){
                                 if(dateFormat(Cur_Date,'d')>= dateFormat(new Date(notes[n].startdate),'d') && dateFormat(Cur_Date,'d')<= dateFormat(new Date(notes[n].enddate),'d') && notes[n].starttime == "0" && notes[n].endtime == "0"){
                                     fe += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(notes[n].notetype) + '">' +
-                                        '<div class="fc-content">' +
-                                        '<span class="fc-title">' +
+                                        '<div class="fc-content">';
+
+                                    if(notes[n].createdby != localStorage.getItem("memberId")){
+                                        fe += '<div class="fc-time"><span class="fc-time">&#10010;</span></div>';
+                                    }
+
+                                    fe += '<span class="fc-title">' +
                                         notes[n].subject;
+
                                     if(notes[n].description != ''){
                                         fe += ' : ' + notes[n].description;
                                     }
+
                                     fe += '</span></div>' +
                                         '<div class="fc-resizer"></div>' +
                                         '</a>';
@@ -203,12 +210,19 @@ var Week = function (config) {
                             }else if(notes[n].repeat == "W"){
                                 if(dateFormat(Cur_Date,'D')>= dateFormat(new Date(notes[n].startdate),'D') && dateFormat(Cur_Date,'D')<= dateFormat(new Date(notes[n].enddate),'D') && notes[n].starttime == "0" && notes[n].endtime == "0"){
                                     fe += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(notes[n].notetype) + '">' +
-                                        '<div class="fc-content">' +
-                                        '<span class="fc-title">' +
+                                        '<div class="fc-content">';
+
+                                    if(notes[n].createdby != localStorage.getItem("memberId")){
+                                        fe += '<div class="fc-time"><span class="fc-time">&#10010;</span></div>';
+                                    }
+
+                                    fe +=  '<span class="fc-title">' +
                                         notes[n].subject;
+
                                     if(notes[n].description != ''){
                                         fe += ' : ' + notes[n].description;
                                     }
+
                                     fe += '</span></div>' +
                                         '<div class="fc-resizer"></div>' +
                                         '</a>';
@@ -217,12 +231,19 @@ var Week = function (config) {
                             else{
                                 if(dateFormat(Cur_Date,'m-d')>= dateFormat(new Date(notes[n].startdate),'m-d') && dateFormat(Cur_Date,'m-d')<= dateFormat(new Date(notes[n].enddate),'m-d') && notes[n].starttime == "0" && notes[n].endtime == "0"){
                                     fe += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ getColorByEventType(notes[n].notetype) + '">' +
-                                        '<div class="fc-content">' +
-                                        '<span class="fc-title">' +
+                                        '<div class="fc-content">';
+
+                                    if(notes[n].createdby != localStorage.getItem("memberId")){
+                                        fe += '<span class="fc-time">&#10010;</span>';
+                                    }
+
+                                    fe += '<span class="fc-title">' +
                                         notes[n].subject;
+
                                     if(notes[n].description != ''){
                                         fe += ' : ' + notes[n].description;
                                     }
+
                                     fe += '</span></div>' +
                                         '<div class="fc-resizer"></div>' +
                                         '</a>';
@@ -396,8 +417,13 @@ var Week = function (config) {
 
                                     ec += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-time-grid-event fc-event fc-start fc-not-end fc-draggable ' + getColorByEventType(_events[s].notetype)+'" style="top:'+top+'px; bottom: -'+bottom+'px; z-index: 1; left: '+left+'%; right: '+right+'%;">' +
                                         '<div class="fc-content">' +
-                                        '<div class="fc-time" data-start="10:00" data-full="12:00 AM - 12:00 AM">' +
-                                        '<span>' + getHourlyTime(_events[s].starttime) + ' - ' + getHourlyTime(_events[s].endtime) + '</span></div>' +
+                                        '<div class="fc-time" data-start="10:00" data-full="12:00 AM - 12:00 AM">';
+
+                                    if(_events[s].createdby != localStorage.getItem("memberId")){
+                                        ec += '&#10010; ';
+                                    }
+
+                                    ec += '<span>' + getHourlyTime(_events[s].starttime) + ' - ' + getHourlyTime(_events[s].endtime) + '</span></div>' +
                                         '<div class="fc-title">' + _events[s].subject + '</div>' +
                                         '</div>' +
                                         '<div class="fc-bg"></div>' +

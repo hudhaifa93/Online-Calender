@@ -192,8 +192,8 @@ var Month = function (config) {
                                     w += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ getColorByEventType(notes[n].notetype) + '" data-eventid="'+notes[n].id+'" data-eventtype="'+notes[n].notetype+'" data-eventdate="'+notes[n].startdate+'" data-subject="'+notes[n].subject+'" data-description="'+notes[n].description+'">' +
                                         '<div class="fc-content">';
 
-                                    if(notes[n].starttime != "0" && notes[n].endtime != "0"){
-                                        w += '<span class="fc-time">' + getHourlyTime(notes[n].starttime) + '</span>';
+                                    if(notes[n].createdby != localStorage.getItem("memberId")){
+                                        w += '<span class="fc-time">&#10010;</span>';
                                     }
 
                                     w += '<span class="fc-title">' + notes[n].subject + '</span>' +
@@ -205,8 +205,8 @@ var Month = function (config) {
                                     w += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ getColorByEventType(notes[n].notetype) + '" data-eventid="'+notes[n].id+'" data-eventtype="'+notes[n].notetype+'" data-eventdate="'+notes[n].startdate+'" data-subject="'+notes[n].subject+'" data-description="'+notes[n].description+'">' +
                                         '<div class="fc-content">';
 
-                                    if(notes[n].starttime != "0" && notes[n].endtime != "0"){
-                                        w += '<span class="fc-time">' + getHourlyTime(notes[n].starttime) + '</span>';
+                                    if(notes[n].createdby != localStorage.getItem("memberId")){
+                                        w += '<span class="fc-time">&#10010;</span>';
                                     }
 
                                     w += '<span class="fc-title">' + notes[n].subject + '</span>' +
@@ -219,8 +219,8 @@ var Month = function (config) {
                                     w += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ getColorByEventType(notes[n].notetype) + '" data-eventid="'+notes[n].id+'" data-eventtype="'+notes[n].notetype+'" data-eventdate="'+notes[n].startdate+'" data-subject="'+notes[n].subject+'" data-description="'+notes[n].description+'">' +
                                         '<div class="fc-content">';
 
-                                    if(notes[n].starttime != "0" && notes[n].endtime != "0"){
-                                        w += '<span class="fc-time">' + getHourlyTime(notes[n].starttime) + '</span>';
+                                    if(notes[n].createdby != localStorage.getItem("memberId")){
+                                        w += '<span class="fc-time">&#10010;</span>';
                                     }
 
                                     w += '<span class="fc-title">' + notes[n].subject + '</span>' +

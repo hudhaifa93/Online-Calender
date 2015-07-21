@@ -27,9 +27,10 @@ var BirthDay = function (config) {
         self.id.addClass("fc fc-ltr ui-widget");
         self.id.html("");
         _head(self.id);
+        debugger;
         $.ajax({
             url : "process/?route=Event&method=getAllBirthDaysByMemberId",
-            data:  { memberid: getMemberIds()},
+            data:  { MemberId: getMemberIds()},
             type : "post",
             dataType: "json",
             success : function(e){
@@ -150,8 +151,15 @@ var BirthDay = function (config) {
                                 '<div class="panel-heading" style="background-color: #F44336;color: white;padding: 10px;text-align: left;margin-top: 10px;"><strong>Today</strong></div>';
                             _isFound = true;
                         }
+                        
                         b += '<div class="panel-body">' +
-                            '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + '</strong>' +
+                            '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + '';
+
+                        if(_CurBday[i].createdby != localStorage.getItem("memberId")){
+                            b += '<span class="fc-time">&#10010;</span>';
+                        }
+
+                        b += '</strong>' +
                             '</div>' +
                             '<hr style="padding:0px;">';
                     }
