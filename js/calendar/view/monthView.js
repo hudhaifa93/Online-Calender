@@ -176,6 +176,9 @@ var Month = function (config) {
 
                         for (var n = 0; n < notes.length; n++) {
                             var tooltip = '';
+                            if(notes[n].createdby != localStorage.getItem("memberId")){
+                                tooltip += 'Shared Event\n';
+                            }
                             if(notes[n].starttime != "0" && notes[n].endtime != "0"){
                                 tooltip += 'Time : ' + getHourlyTime(notes[n].starttime) + ' to ' + getHourlyTime(notes[n].endtime) + '\n';
                             }
