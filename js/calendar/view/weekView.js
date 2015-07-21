@@ -32,10 +32,9 @@ var Week = function (config) {
         self.id.addClass("fc fc-ltr ui-widget");
         self.id.html("");
         _head(self.id);
-        var memberId = localStorage.getItem("memberId");
         $.ajax({
             url : "process/?route=Event&method=getAllNotesByStartDateAndEndDate",
-            data:  { start : dateFormat(_weekStart), end: dateFormat(_weekEnd), MemberId: memberId},
+            data:  { start : dateFormat(_weekStart), end: dateFormat(_weekEnd), MemberId: getMemberIds()},
             type : "post",
             dataType: "json",
             success : function(e){

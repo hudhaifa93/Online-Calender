@@ -41,3 +41,16 @@ function getHourlyTime(time){
         }
     }
 }
+
+function getMemberIds(){
+    debugger;
+    var m = '';
+    if(localStorage.getItem("sharedClicked")!="" && localStorage.getItem("sharedClicked") != [] && localStorage.getItem("sharedClicked") != null){
+        var _sharedMembers = jQuery.parseJSON(localStorage.getItem("sharedClicked"));
+        $.each(_sharedMembers, function(index, value) {
+            m += value.memberid + ',';
+        });
+    }
+    m +=  localStorage.getItem("memberId");
+    return m;
+}

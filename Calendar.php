@@ -402,7 +402,7 @@
                         </div>
 
                         <div class="pull-right">
-                            <button type="button" class="btn btn-sm btn-primary" id="" onclick="drawSharedCalender()">View</button>
+                            <button type="button" class="btn btn-sm btn-primary" onclick="drawSharedCalender()">View</button>
                             <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -479,7 +479,6 @@
         }
 
         function removeFromInvitedList(id) {
-            debugger;
             $("." + id+"List").remove();
         }
 

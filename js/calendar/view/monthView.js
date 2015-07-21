@@ -35,10 +35,9 @@ var Month = function (config) {
         var days = main._monthLast.getDate(), rows = Math.ceil((weekday + days) / 7);
         var end = new Date(d) ;
         end.setDate(d.getDate()+(rows*7));
-        var memberId = localStorage.getItem("memberId");
         $.ajax({
             url : "process/?route=Event&method=getAllNotesByStartDateAndEndDate",
-            data:  { start : dateFormat(d), end: dateFormat(end), MemberId: memberId},
+            data:  { start : dateFormat(d), end: dateFormat(end), MemberId: getMemberIds()},
             type : "post",
             dataType: "json",
             success : function(e){
