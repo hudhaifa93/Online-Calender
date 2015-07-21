@@ -148,14 +148,13 @@ var BirthDay = function (config) {
                     if(dateFormat(Cur_Date,'m-d')== dateFormat(new Date(_CurBday[i].startdate),'m-d')){
                         if(!_isFound){
                             b += '<div class="panel panel-default">' +
-                                '<div class="panel-heading" style="background-color: #F44336;color: white;padding: 10px;text-align: left;margin-top: 10px;"><strong>Today\'s Birthdays</strong></div>';
+                                '<div class="panel-heading" style="background-color: #F44336;color: white;padding: 10px;text-align: left;margin-top: 10px;"><strong>Today</strong></div>';
                             _isFound = true;
-                        }else{
-                            b += '<hr style="padding:0px;">';
                         }
                         b += '<div class="panel-body">' +
                             '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + '</strong>' +
-                            '</div>';
+                            '</div>' +
+                            '<hr style="padding:0px;">';
                     }
                 }
                 if(_isFound){
@@ -170,13 +169,12 @@ var BirthDay = function (config) {
                             b += '<div class="panel panel-default">' +
                                 '<div class="panel-heading" style="background-color: #F44336;color: white;padding: 10px;text-align: left;margin-top: 10px;"><strong>Later This Month</strong></div>';
                             _isFound = true;
-                        }else{
-                            b += '<hr style="padding:0px;">';
                         }
                         b += '<div class="panel-body">' +
                             '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
                             '<strong style="float: left;margin-left: 10px;">' +  _CurBday[i].subject + '</strong>' +
-                        '</div>';
+                            '</div>' +
+                            '<hr style="padding:0px;">';
                     }
                 }
                 if(_isFound){
@@ -201,13 +199,12 @@ var BirthDay = function (config) {
                                         b += '<div class="panel panel-default">' +
                                             '<div class="panel-heading" style="background-color: #F44336;color: white;padding: 10px;text-align: left;margin-top: 10px;"><strong>' + name.months[Cur_Date.getMonth()] + '</strong></div>';
                                         _isFound = true;
-                                    }else{
-                                        b += '<hr style="padding:0px;">';
                                     }
                                     b += '<div class="panel-body">' +
                                         '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
                                         '<strong style="float: left;margin-left: 10px;">' +  _CurBday[i].subject + '</strong>' +
-                                        '</div>';
+                                        '</div>' +
+                                        '<hr style="padding:0px;">';
                                 }
                             }
                         }else{
@@ -216,14 +213,13 @@ var BirthDay = function (config) {
                                     b += '<div class="panel panel-default">' +
                                         '<div class="panel-heading" style="background-color: #F44336;color: white;padding: 10px;text-align: left;margin-top: 10px;"><strong>' + name.months[Cur_Date.getMonth()] + '</strong></div>';
                                     _isFound = true;
-                                }else{
-                                    b += '<hr style="padding:0px;">';
                                 }
                                 b += '<div class="panel-body">' +
                                     '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
                                     '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + '</strong>' +
                                     getAge(_CurBday[i].startdate) +
-                                    '</div>';
+                                    '</div>' +
+                                    '<hr style="padding:0px;">';
                             }
                         }
 
