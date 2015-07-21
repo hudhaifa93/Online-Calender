@@ -602,6 +602,7 @@ function drawSharedCalender(){
     });
     localStorage.setItem("sharedClicked",JSON.stringify(sharedClicked));
     $('#ViewShareModal').modal('hide');
+    location.reload();
 }
 
 logout();
