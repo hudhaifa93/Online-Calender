@@ -222,6 +222,7 @@ var BirthDay = function (config) {
                                 b += '<div class="panel-body">' +
                                     '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
                                     '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + '</strong>' +
+                                    getAge(_CurBday[i].startdate) +
                                     '</div>';
                             }
                         }
@@ -266,3 +267,16 @@ var BirthDay = function (config) {
     }());
 
 };
+
+function getAge(bday){
+    h = '';
+    var _bdate = new Date(bday);
+    var _today = new Date();
+    if(_bdate.getFullYear() > 0 && _bdate.getFullYear() < _today.getFullYear()){
+        debugger;
+        var age = parseInt(parseInt(_today.getFullYear()) - parseInt(_bdate.getFullYear()));
+        h += '<strong style="float:right;margin-right: 10px;">Turning ' +  age + ' Years.</strong>' ;
+    }
+
+    return h;
+}
