@@ -271,7 +271,7 @@ function showalert(message, alerttype, id, type) {
                             ' </div>' +
                             ' </div>' ).appendTo(item);
                         if(typeof  v.share != 'undefined'){
-                            item.data('member_id', v.id).data('share',true).addClass('sharedCalendar');
+                            item.data('member_id', v.id).data('share',true).data('name',v.name).addClass('sharedCalendar');
                         }
                         $('#notifications').find('.lv-body').append(item);
                     });
@@ -280,21 +280,37 @@ function showalert(message, alerttype, id, type) {
             }
         });
         $('#notifications').on('click','.sharedCalendar',function(){
-            BootstrapDialog.show({
-                title: 'Default Title',
-                message: 'Click buttons below.',
-                buttons: [{
-                    label: 'Title 1',
-                    action: function(dialog) {
-                        dialog.setTitle('Title 1');
-                    }
-                }, {
-                    label: 'Title 2',
-                    action: function(dialog) {
-                        dialog.setTitle('Title 2');
-                    }
-                }]
+            self = $(this);
+            bootbox.dialog({
+                message: "Request for share Calendar",
+                title: self.data('name'),
+                buttons: {
+                    success: {
+                        label: "Confirm",
+                        className: "btn-success",
+                        callback: function() {
+                            changeShare(1);
+                        }
+                    },
+                    danger: {
+                        label: "Delete Request",
+                        className: "btn-danger",
+                        callback: function() {
+                            changeShare(2);
+                        }
+                    }}
+
             });
+            function changeShare(v){
+                $.ajax({
+                    url : "process/?route=event&method=updateSharedCalendar",
+                    data: { memberid:self.data('member_id') , val:v },
+                    type:'post',
+                    success :function(){
+                        location.reload();
+                    }
+                });
+            }
         });
     }
 }

@@ -378,6 +378,10 @@ class Event extends Controller {
 
         return isset($d)?$d : array();
     }
+    function updateSharedCalendar(){
+        $user = session::get('user');
+        $this->db->query("UPDATE `shared_calendar` SET `status`='".$_POST['val']."' WHERE `sharedmemberemail`= '".$user['email']."' and `memberid`='".$_POST['memberid']."' ");
+    }
 }
 /*
 $email = new email();

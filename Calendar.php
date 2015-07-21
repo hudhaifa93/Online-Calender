@@ -354,6 +354,7 @@
 
     <script type="text/javascript" src="js/jquery.js" ></script>
     <script type="text/javascript" src="js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="js/bootbox.js" ></script>
     <script type="text/javascript" src="js/jquery-ui.custom.min.js" ></script>
     <script type="text/javascript" src="js/calendar/main.js?v=1.1" ></script>
     <script type="text/javascript" src="js/calendar/view/monthView.js?v=1.1" ></script>
