@@ -147,14 +147,12 @@ var BirthDay = function (config) {
                 for(var i=0;i<_CurBday.length;i++){
                     if(dateFormat(Cur_Date,'m-d')== dateFormat(new Date(_CurBday[i].startdate),'m-d')){
                         if(!_isFound){
-                            b += '<div>' +
-                                '<div>Todays Birthdays</div>';
+                            b += '<div class="panel panel-default">' +
+                                '<div class="panel-heading" style="background-color: #F44336;color: white;padding: 10px;text-align: left;margin-top: 10px;"><strong>Today\'s Birthdays</strong></div>';
                             _isFound = true;
                         }
-                        b += '<div>' +
-                            '<span>' +
-                            _CurBday[i].subject +
-                            '</span>' +
+                        b += '<div class="panel-body">' +
+                            '<strong>' + _CurBday[i].subject + '</strong>' +
                             '</div>';
                     }
                 }
@@ -167,14 +165,12 @@ var BirthDay = function (config) {
                 for(var i=0;i<_CurBday.length;i++){
                     if(dateFormat(Cur_Date,'m-d')< dateFormat(new Date(_CurBday[i].startdate),'m-d')){
                         if(!_isFound){
-                            b += '<div>' +
-                                '<div>Later This Month</div>';
+                            b += '<div class="panel panel-default">' +
+                                '<div class="panel-heading" style="background-color: #F44336;color: white;padding: 10px;text-align: left;margin-top: 10px;"><strong>Later This Month</strong></div>';
                             _isFound = true;
                         }
-                        b += '<div>' +
-                            '<span>' +
-                            _CurBday[i].subject +
-                        '</span>' +
+                        b += '<div class="panel-body">' +
+                            '<strong>' +  _CurBday[i].subject + '</strong>' +
                         '</div>';
                     }
                 }
@@ -197,28 +193,24 @@ var BirthDay = function (config) {
                             for(var i=0;i<_CurBday.length;i++){
                                 if(dateFormat(_date,'m-d') > dateFormat(new Date(_CurBday[i].startdate),'m-d')){
                                     if(!_isFound){
-                                        b += '<div>' +
-                                            '<div>' + name.months[Cur_Date.getMonth()] + '</div>';
+                                        b += '<div class="panel panel-default">' +
+                                            '<div class="panel-heading" style="background-color: #F44336;color: white;padding: 10px;text-align: left;margin-top: 10px;"><strong>' + name.months[Cur_Date.getMonth()] + '</strong></div>';
                                         _isFound = true;
                                     }
-                                    b += '<div>' +
-                                        '<span>' +
-                                        _CurBday[i].subject +
-                                        '</span>' +
+                                    b += '<div class="panel-body">' +
+                                        '<strong>' +  _CurBday[i].subject + '</strong>' +
                                         '</div>';
                                 }
                             }
                         }else{
                             for(var i=0;i<_CurBday.length;i++){
                                 if(!_isFound){
-                                    b += '<div>' +
-                                        '<div>' + name.months[Cur_Date.getMonth()] + '</div>';
+                                    b += '<div class="panel panel-default">' +
+                                        '<div class="panel-heading" style="background-color: #F44336;color: white;padding: 10px;text-align: left;margin-top: 10px;"><strong>' + name.months[Cur_Date.getMonth()] + '</strong></div>';
                                     _isFound = true;
                                 }
-                                b += '<div>' +
-                                    '<span>' +
-                                    _CurBday[i].subject +
-                                    '</span>' +
+                                b += '<div class="panel-body">' +
+                                    '<strong>' + _CurBday[i].subject + '</strong>' +
                                     '</div>';
                             }
                         }
