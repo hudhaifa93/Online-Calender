@@ -122,8 +122,8 @@ var BirthDay = function (config) {
                 '</tr>';
 
             function _birthdays(){
-                var h = '<div class="fc-row fc-week ui-widget-content" style="height: 135px;">' +
-                    '<div class="fc-bg">' +
+                var h = '<div>' +
+                    '<div>' +
                     '<table>' +
                     '<tbody>';
 
@@ -142,14 +142,13 @@ var BirthDay = function (config) {
                 var _isFound = false;
                 var _CurBday = _bday[Cur_Date.getMonth()];
 
-                debugger;
                 //Today
                 _isFound = false;
                 for(var i=0;i<_CurBday.length;i++){
                     if(dateFormat(Cur_Date,'m-d')== dateFormat(new Date(_CurBday[i].startdate),'m-d')){
                         if(!_isFound){
                             b += '<div>' +
-                                '<div>Todays Birthdays</div>';
+                                '<div>Today\'s Birthdays</div>';
                             _isFound = true;
                         }
                         b += '<div>' +
@@ -189,16 +188,31 @@ var BirthDay = function (config) {
                 } else {
                     Cur_Date = new Date(Cur_Date.getFullYear(), Cur_Date.getMonth() + 1, 1);
                 }
-            
-                while(Cur_Date.getMonth() == _date.getMonth()){
+
+                for(var j=0;j<12;j++){
                     _CurBday = _bday[Cur_Date.getMonth()];
-                    _isFound = false;
-                    if(Cur_Date.getMonth() == _date.getMonth()){
-                        for(var i=0;i<_CurBday.length;i++){
-                            if(dateFormat(_date,'m-d') > dateFormat(new Date(_CurBday[i].startdate),'m-d')){
+                    if(_CurBday.length > 0){
+                        _isFound = false;
+                        if(Cur_Date.getMonth() == _date.getMonth()){
+                            for(var i=0;i<_CurBday.length;i++){
+                                if(dateFormat(_date,'m-d') > dateFormat(new Date(_CurBday[i].startdate),'m-d')){
+                                    if(!_isFound){
+                                        b += '<div>' +
+                                            '<div>' + name.months[Cur_Date.getMonth()] + '</div>';
+                                        _isFound = true;
+                                    }
+                                    b += '<div>' +
+                                        '<span>' +
+                                        _CurBday[i].subject;
+                                        '</span>' +
+                                        '</div>';
+                                }
+                            }
+                        }else{
+                            for(var i=0;i<_CurBday.length;i++){
                                 if(!_isFound){
                                     b += '<div>' +
-                                        '<div>' + months[Cur_Date.getMonth()] + '</div>';
+                                        '<div>' + name.months[Cur_Date.getMonth()] + '</div>';
                                     _isFound = true;
                                 }
                                 b += '<div>' +
@@ -208,25 +222,11 @@ var BirthDay = function (config) {
                                     '</div>';
                             }
                         }
-                    }else{
-                        for(var i=0;i<_CurBday.length;i++){
-                            if(!_isFound){
-                                b += '<div>' +
-                                    '<div>' + months[Cur_Date.getMonth()] + '</div>';
-                                _isFound = true;
-                            }
-                            b += '<div>' +
-                                '<span>' +
-                                _CurBday[i].subject;
-                                '</span>' +
-                                '</div>';
+
+                        if(_isFound){
+                            b += '</div>';
                         }
                     }
-               
-                    if(_isFound){
-                        b += '</div>';
-                    }
-                
                     if (Cur_Date.getMonth() == 11) {
                         Cur_Date = new Date(Cur_Date.getFullYear() + 1, 0, 1);
                     } else {
