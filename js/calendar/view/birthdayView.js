@@ -296,11 +296,12 @@ function getAge(bday){
     h = '';
     var _bdate = new Date(bday);
     var _today = new Date();
-    if(_bdate.getFullYear() > 0 && _bdate.getFullYear() < _today.getFullYear()){
-        debugger;
-        var age = parseInt(parseInt(_today.getFullYear()) - parseInt(_bdate.getFullYear()));
-        var nextBdate = new Date(_today.getFullYear(),_bdate.getMonth(),_bdate.getDate(),0,0,0);
-        h += '<strong style="float:right;margin-right: 10px;">' + nextBdate.toDateString() + '<small> | Turning ' +  age + ' Years.</small></strong>' ;
+    if(_bdate.getFullYear() > 0){
+        if(_bdate.getFullYear() < _today.getFullYear()){
+            var age = parseInt(parseInt(_today.getFullYear()) - parseInt(_bdate.getFullYear()));
+            var nextBdate = new Date(_today.getFullYear(),_bdate.getMonth(),_bdate.getDate(),0,0,0);
+            h += '<strong style="float:right;margin-right: 10px;">' + nextBdate.toDateString() + '<small> | Turning ' +  age + ' Years.</small></strong>' ;
+        }
     }
 
     return h;
