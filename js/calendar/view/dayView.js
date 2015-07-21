@@ -124,6 +124,9 @@ var Day = function (config) {
                 for (var n = 0; n < notes.length; n++) {
                     if(notes[n].starttime == "0" && notes[n].endtime == "0"){
                         var tooltip = '';
+                        if(notes[n].createdby != localStorage.getItem("memberId")){
+                            tooltip += 'Shared Event\n';
+                        }
                         if(notes[n].starttime != "0" && notes[n].endtime != "0"){
                             tooltip += 'Time : ' + getHourlyTime(notes[n].starttime) + ' to ' + getHourlyTime(notes[n].endtime) + '\n';
                         }
@@ -288,6 +291,9 @@ var Day = function (config) {
                             var left = 0, right = 0, top = 0, bottom = 0, startHours = 0, endHours = 0;
                             for (var s = 0; s < _events.length; s++) {
                                 var tooltip = '';
+                                if(_events[s].createdby != localStorage.getItem("memberId")){
+                                    tooltip += 'Shared Event\n';
+                                }
                                 if(_events[s].starttime != "0" && _events[s].endtime != "0"){
                                     tooltip += 'Time : ' + getHourlyTime(_events[s].starttime) + ' to ' + getHourlyTime(_events[s].endtime) + '\n';
                                 }
