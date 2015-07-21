@@ -97,9 +97,9 @@ var BirthDay = function (config) {
                 '<th class="fc-axis ui-widget-header" style="width: 40px;"></th>';
 
             if(birthdaylist.length > 0){
-                h += '<th class="fc-day-header ui-widget-header">Showing ' + birthdaylist.length  + ' Birthdays.</th>';
+                h += '<th class="fc-day-header ui-widget-header"><span style="float: left">Showing ' + birthdaylist.length  + ' Birthday(s).</span></th>';
             }else{
-                h += '<th class="fc-day-header ui-widget-header">Sorry, No Birthdays Available.</th>';
+                h += '<th class="fc-day-header ui-widget-header"><span style="float: left">Sorry, No Birthdays Available.</span></th>';
             }
 
             h +='</tr>' +
