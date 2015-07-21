@@ -130,7 +130,6 @@ var BirthDay = function (config) {
                 var _bday = [];
                 for(var i=0;i<12;i++){ _bday.push([]);}
                 if(birthdaylist.length>0){
-                    var _today = '', _thisMonth = '';
                     for(var i=0;i<birthdaylist.length;i++){
                         var _bdate = new Date(birthdaylist[i].startdate);
                         _bday[_bdate.getMonth()].push(birthdaylist[i]);
@@ -144,16 +143,17 @@ var BirthDay = function (config) {
 
                 //Today
                 _isFound = false;
+                debugger;
                 for(var i=0;i<_CurBday.length;i++){
                     if(dateFormat(Cur_Date,'m-d')== dateFormat(new Date(_CurBday[i].startdate),'m-d')){
                         if(!_isFound){
                             b += '<div>' +
-                                '<div>Today\'s Birthdays</div>';
+                                '<div>Todays Birthdays</div>';
                             _isFound = true;
                         }
                         b += '<div>' +
                             '<span>' +
-                            _CurBday[i].subject;
+                            _CurBday[i].subject +
                             '</span>' +
                             '</div>';
                     }
@@ -173,7 +173,7 @@ var BirthDay = function (config) {
                         }
                         b += '<div>' +
                             '<span>' +
-                            _CurBday[i].subject;
+                            _CurBday[i].subject +
                         '</span>' +
                         '</div>';
                     }
@@ -203,7 +203,7 @@ var BirthDay = function (config) {
                                     }
                                     b += '<div>' +
                                         '<span>' +
-                                        _CurBday[i].subject;
+                                        _CurBday[i].subject +
                                         '</span>' +
                                         '</div>';
                                 }
@@ -217,7 +217,7 @@ var BirthDay = function (config) {
                                 }
                                 b += '<div>' +
                                     '<span>' +
-                                    _CurBday[i].subject;
+                                    _CurBday[i].subject +
                                     '</span>' +
                                     '</div>';
                             }
