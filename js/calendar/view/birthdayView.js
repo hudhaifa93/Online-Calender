@@ -151,9 +151,9 @@ var BirthDay = function (config) {
                                 '<div class="panel-heading" style="background-color: #F44336;color: white;padding: 10px;text-align: left;margin-top: 10px;"><strong>Today</strong></div>';
                             _isFound = true;
                         }
-                        
+
                         b += '<div class="panel-body">' +
-                            '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + '';
+                            '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + ' ';
 
                         if(_CurBday[i].createdby != localStorage.getItem("memberId")){
                             b += '<span class="fc-time">&#10010;</span>';
@@ -177,9 +177,16 @@ var BirthDay = function (config) {
                                 '<div class="panel-heading" style="background-color: #F44336;color: white;padding: 10px;text-align: left;margin-top: 10px;"><strong>Later This Month</strong></div>';
                             _isFound = true;
                         }
+
                         b += '<div class="panel-body">' +
                             '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
-                            '<strong style="float: left;margin-left: 10px;">' +  _CurBday[i].subject + '</strong>' +
+                            '<strong style="float: left;margin-left: 10px;">' +  _CurBday[i].subject + ' ';
+
+                        if(_CurBday[i].createdby != localStorage.getItem("memberId")){
+                            b += '<span class="fc-time">&#10010;</span>';
+                        }
+
+                        b += '</strong>' +
                             '</div>' +
                             '<hr style="padding:0px;">';
                     }
@@ -207,9 +214,16 @@ var BirthDay = function (config) {
                                             '<div class="panel-heading" style="background-color: #F44336;color: white;padding: 10px;text-align: left;margin-top: 10px;"><strong>' + name.months[Cur_Date.getMonth()] + '</strong></div>';
                                         _isFound = true;
                                     }
+
                                     b += '<div class="panel-body">' +
                                         '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
-                                        '<strong style="float: left;margin-left: 10px;">' +  _CurBday[i].subject + '</strong>' +
+                                        '<strong style="float: left;margin-left: 10px;">' +  _CurBday[i].subject + ' ';
+
+                                    if(_CurBday[i].createdby != localStorage.getItem("memberId")){
+                                        b += '<span class="fc-time">&#10010;</span>';
+                                    }
+
+                                    b += '</strong>' +
                                         '</div>' +
                                         '<hr style="padding:0px;">';
                                 }
@@ -221,9 +235,16 @@ var BirthDay = function (config) {
                                         '<div class="panel-heading" style="background-color: #F44336;color: white;padding: 10px;text-align: left;margin-top: 10px;"><strong>' + name.months[Cur_Date.getMonth()] + '</strong></div>';
                                     _isFound = true;
                                 }
+                                
                                 b += '<div class="panel-body">' +
                                     '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
-                                    '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + '</strong>' +
+                                    '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + ' ';
+
+                                if(_CurBday[i].createdby != localStorage.getItem("memberId")){
+                                    b += '<span class="fc-time">&#10010;</span>';
+                                }
+
+                                b += '</strong>' +
                                     getAge(_CurBday[i].startdate) +
                                     '</div>' +
                                     '<hr style="padding:0px;">';
