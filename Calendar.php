@@ -318,7 +318,7 @@
                             </div>
                         </div>
                         <div class="pull-right">
-                            <button type="button" class="btn btn-sm btn-primary" id="shareCalenderButton" onclick="">Share</button>
+                            <button type="button" class="btn btn-sm btn-primary" id="shareCalenderButton" onclick="">Share/Update</button>
                             <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -419,6 +419,8 @@
 
         function removeFromInvitedList(id) {
             $("." + id+"List").remove();
+
+
         }
 
 

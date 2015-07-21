@@ -495,7 +495,7 @@ function inviteList(noteid,flag){
 
 }
 
-function ShareCalenderList(memberid){
+function ShareCalenderList(memberid){//called to set shared members or update shared members
     debugger
     var email = [] ;
     var str ="";
@@ -517,8 +517,9 @@ function ShareCalenderList(memberid){
             dataType: 'json',
             data: { sharedMembersList : email}, // provided this code executes in form.onsubmit event
             success: function (output) {
+                debugger;
                 if(output="success"){
-                    showalert("Calender Shared", "alert-success", "", "");
+                    showalert("Calender Shared / Updated", "alert-success", "", "");
                 }
                 else
                 {
