@@ -68,6 +68,15 @@
                 top: 0;
                 right: 0;
             }
+            #footer{
+                background: #B81A0E;
+                box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+                height: 100px;
+                z-index: 10;
+                width: 100%;
+                left: 0;
+                padding-right: 10px;
+            }
 
         </style>
     </head>
@@ -191,6 +200,14 @@
                 </div>
             </div>
         </section>
+
+        <footer id="footer" >
+            <center>
+                <img class="" src="img/ch_logo.png" alt="Code Hunters Logo" style="padding: 20px;height: 100px;">
+                <span style="color: #fff;font-size:15px;font-weight: 100;">&copy; 2015 Code Hunters. All Rights Reserved.</span>
+            </center>
+        </footer>
+
         <div id="CommonModal" class="modal fade">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
