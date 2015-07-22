@@ -302,7 +302,32 @@
 
             function removeFromInvitedList(id) {
                 debugger;
-                $("." + id+"List").remove();
+
+                var email = [] ;
+                var removedTag = $("." + id+"List");
+                var str = $( removedTag ).text();
+                str = str.split("x");
+                email.push({
+                    "noteid" : localStorage.getItem("advanceID"),
+                    "memberemail" : str[0],
+                    "status" : $( removedTag ).data('status') });
+
+                $.ajax({
+                    url: "process/index.php?route=event&method=deleteinviteMembers",
+                    type: "post",
+                    dataType: 'json',
+                    data: { deleteinvite : email}, // provided this code executes in form.onsubmit event
+                    success: function (output) {
+                        if(output.success=="success"){
+                            showalert("Invite Revoked.", "alert-success", "", "");
+                            $("." + id+"List").remove();
+                        }
+                    },
+                    failure: function () {
+
+                    }
+                });
+
             }
 
 

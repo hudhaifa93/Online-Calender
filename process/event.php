@@ -272,9 +272,17 @@ class Event extends Controller {
 
     }
 
+    function deleteinviteMembers(){
+        $deleteinvite = $this->post('deleteinvite');
+        $noteid=$deleteinvite[0]['noteid'];
+        $memberEmail = $deleteinvite[0]['memberemail'];
+        $result = $this->db->query("UPDATE `note_invitee_map` SET `status`='3' WHERE `email`= '".$memberEmail."' and `noteid`='".$noteid."' ");
+        echo json_encode($result? array("success" => "success") : array("failure" => "failure" ));
+    }
+
     function getinvitebynoteid(){
         //print_r($_POST['noteid']);
-        $result = $this->db->query("SELECT * FROM note_invitee_map where noteid='".$_POST['noteid']."'");
+        $result = $this->db->query("SELECT * FROM note_invitee_map where noteid='".$_POST['noteid']."' and `status` IN (0,1)");
         //print_r($result);
         if(is_object($result))
         {
