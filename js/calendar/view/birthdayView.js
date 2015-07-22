@@ -160,6 +160,7 @@ var BirthDay = function (config) {
                         }
 
                         b += '</strong>' +
+                            getAge(_CurBday[i].startdate) +
                             '</div>' +
                             '<hr style="padding:0px;">';
                     }
@@ -187,6 +188,7 @@ var BirthDay = function (config) {
                         }
 
                         b += '</strong>' +
+                            getAge(_CurBday[i].startdate) +
                             '</div>' +
                             '<hr style="padding:0px;">';
                     }
@@ -224,6 +226,7 @@ var BirthDay = function (config) {
                                     }
 
                                     b += '</strong>' +
+                                        getAge(_CurBday[i].startdate) +
                                         '</div>' +
                                         '<hr style="padding:0px;">';
                                 }
@@ -296,11 +299,36 @@ function getAge(bday){
     h = '';
     var _bdate = new Date(bday);
     var _today = new Date();
+
+    debugger;
+
     if(_bdate.getFullYear() > 0){
-        if(_bdate.getFullYear() < _today.getFullYear()){
+        if(_bdate.getMonth() == _today.getMonth() && _bdate.getDate() == _today.getDate() && _bdate.getFullYear() < _today.getFullYear()){
             var age = parseInt(parseInt(_today.getFullYear()) - parseInt(_bdate.getFullYear()));
-            var nextBdate = new Date(_today.getFullYear(),_bdate.getMonth(),_bdate.getDate(),0,0,0);
-            h += '<strong style="float:right;margin-right: 10px;">' + nextBdate.toDateString() + '<small> | Turning ' +  age + ' Years.</small></strong>' ;
+            h += '<strong style="float:right;margin-right: 10px;">' + _today.toDateString() + '<small> | ' +  age + ' Years Old.</small></strong>' ;
+        }
+        else if((_bdate.getFullYear() == _today.getFullYear() && _bdate.getMonth() == _today.getMonth() && _bdate.getDate() < _today.getDate()) ||
+            (_bdate.getFullYear() == _today.getFullYear() && _bdate.getMonth() < _today.getMonth())){
+            var _adate = new Date(_today.getFullYear()+1, _bdate.getMonth(), _bdate.getDate());
+            var age = parseInt(parseInt(_adate.getFullYear()) - parseInt(_bdate.getFullYear()));
+            h += '<strong style="float:right;margin-right: 10px;">' + _adate.toDateString() + '<small> | Turning ' +  age + ' Years.</small></strong>' ;
+        }else if((_bdate.getFullYear() < _today.getFullYear() && _bdate.getMonth() == _today.getMonth() && _bdate.getDate() > _today.getDate()) ||
+            (_bdate.getFullYear() < _today.getFullYear() && _bdate.getMonth() > _today.getMonth())){
+            var _adate = new Date(_today.getFullYear()+1, _bdate.getMonth(), _bdate.getDate());
+            var age = parseInt(parseInt(_adate.getFullYear()) - parseInt(_bdate.getFullYear()));
+            h += '<strong style="float:right;margin-right: 10px;">' + _adate.toDateString() + '<small> | Turning ' +  age + ' Years.</small></strong>' ;
+        }
+
+
+
+        var _adate = new Date(_today.getFullYear(), _bdate.getMonth(), _bdate.getDate());
+        if(_adate == _today){
+
+        }else if(_adate < _today){
+
+        }else if(_adate > _today){
+            //var age = parseInt(parseInt(_today.getFullYear()) - parseInt(_bdate.getFullYear()));
+           //h += '<strong style="float:right;margin-right: 10px;">' + _adate.toDateString() + '<small> | Turning ' +  age + ' Years.</small></strong>' ;
         }
     }
 
