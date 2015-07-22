@@ -151,7 +151,7 @@
                                                     <i class="glyphicon glyphicon-log-out " style="color: #f44336" ></i>
                                                 </div>
                                                 <div class="media-body">
-                                                    <small class="lv-small">View Shared Calendars</small>
+                                                    <small class="lv-small">My Calendars</small>
                                                 </div>
                                             </div>
                                         </a>
