@@ -310,15 +310,8 @@
     </head>
 	
     <body>
-	
-    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs" style="background-color:#F44336;"><!--heshani added added style-->
-        <li class="active"><a href="#event" data-toggle="tab">Event</a></li>
-        <li><a href="#invites" data-toggle="tab">Invite</a></li>
-    </ul>
-	<div style="background-color:#FFFFFF; height:inherit;"> <!--heshani added a new div-->
-    <div id="my-tab-content" class="tab-content" class="btn-default">
-        <div class="tab-pane active" id="event" >
-		
+
+	<div style="background-color:#FFFFFF; overflow: auto;"> <!--heshani added a new div-->
             <form role="form" id="frmMeeting">
 
                 <input type=hidden name=status value="1">
@@ -326,7 +319,6 @@
                 <input type=hidden id="notetype" name=notetype value="1">
                 <input type=hidden id="locationId"  value="">
                 <input type=hidden id="repeatId"  value="">
-
 
                 <div class="col-xs-12 form-group" style="margin-top:10px;">
                     <label>Type</label>
@@ -336,8 +328,6 @@
                         <!--<option value="3">Birthday</option>-->
                     </select>
                 </div>
-
-
                 <div class="col-xs-6 form-group">
                     <label>Subject</label>
                     <input type="text" class="form-control" name="subject" id="Subject" placeholder="Subject"/>
@@ -414,14 +404,7 @@
                     <textarea class="form-control custom-control" name="description" id="Description" rows="5"
                               style="resize:none"></textarea>
                 </div>
-
             </form>
-			
-        </div>
-        <div class="tab-pane" id="invites">
-		</div>
-		
-		
             <form id="inviteeForm" style="margin-top:10px">
                 <div class="col-xs-6 form-group" style="margin-top:10px;">
                     <input type="email"  class="form-control"  id="InviteeEmail" placeholder="InviteeEmail"/><button type="button" style=" float: left;  margin-top: 5px;" class="btn btn-sm btn-primary"onclick="addToInvitedList()">Add to List</button>
@@ -432,16 +415,11 @@
                     </div>
                 </div>
             </form>
-        </div>
-        <div class="col-xs-12 form-group">
-            <button type="button" id="advanceButton" class="btn btn-sm btn-primary" onClick="">CREATE</button>
-        </div>
+
+     <div class="col-xs-12 form-group">
+        <button type="button" id="advanceButton" class="btn btn-sm btn-primary" onClick="">CREATE</button>
+     </div>
     </div>
-
-
-
-
-
 
     </body>
 </html>                                		                                		
