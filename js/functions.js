@@ -308,7 +308,6 @@ function showalert(message, alerttype, id, type) {
                                 changeShare(2);
                         }
                     }}
-
             });
             function changeShare(v){
                 $.ajax({

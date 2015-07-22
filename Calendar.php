@@ -84,7 +84,7 @@
         <header id="header">
             <ul class="header-inner">
                 <li class="logo">
-                    <a href="Calendar.html">CODE HUNTERS</a>
+                    <a href="/">CODE HUNTERS</a>
                 </li>
                 <li style="margin-left: 15.333333%;">
                     <input type="text" id="txtSearch">
