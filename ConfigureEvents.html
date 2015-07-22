@@ -16,7 +16,6 @@
         <script src="js/functions.js"></script>
         <style type="text/css">
             body {
-				height:1000px;
                 margin: 0px auto;
 				margin-top:20px;
 				background-color:#CCCCCC;
@@ -401,237 +400,239 @@
 	
     <body>
 
-    <header id="header">
-        <ul class="header-inner">
-            <li class="logo">
-                <a href="/">CODE HUNTERS</a>
-            </li>
-            <li style="margin-left: 15.333333%;">
-                <input type="text" id="txtSearch">
-            </li>
-            <li class="pull-right">
-                <ul class="top-menu">
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="tm-message" href=""></a>
-                        <div class="dropdown-menu dropdown-menu-lg pull-right">
-                            <div class="listview">
-                                <div class="lv-header">Messages</div>
-                                <div class="lv-body c-overflow" tabindex="1" style="overflow: hidden; outline: none;">
+        <header id="header">
+            <ul class="header-inner">
+                <li class="logo">
+                    <a href="/">CODE HUNTERS</a>
+                </li>
+                <li style="margin-left: 15.333333%;">
+                    <input type="text" id="txtSearch">
+                </li>
+                <li class="pull-right">
+                    <ul class="top-menu">
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="tm-message" href=""></a>
+                            <div class="dropdown-menu dropdown-menu-lg pull-right">
+                                <div class="listview">
+                                    <div class="lv-header">Messages</div>
+                                    <div class="lv-body c-overflow" tabindex="1" style="overflow: hidden; outline: none;">
 
+                                    </div>
+                                    <a class="lv-footer" href="">View All</a>
                                 </div>
-                                <a class="lv-footer" href="">View All</a>
-                            </div>
-                            <div id="ascrail2002" class="nicescroll-rails nicescroll-rails-vr"
-                                 style="width: 0px; z-index: 9; cursor: default; position: absolute; top: 0px; left: 298px; height: 275px; display: none;">
-                                <div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 0px; height: 0px; border: 0px; border-radius: 0px; background-color: rgba(0, 0, 0, 0.498039); background-clip: padding-box;"></div>
-                            </div>
-                            <div id="ascrail2002-hr" class="nicescroll-rails nicescroll-rails-hr"
-                                 style="height: 0px; z-index: 9; top: 275px; left: 0px; position: absolute; cursor: default; display: none;">
-                                <div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 0px; width: 0px; border: 0px; border-radius: 0px; background-color: rgba(0, 0, 0, 0.498039); background-clip: padding-box;"></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="tm-notification" href=""></a>
-                        <div class="dropdown-menu dropdown-menu-lg pull-right">
-                            <div class="listview" id="notifications">
-                                <div class="lv-header">Notification
-                                    <ul class="actions">
-                                        <li class="dropdown">
-                                            <a href="" data-clear="notification">
-                                                <i class="md md-done-all"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                <div id="ascrail2002" class="nicescroll-rails nicescroll-rails-vr"
+                                     style="width: 0px; z-index: 9; cursor: default; position: absolute; top: 0px; left: 298px; height: 275px; display: none;">
+                                    <div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 0px; height: 0px; border: 0px; border-radius: 0px; background-color: rgba(0, 0, 0, 0.498039); background-clip: padding-box;"></div>
                                 </div>
-                                <div class="lv-body c-overflow" tabindex="2" style="overflow: hidden; outline: none;"></div>
-                                <a class="lv-footer" href="">View Previous</a>
-                            </div>
-                            <div id="ascrail2003" class="nicescroll-rails nicescroll-rails-vr"
-                                 style="width: 0px; z-index: 9; cursor: default; position: absolute; top: 0px; left: 298px; height: 275px; display: none;">
-                                <div class="nicescroll-cursors"
-                                     style="position: relative; top: 0px; float: right; width: 0px; height: 0px; border: 0px; border-radius: 0px; background-color: rgba(0, 0, 0, 0.498039); background-clip: padding-box;"></div>
-                            </div>
-                            <div id="ascrail2003-hr" class="nicescroll-rails nicescroll-rails-hr"
-                                 style="height: 0px; z-index: 9; top: 275px; left: 0px; position: absolute; cursor: default; display: none;">
-                                <div class="nicescroll-cursors"
-                                     style="position: absolute; top: 0px; height: 0px; width: 0px; border: 0px; border-radius: 0px; background-color: rgba(0, 0, 0, 0.498039); background-clip: padding-box;"></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="tm-task" href=""></a>
-                        <div class="dropdown-menu dropdown-menu-sm pull-right">
-                            <div class="listview">
-                                <div class="lv-header">Profile</div>
-                                <div class="lv-body c-overflow" tabindex="1" style="overflow: hidden; outline: none;">
-                                    <a class="lv-item viewshareCal" href="">
-                                        <div class="media">
-                                            <div class="pull-left">
-                                                <i class="glyphicon glyphicon-log-out " style="color: #f44336" ></i>
-                                            </div>
-                                            <div class="media-body">
-                                                <small class="lv-small">View Shared Calendars</small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="lv-item shareCal" href="" >
-                                        <div class="media" onclick="">
-                                            <div class="pull-left">
-                                                <i class="glyphicon glyphicon-log-out " style="color: #f44336" ></i>
-                                            </div>
-                                            <div class="media-body">
-                                                <small class="lv-small">Share Calendar</small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="lv-item logout" href="">
-                                        <div class="media">
-                                            <div class="pull-left">
-                                                <i class="glyphicon glyphicon-log-out " style="color: #f44336" ></i>
-                                            </div>
-                                            <div class="media-body">
-                                                <small class="lv-small">logout</small>
-                                            </div>
-                                        </div>
-                                    </a>
+                                <div id="ascrail2002-hr" class="nicescroll-rails nicescroll-rails-hr"
+                                     style="height: 0px; z-index: 9; top: 275px; left: 0px; position: absolute; cursor: default; display: none;">
+                                    <div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 0px; width: 0px; border: 0px; border-radius: 0px; background-color: rgba(0, 0, 0, 0.498039); background-clip: padding-box;"></div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
-            </li>
-            <li class="pull-right logo" >
-                <img class="lv-img-sm img-circle pull-left img-responsive img-thumbnail " src="img/profile-pics/1.jpg" alt="">
-                <a class="pull-right" ><?=$user['name']?></a>
-            </li>
-        </ul>
-    </header>
-    <section class="main" >
-        <div class="content" >
-            <div class="container" >
-                <div class="block-header">
-                    <h2>&nbsp;</h2>
-                    <h2>&nbsp;</h2>
-                    <h2>&nbsp;</h2>
-                    <h2>&nbsp;</h2>
-                </div>
-                <div style="background-color:#FFFFFF; overflow: auto;" class="col-lg-10" > <!--heshani added a new div-->
-                    <form role="form" id="frmMeeting">
-
-                        <input type=hidden name=status value="1">
-                        <input type=hidden name=createdby id="createdby" value="">
-                        <input type=hidden id="notetype" name=notetype value="1">
-                        <input type=hidden id="locationId"  value="">
-                        <input type=hidden id="repeatId"  value="">
-
-                        <div class="col-xs-12 form-group" style="margin-top:10px;">
-                            <label>Type</label>
-                            <select name="" id="Type" class="form-control" style="width:30%;">
-                                <option value="1">Meeting</option>
-                                <option value="2">Note</option>
-                                <!--<option value="3">Birthday</option>-->
-                            </select>
-                        </div>
-                        <div class="col-xs-6 form-group">
-                            <label>Subject</label>
-                            <input type="text" class="form-control" name="subject" id="Subject" placeholder="Subject"/>
-                        </div>
-                        <div class="col-xs-6 form-group">
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <label>Location</label>
-                            <input type="checkbox" id="addLocation">
-                        </div>
-                        <div id="locationAllocation" style="display:none;">
-                            <div class="col-xs-12 form-group">
-                                <input type="text" class="form-control" id="autocomplete" placeholder="Enter your address"/>
-                                <input type="text"  style="margin-top: 10px;margin-bottom: 10px;" class="googleAddress form-control" id="street"/>
-                                <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="city"/>
-                                <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="state"/>
-                                <input  style="float: left;  width: 25%;" type="text" class="googleAddress form-control" id="country"/>
+                        </li>
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="tm-notification" href=""></a>
+                            <div class="dropdown-menu dropdown-menu-lg pull-right">
+                                <div class="listview" id="notifications">
+                                    <div class="lv-header">Notification
+                                        <ul class="actions">
+                                            <li class="dropdown">
+                                                <a href="" data-clear="notification">
+                                                    <i class="md md-done-all"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="lv-body c-overflow" tabindex="2" style="overflow: hidden; outline: none;"></div>
+                                    <a class="lv-footer" href="">View Previous</a>
+                                </div>
+                                <div id="ascrail2003" class="nicescroll-rails nicescroll-rails-vr"
+                                     style="width: 0px; z-index: 9; cursor: default; position: absolute; top: 0px; left: 298px; height: 275px; display: none;">
+                                    <div class="nicescroll-cursors"
+                                         style="position: relative; top: 0px; float: right; width: 0px; height: 0px; border: 0px; border-radius: 0px; background-color: rgba(0, 0, 0, 0.498039); background-clip: padding-box;"></div>
+                                </div>
+                                <div id="ascrail2003-hr" class="nicescroll-rails nicescroll-rails-hr"
+                                     style="height: 0px; z-index: 9; top: 275px; left: 0px; position: absolute; cursor: default; display: none;">
+                                    <div class="nicescroll-cursors"
+                                         style="position: absolute; top: 0px; height: 0px; width: 0px; border: 0px; border-radius: 0px; background-color: rgba(0, 0, 0, 0.498039); background-clip: padding-box;"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xs-6 form-group">
-                            <label>Start Date</label>
-                            <input type="text" class="form-control" name="startDate" id="StartDate" placeholder="Start Date"/>
-                        </div>
-                        <div class="col-xs-6 form-group">
-                            <label>End Date</label>
-                            <input type="text" class="form-control" name="endDate" id="EndDate" placeholder="End Date"/>
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <label>Full Day</label>
-                            <input type="checkbox" id="fullday" checked="checked">
-                        </div>
-                        <div id="timeAllocation" style="display:none">
-                            <div class="col-xs-6 form-group">
-                                <label>Start Time</label>
-                                <input type="text" class="form-control" name="" id="StartTime" placeholder="Start Time"/>
-                            </div>
-                            <div class="col-xs-6 form-group">
-                                <label>End Time</label>
-                                <input type="text" class="form-control" name="" id="EndTime" placeholder="End Time"/>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <label>Repeat</label>
-                            <input type="checkbox" id="repeat" >
-                        </div>
-                        <div id="repeatAllocation" style="display:none">
-                            <div class="col-xs-6 form-group">
-                                <div class="panel panel-default" style="" >
-                                    <div class="panel-body" style="">
-                                        <div class="col-xs-6 form-group">
-                                            <strong>Repeats:</strong>
-                                        </div>
-                                        <div class="col-xs-6 form-group">
-                                            <select name="" id="repeats" class="form-control" style="">
-                                                <option value="M">Monthly</option>
-                                                <option value="W">Weekly</option>
-                                                <option value="Y">Yearly</option>
-                                            </select>
-                                        </div>
-                                        <!--<div class="col-xs-6 form-group">-->
-                                        <!--<strong>Repeats Every</strong>-->
-                                        <!--</div>-->
-                                        <!--<div class="col-xs-6 form-group">-->
-                                        <!--<select name="" id="repeatCombo" class="form-control" style="">-->
-
-                                        <!--</select>-->
-                                        <!--</div>-->
+                        </li>
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="tm-task" href=""></a>
+                            <div class="dropdown-menu dropdown-menu-sm pull-right">
+                                <div class="listview">
+                                    <div class="lv-header">Profile</div>
+                                    <div class="lv-body c-overflow" tabindex="1" style="overflow: hidden; outline: none;">
+                                        <a class="lv-item viewshareCal" href="">
+                                            <div class="media">
+                                                <div class="pull-left">
+                                                    <i class="glyphicon glyphicon-log-out " style="color: #f44336" ></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <small class="lv-small">View Shared Calendars</small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="lv-item shareCal" href="" >
+                                            <div class="media" onclick="">
+                                                <div class="pull-left">
+                                                    <i class="glyphicon glyphicon-log-out " style="color: #f44336" ></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <small class="lv-small">Share Calendar</small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="lv-item logout" href="">
+                                            <div class="media">
+                                                <div class="pull-left">
+                                                    <i class="glyphicon glyphicon-log-out " style="color: #f44336" ></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <small class="lv-small">logout</small>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <label>Meeting Description</label>
-                            <textarea class="form-control custom-control" name="description" id="Description" rows="5" style="resize:none"></textarea>
-                        </div>
-                    </form>
-                    <form id="inviteeForm" style="margin-top:10px">
-                        <div class="col-xs-6 form-group" style="margin-top:10px;">
-                            <input type="email"  class="form-control"  id="InviteeEmail" placeholder="InviteeEmail"/><button type="button" style=" float: left;  margin-top: 5px;" class="btn btn-sm btn-primary"onclick="addToInvitedList()">Add to List</button>
-                            <!--<button type="button" style="  margin-left: 10px;  float: left;  margin-top: 2px;" class="btn btn-sm btn-primary"onclick="inviteList()">Invite</button>-->
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <div id="InvitedList">
-                            </div>
-                        </div>
-                    </form>
+                        </li>
+                    </ul>
+                </li>
+                <li class="pull-right logo" >
+                    <img class="lv-img-sm img-circle pull-left img-responsive img-thumbnail " src="img/profile-pics/1.jpg" alt="">
+                    <a class="pull-right" ><?=$user['name']?></a>
+                </li>
+            </ul>
+        </header>
 
-                    <div class="col-xs-12 form-group">
-                        <button type="button" id="advanceButton" class="btn btn-sm btn-primary" onClick="">CREATE</button>
+        <section class="main" >
+            <div class="content" >
+                <div class="container" >
+                    <div class="block-header">
+                        <h2>&nbsp;</h2>
+                        <h2>&nbsp;</h2>
+                        <h2>&nbsp;</h2>
+                        <h2>&nbsp;</h2>
+                    </div>
+                    <div style="background-color:#FFFFFF; overflow: auto;" class="col-lg-10" > <!--heshani added a new div-->
+                        <form role="form" id="frmMeeting">
+
+                            <input type=hidden name=status value="1">
+                            <input type=hidden name=createdby id="createdby" value="">
+                            <input type=hidden id="notetype" name=notetype value="1">
+                            <input type=hidden id="locationId"  value="">
+                            <input type=hidden id="repeatId"  value="">
+
+                            <div class="col-xs-12 form-group" style="margin-top:10px;">
+                                <label>Type</label>
+                                <select name="" id="Type" class="form-control" style="width:30%;">
+                                    <option value="1">Meeting</option>
+                                    <option value="2">Note</option>
+                                    <!--<option value="3">Birthday</option>-->
+                                </select>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label>Subject</label>
+                                <input type="text" class="form-control" name="subject" id="Subject" placeholder="Subject"/>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                            </div>
+                            <div class="col-xs-12 form-group">
+                                <label>Location</label>
+                                <input type="checkbox" id="addLocation">
+                            </div>
+                            <div id="locationAllocation" style="display:none;">
+                                <div class="col-xs-12 form-group">
+                                    <input type="text" class="form-control" id="autocomplete" placeholder="Enter your address"/>
+                                    <input type="text"  style="margin-top: 10px;margin-bottom: 10px;" class="googleAddress form-control" id="street"/>
+                                    <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="city"/>
+                                    <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="state"/>
+                                    <input  style="float: left;  width: 25%;" type="text" class="googleAddress form-control" id="country"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label>Start Date</label>
+                                <input type="text" class="form-control" name="startDate" id="StartDate" placeholder="Start Date"/>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label>End Date</label>
+                                <input type="text" class="form-control" name="endDate" id="EndDate" placeholder="End Date"/>
+                            </div>
+                            <div class="col-xs-12 form-group">
+                                <label>Full Day</label>
+                                <input type="checkbox" id="fullday" checked="checked">
+                            </div>
+                            <div id="timeAllocation" style="display:none">
+                                <div class="col-xs-6 form-group">
+                                    <label>Start Time</label>
+                                    <input type="text" class="form-control" name="" id="StartTime" placeholder="Start Time"/>
+                                </div>
+                                <div class="col-xs-6 form-group">
+                                    <label>End Time</label>
+                                    <input type="text" class="form-control" name="" id="EndTime" placeholder="End Time"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 form-group">
+                                <label>Repeat</label>
+                                <input type="checkbox" id="repeat" >
+                            </div>
+                            <div id="repeatAllocation" style="display:none">
+                                <div class="col-xs-6 form-group">
+                                    <div class="panel panel-default" style="" >
+                                        <div class="panel-body" style="">
+                                            <div class="col-xs-6 form-group">
+                                                <strong>Repeats:</strong>
+                                            </div>
+                                            <div class="col-xs-6 form-group">
+                                                <select name="" id="repeats" class="form-control" style="">
+                                                    <option value="M">Monthly</option>
+                                                    <option value="W">Weekly</option>
+                                                    <option value="Y">Yearly</option>
+                                                </select>
+                                            </div>
+                                            <!--<div class="col-xs-6 form-group">-->
+                                            <!--<strong>Repeats Every</strong>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-xs-6 form-group">-->
+                                            <!--<select name="" id="repeatCombo" class="form-control" style="">-->
+
+                                            <!--</select>-->
+                                            <!--</div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 form-group">
+                                <label>Meeting Description</label>
+                                <textarea class="form-control custom-control" name="description" id="Description" rows="5" style="resize:none"></textarea>
+                            </div>
+                        </form>
+                        <form id="inviteeForm" style="margin-top:10px">
+                            <div class="col-xs-6 form-group" style="margin-top:10px;">
+                                <input type="email"  class="form-control"  id="InviteeEmail" placeholder="InviteeEmail"/><button type="button" style=" float: left;  margin-top: 5px;" class="btn btn-sm btn-primary"onclick="addToInvitedList()">Add to List</button>
+                                <!--<button type="button" style="  margin-left: 10px;  float: left;  margin-top: 2px;" class="btn btn-sm btn-primary"onclick="inviteList()">Invite</button>-->
+                            </div>
+                            <div class="col-xs-12 form-group">
+                                <div id="InvitedList">
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="col-xs-12 form-group">
+                            <button type="button" id="advanceButton" class="btn btn-sm btn-primary" onClick="">CREATE</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <footer id="footer" >
-        <center>
-            <img class="" src="img/ch_logo.png" alt="Code Hunters Logo" style="padding: 20px;height: 100px;">
-            <span style="color: #fff;font-size:15px;font-weight: 100;">&copy; 2015 Code Hunters. All Rights Reserved.</span>
-        </center>
-    </footer>
+        </section>
+        
+        <footer id="footer" >
+            <center>
+                <img class="" src="img/ch_logo.png" alt="Code Hunters Logo" style="padding: 20px;height: 100px;">
+                <span style="color: #fff;font-size:15px;font-weight: 100;">&copy; 2015 Code Hunters. All Rights Reserved.</span>
+            </center>
+        </footer>
     </body>
 </html>                                		                                		
