@@ -17,6 +17,8 @@ function initialize() {
 function fillInAddress() {
     $(".googleAddress").val("");
     var place = autocomplete.getPlace();
+    $("#latitude").val(place.geometry.location.A);
+    $("#longitude").val(place.geometry.location.F);
     var streetnumber = "";
     var streetname = "";
     for (var i = 0; i < place.address_components.length; i++) {
