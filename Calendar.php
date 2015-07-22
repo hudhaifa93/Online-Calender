@@ -171,7 +171,7 @@
                                                     <i class="glyphicon glyphicon-log-out " style="color: #f44336" ></i>
                                                 </div>
                                                 <div class="media-body">
-                                                    <small class="lv-small">logout</small>
+                                                    <small class="lv-small">Logout</small>
                                                 </div>
                                             </div>
                                         </a>
