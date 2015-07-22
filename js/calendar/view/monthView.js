@@ -349,6 +349,11 @@ var Month = function (config) {
             $('#CommonViewModal').modal('show');
             if(event.data('eventtype')=="1")//meeting
             {
+                var btn=$('<button class="share btn btn-primary  " type="button" > Share </button>');
+                btn.data('id',event.data('eventid'));
+                btn.data('type',event.data('eventtype'));
+                $('#CommonViewModal').find('.share').remove();
+                $('#editButton').before(btn);
                 $("#viewHead").text("Meeting");
                 $("#ViewSubject").text(event.data('subject'));
                 $("#ViewDescription").text(event.data('description'));
@@ -384,6 +389,11 @@ var Month = function (config) {
                 }
             }
             if(event.data('eventtype')=="3"){
+                var btn=$('<button class="share btn btn-primary  " type="button" > Share </button>');
+                btn.data('id',event.data('eventid'));
+                btn.data('type',event.data('eventtype'));
+                $('#CommonViewModal').find('.share').remove();
+                $('#editButton').before(btn);
                 $("#viewHead").text("Birthday");
                 $("#ViewSubject").text(event.data('subject'));
                 $("#ViewDescription").text(dateFormat(new Date(event.data('eventdate')),'d')+" - "+dateFormat(new Date(event.data('eventdate')),'m')+" - "+dateFormat(new Date(event.data('eventdate')),'y'));

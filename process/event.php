@@ -317,8 +317,8 @@ class Event extends Controller {
     }
 
     function share(){
-        if(strlen($this->post('email')) > 0 ){
-            $email = explode(',',$this->post('email'));
+        $email = $this->post('email');
+        if(!empty($email) ){
             $id = $this->post('id');
             $type = $this->post('type');
             foreach($email as $k => $e){
@@ -328,10 +328,8 @@ class Event extends Controller {
             $q = "INSERT INTO share_note
             SELECT id AS member_id, $id AS event_id, ( SELECT  `createdby` FROM note WHERE id =$id) AS shared_id, 0 AS status FROM member
             WHERE email IN ($mail)";
-            echo $q;
            echo json_encode($this->db->query($q) ? array('success'=>true) : array('success'=>false) );
-
-        }
+        }else
         echo json_encode(array('success'=>false));
     }
 

@@ -312,9 +312,20 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" > Share </h4>
                     </div>
-                    <div class="modal-body" >
-
+                    <div class="modal-body">
+                        <div class= "col-xs-6 form-group">
+                            <input type="text" style="  width: 50%;  float: left;" class="form-control"  id="shareEmail" placeholder="share Email"/><button type="button" style="  margin-left: 10px;  float: left;  margin-top: 2px;" class="btn btn-sm btn-primary"onclick="addToShareList()">Add to List</button>
+                        </div>
+                        <div class= "col-xs-12 form-group">
+                            <form id="shareList" >
+                            <form>
+                        </div>
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-sm btn-primary" id="share_from" onclick="">Share</button>
+                            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
+                    <div class="modal-footer"></div>
                 </div>
             </div>
         </div>
@@ -427,13 +438,29 @@
         });
 
         function addToInvitedList() {
-            debugger;
             var Email = $("#InviteeEmail").val();
             var fullEmail = Email;
             Email = Email.split("@");
             $("#InvitedList").append($('<div data-status="0" class="tags ' + Email[0] + 'List" >' + fullEmail + '<a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
             $("#InviteeEmail").val("");
         }
+        function addToShareList() {
+            var Email = $("#shareEmail").val();
+            if(validateEmail( Email )){
+                $('<div class="tags " >' +
+                    '<input type="hidden" name="email[]" value="'+Email+'" >' + Email +
+                    '<i class="glyphicon glyphicon-remove remove pull-right" ></i>' +
+                    '</div> ').appendTo('#shareList');
+                $("#shareEmail").val("");
+            }
+
+        }
+
+        $('body').on('click','.remove',function(){
+            $(this).closest('.tags').remove();
+        });
+
+
 
         function removeFromInvitedList(id) {
             debugger;

@@ -667,21 +667,20 @@ share();
 function share(){
     $('body').on( 'click' , '.share' ,function(e){
         $('#share').modal('show');
-        m=$('#share').find('.modal-body');
-        frm=$('<form >').append('<input type="email" name="email" > <button id="share_from" type="button"  >Share</button>');
-        frm.data('id',$(this).data('id'));
-        frm.data('type',$(this).data('type'));
-        m.html(frm);
+        $('#shareList')
+            .data('id',$(this).data('id'))
+            .data('type',$(this).data('type'));
     })
         .on('click','#share_from',function(){
             $('#share').modal('hide');
-            frm = $(this).closest('form');
+            frm = $('#shareList');
             data = frm.serialize()+"&id="+frm.data('id')+"&type="+frm.data('type');
             $.ajax({
                 url : 'process/?route=event&method=share' ,
                 type:'post',
                 data : frm.serialize()+"&id="+frm.data('id')+"&type="+frm.data('type') ,
                 success: function(e){
+                    $("#shareList").html("");
                     console.log(e);
                 }
             });
