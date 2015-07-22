@@ -150,7 +150,7 @@ var BirthDay = function (config) {
                             _isFound = true;
                         }
 
-                        b += '<div class="panel-body">' +
+                        b += '<div class="panel-body" style="background-color:#CAF6FC;">' +
                             '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + ' ';
 
                         if(_CurBday[i].createdby != localStorage.getItem("memberId")){
@@ -177,7 +177,7 @@ var BirthDay = function (config) {
                             _isFound = true;
                         }
 
-                        b += '<div class="panel-body">' +
+                        b += '<div class="panel-body" style="background-color:#CAF6FC;">' +
                             '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
                             '<strong style="float: left;margin-left: 10px;">' +  _CurBday[i].subject + ' ';
 
@@ -215,7 +215,7 @@ var BirthDay = function (config) {
                                         _isFound = true;
                                     }
 
-                                    b += '<div class="panel-body">' +
+                                    b += '<div class="panel-body" style="background-color:#CAF6FC;">' +
                                         '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
                                         '<strong style="float: left;margin-left: 10px;">' +  _CurBday[i].subject + ' ';
 
@@ -237,7 +237,7 @@ var BirthDay = function (config) {
                                     _isFound = true;
                                 }
 
-                                b += '<div class="panel-body">' +
+                                b += '<div class="panel-body" style="background-color:#CAF6FC;">' +
                                     '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
                                     '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + ' ';
 
