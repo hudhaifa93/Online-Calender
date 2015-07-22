@@ -332,7 +332,7 @@ class Event extends Controller {
     }
 
     function getSharedMemberIds(){
-        $result = $this->db->query("SELECT * FROM shared_calendar where memberid='".$_POST['memberid']."'");
+        $result = $this->db->query("SELECT * FROM shared_calendar where memberid='".$_POST['memberid']."' and `status` IN (0,1)");
         if(is_object($result))
         {
             while($r = $result->fetchObject()){
@@ -343,6 +343,14 @@ class Event extends Controller {
         else{
             echo json_encode($result? array("success" => "No Data") : array("failure" => "failure" ));
         }
+    }
+
+    function deleteSharedCalendar(){
+        $sharedMembersList = $this->post('sharedMembersList');
+        $memberId=$sharedMembersList[0]['memberid'];
+        $memberEmail = $sharedMembersList[0]['sharedmemberemail'];
+        $result = $this->db->query("UPDATE `shared_calendar` SET `status`='3' WHERE `sharedmemberemail`= '".$memberEmail."' and `memberid`='".$memberId."' ");
+        echo json_encode($result? array("success" => "success") : array("failure" => "failure" ));
     }
 
     function getSharedMemberDetailsByMemberId(){

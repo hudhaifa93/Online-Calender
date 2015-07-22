@@ -419,7 +419,33 @@
         }
 
         function removeFromInvitedList(id) {
-            $("." + id+"List").remove();
+            debugger;
+            var email = [] ;
+            var removedTag = $("." + id+"List");
+            var str = $( removedTag ).text();
+            str = str.split("x");
+            email.push({
+                "memberid" : localStorage.getItem("memberId"),
+                "sharedmemberemail" : str[0],
+                "status" : $( removedTag ).data('status') });
+
+            $.ajax({
+                url: "process/index.php?route=event&method=deleteSharedCalendar",
+                type: "post",
+                dataType: 'json',
+                data: { sharedMembersList : email}, // provided this code executes in form.onsubmit event
+                success: function (output) {
+                    if(output.success=="success"){
+                        showalert("Shared Calender Revoked.", "alert-success", "", "");
+                        $("." + id+"List").remove();
+                    }
+                },
+                failure: function () {
+
+                }
+            });
+
+
 
 
         }
