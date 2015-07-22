@@ -156,7 +156,26 @@ class Event extends Controller {
     }
 
     function getCurrentEvent(){
-       echo json_encode($this->sharedCalendar()) ;
+        if($date = $this->post('date')){
+            $result = $this->db->query(" select note.* ,concat(member.firstname , ' ' , member.lastname) as name  from `note` join member  on member.id = note.createdby WHERE  DATE_FORMAT(startdate, '%m-%d')   = DATE_FORMAT('$date', '%m-%d')  ");
+            while($r = $result->fetchObject()){
+                $d1[] =  $r;
+            }
+        }
+        $d2 = $this->shareEvent();
+        $d3 = $this->sharedCalendar();
+        $d4 = $this->inviteNoteRequest();
+        $a = array();
+        if(isset($d1))
+            $a = array_merge($a,$d1);
+        if(!empty($d2))
+            $a = array_merge($a,$d2);
+        if(!empty($d3))
+            $a = array_merge($a,$d3);
+        if(!empty($d4))
+            $a = array_merge($a,$d4);
+
+       echo json_encode($a) ;
     }
 
     function getAdvanceEventData(){
@@ -394,9 +413,29 @@ class Event extends Controller {
 
         return isset($d)?$d : array();
     }
+    function inviteNoteRequest(){
+        $user = session::get('user');
+        $this->db->query("select  CONCAT(member.firstname ,' ', member.lastname) as name , note.*  , note_type.description from note_invitee_map
+join note on  note_invitee_map.noteid = note.id
+join member on note.createdby = member.id
+join note_type on note.notetype = note_type.id
+ where note_invitee_map.email='".$user['email']."' and note_invitee_map.status = 0  ");
+        while($r = $this->db->fetchObject()){
+            $r->share = 2 ;
+            $r->subject = $r->name.' invite '.$r->description ;
+            $d[] = $r;
+        }
+
+        return isset($d)?$d : array();
+    }
+
     function updateSharedCalendar(){
         $user = session::get('user');
         $this->db->query("UPDATE `shared_calendar` SET `status`='".$_POST['val']."' WHERE `sharedmemberemail`= '".$user['email']."' and `memberid`='".$_POST['memberid']."' ");
+    }
+    function updateInviteRequest(){
+        $user = session::get('user');
+        $this->db->query("UPDATE `note_invitee_map` SET `status`='".$_POST['val']."' WHERE `email`= '".$user['email']."' and `noteid`='".$_POST['noteid']."' ");
     }
 }
 /*

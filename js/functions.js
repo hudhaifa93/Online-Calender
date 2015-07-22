@@ -271,7 +271,10 @@ function showalert(message, alerttype, id, type) {
                             ' </div>' +
                             ' </div>' ).appendTo(item);
                         if(typeof  v.share != 'undefined'){
-                            item.data('member_id', v.id).data('share',true).data('name',v.name).addClass('sharedCalendar');
+                            if(v.share == 1)
+                                item.data('member_id', v.id).data('share',true).data('name',v.name).addClass('sharedCalendar');
+                            else if(v.share == 2)
+                                item.data('noteid', v.id).data('share',true).data('name',v.name).addClass('invite');
                         }
                         $('#notifications').find('.lv-body').append(item);
                     });
@@ -279,7 +282,7 @@ function showalert(message, alerttype, id, type) {
                 }
             }
         });
-        $('#notifications').on('click','.sharedCalendar',function(){
+        $('#notifications').on('click','.sharedCalendar,.invite',function(){
             self = $(this);
             bootbox.dialog({
                 message: "Request for share Calendar",
@@ -289,6 +292,9 @@ function showalert(message, alerttype, id, type) {
                         label: "Confirm",
                         className: "btn-success",
                         callback: function() {
+                            if(self.hasClass('invite'))
+                                changeInviteRequest(1);
+                            else if(self.hasClass('sharedCalendar'))
                             changeShare(1);
                         }
                     },
@@ -296,7 +302,10 @@ function showalert(message, alerttype, id, type) {
                         label: "Delete Request",
                         className: "btn-danger",
                         callback: function() {
-                            changeShare(2);
+                            if(self.hasClass('invite'))
+                                changeInviteRequest(2);
+                            else if(self.hasClass('sharedCalendar'))
+                                changeShare(2);
                         }
                     }}
 
@@ -305,6 +314,16 @@ function showalert(message, alerttype, id, type) {
                 $.ajax({
                     url : "process/?route=event&method=updateSharedCalendar",
                     data: { memberid:self.data('member_id') , val:v },
+                    type:'post',
+                    success :function(){
+                        location.reload();
+                    }
+                });
+            }
+            function changeInviteRequest(v){
+                $.ajax({
+                    url : "process/?route=event&method=updateInviteRequest",
+                    data: { noteid:self.data('noteid') , val:v },
                     type:'post',
                     success :function(){
                         location.reload();
