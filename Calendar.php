@@ -3,7 +3,7 @@
 <html>
     <head lang="en">
         <meta charset="UTF-8">
-        <title>Code Hunters - Calender</title>
+        <title>Code Hunters - Calendar</title>
         <link rel="stylesheet" href="css/fullcalendar.min.css"/>
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" href="css/app.min.1.css"/>
