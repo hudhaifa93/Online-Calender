@@ -53,3 +53,31 @@ function getMemberIds(){
     m +=  localStorage.getItem("memberId");
     return m;
 }
+
+function getSharedMemberNameByMemberId(_memberid){
+    var m = '';
+    if(localStorage.getItem("sharedClicked")!="" && localStorage.getItem("sharedClicked") != [] && localStorage.getItem("sharedClicked") != null){
+        var _sharedMembers = jQuery.parseJSON(localStorage.getItem("sharedClicked"));
+        $.each(_sharedMembers, function(index, value) {
+            if(value.memberid == _memberid){
+                m = 'Shared By : ' + value.name;
+            }
+        });
+    }
+    return m;
+}
+
+function getEventNameByEventId(eventid){
+    if(eventid == 1){
+        return 'Meeting';
+    }else if(eventid == 2){
+        return 'Note';
+    }else if(eventid == 3){
+        return 'Birth Day';
+    }else if(eventid == 4){
+        return 'Anniversary';
+    }else{
+        return 'Other';
+    }
+
+}

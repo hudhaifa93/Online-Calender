@@ -125,12 +125,12 @@ var Day = function (config) {
                     if(notes[n].starttime == "0" && notes[n].endtime == "0"){
                         var tooltip = '';
                         if(notes[n].createdby != localStorage.getItem("memberId")){
-                            tooltip += 'Shared Event\n';
+                            tooltip += getSharedMemberNameByMemberId(notes[n].createdby) + '\n';
                         }
                         if(notes[n].starttime != "0" && notes[n].endtime != "0"){
                             tooltip += 'Time : ' + getHourlyTime(notes[n].starttime) + ' to ' + getHourlyTime(notes[n].endtime) + '\n';
                         }
-                        tooltip += 'Subject : ' + notes[n].subject;
+                        tooltip += getEventNameByEventId(notes[n].notetype)+ ' : ' + notes[n].subject;
                         if(notes[n].description != ""){
                             tooltip += '\nDescription : ' + notes[n].description;
                         }
@@ -299,12 +299,12 @@ var Day = function (config) {
                             for (var s = 0; s < _events.length; s++) {
                                 var tooltip = '';
                                 if(_events[s].createdby != localStorage.getItem("memberId")){
-                                    tooltip += 'Shared Event\n';
+                                    tooltip += getSharedMemberNameByMemberId(_events[s].createdby) + '\n';
                                 }
                                 if(_events[s].starttime != "0" && _events[s].endtime != "0"){
                                     tooltip += 'Time : ' + getHourlyTime(_events[s].starttime) + ' to ' + getHourlyTime(_events[s].endtime) + '\n';
                                 }
-                                tooltip += 'Subject : ' + _events[s].subject;
+                                tooltip += getEventNameByEventId(_events[s].notetype) + ' : ' + _events[s].subject;
                                 if(_events[s].description != ""){
                                     tooltip += '\nDescription : ' + _events[s].description;
                                 }

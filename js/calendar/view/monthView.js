@@ -177,12 +177,12 @@ var Month = function (config) {
                         for (var n = 0; n < notes.length; n++) {
                             var tooltip = '';
                             if(notes[n].createdby != localStorage.getItem("memberId")){
-                                tooltip += 'Shared Event\n';
+                                tooltip += getSharedMemberNameByMemberId(notes[n].createdby) + '\n';
                             }
                             if(notes[n].starttime != "0" && notes[n].endtime != "0"){
                                 tooltip += 'Time : ' + getHourlyTime(notes[n].starttime) + ' to ' + getHourlyTime(notes[n].endtime) + '\n';
                             }
-                            tooltip += 'Subject : ' + notes[n].subject;
+                            tooltip += getEventNameByEventId(notes[n].notetype)+ ' : ' + notes[n].subject;
                             if(notes[n].description != ""){
                                 tooltip += '\nDescription : ' + notes[n].description;
                             }
