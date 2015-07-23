@@ -345,20 +345,16 @@ var Month = function (config) {
         }
 
         function openModelForView(event){
+            debugger
             resetModalButton();
-            $('#CommonViewModal').modal('show');
-
+            $('#CommonViewModal').modal('show').find('.share').remove();
             if(event.data('eventtype')=="1")//meeting
             {
-                var btn=$('<button class="share btn btn-primary  " type="button" > Share </button>');
-                btn.data('id',event.data('eventid'));
-                btn.data('type',event.data('eventtype'));
-                loadViewModaData(event.data('eventid'),'Meeting');
-                $('#CommonViewModal').find('.share').remove();
-                $('#editButton').before(btn);
+
                 $("#viewHead").text("Meeting");
                 if(event.data('createdby')==localStorage.getItem("memberId"))
                 {
+                    loadViewModaData(event.data('eventid'),'Meeting');
                     $('#editButton').attr("onclick","editAdvanceNote("+event.data('eventid')+")");
                     $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
                     $('#editButton').show();
@@ -372,6 +368,11 @@ var Month = function (config) {
 
             }
             if(event.data('eventtype')=="2"){
+                var btn=$('<button class="share btn btn-primary  " type="button" > Share </button>');
+                btn.data('id',event.data('eventid'));
+                btn.data('type',event.data('eventtype'));
+                $('#editButton').before(btn);
+
                 $("#viewHead").text("Note");
                 $("#ViewSubject").text(event.data('subject'));
                 $("#ViewDescription").text(event.data('description'));
@@ -393,7 +394,7 @@ var Month = function (config) {
                 var btn=$('<button class="share btn btn-primary  " type="button" > Share </button>');
                 btn.data('id',event.data('eventid'));
                 btn.data('type',event.data('eventtype'));
-                $('#CommonViewModal').find('.share').remove();
+
                 $('#editButton').before(btn);
                 $("#viewHead").text("Birthday");
                 loadViewModaData(event.data('eventid'),'Birthday');

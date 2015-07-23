@@ -820,3 +820,98 @@ function loadViewModaData(id,type){
  </div>
  </div>
  */
+
+$('#txtSearch').keyup(function(){
+    self = $(this);
+
+    if(self.val().length>0){
+        $('.search_result').removeClass('hidden');
+        $.ajax({
+            url :"process/?route=event&method=search&str="+self.val(),
+            dataType:'json',
+            data : {memberid:getMemberIds()},
+            type : 'post',
+            success: function(e){
+                $('.search_result').html("");
+                for(a in e){
+                    $("<a class='result_event' data-createdby='"+e[a].createdby+"' data-eventid='"+e[a].id+"' data-eventtype='"+e[a].notetype+"' >  " +
+                        " <span class='result_image' >"+e[a].firstname.charAt(0).toUpperCase()+"</span> " +
+                        " <span class='result_data' >" +
+                        "<span class='result_sub' >"+e[a].subject+"</span> <span class='result_des' >"+e[a].description.substring(0,75)+ ( e[a].description.length > 75 ? "..." : "" )+"</span>"+
+                        "</span> " +
+                        "  </a>").appendTo('.search_result');
+                }
+
+            }
+        });
+    }else
+        $('.search_result').addClass('hidden').html("");
+});
+$('.main').click(function(){$('.search_result').addClass('hidden').html("");});
+$('.search_result').on('click','.result_event',function(){
+    $('.search_result').addClass('hidden').html("");
+    $("#txtSearch").val("");
+    event = $(this);
+    $('#CommonViewModal').modal('show').find('.share').remove();
+    if(event.data('eventtype')=="1")//meeting
+    {
+
+        $("#viewHead").text("Meeting");
+        if(event.data('createdby')==localStorage.getItem("memberId"))
+        {
+            $('#editButton').attr("onclick","editAdvanceNote("+event.data('eventid')+")");
+            $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
+            $('#editButton').show();
+            $("#viewButtonDelete").show();
+        }
+        else
+        {
+            $('#editButton').hide();
+            $("#viewButtonDelete").hide();
+        }
+
+    }
+    if(event.data('eventtype')=="2"){
+        var btn=$('<button class="share btn btn-primary  " type="button" > Share </button>');
+        btn.data('id',event.data('eventid'));
+        btn.data('type',event.data('eventtype'));
+        $('#editButton').before(btn);
+
+        $("#viewHead").text("Note");
+        $("#ViewSubject").text(event.data('subject'));
+        $("#ViewDescription").text(event.data('description'));
+        loadViewModaData(event.data('eventid'),'Note');
+        if(event.data('createdby')==localStorage.getItem("memberId"))
+        {
+            $('#editButton').attr("onclick","editAdvanceNote("+event.data('eventid')+")");
+            $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
+            $('#editButton').show();
+            $("#viewButtonDelete").show();
+        }
+        else
+        {
+            $('#editButton').hide();
+            $("#viewButtonDelete").hide();
+        }
+    }
+    if(event.data('eventtype')=="3"){
+        var btn=$('<button class="share btn btn-primary  " type="button" > Share </button>');
+        btn.data('id',event.data('eventid'));
+        btn.data('type',event.data('eventtype'));
+
+        $('#editButton').before(btn);
+        $("#viewHead").text("Birthday");
+        loadViewModaData(event.data('eventid'),'Birthday');
+
+        if(event.data('createdby')==localStorage.getItem("memberId"))
+        {
+            $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
+            $("#viewButtonDelete").show();
+        }
+        else
+        {
+            $("#viewButtonDelete").hide();
+        }
+    }
+
+});

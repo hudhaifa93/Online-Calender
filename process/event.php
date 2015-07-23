@@ -435,6 +435,13 @@ join note_type on note.notetype = note_type.id
         $user = session::get('user');
         $this->db->query("UPDATE `note_invitee_map` SET `status`='".$_POST['val']."' WHERE `email`= '".$user['email']."' and `noteid`='".$_POST['noteid']."' ");
     }
+
+    function search(){
+        $this->db->query("select note.* , member.firstname , member.lastname from note join member on note.createdby = member.id where createdby in (".$_POST['memberid'].") and note.status=1 and ( subject like '%".$_GET['str']."%' OR description like '%".$_GET['str']."%' )");
+        while($r = $this->db->fetchObject())
+            $d[] = $r;
+        echo json_encode($d?$d : array());
+    }
 }
 /*
 $email = new email();
