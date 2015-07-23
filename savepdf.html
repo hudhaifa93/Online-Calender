@@ -2,17 +2,13 @@
 <html lang="en">
 <head>
 <title>Code Hunters - Configure Calendar</title>
-<link rel="stylesheet" href="css/fullcalendar.min.css"/>
 <link rel="stylesheet" href="css/bootstrap.min.css"/>
 <link rel="stylesheet" href="css/app.min.1.css"/>
 <link rel="stylesheet" href="css/app.min.2.css"/>
 <link rel="stylesheet" href="css/socicon.min.css"/>
 <link rel="stylesheet" href="css/jquery-ui.css"/>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script src="js/jquery-ui.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script src="js/googleAddress.js"></script>
 <script src="js/functions.js"></script>
 <script type="text/javascript" src="js/jspdf/jspdf.debug.js"></script>
 <style type="text/css">
@@ -134,11 +130,75 @@ input[type=checkbox], input[type=radio] {
 
 $(document).ready(function () {
 
+    var loginMemberId = localStorage.getItem("memberId");
 
+    var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    var firstDay = new Date(y, m, 1);
+    var lastDay = new Date(y, m + 1, 0);
+
+    $("#StartDate").datepicker({
+        dateFormat: "yy-mm-dd"
+    });
+
+    $("#EndDate").datepicker({
+        dateFormat: "yy-mm-dd"
+    });
+
+    $("#StartDate").datepicker('setDate', firstDay);
+    $("#EndDate").datepicker('setDate', lastDay);
+
+    loadtable(firstDay,lastDay,loginMemberId);
 
 });
 
-function demoFromHTML() {
+function loadtable(startdate,enddate,memberid){
+    $.ajax({
+        url : "process/?route=Event&method=getAllNotesByStartDateAndEndDate",
+        data:  { start : dateFormat(startdate), end: dateFormat(enddate), MemberId: memberid},
+        type : "post",
+        dataType: "json",
+        success : function(e){
+        debugger;
+            var tablerows='';
+            var tablehead ='<colgroup>'+
+                    '<col width="20%">'+
+                    '<col width="20%">'+
+                    '<col width="20%">'+
+                    '<col width="20%">'+
+                    '</colgroup>'+
+                    '<thead>'+
+                    '<tr class="warning">'+
+                    '<th>Type</th>'+
+                    '<th>Subject</th>'+
+                    '<th>Description</th>'+
+                    '<th>Start Date</th>'+
+                    '<th>End Date</th>'+
+                    '</tr>'+
+                    '</thead>';
+
+            $.each( e, function( key, value ) {
+                var notetype="";
+
+                if(value.notetype=="1"){
+                    notetype = "Meeting";
+                }
+                else if(value.notetype=="2"){
+                    notetype = "Note";
+                }
+                else if(value.notetype=="3"){
+                    notetype = "Birthday";
+                }
+                tablerows += '<tr><td>'+notetype+'</td><td>'+value.subject+'</td><td>'+value.description+'</td><td>'+value.startdate+'</td><td>'+value.enddate+'</td></tr>'
+            });
+            var tablebody = '<tbody>'+tablerows+'</tbody>';
+            $("#tab_customers").append(tablehead+tablebody);
+
+
+        }
+    });
+}
+
+function exportPDF() {
     var pdf = new jsPDF('p', 'pt', 'letter');
     // source can be HTML-formatted string, or a reference
     // to an actual DOM element from which the text will be scraped.
@@ -301,27 +361,39 @@ function demoFromHTML() {
                 <h2>&nbsp;</h2>
             </div>
 
-            <div style="background-color:#FFFFFF; overflow: auto;" > <!--heshani added a new div-->
+            <div style="background-color:#FFFFFF; overflow: auto;  height: 500px; margin-bottom: 20px;" > <!--heshani added a new div-->
 
 				<div class="panel panel-default" >
 					<div class="panel-body">
-				
-						<div class="" class="col-xs-12 form-group">
-						  <input type="checkbox" name="optradio" style="padding-right: 50px" ><label>Meeting</label>
-						</div>
-						<div class="" class="col-xs-12 form-group">
-						  <label><input type="checkbox" name="optradio">Birthday</label>
-						</div>
-						<div class="" class="col-xs-12 form-group">
-						  <label><input type="checkbox" name="optradio">Note</label>
-						</div>
-	
-						<div class="col-xs-12 form-group">
-                            <button type="button"  class="btn btn-sm btn-primary" onClick="">EXPORT</button>
+
+                        <div class="col-xs-6 form-group">
+                            <div class="col-xs-6 form-group">
+                                <label>Start Date</label>
+                                <input type="text" class="form-control" name="startDate" id="StartDate" placeholder="Start Date"/>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label>End Date</label>
+                                <input type="text" class="form-control" name="endDate" id="EndDate" placeholder="End Date"/>
+                            </div>
+                            <div class="col-xs-6">
+                                <label style="margin-right: 10px;"><input id="M" type="checkbox" style="margin-right: 10px;" name="">Meeting</label>
+
+                                <label style="margin-right: 10px;"><input id="B" type="checkbox"  style="margin-right: 10px;" name="">Birthday</label>
+
+                                <label style="margin-right: 10px;"><input id="N" type="checkbox"  style="margin-right: 10px;" name="">Note</label>
+                             </div>
+                            <div class="col-xs-6" styl="clear:both">
+                                <button type="button"  class="btn btn-sm btn-primary" onclick="javascript:exportPDF();">EXPORT</button>
+                            </div>
+                         </div>
                         </div>
-	
-				
 					</div>
+                <div id="editor"></div>
+                <div id="customers">
+                    <table id="tab_customers" class="table table-striped">
+
+                    </table>
+                </div>
 				</div>
 				
             </div>
