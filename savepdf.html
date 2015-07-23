@@ -162,6 +162,7 @@ function loadCall(){
 }
 
 function loadtable(startdate,enddate,memberid){
+    $("#tab_customers").html('');
     $.ajax({
         url : "process/?route=Event&method=getAllNotesByStartDateAndEndDate",
         data:  { start : dateFormat(startdate), end: dateFormat(enddate), MemberId: memberid},
@@ -185,12 +186,13 @@ function loadtable(startdate,enddate,memberid){
                         '<th>Description</th>'+
                         '<th>Start Date</th>'+
                         '<th>End Date</th>'+
+                        '<th>Location</th>'+
                         '</tr>'+
                         '</thead>';
 
                 $.each( e, function( key, value ) {
                     var notetype="";
-
+                    var location=""
                     if(value.notetype=="1"){
                         notetype = "Meeting";
                     }
@@ -200,10 +202,18 @@ function loadtable(startdate,enddate,memberid){
                     else if(value.notetype=="3"){
                         notetype = "Birthday";
                     }
-                    tablerows += '<tr><td>'+notetype+'</td><td>'+value.subject+'</td><td>'+value.description+'</td><td>'+value.startdate+'</td><td>'+value.enddate+'</td></tr>'
+
+                    if(value.location!="0"){
+                        location = "Yes";
+                    }
+                    else{
+                        location = "No";
+                    }
+
+                    tablerows += '<tr><td>'+notetype+'</td><td>'+value.subject+'</td><td>'+value.description+'</td><td>'+value.startdate+'</td><td>'+value.enddate+'</td><td>'+location+'</td></tr>'
                 });
                 var tablebody = '<tbody>'+tablerows+'</tbody>';
-                $("#tab_customers").html('');
+
                 $("#tab_customers").append(tablehead+tablebody);
 
                 showalert("Records Loaded.", "alert-success", "", "");
