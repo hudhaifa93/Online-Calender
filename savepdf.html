@@ -178,12 +178,12 @@ function loadtable(startdate,enddate,memberid){
             {
                 var tablerows='';
                 var tablehead ='<colgroup>'+
-                        '<col width="20%">'+
-                        '<col width="20%">'+
-                        '<col width="20%">'+
-                        '<col width="20%">'+
-                        '<col width="20%">'+
-                        '<col width="20%">'+
+                        '<col >'+
+                        '<col >'+
+                        '<col >'+
+                        '<col >'+
+                        '<col >'+
+                        '<col >'+
                         '</colgroup>'+
                         '<thead>'+
                         '<tr class="warning">'+
@@ -231,7 +231,7 @@ function loadtable(startdate,enddate,memberid){
 }
 
 function exportPDF() {
-    var pdf = new jsPDF('p', 'pt', 'letter');
+    var pdf = new jsPDF('landscape', 'pt', 'letter');
     // source can be HTML-formatted string, or a reference
     // to an actual DOM element from which the text will be scraped.
     source = $('#customers')[0];
@@ -248,10 +248,10 @@ function exportPDF() {
         }
     };
     margins = {
-        top: 80,
-        bottom: 60,
+        top: 20,
+        bottom: 20,
         left: 40,
-        width: 522
+        width:'100%'
     };
     // all coords and widths are in jsPDF instance's declared units
     // 'inches' in this case
@@ -268,6 +268,8 @@ function exportPDF() {
                 //          this allow the insertion of new lines after html
                 pdf.save('Test.pdf');
             }, margins);
+
+
 }
 
 </script>
@@ -424,9 +426,11 @@ function exportPDF() {
 					</div>
                 <div id="editor"></div>
                 <div id="customers">
-                    <table id="tab_customers" class="table table-striped">
+                    <h2 style="text-align: center;display:none;">Code Hunters - Data Export List</h2>
+                    <table id="tab_customers" style="width: 100%" class="table table-striped">
 
                     </table>
+                    <p style="text-align: center;display:none;">* Exported Using Code Hunters Online Calender *</p>
                 </div>
 				</div>
 				
