@@ -16,6 +16,17 @@
 <script src="js/functions.js"></script>
 <script type="text/javascript" src="js/jspdf/jspdf.debug.js"></script>
 <style type="text/css">
+input[type=checkbox], input[type=radio] {
+    margin: 4px 0 0;
+    margin-top: 1px \9;
+    line-height: normal;
+}
+input[type=checkbox], input[type=radio] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+}
     body {
         margin: 0px auto;
         margin-top:20px;
@@ -114,6 +125,9 @@
         -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
         transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     }
+	
+	
+	
 
 </style>
 <script>
@@ -276,6 +290,7 @@ function demoFromHTML() {
     </ul>
 </header>
 
+
 <section class="main" >
     <div class="content" >
         <div class="container" >
@@ -288,8 +303,27 @@ function demoFromHTML() {
 
             <div style="background-color:#FFFFFF; overflow: auto;" > <!--heshani added a new div-->
 
-                <!--add  things here-->
-
+				<div class="panel panel-default" >
+					<div class="panel-body">
+				
+						<div class="" class="col-xs-12 form-group">
+						  <input type="checkbox" name="optradio" style="padding-right: 50px" ><label>Meeting</label>
+						</div>
+						<div class="" class="col-xs-12 form-group">
+						  <label><input type="checkbox" name="optradio">Birthday</label>
+						</div>
+						<div class="" class="col-xs-12 form-group">
+						  <label><input type="checkbox" name="optradio">Note</label>
+						</div>
+	
+						<div class="col-xs-12 form-group">
+                            <button type="button"  class="btn btn-sm btn-primary" onClick="">EXPORT</button>
+                        </div>
+	
+				
+					</div>
+				</div>
+				
             </div>
         </div>
     </div>
