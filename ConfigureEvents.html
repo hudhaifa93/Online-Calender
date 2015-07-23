@@ -123,8 +123,18 @@
                  rows: 2,
                  showNowButton: false
                 });
-                $('#EndTime').timepicker({timeSeparator: '' });
-
+                $('#EndTime').timepicker({
+                    timeSeparator: '',
+                    minutes: {
+                        starts: 0,                // First displayed minute
+                        ends: 55,                 // Last displayed minute
+                        interval: 15,              // Interval of displayed minutes
+                        manual: []                // Optional extra entries for minutes
+                    },
+                    rows: 2,
+                    showNowButton: false
+                });
+                
                 $("#createdby").val(localStorage.getItem("memberId"));
 
 
