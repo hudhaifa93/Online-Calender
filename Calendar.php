@@ -289,10 +289,25 @@
                     </div>
                     <div class="modal-body">
                         <div class= "col-xs-12 form-group">
-                            <label type="text" class="form-control" id="ViewSubject"> </label>
+                            <label type="text" class="form-control" style="display:none" id="ViewSubject"> </label>
                         </div>
                         <div class= "col-xs-12 form-group">
-                            <label class="form-control custom-control" id="ViewDescription"></label>
+                            <label class="form-control custom-control" style="display:none" id="ViewDescription"></label>
+                        </div>
+                        <div class= "col-xs-6 form-group">
+                            <label class="form-control custom-control" style="display:none" id="ViewStartDate"></label>
+                        </div>
+                        <div class= "col-xs-6 form-group">
+                            <label class="form-control custom-control" style="display:none" id="ViewEndDate"></label>
+                        </div>
+                        <div class= "col-xs-6 form-group">
+                            <label class="form-control custom-control" style="display:none" id="ViewStartTime"></label>
+                        </div>
+                        <div class= "col-xs-6 form-group">
+                            <label class="form-control custom-control" style="display:none" id="ViewEndTime"></label>
+                        </div>
+                        <div class= "col-xs-12 form-group">
+                            <label class="form-control custom-control" style="display:none" id="ViewLocation"></label>
                         </div>
                         <div class="pull-right">
                             <button type="button" class="btn btn-sm btn-primary" id="editButton" onclick="">Edit</button>

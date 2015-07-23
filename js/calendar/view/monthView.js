@@ -347,16 +347,16 @@ var Month = function (config) {
         function openModelForView(event){
             resetModalButton();
             $('#CommonViewModal').modal('show');
+
             if(event.data('eventtype')=="1")//meeting
             {
                 var btn=$('<button class="share btn btn-primary  " type="button" > Share </button>');
                 btn.data('id',event.data('eventid'));
                 btn.data('type',event.data('eventtype'));
+                loadViewModaData(event.data('eventid'),'Meeting');
                 $('#CommonViewModal').find('.share').remove();
                 $('#editButton').before(btn);
                 $("#viewHead").text("Meeting");
-                $("#ViewSubject").text(event.data('subject'));
-                $("#ViewDescription").text(event.data('description'));
                 if(event.data('createdby')==localStorage.getItem("memberId"))
                 {
                     $('#editButton').attr("onclick","editAdvanceNote("+event.data('eventid')+")");
@@ -375,6 +375,7 @@ var Month = function (config) {
                 $("#viewHead").text("Note");
                 $("#ViewSubject").text(event.data('subject'));
                 $("#ViewDescription").text(event.data('description'));
+                loadViewModaData(event.data('eventid'),'Note');
                 if(event.data('createdby')==localStorage.getItem("memberId"))
                 {
                 $('#editButton').attr("onclick","editAdvanceNote("+event.data('eventid')+")");
@@ -395,8 +396,8 @@ var Month = function (config) {
                 $('#CommonViewModal').find('.share').remove();
                 $('#editButton').before(btn);
                 $("#viewHead").text("Birthday");
-                $("#ViewSubject").text(event.data('subject'));
-                $("#ViewDescription").text(dateFormat(new Date(event.data('eventdate')),'d')+" - "+dateFormat(new Date(event.data('eventdate')),'m')+" - "+dateFormat(new Date(event.data('eventdate')),'y'));
+                loadViewModaData(event.data('eventid'),'Birthday');
+
                 if(event.data('createdby')==localStorage.getItem("memberId"))
                 {
                     $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");

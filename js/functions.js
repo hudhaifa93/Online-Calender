@@ -688,6 +688,55 @@ function share(){
         });
 
 }
+
+function loadViewModaData(id,type){
+
+    $("#CommonViewModal label").hide();
+
+    $.ajax({
+        url: "process/index.php?route=event&method=getAdvanceEventData",//event.php
+        type: "post",
+        dataType: 'json',
+        async:false,
+        data:"id="+id,
+        success: function (e) {
+            debugger;
+            var data = e;
+            data = JSON.parse(data.success);
+            var dataLength = data.length;
+            data = data[0];
+            if (dataLength > 0) {
+                $("#ViewSubject").text(data.subject);$("#ViewSubject").show();
+                $("#ViewDescription").text(data.description);$("#ViewDescription").show();
+                if(type!="Birthday"){
+                    $("#ViewStartDate").text(data.startdate);$("#ViewStartDate").show();
+                    $("#ViewEndDate").text(data.enddate);$("#ViewEndDate").show();
+                }
+                else{
+                    $("#ViewDescription").text(dateFormat(new Date(data.startdate),'d')+" - "+dateFormat(new Date(data.startdate),'m')+" - "+dateFormat(new Date(data.startdate),'y'));
+                }
+                if(data.timeslotid=="1")
+                {
+                    $("#ViewStartTime").text(data.starttime);$("#ViewStartTime").show();
+                    $("#ViewEndTime").text(data.endtime);$("#ViewEndTime").show();
+                }
+                if(data.location != "0")
+                {
+                    $('#ViewLocation').text(data.street+" "+data.city+" "+data.state+" "+data.country);$("#ViewLocation").show();
+                }
+
+
+
+            }
+            else {
+                showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
+            }
+        },
+        failure: function () {
+            showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
+        }
+    });
+}
 /*
 
  <div id="share" class="modal fade">
