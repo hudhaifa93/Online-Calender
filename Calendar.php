@@ -284,10 +284,12 @@
 
         function addToInvitedList() {
             var Email = $("#InviteeEmail").val();
-            var fullEmail = Email;
-            Email = Email.split("@");
-            $("#InvitedList").append($('<div data-status="0" class="tags ' + Email[0] + 'List" >' + fullEmail + '<a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
-            $("#InviteeEmail").val("");
+            if(validateEmail( Email )){
+                var fullEmail = Email;
+                Email = Email.split("@");
+                $("#InvitedList").append($('<div data-status="0" class="tags ' + Email[0] + 'List" >' + fullEmail + '<a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
+                $("#InviteeEmail").val("");
+            }
         }
         function addToShareList() {
             var Email = $("#shareEmail").val();
