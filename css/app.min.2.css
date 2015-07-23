@@ -2922,3 +2922,21 @@ div.fc-row {
 }
 small{ color:#A5A7B6; }
 a small {color:#0E26DA}
+
+.tags{
+    float: left;
+    margin-right: 2px;
+    margin-bottom: 7px;
+    margin-top: 1px;
+    height: 26px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.3);
+    padding-left: 6px;
+    padding-right: 28px;
+    position: relative;
+    border: 1px solid rgb(124, 252, 124);
+    background: rgb(198, 253, 198);
+    color:  green ;
+    font-size: 15px;
+}

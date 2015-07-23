@@ -16,6 +16,7 @@
             .nav-tabs {
                 border-bottom: 1px solid #ddd;
             }
+
             #txtSearch {
                 border: 0;
                 height: 40px;
@@ -33,41 +34,6 @@
                 width: 100%;
             }
 
-            .tags {
-                float: left;
-                margin-right: 2px;
-                margin-bottom: 7px;
-                margin-top: 1px;
-                height: 22px;
-                border-radius: 4px;
-                border: 1px solid #cccccc;
-                font: normal 14px/20px 'Sanchez';
-                background: #ebeaea;
-                background: -o-linear-gradient(top, #C4CDE0, #C4CDE0);
-                background: -webkit-linear-gradient(top, #C4CDE0, #C4CDE0);
-                background: -moz-linear-gradient(top, #C4CDE0, #C4CDE0);
-                background: -ms-linear-gradient(top, #C4CDE0, #C4CDE0);
-                background: linear-gradient(top, #C4CDE0, #C4CDE0);
-                filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr="#C4CDE0", endColorStr="#C4CDE0");
-                border-color: #cccccc;
-                cursor: pointer;
-                box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.3);
-                padding-left: 6px;
-                padding-right: 28px;
-                position: relative;
-            }
-            .tags .delete {
-                display: block;
-                width: 20px;
-                height: 20px;
-                float: right;
-                background: url('../Content/images/panel_tools.png') no-repeat -16px 0px;
-                margin-left: 6px;
-                border-left: 1px solid #ccc;
-                position: absolute;
-                top: 0;
-                right: 0;
-            }
             #footer{
                 background: #B81A0E;
                 box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
@@ -308,6 +274,9 @@
                         </div>
                         <div class= "col-xs-12 form-group">
                             <label class="form-control custom-control" style="display:none" id="ViewLocation"></label>
+                        </div>
+                        <div class= "col-xs-12 form-group" id="ViewInviteList" style="display:none">
+
                         </div>
                         <div class="pull-right">
                             <button type="button" class="btn btn-sm btn-primary" id="editButton" onclick="">Edit</button>

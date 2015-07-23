@@ -724,9 +724,37 @@ function loadViewModaData(id,type){
                 {
                     $('#ViewLocation').text(data.street+" "+data.city+" "+data.state+" "+data.country);$("#ViewLocation").show();
                 }
+                $("#ViewInviteList").hide();
+                $.ajax({
+                    url: "process/index.php?route=event&method=getinvitebynoteid",
+                    type: "post",
+                    dataType: 'json',
+                    async:false,
+                    data: "noteid="+id, // provided this code executes in form.onsubmit event
+                    success: function (e) {
+                        debugger;
+                        var data = e;
+                        data = JSON.parse(data.success);
+
+                        $("#ViewInviteList").html('');
+
+                        $.each( data, function( key, value ) {
+                            debugger;
+                            var Email = value.email;
+                            var fullEmail = Email;
+                            Email = Email.split("@");
+                            $("#ViewInviteList").append($('<div data-status="'+value.status+'" class="tags ' + Email[0] + 'List" >' + fullEmail + '</div>'));
+                        });
+                        if(data!=[]){
+                            $("#ViewInviteList").show();
+                        }
 
 
+                    },
+                    failure: function () {
 
+                    }
+                });
             }
             else {
                 showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
