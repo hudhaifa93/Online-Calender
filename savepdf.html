@@ -11,6 +11,10 @@
 <script src="js/jquery-ui.js"></script>
 <script src="js/functions.js"></script>
 <script type="text/javascript" src="js/jspdf/jspdf.debug.js"></script>
+
+<script src="js/sweet-alert.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sweet-alert.css">
+
 <style type="text/css">
 input[type=checkbox], input[type=radio] {
     margin: 4px 0 0;
@@ -218,7 +222,6 @@ function loadtable(startdate,enddate,memberid){
 
                 $("#tab_customers").append(tablehead+tablebody);
 
-                showalert("Records Loaded.", "alert-success", "", "");
             }
             else{
                 showalert("Records Not Found.", "alert-danger", "", "");

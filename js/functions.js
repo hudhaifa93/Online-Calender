@@ -5,19 +5,58 @@
 //
 
 function showalert(message, alerttype, id, type) {
-    $("<div class='new_"+ alerttype +"' >"+ message +"</div>").appendTo('body');
+
     if (type == "modal") $('#' + id).modal('toggle');
+
+    if(alerttype=="alert-success"){
+        swal({
+            title: "Good job!",
+            text: message,
+            type: "success",
+            showCancelButton: false,
+            confirmButtonColor: "#AEDEF4",
+            confirmButtonText: "OK",
+            closeOnConfirm: false }, function(){
+
+
+            if(type=="redirect"){
+                 window.location.href = id;
+            }
+            else{
+                location.reload();
+            }
+
+
+            });
+    }
+    else{
+        swal({
+            title: "Ouch !",
+            text: message,
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonColor: "#AEDEF4",
+            confirmButtonText: "OK",
+            closeOnConfirm: false }, function(){
+
+            location.reload();
+
+        });
+    }
+
+//    $("<div class='new_"+ alerttype +"' >"+ message +"</div>").appendTo('body');
+
   //  $('#alert').append('<div id="alertdiv" class="alert ' + alerttype + '"><a class="close" data-dismiss="alert" aria-label="close">&times;</a><span>' + message + '</span></div>')
 
-    setTimeout(function () { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
-        if (type == "modal") {
-            location.reload();
-        }
-        else if(type=="redirect"){
-            window.location.href = id;
-        }
-        $(".new_"+alerttype).remove();
-    }, 3000);
+//    setTimeout(function () { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
+//        if (type == "modal") {
+//            location.reload();
+//        }
+//        else if(type=="redirect"){
+//            window.location.href = id;
+//        }
+//        $(".new_"+alerttype).remove();
+//    }, 3000);
 }
 
     function getOnlyCurrentDate() {
