@@ -222,38 +222,53 @@ function loadtable(startdate,enddate,memberid){
                         '</thead>';
 
                 data = []
+
+                var flagM =0,flagN=0,flagB=0;
+
+                if($('#M:checkbox:checked').length > 0){
+                    flagM="1";
+                }
+                if($('#N:checkbox:checked').length > 0){
+                    flagN="2";
+                }
+                if($('#B:checkbox:checked').length > 0){
+                    flagB="3";
+                }
+
                 $.each( e, function( key, value ) {
-                    var notetype="";
-                    var location=""
-                    if(value.notetype=="1"){
-                        notetype = "Meeting";
-                    }
-                    else if(value.notetype=="2"){
-                        notetype = "Note";
-                    }
-                    else if(value.notetype=="3"){
-                        notetype = "Birthday";
-                    }
+                    if(flagM == value.notetype || flagN == value.notetype || flagB == value.notetype){
+                        var notetype="";
+                        var location=""
+                        if(value.notetype=="1"){
+                            notetype = "Meeting";
+                        }
+                        else if(value.notetype=="2"){
+                            notetype = "Note";
+                        }
+                        else if(value.notetype=="3"){
+                            notetype = "Birthday";
+                        }
 
-                    if(value.location!="0"){
-                        location = "Yes";
+                        if(value.location!="0"){
+                            location = "Yes";
+                        }
+                        else{
+                            location = "No";
+                        }
+
+                        tablerows += '<tr><td>'+notetype+'</td><td>'+value.subject+'</td><td>'+value.description+'</td><td>'+value.startdate+'</td><td>'+value.enddate+'</td><td>'+location+'</td></tr>'
+
+                        data.push({
+                            "Type" : notetype,
+                            "Subject" : value.subject,
+                            "Description" :value.description,
+                            "startdate":value.startdate,
+                            "enddate":value.enddate,
+                            "Location":location
+                        });
                     }
-                    else{
-                        location = "No";
-                    }
-
-                    tablerows += '<tr><td>'+notetype+'</td><td>'+value.subject+'</td><td>'+value.description+'</td><td>'+value.startdate+'</td><td>'+value.enddate+'</td><td>'+location+'</td></tr>'
-
-                    data.push({
-                        "Type" : notetype,
-                        "Subject" : value.subject,
-                        "Description" :value.description,
-                        "startdate":value.startdate,
-                        "enddate":value.enddate,
-                        "Location":location
-                    });
-
                 });
+
                 var tablebody = '<tbody>'+tablerows+'</tbody>';
 
                 $("#tab_customers").append(tablehead+tablebody);
@@ -448,11 +463,11 @@ debugger;
                                 <input type="text" class="form-control" name="endDate" id="EndDate" placeholder="End Date"/>
                             </div>
                             <div class="col-xs-6">
-                                <label style="margin-right: 10px;"><input id="M" type="checkbox" style="margin-right: 10px;" name="">Meeting</label>
+                                <label style="margin-right: 10px;"><input checked="checked" id="M" type="checkbox" style="margin-right: 10px;" name="">Meeting</label>
 
-                                <label style="margin-right: 10px;"><input id="B" type="checkbox"  style="margin-right: 10px;" name="">Birthday</label>
+                                <label style="margin-right: 10px;"><input checked="checked" id="B" type="checkbox"  style="margin-right: 10px;" name="">Birthday</label>
 
-                                <label style="margin-right: 10px;"><input id="N" type="checkbox"  style="margin-right: 10px;" name="">Note</label>
+                                <label style="margin-right: 10px;"><input checked="checked" id="N" type="checkbox"  style="margin-right: 10px;" name="">Note</label>
                              </div>
                             <div class="col-xs-6" styl="clear:both">
                                 <button type="button"  id="loadbutton" class="btn btn-sm btn-primary">Load Table</button>
