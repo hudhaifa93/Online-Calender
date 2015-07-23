@@ -111,6 +111,16 @@
                                 <div class="listview">
                                     <div class="lv-header">Profile</div>
                                     <div class="lv-body c-overflow" tabindex="1" style="overflow: hidden; outline: none;">
+                                        <a class="lv-item export" href="">
+                                            <div class="media">
+                                                <div class="pull-left">
+                                                    <i class="glyphicon glyphicon-log-out " style="color: #f44336" ></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <small class="lv-small">Export To PDF</small>
+                                                </div>
+                                            </div>
+                                        </a>
                                         <a class="lv-item viewshareCal" href="">
                                             <div class="media">
                                                 <div class="pull-left">
@@ -396,6 +406,15 @@
                 $('#ShareModal').modal('show');
                 return false;
             } );
+
+            $(".export").click(function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                window.location.href="/Online-Calender/savepdf.html";
+                return false;
+            } );
+
+
 
             $(".viewshareCal").click(function(e) {
                 e.preventDefault();
