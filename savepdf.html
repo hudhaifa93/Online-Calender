@@ -147,9 +147,19 @@ $(document).ready(function () {
     $("#StartDate").datepicker('setDate', firstDay);
     $("#EndDate").datepicker('setDate', lastDay);
 
+    $("#loadbutton").attr("onclick","loadCall()");
     loadtable(firstDay,lastDay,loginMemberId);
 
 });
+
+function loadCall(){
+
+    var loginMemberId = localStorage.getItem("memberId");
+    var startDay = $("#StartDate").datepicker('getDate');
+    var endDay =  $("#EndDate").datepicker('getDate');
+
+    loadtable(startDay,endDay,loginMemberId);
+}
 
 function loadtable(startdate,enddate,memberid){
     $.ajax({
@@ -159,41 +169,48 @@ function loadtable(startdate,enddate,memberid){
         dataType: "json",
         success : function(e){
         debugger;
-            var tablerows='';
-            var tablehead ='<colgroup>'+
-                    '<col width="20%">'+
-                    '<col width="20%">'+
-                    '<col width="20%">'+
-                    '<col width="20%">'+
-                    '</colgroup>'+
-                    '<thead>'+
-                    '<tr class="warning">'+
-                    '<th>Type</th>'+
-                    '<th>Subject</th>'+
-                    '<th>Description</th>'+
-                    '<th>Start Date</th>'+
-                    '<th>End Date</th>'+
-                    '</tr>'+
-                    '</thead>';
+            if(e.length>0)
+            {
+                var tablerows='';
+                var tablehead ='<colgroup>'+
+                        '<col width="20%">'+
+                        '<col width="20%">'+
+                        '<col width="20%">'+
+                        '<col width="20%">'+
+                        '</colgroup>'+
+                        '<thead>'+
+                        '<tr class="warning">'+
+                        '<th>Type</th>'+
+                        '<th>Subject</th>'+
+                        '<th>Description</th>'+
+                        '<th>Start Date</th>'+
+                        '<th>End Date</th>'+
+                        '</tr>'+
+                        '</thead>';
 
-            $.each( e, function( key, value ) {
-                var notetype="";
+                $.each( e, function( key, value ) {
+                    var notetype="";
 
-                if(value.notetype=="1"){
-                    notetype = "Meeting";
-                }
-                else if(value.notetype=="2"){
-                    notetype = "Note";
-                }
-                else if(value.notetype=="3"){
-                    notetype = "Birthday";
-                }
-                tablerows += '<tr><td>'+notetype+'</td><td>'+value.subject+'</td><td>'+value.description+'</td><td>'+value.startdate+'</td><td>'+value.enddate+'</td></tr>'
-            });
-            var tablebody = '<tbody>'+tablerows+'</tbody>';
-            $("#tab_customers").append(tablehead+tablebody);
+                    if(value.notetype=="1"){
+                        notetype = "Meeting";
+                    }
+                    else if(value.notetype=="2"){
+                        notetype = "Note";
+                    }
+                    else if(value.notetype=="3"){
+                        notetype = "Birthday";
+                    }
+                    tablerows += '<tr><td>'+notetype+'</td><td>'+value.subject+'</td><td>'+value.description+'</td><td>'+value.startdate+'</td><td>'+value.enddate+'</td></tr>'
+                });
+                var tablebody = '<tbody>'+tablerows+'</tbody>';
+                $("#tab_customers").html('');
+                $("#tab_customers").append(tablehead+tablebody);
 
-
+                showalert("Records Loaded.", "alert-success", "", "");
+            }
+            else{
+                showalert("Records Not Found.", "alert-danger", "", "");
+            }
         }
     });
 }
@@ -383,8 +400,10 @@ function exportPDF() {
                                 <label style="margin-right: 10px;"><input id="N" type="checkbox"  style="margin-right: 10px;" name="">Note</label>
                              </div>
                             <div class="col-xs-6" styl="clear:both">
-                                <button type="button"  class="btn btn-sm btn-primary" onclick="javascript:exportPDF();">EXPORT</button>
+                                <button type="button"  id="loadbutton" class="btn btn-sm btn-primary">Load Table</button>
+                                <button type="button"  id="" class="btn btn-sm btn-primary" onclick="javascript:exportPDF();">EXPORT</button>
                             </div>
+
                          </div>
                         </div>
 					</div>
