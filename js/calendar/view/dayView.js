@@ -139,6 +139,7 @@ var Day = function (config) {
 
             function _fc_day_grid() {
                 var fe = '';
+                var Cur_Date = new Date(_date.getFullYear(), _date.getMonth(), _date.getDate(), 0, 0, 0, 0);
                 for (var n = 0; n < notes.length; n++) {
                     if(notes[n].starttime == "0" && notes[n].endtime == "0"){
                         var tooltip = '';
@@ -171,7 +172,6 @@ var Day = function (config) {
                             '<div class="fc-resizer"></div>' +
                             '</a>';
                     }
-
                 }
 
                 var h = '<div class="fc-day-grid">' +
