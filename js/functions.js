@@ -931,3 +931,5 @@ $('.search_result').on('click','.result_event',function(){
     }
 
 });
+
+$('#profile-logo').css('background', "#"+Math.floor(Math.random()*16777215).toString(16));

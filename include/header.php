@@ -101,7 +101,7 @@
             </ul>
         </li>
         <li class="pull-right logo" >
-            <div class=" pull-left circleBase type1" >
+            <div class=" pull-left circleBase type1 " id="profile-logo" >
                 <?php
                 $name= explode(" ",$user['name']);
                 echo substr(strtoupper($name[0]),0,1)."<small>".substr(strtolower(end($name)),0,1)."</small>"?>

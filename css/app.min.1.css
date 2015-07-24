@@ -15983,11 +15983,13 @@ a.thumbnail.active {
     padding: 3px 0;
     width: 50px;
     height: 50px;
-    background: #ffffff;
-    border: 3px solid red;
+    background: #9C27B0;
+    color: #ffffff;
+    border: 3px solid #ffffff;
     font-size: 25px;
 }
 .type1 small {
+    color: #ffffff;
     font-size: 25px;
 }
 .type2{
