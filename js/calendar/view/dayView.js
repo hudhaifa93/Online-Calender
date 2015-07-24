@@ -52,7 +52,11 @@ var Day = function (config) {
             type : "post",
             dataType: "json",
             success : function(e){
+                debugger;
                 notes = e;
+                _container(self.id);
+            },failure:function(){
+                notes = {};
                 _container(self.id);
             }
         });
