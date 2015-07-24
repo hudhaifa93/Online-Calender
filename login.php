@@ -125,7 +125,7 @@
 
 <div class="lc-block" style="width: 80%;margin-top: 10px" id="l-video">
     <video width="854" height="480" controls >
-        <source src="demo/movie.mp4" type="video/mp4">
+        <source src="//codehunters.netne.net/demo/demo.mp4" type="video/mp4">
         <object data="movie.mp4" width="854" height="480">
             <embed src="movie.swf" width="854" height="480  ">
         </object>

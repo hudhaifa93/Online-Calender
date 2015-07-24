@@ -185,7 +185,7 @@ function createNewSignUp(formName){
                 {
                     localStorage.setItem("memberId", output.success);
                     localStorage.setItem("advanceID", "0");
-                    showalert(Message,"alert-success","/Online-Calender/","redirect");
+                    showalert(Message,"alert-success","/","redirect");
                 }
                 else{
                     showalert("An Error Occurred Please Contact Admin.","alert-danger","","");
