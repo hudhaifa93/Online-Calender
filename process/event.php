@@ -486,11 +486,10 @@ class Event extends Controller {
     }
 
     function saveNoteConfiguration(){
-        $results = $this->db->query("SELECT * FROM `note_configuration` WHERE memberid=".$this->post('MemberId')."");
-        while($r = $results->fetchObject()){
-            $d[] =  $r;
-        }
-        echo json_encode($d?$d : array());
+        $this->db->query("UPDATE `note_configuration` SET `colorcode`='".$_POST['meeting']."' WHERE `memberid` = '".$_POST['memberId']."' AND `notetypeid` = '1'");
+        $this->db->query("UPDATE `note_configuration` SET `colorcode`='".$_POST['note']."' WHERE `memberid` = '".$_POST['memberId']."' AND `notetypeid` = '2'");
+        $this->db->query("UPDATE `note_configuration` SET `colorcode`='".$_POST['birthday']."' WHERE `memberid` = '".$_POST['memberId']."' AND `notetypeid` = '3'");
+        echo json_encode(array('success'=>1));
     }
 
     function updateBirthday(){

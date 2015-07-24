@@ -626,9 +626,21 @@ function loadConfigureModelDetails(memberid){
 }
 
 function saveConfigureCalendar(){
-    var meeting = $("#Color_Type_Meeting").val(data[i].colorcode);
-    var note = $("#Color_Type_Note").val(data[i].colorcode);
-    var birthday = $("#Color_Type_BirthDay").val(data[i].colorcode);
+    var meeting = $("#Color_Type_Meeting").val();
+    var note = $("#Color_Type_Note").val();
+    var birthday = $("#Color_Type_BirthDay").val();
+
+    $.ajax({
+        url: "process/index.php?route=event&method=saveNoteConfiguration",
+        type: "post",
+        dataType: 'json',
+        data: "&meeting="+meeting+"&note="+note+"&birthday="+birthday+"&memberId="+localStorage.getItem("memberId"),
+        success: function (output) {
+            showalert("Event Colors Successfully Updated.", "alert-success", "ConfigureModal", "modal");
+        },
+        failure: function () {
+        }
+    });
 }
 
 getNotification();
