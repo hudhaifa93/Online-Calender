@@ -347,7 +347,6 @@
         $(".viewshareCal").click(function(e) {
             e.preventDefault();
             e.stopPropagation();
-            debugger;
             if(localStorage.getItem("sharedClicked")=="" || localStorage.getItem("sharedClicked")==[] || localStorage.getItem("sharedClicked")==null){
 
             }

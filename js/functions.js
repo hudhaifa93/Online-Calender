@@ -625,7 +625,9 @@ function loadConfigureModelDetails(memberid){
 }
 
 function saveConfigureCalendar(){
-    
+    var meeting = $("#Color_Type_Meeting").val(data[i].colorcode);
+    var note = $("#Color_Type_Note").val(data[i].colorcode);
+    var birthday = $("#Color_Type_BirthDay").val(data[i].colorcode);
 }
 
 getNotification();
