@@ -89,7 +89,7 @@ var Month = function (config) {
             return '<ul class="actions actions-alt" id="fc-actions">' +
                 '<li class="dropdown"><a href="" data-toggle="dropdown" aria-expanded="false">' +
                 '<i class="md md-more-vert"></i></a>' +
-                '<ul class="dropdown-menu dropdown-menu-right">' +
+                '<ul class="dropdown-menu dropdown-menu-right"  style="cursor:pointer">' +
                 '<li class="active" ><a class="cal-view" data-view="month" >Month View</a></li>' +
                 '<li><a class="cal-view"  data-view="week" >Week View</a></li>' +
                 '<li><a class="cal-view"  data-view="day">Day View</a></li>' +
