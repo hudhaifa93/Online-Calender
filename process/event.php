@@ -194,14 +194,7 @@ class Event extends Controller {
     }
 
     function getAllNotesByStartDateAndEndDate(){
-        $id = $this->post('MemberId');
-        $res = $this->db->query("SELECT `createdby` FROM `note` WHERE `id` IN(SELECT `noteid` FROM `note_invitee_map` WHERE `status`=1 AND `email`=(SELECT `email` FROM `member` WHERE id='".$_POST['memberid']."'))");
-        if(is_object($res))
-        {
-            while($r = $res->fetchObject()){
-                $id .= ",".$r->createdby ;
-            }
-        }
+
 
         $results = $this->db->query("
 
@@ -222,7 +215,7 @@ class Event extends Controller {
         `notetype` In (3) AND DATE_FORMAT(`startdate`,'%m-%d') between DATE_FORMAT('".$this->post('start')."','%m-%d') AND  DATE_FORMAT('".$this->post('end')."','%m-%d')
         )
         )
-        AND `status` = 1 AND  `repeat` = '' AND `createdby` IN( ".$id.") ORDER BY `starttime` , `endtime`-`starttime`
+        AND `status` = 1 AND  `repeat` = '' AND `createdby` IN( ".$_POST['MemberId'].") ORDER BY `starttime` , `endtime`-`starttime`
         )
 
         union
@@ -239,7 +232,7 @@ class Event extends Controller {
         OR
         DATE_FORMAT('".$this->post('end')."','%m,%d') BETWEEN DATE_FORMAT(`startdate`,'%m,%d') AND DATE_FORMAT(`enddate`,'%m,%d')
         )
-        AND `status` = 1 AND  `repeat` = 'Y' AND `createdby` IN(".$id.") ORDER BY `starttime` , `endtime`-`starttime`
+        AND `status` = 1 AND  `repeat` = 'Y' AND `createdby` IN(".$_POST['MemberId'].") ORDER BY `starttime` , `endtime`-`starttime`
         )
 
         union
@@ -256,7 +249,7 @@ class Event extends Controller {
         OR
         DATE_FORMAT('".$this->post('end')."','%d') BETWEEN DATE_FORMAT(`startdate`,'%d') AND DATE_FORMAT(`enddate`,'%d')
         )
-        AND `status` = 1 AND  `repeat` = 'M' AND `createdby` IN(".$id.") ORDER BY `starttime` , `endtime`-`starttime`
+        AND `status` = 1 AND  `repeat` = 'M' AND `createdby` IN(".$_POST['MemberId'].") ORDER BY `starttime` , `endtime`-`starttime`
         )
 
         union
@@ -269,7 +262,14 @@ class Event extends Controller {
         OR
         ( DATE_FORMAT('".$this->post('start')."','%d') != DATE_FORMAT('".$this->post('end')."','%d') )
         )
-        AND `status` = 1 AND  `repeat` = 'W' AND `createdby` IN(".$id.") ORDER BY `starttime` , `endtime`-`starttime`
+        AND `status` = 1 AND  `repeat` = 'W' AND `createdby` IN(".$_POST['MemberId'].") ORDER BY `starttime` , `endtime`-`starttime`
+        )
+
+        UNION
+
+        (
+        SELECT * FROM `note`
+        WHERE `id` IN(SELECT `noteid` FROM `note_invitee_map` WHERE `status`=1 AND `email` IN(SELECT `email` FROM `member` WHERE id IN('".$_POST['MemberId']."')))
         )
 
         ");
