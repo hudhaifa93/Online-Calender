@@ -141,17 +141,25 @@ include 'include/head.php' ?>
                                 <label>Location</label>
                                 <input type="checkbox" id="addLocation">
                             </div>
+
                             <div id="locationAllocation" style="display:none;">
-                                <div class="col-xs-12 form-group">
+                                <div class="col-xs-6 form-group">
+                                    <div id="map-canvas" style="width:100%;height:500px;"></div>
+                                </div>
+                                <div class="col-xs-6 form-group">
                                     <input type="text" class="form-control" id="autocomplete" placeholder="Enter your address"/>
                                     <input type="text"  style="margin-top: 10px;margin-bottom: 10px;" class="googleAddress form-control" id="street" placeholder="Street"/>
                                     <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="city" placeholder="City"/>
                                     <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="state" placeholder="State"/>
                                     <input  style="float: left;  width: 25%;" type="text" class="googleAddress form-control" id="country" placeholder="Country"/>
-                                    <input readonly style="float: left;  width: 25%;  margin-right: 10px;margin-top: 10px;" type="text" class="googleAddress form-control" id="latitude" name="latitude" placeholder="Latitude"/>
-                                    <input readonly style="float: left;  width: 25%;margin-top: 10px;" type="text" class="googleAddress form-control" id="longitude" name="longitude" placeholder="Longitude"/>
+                                    <input style="float: left;  width: 25%;  margin-right: 10px;margin-top: 10px;" type="text" class="googleAddress form-control" id="latitude" name="latitude" placeholder="Latitude" readonly/>
+                                    <input style="float: left;  width: 25%;margin-top: 10px;" type="text" class="googleAddress form-control" id="longitude" name="longitude" placeholder="Longitude" readonly/>
+
                                 </div>
+
+
                             </div>
+                            <div class="clearfix" ></div>
                             <div class="col-xs-6 form-group">
                                 <label>Start Date</label>
                                 <input type="text" class="form-control" name="startDate" id="StartDate" placeholder="Start Date"/>
@@ -178,11 +186,8 @@ include 'include/head.php' ?>
                                 <label>Repeat</label>
                                 <input type="checkbox" id="repeat" >
                             </div>
-
                             <div id="repeatAllocation" style="display:none">
                                 <div class="col-xs-6 form-group"><!--put a b color or something for this -->
-
-
                                     <div class="col-xs-6 form-group">
                                         <select name="" id="repeats" class="form-control" style="">
                                             <option value="M">Monthly</option>
@@ -190,15 +195,6 @@ include 'include/head.php' ?>
                                             <option value="Y">Yearly</option>
                                         </select>
                                     </div>
-                                    <!--<div class="col-xs-6 form-group">-->
-                                    <!--<strong>Repeats Every</strong>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-xs-6 form-group">-->
-                                    <!--<select name="" id="repeatCombo" class="form-control" style="">-->
-
-                                    <!--</select>-->
-                                    <!--</div>-->
-
                                 </div>
                             </div>
                             <div class="col-xs-12 form-group">
@@ -230,8 +226,8 @@ include 'include/head.php' ?>
     </body>
 <?php include "include/foot.php"; ?>
 
-
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+<script src="js/gmap3.min.js"></script>
 <script src="js/googleAddress.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/timepicker/jquery.ui.timepicker.js"></script>
@@ -264,7 +260,6 @@ $(document).ready(function () {
     });
 
     $("#createdby").val(localStorage.getItem("memberId"));
-
 
     initialize();//Google Address Initilization
 

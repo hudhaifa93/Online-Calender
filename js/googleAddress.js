@@ -14,11 +14,15 @@ function initialize() {
     });
 }
 
-function fillInAddress() {
+function fillInAddress(_place) {
     $(".googleAddress").val("");
     var place = autocomplete.getPlace();
     $("#latitude").val(place.geometry.location.A);
     $("#longitude").val(place.geometry.location.F);
+    loadAddressDetails(place);
+}
+
+function loadAddressDetails(place){
     var streetnumber = "";
     var streetname = "";
     for (var i = 0; i < place.address_components.length; i++) {
@@ -45,3 +49,41 @@ function fillInAddress() {
         }
     }
 }
+
+var map;
+var lat = 6.929537;//Set Default Latitude To Start
+var lon = 79.866271;//Set Default Longitude To Start
+var str = '[{ "lat" :"' + lat + '","lng" :"' + lon + '"}]';
+str = JSON.parse(str);
+
+jQuery('#map-canvas').gmap3({
+    marker: {
+        values: str,
+        options: {
+            icon:'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+            draggable:true
+        },
+        events:{
+            dragend: function(marker){
+                $(".googleAddress").val("");
+                $('#latitude').val(marker.getPosition().lat());
+                $('#longitude').val(marker.getPosition().lng());
+                $(this).gmap3({
+                    getaddress:{
+                        latLng:marker.getPosition(),
+                        callback:function(results){
+                            loadAddressDetails(results[0]);
+                        }
+                    }
+                });
+            }
+        }
+    },
+    map: {
+        options: {
+            zoom: 14,
+            scrollwheel: true,
+            streetViewControl: true
+        }
+    }
+});
