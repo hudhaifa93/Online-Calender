@@ -542,7 +542,7 @@ function removeMFromInvitedList(id) {
         success: function (output) {
             if(output.success=="success"){
                 showalertMeeting("Invite Revoked.", "alert-success");
-                $("." + id+"List").remove();
+                $("." + id+"MList").remove();
             }
         },
         failure: function () {
