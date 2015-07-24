@@ -401,6 +401,7 @@ var Month = function (config) {
                 }
                 else
                 {
+                    $('#editButton').hide();
                     $("#viewButtonDelete").hide();
                 }
             }
