@@ -334,7 +334,6 @@ var Month = function (config) {
         }
 
         function openModelForView(event){
-            //debugger
             resetModalButton();
             $('#CommonViewModal').modal('show').find('.share').remove();
             if(event.data('eventtype')=="1")//meeting
