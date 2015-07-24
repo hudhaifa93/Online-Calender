@@ -258,6 +258,9 @@
                             $('#state').val(data.state);
                             $('#country').val(data.country);
 
+                            $('#longitude').val(data.longitude);
+                            $('#latitude').val(data.latitude);
+
                             $('#StartTime').val(data.starttime);
                             $('#EndTime').val(data.endtime);
 
@@ -266,41 +269,6 @@
                     });
 
                 }
-
-
-//                $("#repeats")
-//                        .change(function () {
-//                            debugger;
-//                            if ($("#repeats option:selected").val() == "week") {
-//                                var combo = $("#repeatCombo");
-//                                combo.empty();
-//                                for (var i = 1; i < 11; i++) {
-//                                    combo.append($("<option />").val(i).text(i));
-//                                }
-//                            }
-//                            else if ($("#repeats option:selected").val() == "day") {
-//                                var combo = $("#repeatCombo");
-//                                for (var i = 1; i < 31; i++) {
-//                                    combo.append($("<option />").val(i).text(i));
-//                                }
-//                            }
-//                            else if ($("#repeats option:selected").val() == "Y") {
-//                                var combo = $("#repeatCombo");
-//                                combo.empty();
-//                                for (var i = 1; i < 5; i++) {
-//                                    combo.append($("<option />").val(i).text(i));
-//                                }
-//                            }
-//                            else if ($("#repeats option:selected").val() == "M") {
-//                                var combo = $("#repeatCombo");
-//                                combo.empty();
-//                                for (var i = 1; i < 24; i++) {
-//                                    combo.append($("<option />").val(i).text(i));
-//                                }
-//                            }
-//                        })
-//                        .change();
-
             });
 
             function loadInvitee(){
@@ -536,8 +504,8 @@
                                     <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="city" placeholder="City"/>
                                     <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="state" placeholder="State"/>
                                     <input  style="float: left;  width: 25%;" type="text" class="googleAddress form-control" id="country" placeholder="Country"/>
-                                    <input readonly style="float: left;  width: 25%;  margin-right: 10px;margin-top: 10px;" type="text" class="googleAddress form-control" id="latitude" placeholder="Latitude"/>
-                                    <input readonly style="float: left;  width: 25%;margin-top: 10px;" type="text" class="googleAddress form-control" id="longitude" placeholder="Longitude"/>
+                                    <input readonly style="float: left;  width: 25%;  margin-right: 10px;margin-top: 10px;" type="text" class="googleAddress form-control" id="latitude" name="latitude" placeholder="Latitude"/>
+                                    <input readonly style="float: left;  width: 25%;margin-top: 10px;" type="text" class="googleAddress form-control" id="longitude" name="longitude" placeholder="Longitude"/>
                                 </div>
                             </div>
                             <div class="col-xs-6 form-group">

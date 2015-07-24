@@ -14,7 +14,7 @@ class Event extends Controller {
     function insertAdvanceEvent(){
       $locationid = $_POST['locationid'];
         if($locationid!="0"){//location is present
-            $result = $this->db->query(" insert into address values(null,'". $_POST['street']."','".$_POST['city']."','". $_POST['state']."','". $_POST['country']."')");
+            $result = $this->db->query(" insert into address values(null,'". $_POST['street']."','".$_POST['city']."','". $_POST['state']."','". $_POST['country']."','". $_POST['longitude']."','". $_POST['latitude']."')");
             if(is_object($result)){
                 $id = $this->db->last_id();
 
@@ -60,7 +60,7 @@ class Event extends Controller {
         $locationflag  = $_POST['locationflag'];
         if($locationid=="0" && $locationflag=="N"){
 
-            $result = $this->db->query(" insert into address values(null,'". $_POST['street']."','".$_POST['city']."','". $_POST['state']."','". $_POST['country']."')");
+            $result = $this->db->query(" insert into address values(null,'". $_POST['street']."','".$_POST['city']."','". $_POST['state']."','". $_POST['country']."','". $_POST['longitude']."','". $_POST['latitude']."')");
             if(is_object($result)){
                 $id = $this->db->last_id();
                 $result = $this->db->query("UPDATE note SET `repeat`='". $_POST['repeat']."',subject='". $_POST['subject']."',description='".$_POST['description']."',timeslotid='".$_POST['timeslotid']."',status='".$_POST['status']."',startdate='".$_POST['startDate']."',enddate='".$_POST['endDate']."',starttime='".$_POST['starttime']."',endtime='".$_POST['endtime']."',location='".$id."' WHERE id='".$_POST['noteid']."'");
@@ -74,7 +74,7 @@ class Event extends Controller {
             }
         }
         elseif($locationflag=="N"){
-            $result = $this->db->query("UPDATE address SET street='". $_POST['street']."',city='".$_POST['city']."',state='".$_POST['state']."',country='".$_POST['country']."' WHERE id='$locationid'");
+            $result = $this->db->query("UPDATE address SET street='". $_POST['street']."',city='".$_POST['city']."',state='".$_POST['state']."',country='".$_POST['country']."',longitude='". $_POST['longitude']."',latitude='". $_POST['latitude']."' WHERE id='$locationid'");
             if(is_object($result)){
                 $result = $this->db->query("UPDATE note SET `repeat`='". $_POST['repeat']."',subject='". $_POST['subject']."',description='".$_POST['description']."',timeslotid='".$_POST['timeslotid']."',status='".$_POST['status']."',startdate='".$_POST['startDate']."',enddate='".$_POST['endDate']."',starttime='".$_POST['starttime']."',endtime='".$_POST['endtime']."' WHERE id='".$_POST['noteid']."'");
                 if(is_object($result)){
@@ -180,7 +180,7 @@ class Event extends Controller {
     }
 
     function getAdvanceEventData(){
-        $id = $this->db->query("SELECT n.*,a.id as locationid,a.street,a.city,a.state,a.country FROM note n,address a WHERE n.id='".$_POST['id']."' and n.location = a.id");
+        $id = $this->db->query("SELECT n.*,a.id as locationid,a.street,a.city,a.state,a.country,a.longitude,a.latitude FROM note n,address a WHERE n.id='".$_POST['id']."' and n.location = a.id");
         if(is_object($id))
         {
             while($r = $id->fetchObject()){
