@@ -269,10 +269,12 @@ class Event extends Controller {
 
         (
         SELECT * FROM `note`
-        WHERE `id` IN(SELECT `noteid` FROM `note_invitee_map` WHERE `status`=1 AND `email` IN(SELECT `email` FROM `member` WHERE id IN('".$_POST['MemberId']."')))
+        WHERE `id` IN(SELECT `noteid` FROM `note_invitee_map` WHERE `status`=1 AND `email` IN(SELECT `email` FROM `member` WHERE id IN(".$_POST['MemberId'].")))
         )
 
+
         ");
+
 
         while($r = $results->fetchObject()){
             $d[] =  $r;
