@@ -1,3 +1,4 @@
+var map;
 var placeSearch, autocomplete;
 var componentForm = {
     street_number: 'short_name',
@@ -50,40 +51,41 @@ function loadAddressDetails(place){
     }
 }
 
-var map;
-var lat = 6.929537;//Set Default Latitude To Start
-var lon = 79.866271;//Set Default Longitude To Start
-var str = '[{ "lat" :"' + lat + '","lng" :"' + lon + '"}]';
-str = JSON.parse(str);
+function loadMap(){
 
-jQuery('#map-canvas').gmap3({
-    marker: {
-        values: str,
-        options: {
-            icon:'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
-            draggable:true
-        },
-        events:{
-            dragend: function(marker){
-                $(".googleAddress").val("");
-                $('#latitude').val(marker.getPosition().lat());
-                $('#longitude').val(marker.getPosition().lng());
-                $(this).gmap3({
-                    getaddress:{
-                        latLng:marker.getPosition(),
-                        callback:function(results){
-                            loadAddressDetails(results[0]);
+
+    var str = '[{ "lat" :"' + $('#latitude').val() + '","lng" :"' + $('#longitude').val() + '"}]';
+    str = JSON.parse(str);
+
+    jQuery('#map-canvas').gmap3({
+        marker: {
+            values: str,
+            options: {
+                icon:'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+                draggable:true
+            },
+            events:{
+                dragend: function(marker){
+                    $(".googleAddress").val("");
+                    $('#latitude').val(marker.getPosition().lat());
+                    $('#longitude').val(marker.getPosition().lng());
+                    $(this).gmap3({
+                        getaddress:{
+                            latLng:marker.getPosition(),
+                            callback:function(results){
+                                loadAddressDetails(results[0]);
+                            }
                         }
-                    }
-                });
+                    });
+                }
+            }
+        },
+        map: {
+            options: {
+                zoom: 14,
+                scrollwheel: true,
+                streetViewControl: true
             }
         }
-    },
-    map: {
-        options: {
-            zoom: 14,
-            scrollwheel: true,
-            streetViewControl: true
-        }
-    }
-});
+    });
+}

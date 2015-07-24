@@ -333,7 +333,6 @@ $(document).ready(function () {
                 $('#Type').val(data.notetype);
                 $('#Subject').val(data.subject);
                 if(data.location=="0"){
-                    debugger;
                     $('#addLocation').prop('checked', false);
                     $("#locationAllocation").hide();
                     $("#locationId").val("0");
@@ -383,6 +382,7 @@ $(document).ready(function () {
                 $('#StartTime').val(data.starttime);
                 $('#EndTime').val(data.endtime);
 
+                loadMap();
                 loadInvitee();
             }
         });
@@ -404,7 +404,6 @@ function loadInvitee(){
             $("#InvitedList").html('');
 
             $.each( data, function( key, value ) {
-                debugger;
                 var Email = value.email;
                 var fullEmail = Email;
                 Email = Email.split("@");
