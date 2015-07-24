@@ -19,7 +19,8 @@ var Day = function (config) {
                 month: "month",
                 week: "week",
                 day: "day"
-            }
+            },
+            colorcodes:["bgm-red", "bgm-lightblue", "bgm-yellow", "bgm-green"]
         };
 
     function drawCalender() {
@@ -27,6 +28,23 @@ var Day = function (config) {
         self.id.addClass("fc fc-ltr ui-widget");
         self.id.html("");
         _head(self.id);
+
+        $.ajax({
+            url: "process/index.php?route=event&method=getNoteConfigurationByMemberId",
+            type: "post",
+            dataType: 'json',
+            async:false,
+            data: { MemberId: localStorage.getItem("memberId")},
+            success: function (data) {
+                for(var i=0;i<data.length;i++){
+                    name.colorcodes[data[i].notetypeid] = data[i].colorcode;
+                }
+            },
+            failure: function () {
+
+            }
+        });
+
         $.ajax({
             url : "process/?route=Event&method=getAllNotesByStartDateAndEndDate",
             data:  { start : dateFormat(_date), end: dateFormat(_date), MemberId: getMemberIds()},
@@ -135,7 +153,7 @@ var Day = function (config) {
                             tooltip += '\nDescription : ' + notes[n].description;
                         }
 
-                        fe += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable  '+ getColorByEventType(notes[n].notetype) + ' ">' +
+                        fe += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable  '+ name.colorcodes[notes[n].notetype] + ' ">' +
                             '<div class="fc-content">';
 
                         if(notes[n].createdby != localStorage.getItem("memberId")){
@@ -316,7 +334,7 @@ var Day = function (config) {
                                 top = startHours * 40;
                                 bottom = endHours * 40;
 
-                                ec += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-time-grid-event fc-event fc-start fc-not-end fc-draggable ' + getColorByEventType(_events[s].notetype)+'" style="top:'+top+'px; bottom: -'+bottom+'px; z-index: 1; left: '+left+'%; right: '+right+'%;">' +
+                                ec += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-time-grid-event fc-event fc-start fc-not-end fc-draggable ' + name.colorcodes[_events[s].notetype]+'" style="top:'+top+'px; bottom: -'+bottom+'px; z-index: 1; left: '+left+'%; right: '+right+'%;">' +
                                     '<div class="fc-content">' +
                                     '<div class="fc-time" data-start="10:00" data-full="12:00 AM - 12:00 AM">';
 

@@ -44,24 +44,14 @@ var Month = function (config) {
             async:false,
             data: { MemberId: localStorage.getItem("memberId")},
             success: function (data) {
-                /**for(var i=0;i<data.length;i++){
-                    if(data[i].notetypeid == "1"){
-                        $("#Color_Type_Meeting").val(data[i].colorcode);
-                        $("#Color_Type_Meeting").attr("class","color_type " + data[i].colorcode);
-                    }else if(data[i].notetypeid == "2"){
-                        $("#Color_Type_Note").val(data[i].colorcode);
-                        $("#Color_Type_Note").attr("class","color_type " + data[i].colorcode);
-                    }else if(data[i].notetypeid == "3"){
-                        $("#Color_Type_BirthDay").val(data[i].colorcode);
-                        $("#Color_Type_BirthDay").attr("class","color_type " + data[i].colorcode);
-                    }
-                }**/
+                for(var i=0;i<data.length;i++){
+                    name.colorcodes[data[i].notetypeid] = data[i].colorcode;
+                }
             },
             failure: function () {
 
             }
         });
-
 
         $.ajax({
             url : "process/?route=Event&method=getAllNotesByStartDateAndEndDate",
