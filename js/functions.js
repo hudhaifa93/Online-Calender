@@ -226,6 +226,8 @@ function editBasicEvent(formName,id) {
 }
 
 function deleteBasicEvent(formName,id){
+
+
         var Message = "";
         if (formName == "birthdayForm") {
             Message = "Birthday Has Been Deleted Successfully.";
@@ -237,25 +239,39 @@ function deleteBasicEvent(formName,id){
             Message = "Meeting Has Been Deleted Successfully."
         }
 
-        $.ajax({
-            url: "process/index.php?route=event&method=deleteBasicEvent",//event.php
-            type: "post",
-            dataType: 'json',
-            data: $('#' + formName).serialize()+"&id="+id, // provided this code executes in form.onsubmit event
-            success: function (output) {
-                /* debugger */;
-                $('#' + formName)[0].reset();
-                if (output.success == "Deleted") {
-                    showalert(Message, "alert-success", "CommonViewModal", "modal");
-                }
-                else {
+        swal({
+            title: "Are you sure?",
+            text: "Your will not be able to recover this Event !",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+        },
+        function(){
+            $.ajax({
+                url: "process/index.php?route=event&method=deleteBasicEvent",//event.php
+                type: "post",
+                dataType: 'json',
+                data: $('#' + formName).serialize()+"&id="+id, // provided this code executes in form.onsubmit event
+                success: function (output) {
+                    /* debugger */;
+                    $('#' + formName)[0].reset();
+                    if (output.success == "Deleted") {
+                        showalert(Message, "alert-success", "CommonViewModal", "modal");
+                    }
+                    else {
+                        showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
+                    }
+                },
+                failure: function () {
                     showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
                 }
-            },
-            failure: function () {
-                showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
-            }
+            });
+
         });
+
+
     }
 
 function saveAdvanceEvent(formName){
