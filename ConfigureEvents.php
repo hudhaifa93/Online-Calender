@@ -271,6 +271,23 @@ $(document).ready(function () {
         dateFormat: "yy-mm-dd"
     });
 
+
+    $("#StartDate,#EndDate").datepicker({
+        dateFormat: "yy-mm-dd"
+    }).change(function () {
+            var sdate = $('#StartDate').datepicker("getDate");
+            var edate = $('#EndDate').datepicker("getDate");
+            if (this.id == 'StartDate') {
+                if (sdate > edate) {
+                    $('#EndDate').datepicker("setDate", sdate);
+                }
+            } else {
+                if (edate < sdate) {
+                    $('#StartDate').datepicker("setDate", edate);
+                }
+            }
+        });
+
     $("#fullday").change(function () {
         if (this.checked) {
             $("#timeAllocation").hide();
