@@ -82,6 +82,7 @@ function dateFormat(d, format) {
 }
 
 function setSessionsForAdvanceNote(date) {
+    debugger
     localStorage.setItem("advanceID", "0");
     localStorage.setItem("tempSubject", $("#Subject").val());
     localStorage.setItem("tempDescription", $("#description").val());

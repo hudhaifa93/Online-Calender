@@ -373,7 +373,7 @@
         $(".export").click(function(e) {
             e.preventDefault();
             e.stopPropagation();
-            window.location.href="/Online-Calender/savepdf.html";
+            window.location.href="/savepdf.php";
             return false;
         } );
 

@@ -1,35 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Code Hunters - Configure Calendar</title>
-<link rel="stylesheet" href="css/bootstrap.min.css"/>
-<link rel="stylesheet" href="css/app.min.1.css"/>
-<link rel="stylesheet" href="css/app.min.2.css"/>
-<link rel="stylesheet" href="css/socicon.min.css"/>
-<link rel="stylesheet" href="css/jquery-ui.css"/>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="js/functions.js"></script>
 
-<script type="text/javascript" src="js/jspdf/jspdf.js"></script>
-<script type="text/javascript" src="js/jspdf/jspdf.debug.js"></script>
-<script type="text/javascript" src="js/jspdf/jspdf.plugin.autotable.js"></script>
-
-<script src="js/sweet-alert.js"></script>
-<link rel="stylesheet" type="text/css" href="css/sweet-alert.css">
-
+<body>
 <style type="text/css">
-input[type=checkbox], input[type=radio] {
-    margin: 4px 0 0;
-    margin-top: 1px \9;
-    line-height: normal;
-}
-input[type=checkbox], input[type=radio] {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 0;
-}
+    input[type=checkbox], input[type=radio] {
+        margin: 4px 0 0;
+        margin-top: 1px \9;
+        line-height: normal;
+    }
+    input[type=checkbox], input[type=radio] {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0;
+    }
     body {
         margin: 0px auto;
         margin-top:20px;
@@ -128,170 +110,170 @@ input[type=checkbox], input[type=radio] {
         -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
         transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     }
-	
 
-.panel 
-{
-    margin-bottom: 18px;
-    background-color: #ffffff;  
-    border-radius: 2px;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-}
-.panel-default > .panel-heading 
-{
-    background-color: rgb(249, 54, 54);
-	height: 50px;
-	padding-left: 10px;
-	padding-top:5px;
-	color: white;
-	font-size:24px;
-   
-}
 
-	
-	
+    .panel
+    {
+        margin-bottom: 18px;
+        background-color: #ffffff;
+        border-radius: 2px;
+        -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    }
+    .panel-default > .panel-heading
+    {
+        background-color: rgb(249, 54, 54);
+        height: 50px;
+        padding-left: 10px;
+        padding-top:5px;
+        color: white;
+        font-size:24px;
+
+    }
+
+
+
 
 </style>
 <script>
 
-$(document).ready(function () {
+    $(document).ready(function () {
 
-    var loginMemberId = localStorage.getItem("memberId");
+        var loginMemberId = localStorage.getItem("memberId");
 
-    var date = new Date(), y = date.getFullYear(), m = date.getMonth();
-    var firstDay = new Date(y, m, 1);
-    var lastDay = new Date(y, m + 1, 0);
+        var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+        var firstDay = new Date(y, m, 1);
+        var lastDay = new Date(y, m + 1, 0);
 
-    $("#StartDate").datepicker({
-        dateFormat: "yy-mm-dd"
+        $("#StartDate").datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+
+        $("#EndDate").datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+
+        $("#StartDate").datepicker('setDate', firstDay);
+        $("#EndDate").datepicker('setDate', lastDay);
+
+        $("#loadbutton").attr("onclick","loadCall()");
+        loadtable(firstDay,lastDay,loginMemberId);
+
     });
 
-    $("#EndDate").datepicker({
-        dateFormat: "yy-mm-dd"
-    });
+    function loadCall(){
 
-    $("#StartDate").datepicker('setDate', firstDay);
-    $("#EndDate").datepicker('setDate', lastDay);
+        var loginMemberId = localStorage.getItem("memberId");
+        var startDay = $("#StartDate").datepicker('getDate');
+        var endDay =  $("#EndDate").datepicker('getDate');
 
-    $("#loadbutton").attr("onclick","loadCall()");
-    loadtable(firstDay,lastDay,loginMemberId);
+        loadtable(startDay,endDay,loginMemberId);
+    }
 
-});
+    data = [];
 
-function loadCall(){
+    function loadtable(startdate,enddate,memberid){
+        $("#tab_customers").html('');
+        $.ajax({
+            url : "process/?route=Event&method=getAllNotesByStartDateAndEndDate",
+            data:  { start : dateFormat(startdate), end: dateFormat(enddate), MemberId: memberid},
+            type : "post",
+            dataType: "json",
+            success : function(e){
+                debugger;
+                if(e.length>0)
+                {
+                    var tablerows='';
+                    var tablehead ='<colgroup>'+
+                            '<col >'+
+                            '<col >'+
+                            '<col >'+
+                            '<col >'+
+                            '<col >'+
+                            '<col >'+
+                            '</colgroup>'+
+                            '<thead>'+
+                            '<tr class="warning">'+
+                            '<th>Type</th>'+
+                            '<th>Subject</th>'+
+                            '<th>Description</th>'+
+                            '<th>Start Date</th>'+
+                            '<th>End Date</th>'+
+                            '<th>Location</th>'+
+                            '</tr>'+
+                            '</thead>';
 
-    var loginMemberId = localStorage.getItem("memberId");
-    var startDay = $("#StartDate").datepicker('getDate');
-    var endDay =  $("#EndDate").datepicker('getDate');
+                    data = []
 
-    loadtable(startDay,endDay,loginMemberId);
-}
+                    var flagM =0,flagN=0,flagB=0;
 
-data = [];
-
-function loadtable(startdate,enddate,memberid){
-    $("#tab_customers").html('');
-    $.ajax({
-        url : "process/?route=Event&method=getAllNotesByStartDateAndEndDate",
-        data:  { start : dateFormat(startdate), end: dateFormat(enddate), MemberId: memberid},
-        type : "post",
-        dataType: "json",
-        success : function(e){
-        debugger;
-            if(e.length>0)
-            {
-                var tablerows='';
-                var tablehead ='<colgroup>'+
-                        '<col >'+
-                        '<col >'+
-                        '<col >'+
-                        '<col >'+
-                        '<col >'+
-                        '<col >'+
-                        '</colgroup>'+
-                        '<thead>'+
-                        '<tr class="warning">'+
-                        '<th>Type</th>'+
-                        '<th>Subject</th>'+
-                        '<th>Description</th>'+
-                        '<th>Start Date</th>'+
-                        '<th>End Date</th>'+
-                        '<th>Location</th>'+
-                        '</tr>'+
-                        '</thead>';
-
-                data = []
-
-                var flagM =0,flagN=0,flagB=0;
-
-                if($('#M:checkbox:checked').length > 0){
-                    flagM="1";
-                }
-                if($('#N:checkbox:checked').length > 0){
-                    flagN="2";
-                }
-                if($('#B:checkbox:checked').length > 0){
-                    flagB="3";
-                }
-
-                $.each( e, function( key, value ) {
-                    if(flagM == value.notetype || flagN == value.notetype || flagB == value.notetype){
-                        var notetype="";
-                        var location=""
-                        if(value.notetype=="1"){
-                            notetype = "Meeting";
-                        }
-                        else if(value.notetype=="2"){
-                            notetype = "Note";
-                        }
-                        else if(value.notetype=="3"){
-                            notetype = "Birthday";
-                        }
-
-                        if(value.location!="0"){
-                            location = "Yes";
-                        }
-                        else{
-                            location = "No";
-                        }
-
-                        tablerows += '<tr><td>'+notetype+'</td><td>'+value.subject+'</td><td>'+value.description+'</td><td>'+value.startdate+'</td><td>'+value.enddate+'</td><td>'+location+'</td></tr>'
-
-                        data.push({
-                            "Type" : notetype,
-                            "Subject" : value.subject,
-                            "Description" :value.description,
-                            "startdate":value.startdate,
-                            "enddate":value.enddate,
-                            "Location":location
-                        });
+                    if($('#M:checkbox:checked').length > 0){
+                        flagM="1";
                     }
-                });
+                    if($('#N:checkbox:checked').length > 0){
+                        flagN="2";
+                    }
+                    if($('#B:checkbox:checked').length > 0){
+                        flagB="3";
+                    }
 
-                var tablebody = '<tbody>'+tablerows+'</tbody>';
+                    $.each( e, function( key, value ) {
+                        if(flagM == value.notetype || flagN == value.notetype || flagB == value.notetype){
+                            var notetype="";
+                            var location=""
+                            if(value.notetype=="1"){
+                                notetype = "Meeting";
+                            }
+                            else if(value.notetype=="2"){
+                                notetype = "Note";
+                            }
+                            else if(value.notetype=="3"){
+                                notetype = "Birthday";
+                            }
 
-                $("#tab_customers").append(tablehead+tablebody);
+                            if(value.location!="0"){
+                                location = "Yes";
+                            }
+                            else{
+                                location = "No";
+                            }
 
+                            tablerows += '<tr><td>'+notetype+'</td><td>'+value.subject+'</td><td>'+value.description+'</td><td>'+value.startdate+'</td><td>'+value.enddate+'</td><td>'+location+'</td></tr>'
+
+                            data.push({
+                                "Type" : notetype,
+                                "Subject" : value.subject,
+                                "Description" :value.description,
+                                "startdate":value.startdate,
+                                "enddate":value.enddate,
+                                "Location":location
+                            });
+                        }
+                    });
+
+                    var tablebody = '<tbody>'+tablerows+'</tbody>';
+
+                    $("#tab_customers").append(tablehead+tablebody);
+
+                }
+                else{
+                    showalert("Records Not Found.", "alert-danger", "", "");
+                }
             }
-            else{
-                showalert("Records Not Found.", "alert-danger", "", "");
-            }
-        }
-    });
-}
+        });
+    }
 
-function exportPDF() {
+    function exportPDF() {
 
-debugger;
-    var columns = [
-        {title: "Type", key: "Type"},
-        {title: "Subject", key: "Subject"},
-        {title: "Description", key: "Description"},
-        {title: "Start Date", key: "startdate"},
-        {title: "End Date", key: "enddate"},
-        {title: "Location", key: "Location"}
-    ];
+        debugger;
+        var columns = [
+            {title: "Type", key: "Type"},
+            {title: "Subject", key: "Subject"},
+            {title: "Description", key: "Description"},
+            {title: "Start Date", key: "startdate"},
+            {title: "End Date", key: "enddate"},
+            {title: "Location", key: "Location"}
+        ];
 
         var totalPagesExp = "{total_pages_count_string}";
         var doc = new jsPDF('p', 'pt');
@@ -315,127 +297,19 @@ debugger;
         };
         var options = {renderHeader: header, renderFooter: footer, margins: {horizontal: 40, top: 80, bottom: 50}};
 
-    //var doc = new jsPDF('p', 'pt');
-    doc.autoTable(columns, data, options);
-    if (typeof doc.putTotalPages === 'function') {
-        doc.putTotalPages(totalPagesExp);
-    }
-    doc.save('Export Data From Code Hunters.pdf');
+        //var doc = new jsPDF('p', 'pt');
+        doc.autoTable(columns, data, options);
+        if (typeof doc.putTotalPages === 'function') {
+            doc.putTotalPages(totalPagesExp);
+        }
+        doc.save('Export Data From Code Hunters.pdf');
 
-}
+    }
 
 </script>
-</head>
-
-<body>
-
-<header id="header">
-    <ul class="header-inner">
-        <li class="logo">
-            <a href="/">CODE HUNTERS</a>
-        </li>
-        <li style="margin-left: 15.333333%;">
-            <input type="text" id="txtSearch">
-        </li>
-        <li class="pull-right">
-            <ul class="top-menu">
-                <li class="dropdown">
-                    <a data-toggle="dropdown" class="tm-message" href=""></a>
-                    <div class="dropdown-menu dropdown-menu-lg pull-right">
-                        <div class="listview">
-                            <div class="lv-header">Messages</div>
-                            <div class="lv-body c-overflow" tabindex="1" style="overflow: hidden; outline: none;">
-
-                            </div>
-                            <a class="lv-footer" href="">View All</a>
-                        </div>
-                        <div id="ascrail2002" class="nicescroll-rails nicescroll-rails-vr"
-                             style="width: 0px; z-index: 9; cursor: default; position: absolute; top: 0px; left: 298px; height: 275px; display: none;">
-                            <div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 0px; height: 0px; border: 0px; border-radius: 0px; background-color: rgba(0, 0, 0, 0.498039); background-clip: padding-box;"></div>
-                        </div>
-                        <div id="ascrail2002-hr" class="nicescroll-rails nicescroll-rails-hr"
-                             style="height: 0px; z-index: 9; top: 275px; left: 0px; position: absolute; cursor: default; display: none;">
-                            <div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 0px; width: 0px; border: 0px; border-radius: 0px; background-color: rgba(0, 0, 0, 0.498039); background-clip: padding-box;"></div>
-                        </div>
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <a data-toggle="dropdown" class="tm-notification" href=""></a>
-                    <div class="dropdown-menu dropdown-menu-lg pull-right">
-                        <div class="listview" id="notifications">
-                            <div class="lv-header">Notification
-                                <ul class="actions">
-                                    <li class="dropdown">
-                                        <a href="" data-clear="notification">
-                                            <i class="md md-done-all"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="lv-body c-overflow" tabindex="2" style="overflow: hidden; outline: none;"></div>
-                            <a class="lv-footer" href="">View Previous</a>
-                        </div>
-                        <div id="ascrail2003" class="nicescroll-rails nicescroll-rails-vr"
-                             style="width: 0px; z-index: 9; cursor: default; position: absolute; top: 0px; left: 298px; height: 275px; display: none;">
-                            <div class="nicescroll-cursors"
-                                 style="position: relative; top: 0px; float: right; width: 0px; height: 0px; border: 0px; border-radius: 0px; background-color: rgba(0, 0, 0, 0.498039); background-clip: padding-box;"></div>
-                        </div>
-                        <div id="ascrail2003-hr" class="nicescroll-rails nicescroll-rails-hr"
-                             style="height: 0px; z-index: 9; top: 275px; left: 0px; position: absolute; cursor: default; display: none;">
-                            <div class="nicescroll-cursors"
-                                 style="position: absolute; top: 0px; height: 0px; width: 0px; border: 0px; border-radius: 0px; background-color: rgba(0, 0, 0, 0.498039); background-clip: padding-box;"></div>
-                        </div>
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <a data-toggle="dropdown" class="tm-task" href=""></a>
-                    <div class="dropdown-menu dropdown-menu-sm pull-right">
-                        <div class="listview">
-                            <div class="lv-header">Profile</div>
-                            <div class="lv-body c-overflow" tabindex="1" style="overflow: hidden; outline: none;">
-                                <a class="lv-item viewshareCal" href="">
-                                    <div class="media">
-                                        <div class="pull-left">
-                                            <i class="glyphicon glyphicon-log-out " style="color: #f44336" ></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <small class="lv-small">My Calendars</small>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="lv-item shareCal" href="" >
-                                    <div class="media" onclick="">
-                                        <div class="pull-left">
-                                            <i class="glyphicon glyphicon-log-out " style="color: #f44336" ></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <small class="lv-small">Share Calendar</small>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="lv-item logout" href="">
-                                    <div class="media">
-                                        <div class="pull-left">
-                                            <i class="glyphicon glyphicon-log-out " style="color: #f44336" ></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <small class="lv-small">Logout</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </li>
-        <li class="pull-right logo" >
-            <img class="lv-img-sm img-circle pull-left img-responsive img-thumbnail " src="img/profile-pics/1.jpg" alt="">
-            <a class="pull-right" ><?=$user['name']?></a>
-        </li>
-    </ul>
-</header>
-
+<script type="text/javascript" src="js/jspdf/jspdf.js"></script>
+<script type="text/javascript" src="js/jspdf/jspdf.debug.js"></script>
+<script type="text/javascript" src="js/jspdf/jspdf.plugin.autotable.js"></script>
 
 <section class="main" >
     <div class="content" >
@@ -491,12 +365,3 @@ debugger;
         </div>
     </div>
 </section>
-
-<footer id="footer" >
-    <center>
-        <img class="" src="img/ch_logo.png" alt="Code Hunters Logo" style="padding: 20px;height: 100px;">
-        <span style="color: #FFFFFF;font-size:15px;font-weight: 100;">&copy; 2015 Code Hunters. All Rights Reserved.</span>
-    </center>
-</footer>
-</body>
-</html>
