@@ -111,7 +111,7 @@
                 $name= explode(" ",$user['name']);
                 echo substr(strtoupper($name[0]),0,1)."<small>".substr(strtolower(end($name)),0,1)."</small>"?>
             </div>
-            <a class="pull-right" ><?=$user['name']?></a>
+            <a class="pull-right" ><?= strlen($user['name'])> 20 ? $name[0].".." : $user['name'] ?></a>
         </li>
     </ul>
 </header>
