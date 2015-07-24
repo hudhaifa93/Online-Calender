@@ -353,6 +353,7 @@ var Month = function (config) {
             {
 
                 $("#viewHead").text("Meeting");
+                $('#editButton').html('Edit');
                 if(event.data('createdby')==localStorage.getItem("memberId"))
                 {
                     loadViewModaData(event.data('eventid'),'Meeting');
@@ -378,6 +379,7 @@ var Month = function (config) {
                 $("#ViewSubject").text(event.data('subject'));
                 $("#ViewDescription").text(event.data('description'));
                 loadViewModaData(event.data('eventid'),'Note');
+                $('#editButton').html('Edit');
                 if(event.data('createdby')==localStorage.getItem("memberId"))
                 {
                 $('#editButton').attr("onclick","editAdvanceNote("+event.data('eventid')+")");
@@ -399,10 +401,10 @@ var Month = function (config) {
                 $('#editButton').before(btn);
                 $("#viewHead").text("Birthday");
                 loadViewModaData(event.data('eventid'),'Birthday');
-
+                $('#editButton').html('Edit');
                 if(event.data('createdby')==localStorage.getItem("memberId"))
                 {
-                    $('#editButton').attr("onclick",'makebirthdayEditable()');
+                    $('#editButton').attr("onclick","makebirthdayEditable('"+event.data('eventid')+"')");
                     $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
                     $("#viewButtonDelete").show();
                 }

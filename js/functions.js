@@ -927,12 +927,39 @@ $('.search_result').on('click','.result_event',function(){
 $('#profile-logo').css('background', "#"+Math.floor(Math.random()*16777215).toString(16));
 
 
-function makebirthdayEditable(){
+function makebirthdayEditable(id){
     debugger;
     $("#EBirthDayName").attr('readonly',false);
     $("#EBdate").attr('readonly',false);
     $("#EBmonth").attr('readonly',false);
     $("#EByear").attr('readonly',false);
-    $('#editButton').attr("onclick",'updateBirthday()');
+    $('#editButton').attr("onclick","updateBirthday('"+id+"')");
+    $('#editButton').html('Update');
 
 }
+
+function updateBirthday(id)
+{
+    $('#editButton').html('Edit');
+    var Bdate = $("#EByear").val() + "-" + $("#EBmonth").val() + "-" + $("#EBdate").val();
+    var  Message = "Birthday Has Been Updated Successfully.";
+    var subject =  $("#EBirthDayName").val();
+    $.ajax({
+        url: "process/index.php?route=event&method=updateBirthday",//event.php
+        type: "post",
+        dataType: 'json',
+        data: "id="+id+"&date="+Bdate+"&subject="+subject, // provided this code executes in form.onsubmit event
+        success: function (output) {
+            if (output.success > 0) {
+                showalert(Message, "alert-success", "CommonViewModal", "modal");
+            }
+            else {
+                showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
+            }
+        },
+        failure: function () {
+            showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
+        }
+    });
+}
+

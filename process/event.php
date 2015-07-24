@@ -484,4 +484,16 @@ class Event extends Controller {
         }
         echo json_encode($d?$d : array());
     }
+
+
+    function updateBirthday(){
+//    print_r($_POST);
+        $id = $this->db->query("UPDATE note SET subject='". $_POST['subject']."',startdate='".$_POST['date']."',enddate='".$_POST['date']."' WHERE id='".$_POST['id']."'");
+        if(is_object($id)){
+            echo json_encode($id? array("success" => $_POST['id']) : array("failure" => "failure" ));
+        }
+        else{
+            echo json_encode($id? array("success" => "failure") : array("failure" => "failure" ));
+        }
+    }
 }
