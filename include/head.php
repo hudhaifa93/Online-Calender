@@ -35,7 +35,7 @@
         }
 
         #footer{
-            background: #B81A0E;
+            background: #f44336;
             box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
             height: 100px;
             z-index: 10;
