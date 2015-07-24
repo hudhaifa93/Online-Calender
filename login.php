@@ -61,6 +61,7 @@
 
     <ul class="login-navigation">
         <li data-block="#l-register" class="bgm-orange">Sign Up</li>
+        <li data-block="#l-video" class="bgm-red">Demo</li>
     </ul>
 
 </div>
@@ -118,6 +119,21 @@
 
     <ul class="login-navigation">
         <li data-block="#l-login" class="bgm-green">Login</li>
+        <li data-block="#l-video" class="bgm-red">Demo</li>
+    </ul>
+</div>
+
+<div class="lc-block" style="width: 80%;margin-top: 10px" id="l-video">
+    <video width="854" height="480" controls >
+        <source src="demo/movie.mp4" type="video/mp4">
+        <object data="movie.mp4" width="854" height="480">
+            <embed src="movie.swf" width="854" height="480  ">
+        </object>
+    </video>
+    <ul class="login-navigation">
+        <li data-block="#l-login" class="bgm-green">Login</li>
+        <li data-block="#l-register" class="bgm-orange">Sign Up</li>
+
     </ul>
 </div>
 
