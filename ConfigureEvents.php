@@ -317,7 +317,7 @@ $(document).ready(function () {
     else{//update
         $("#Type").prop("disabled", true);
         $("#advanceButton").attr("onclick","javascript: updateAdvanceEvent('frmMeeting')");
-        
+
         $.ajax({
             url:"process/index.php?route=event&method=getAdvanceEventData",
             type: "post",

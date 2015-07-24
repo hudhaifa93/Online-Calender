@@ -21,6 +21,7 @@ function fillInAddress(_place) {
     $("#latitude").val(place.geometry.location.A);
     $("#longitude").val(place.geometry.location.F);
     loadAddressDetails(place);
+    loadMap(place.geometry.location.A,place.geometry.location.F);
 }
 
 function loadAddressDetails(place){
