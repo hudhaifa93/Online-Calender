@@ -195,6 +195,7 @@ include 'include/head.php' ?>
                                             <option value="Y">Yearly</option>
                                         </select>
                                     </div>
+
                                 </div>
                             </div>
                             <div class="col-xs-12 form-group">
@@ -418,7 +419,6 @@ function loadInvitee(){
 }
 
 function addToInvitedList() {
-    debugger;
     var Email = $("#InviteeEmail").val();
     var fullEmail = Email;
     Email = Email.split("@");

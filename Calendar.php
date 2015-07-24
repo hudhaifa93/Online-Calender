@@ -189,7 +189,7 @@
                             <input type="text" style="  width: 50%;  float: left;" class="form-control"  id="InviteeEmail" placeholder="InviteeEmail"/><button type="button" style="  margin-left: 10px;  float: left;  margin-top: 2px;" class="btn btn-sm btn-primary"onclick="addToInvitedList()">Add to List</button>
                         </div>
                         <div class= "col-xs-12 form-group">
-                            <div id="InvitedList">
+                            <div id="ShareCalenderList">
                             </div>
                         </div>
                         <div class="pull-right">
@@ -329,12 +329,22 @@
 
 
 
+
+    $( document ).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+        $(".createdby").val(localStorage.getItem("memberId"));
+        loadShareCalenderList(localStorage.getItem("memberId"));
+        loadSharedCalenderList(localStorage.getItem("memberId"));
+    });
+
+
+
     function addToInvitedList() {
         var Email = $("#InviteeEmail").val();
         if(validateEmail( Email )){
             var fullEmail = Email;
             Email = Email.split("@");
-            $("#InvitedList").append($('<div data-status="0" class="tags ' + Email[0] + 'List" >' + fullEmail + '<a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
+            $("#ShareCalenderList").append($('<div data-status="0" class="tags ' + Email[0] + 'List" >' + fullEmail + '<a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
             $("#InviteeEmail").val("");
         }
     }

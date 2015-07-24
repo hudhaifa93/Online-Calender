@@ -159,6 +159,7 @@ function createNewSignUp(formName){
 }
 
 function saveBasicEvent(formName) {
+    debugger;
     var Message = "";
     if (formName == "birthdayForm") {
         $(".ClickedDate").val($("#Byear").val() + "-" + $("#Bmonth").val() + "-" + $("#Bdate").val());
@@ -167,30 +168,31 @@ function saveBasicEvent(formName) {
     else if (formName == "eventForm") {
         Message = "Event Has Been Added Successfully."
     }
-    else if (formName == "meetingForm") {
-        Message = "Meeting Has Been Added Successfully."
-    }
+//    else if (formName == "meetingForm") {
+//        Message = "Meeting Has Been Added Successfully."
+//    }
 
-    $.ajax({
-        url: "process/index.php?route=event&method=insertBasicEvent",//event.php
-        type: "post",
-        dataType: 'json',
-        data: $('#' + formName).serialize(), // provided this code executes in form.onsubmit event
-        success: function (output) {
-            /* debugger */;
-            $('#' + formName)[0].reset();
-            if (output.success > 0) {
+          $.ajax({
+              url: "process/index.php?route=event&method=insertBasicEvent",//event.php
+              type: "post",
+              dataType: 'json',
+              data: $('#' + formName).serialize(), // provided this code executes in form.onsubmit event
+              success: function (output) {
+                  /* debugger */;
+                  $('#' + formName)[0].reset();
+                  if (output.success > 0) {
 
-                showalert(Message, "alert-success", "CommonModal", "modal");
-            }
-            else {
-                showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
-            }
-        },
-        failure: function () {
-            showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
-        }
-    });
+                      showalert(Message, "alert-success", "CommonModal", "modal");
+                  }
+                  else {
+                      showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
+                  }
+              },
+              failure: function () {
+                  showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
+              }
+          });
+
 }
 
 function editBasicEvent(formName,id) {
@@ -514,7 +516,8 @@ function ShareCalenderList(memberid){//called to set shared members or update sh
 }
 
 function loadShareCalenderList(memberid){
-    $("#InvitedList").html('');
+
+    $("#ShareCalenderList").html('');
     $.ajax({
         url: "process/index.php?route=event&method=getSharedMemberIds",
         type: "post",
@@ -527,13 +530,13 @@ function loadShareCalenderList(memberid){
             /* debugger */;
             data = JSON.parse(data.success);
 
-            $("#InvitedList").html('');
+            $("#ShareCalenderList").html('');
             $.each( data, function( key, value ) {
                     /* debugger */;
                     var Email = value.sharedmemberemail;
                     var fullEmail = Email;
                     Email = Email.split("@");
-                    $("#InvitedList").append($('<div data-status="'+value.status+'" class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
+                    $("#ShareCalenderList").append($('<div data-status="'+value.status+'" class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
                 });
 
 
@@ -1000,11 +1003,7 @@ function updateBirthday(id)
 }
 
 
-$('[data-toggle="tooltip"]').tooltip();
 
-$(".createdby").val(localStorage.getItem("memberId"));
-loadShareCalenderList(localStorage.getItem("memberId"));
-loadSharedCalenderList(localStorage.getItem("memberId"));
 //loadConfigureModelDetails(localStorage.getItem("memberId"));
 $("#shareCalenderButton").attr("onclick","ShareCalenderList('"+localStorage.getItem("memberId")+"')");
 
