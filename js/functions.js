@@ -167,7 +167,12 @@ function saveBasicEvent(formName) {
     debugger;
     var Message = "";
     if (formName == "birthdayForm") {
-        $(".ClickedDate").val($("#Byear").val() + "-" + $("#Bmonth").val() + "-" + $("#Bdate").val());
+        var year = $("#Byear").val();
+        if(year=="" || year==null|| year==" ")
+        {
+            year="0000";
+        }
+        $(".ClickedDate").val(year + "-" + $("#Bmonth").val() + "-" + $("#Bdate").val());
         Message = "Birthday Has Been Added Successfully.";
     }
     else if (formName == "eventForm") {
