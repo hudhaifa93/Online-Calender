@@ -110,7 +110,7 @@ function validateLogin(formName) {
         dataType: 'json',
         data: $('#' + formName).serialize(), // provided this code executes in form.onsubmit event
         success: function (output) {
-            debugger;
+            /* debugger */;
             //$('#'+formName)[0].reset();
             if (output.success > 0) {
                 localStorage.setItem("memberId", output.success);
@@ -139,7 +139,7 @@ function createNewSignUp(formName){
             dataType: 'json',
             data: $('#'+formName).serialize(), // provided this code executes in form.onsubmit event
             success: function (output) {
-                debugger;
+                /* debugger */;
                 $('#'+formName)[0].reset();
                 if(output.success > 0)
                 {
@@ -176,7 +176,7 @@ function saveBasicEvent(formName) {
         dataType: 'json',
         data: $('#' + formName).serialize(), // provided this code executes in form.onsubmit event
         success: function (output) {
-            debugger;
+            /* debugger */;
             $('#' + formName)[0].reset();
             if (output.success > 0) {
 
@@ -210,7 +210,7 @@ function editBasicEvent(formName,id) {
         dataType: 'json',
         data: $('#' + formName).serialize()+"&id="+id, // provided this code executes in form.onsubmit event
         success: function (output) {
-            debugger;
+            /* debugger */;
             $('#' + formName)[0].reset();
             if (output.success > 0) {
                 showalert(Message, "alert-success", "CommonModal", "modal");
@@ -243,7 +243,7 @@ function deleteBasicEvent(formName,id){
             dataType: 'json',
             data: $('#' + formName).serialize()+"&id="+id, // provided this code executes in form.onsubmit event
             success: function (output) {
-                debugger;
+                /* debugger */;
                 $('#' + formName)[0].reset();
                 if (output.success == "Deleted") {
                     showalert(Message, "alert-success", "CommonViewModal", "modal");
@@ -259,7 +259,7 @@ function deleteBasicEvent(formName,id){
     }
 
 function saveAdvanceEvent(formName){
-    debugger;
+    /* debugger */;
     var Message = "";
     var createddate = getOnlyCurrentDate();
     var timeslot;
@@ -314,7 +314,7 @@ function saveAdvanceEvent(formName){
         async:false,
         data: $('#' + formName).serialize()+"&createddate="+createddate+timeslot+location+repeatData, // provided this code executes in form.onsubmit event
         success: function (output) {
-            debugger;
+            /* debugger */;
             $('#' + formName)[0].reset();
             if (output.success > 0) {
                 inviteList(output.success,"N");
@@ -389,7 +389,7 @@ function updateAdvanceEvent(formName){
         async:false,
         data: $('#' + formName).serialize()+timeslot+location+"&noteid="+noteid+repeatData, // provided this code executes in form.onsubmit event
         success: function (output) {
-            debugger;
+            /* debugger */;
             $('#' + formName)[0].reset();
             if (output.success > 0) {
                 inviteList(output.success,"U");
@@ -412,7 +412,7 @@ function inviteList(noteid,flag){
     var email = [] ;
     var str ="";
     $( ".tags" ).each(function( index ) {
-        debugger;
+        /* debugger */;
         if(flag=="N"){
 
             str = $( this ).text();
@@ -456,7 +456,7 @@ function ShareCalenderList(memberid){//called to set shared members or update sh
     var email = [] ;
     var str ="";
     $( ".tags" ).each(function( index ) {
-        debugger;
+        /* debugger */;
 
             str = $( this ).text();
             str = str.split("x");
@@ -473,7 +473,7 @@ function ShareCalenderList(memberid){//called to set shared members or update sh
             dataType: 'json',
             data: { sharedMembersList : email}, // provided this code executes in form.onsubmit event
             success: function (output) {
-                debugger;
+                /* debugger */;
                 if(output="success"){
                     showalert("Calender Shared / Updated", "alert-success", "", "");
                 }
@@ -500,12 +500,12 @@ function loadShareCalenderList(memberid){
         success: function (e) {
 
             var data = e;
-            debugger;
+            /* debugger */;
             data = JSON.parse(data.success);
 
             $("#InvitedList").html('');
             $.each( data, function( key, value ) {
-                    debugger;
+                    /* debugger */;
                     var Email = value.sharedmemberemail;
                     var fullEmail = Email;
                     Email = Email.split("@");
@@ -531,7 +531,7 @@ function loadSharedCalenderList(memberid){
         async:false,
         data: "memberid="+memberid, // provided this code executes in form.onsubmit event
         success: function (e) {
-            debugger;
+            /* debugger */;
             var data = e;
             data = JSON.parse(data.success);
             if(data=="" || data==[])
@@ -572,7 +572,7 @@ function openShareModal(){
 }
 
 function loadConfigureModelDetails(memberid){
-    debugger;
+    /* debugger */;
     $("#configureDetails").html('');
     $.ajax({
         url: "process/index.php?route=event&method=getNoteConfigurationByMemberId",
@@ -581,7 +581,7 @@ function loadConfigureModelDetails(memberid){
         async:false,
         data: { MemberId: memberid},
         success: function (e) {
-            debugger;
+            /* debugger */;
             var data = e;
             data = JSON.parse(data.success);
             if(data=="" || data==[])
@@ -623,10 +623,11 @@ function getNotification(){
                 if(e.length > 0 ){
                     $('#notifications').find('.lv-body').html("");
                     $.each(e,function(k,v){
+                        n = v.name.split(" ");
                         item = $('<a class="lv-item"></a>');
                         $('<div class="media">' +
-                            '<div class="pull-left">' +
-                            ' <img class="lv-img-sm" src="img/profile-pics/1.jpg" alt="">' +
+                            '<div class="pull-left circleBase type2">' +
+                            " <span class='result_image' >"+n[0].charAt(0).toUpperCase()+"<small>"+n[1].charAt(0).toLowerCase()+"</small></span> " +
                             ' </div>' +
                             ' <div class="media-body">' +
                             '<div class="lv-title">'+ v.name +'</div>' +
@@ -746,7 +747,7 @@ function loadViewModaData(id,type){
         async:false,
         data:"id="+id,
         success: function (e) {
-            debugger;
+            /* debugger */;
             var data = e;
             data = JSON.parse(data.success);
             var dataLength = data.length;
@@ -778,14 +779,14 @@ function loadViewModaData(id,type){
                     async:false,
                     data: "noteid="+id, // provided this code executes in form.onsubmit event
                     success: function (e) {
-                        debugger;
+                        /* debugger */;
                         var data = e;
                         data = JSON.parse(data.success);
 
                         $("#ViewInviteList").html('');
 
                         $.each( data, function( key, value ) {
-                            debugger;
+                            /* debugger */;
                             var Email = value.email;
                             var fullEmail = Email;
                             Email = Email.split("@");
@@ -833,6 +834,7 @@ $('#txtSearch').keyup(function(){
     self = $(this);
 
     if(self.val().length>0){
+        self.addClass('loading');
         $('.search_result').removeClass('hidden');
         $.ajax({
             url :"process/?route=event&method=search&str="+self.val(),
@@ -840,10 +842,11 @@ $('#txtSearch').keyup(function(){
             data : {memberid:getMemberIds()},
             type : 'post',
             success: function(e){
+                self.removeClass('loading');
                 $('.search_result').html("");
                 for(a in e){
                     $("<a class='result_event' data-createdby='"+e[a].createdby+"' data-eventid='"+e[a].id+"' data-eventtype='"+e[a].notetype+"' >  " +
-                        " <span class='result_image' >"+e[a].firstname.charAt(0).toUpperCase()+"</span> " +
+                        " <span class='result_image' >"+e[a].firstname.charAt(0).toUpperCase()+"<small>"+e[a].lastname.charAt(0).toLowerCase()+"</small></span> " +
                         " <span class='result_data' >" +
                         "<span class='result_sub' >"+e[a].subject+"</span> <span class='result_des' >"+e[a].description.substring(0,75)+ ( e[a].description.length > 75 ? "..." : "" )+"</span>"+
                         "</span> " +
@@ -852,8 +855,11 @@ $('#txtSearch').keyup(function(){
 
             }
         });
-    }else
+    }else{
         $('.search_result').addClass('hidden').html("");
+        self.removeClass('loading');
+    }
+
 });
 
 $('.main').click(function(){$('.search_result').addClass('hidden').html("");});

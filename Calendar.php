@@ -369,7 +369,7 @@
                 $("#InviteeEmail").val("");
             }
         }
-        
+
         function addToShareList() {
             var Email = $("#shareEmail").val();
             if(validateEmail( Email )){
@@ -410,6 +410,7 @@
                 failure: function () {
                 }
             });
+
         }
 
     </script>

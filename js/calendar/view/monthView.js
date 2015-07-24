@@ -119,6 +119,7 @@ var Month = function (config) {
         }
 
         function _body() {
+            _date = main._monthFirst;
             var d = main._monthFirst;
             var weekday = d.getDay() != 0 ? d.getDay() - 1 : 6;
             var days = main._monthLast.getDate(), rows = Math.ceil((weekday + days) / 7);
@@ -345,7 +346,7 @@ var Month = function (config) {
         }
 
         function openModelForView(event){
-            debugger
+            //debugger
             resetModalButton();
             $('#CommonViewModal').modal('show').find('.share').remove();
             if(event.data('eventtype')=="1")//meeting

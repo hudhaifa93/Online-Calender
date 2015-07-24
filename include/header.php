@@ -4,7 +4,7 @@
             <a href="/">CODE HUNTERS</a>
         </li>
         <li style="margin-left: 5%;position: relative">
-            <input class="visible-lg visible-md" type="text" id="txtSearch">
+            <input class="visible-lg visible-md " type="text" id="txtSearch">
             <div class="search_result hidden"  ></div>
         </li>
         <li class="pull-right">
@@ -101,7 +101,11 @@
             </ul>
         </li>
         <li class="pull-right logo" >
-            <img class="lv-img-sm img-circle pull-left img-responsive img-thumbnail " src="img/profile-pics/1.jpg" alt="">
+            <div class=" pull-left circleBase type1" >
+                <?php
+                $name= explode(" ",$user['name']);
+                echo substr(strtoupper($name[0]),0,1)."<small>".substr(strtolower(end($name)),0,1)."</small>"?>
+            </div>
             <a class="pull-right" ><?=$user['name']?></a>
         </li>
     </ul>

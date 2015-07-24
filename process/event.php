@@ -273,15 +273,32 @@ class Event extends Controller {
     }
 
     function inviteMembers(){
+        $mail = new email();
+        $mail->From = 'gowthammailvaganam@gmail.com';
 
         $inviteList = $this->post('inviteArray');
-        $noteid=$inviteList[0][noteid];
+        $noteid=$inviteList[0]['noteid'];
         $result = $this->db->query("DELETE FROM note_invitee_map WHERE noteid='$noteid'");
         if(is_object($result)){
             foreach ($inviteList as &$value) {
-                $result = $this->db->query(" insert into note_invitee_map values('".$value[noteid]."','".$value[email]."','".$value[status]."')");
+                $result = $this->db->query(" insert into note_invitee_map values('".$value['noteid']."','".$value['email']."','".$value['status']."')");
+                $mail->addAddress($value['email']);
             }
         }
+
+        $this->db->query("select note.* , member.firstname , member.lastname , note_type.description as note_type from note join member on note.createdby = member.id  join note_type on note_type.id = note.notetype where note.id = 1");
+        $res = $this->db->fetchObject();
+
+        $mail->isHTML(true);
+        $mail->Subject = "CodeHuntersCalendar Share ".$res->note_type ;
+
+        ob_start();
+        include "mail_template/share.php";
+        $mge = ob_get_contents();
+        ob_clean();
+
+        $mail->Body    =$mge;
+        $mail->send();
 
         echo json_encode($result? array("success" => "success") : array("failure" => "failure" ));
 
@@ -311,14 +328,33 @@ class Event extends Controller {
     }
 
     function share(){
+        $mail = new email();
+        $mail->From = 'gowthammailvaganam@gmail.com';
+
         $email = $this->post('email');
         if(!empty($email) ){
             $id = $this->post('id');
             $type = $this->post('type');
             foreach($email as $k => $e){
+                $mail->addAddress($e);
                 if($k != 0 ) $mail .= ",";
                 $mail .= "'$e'";
             }
+
+            $this->db->query("select note.* , member.firstname , member.lastname , note_type.description as note_type from note join member on note.createdby = member.id  join note_type on note_type.id = note.notetype where note.id = $id");
+            $res = $this->db->fetchObject();
+
+            $mail->isHTML(true);
+            $mail->Subject = "CodeHuntersCalendar Share ".$res->note_type ;
+
+            ob_start();
+            include "mail_template/share.php";
+            $mge = ob_get_contents();
+            ob_clean();
+
+            $mail->Body    =$mge;
+            $mail->send();
+
             $q = "INSERT INTO share_note
             SELECT id AS member_id, $id AS event_id, ( SELECT  `createdby` FROM note WHERE id =$id) AS shared_id, 0 AS status FROM member
             WHERE email IN ($mail)";
@@ -442,35 +478,9 @@ class Event extends Controller {
 
     function getNoteConfigurationByMemberId(){
         $results = $this->db->query("SELECT * FROM `note_configuration` WHERE memberid=".$this->post('MemberId')."");
-
         while($r = $results->fetchObject()){
             $d[] =  $r;
         }
-
         echo json_encode($d?$d : array());
     }
 }
-/*
-$email = new email();
-$email->from('from address');
-$email->to('to addrss');
-$email->subject('subject');
-$email->message('message body');
-$email->send();
-
-if($date = $this->post('date')){
-    $result = $this->db->query(" select note.* ,concat(member.firstname , ' ' , member.lastname) as name  from `note` join member  on member.id = note.createdby WHERE  DATE_FORMAT(startdate, '%m-%d')   = DATE_FORMAT('$date', '%m-%d')  ");
-    while($r = $result->fetchObject()){
-        $d[] =  $r;
-    }
-}
-$share = $this->shareEvent();
-$share1 = $this->sharedCalendar();
-if(is_array($d)){
-    if(is_array($share))
-        $d =array_merge($d,$share);
-    echo json_encode($d);
-}else if(is_array($share))
-    echo json_encode($share);
-else echo json_encode(array());
-*/
