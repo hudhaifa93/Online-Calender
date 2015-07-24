@@ -338,9 +338,13 @@ class Event extends Controller {
             $type = $this->post('type');
             foreach($email as $k => $e){
                 $mail->addAddress($e);
-                if($k != 0 ) $mail .= ",";
-                $mail .= "'$e'";
+                if($k != 0 ) $m .= ",";
+                $m .= "'$e'";
             }
+            $q = "INSERT INTO share_note
+            SELECT id AS member_id, $id AS event_id, ( SELECT  `createdby` FROM note WHERE id =$id) AS shared_id, 0 AS status FROM member
+            WHERE email IN ($m)";
+            echo json_encode($this->db->query($q) ? array('success'=>true) : array('success'=>false) );
 
             $this->db->query("select note.* , member.firstname , member.lastname , note_type.description as note_type from note join member on note.createdby = member.id  join note_type on note_type.id = note.notetype where note.id = $id");
             $res = $this->db->fetchObject();
@@ -356,10 +360,6 @@ class Event extends Controller {
             $mail->Body    =$mge;
             $mail->send();
 
-            $q = "INSERT INTO share_note
-            SELECT id AS member_id, $id AS event_id, ( SELECT  `createdby` FROM note WHERE id =$id) AS shared_id, 0 AS status FROM member
-            WHERE email IN ($mail)";
-           echo json_encode($this->db->query($q) ? array('success'=>true) : array('success'=>false) );
         }else
         echo json_encode(array('success'=>false));
     }
@@ -369,6 +369,8 @@ class Event extends Controller {
         $result=$this->db->query(" select note.* ,concat(member.firstname , ' ' , member.lastname) as name   from share_note left outer join note on share_note.event_id = note.id left outer join member on share_note.shared_id = member.id
         where member_id = {$u['id']} and share_note.`status` = 0");
         while( $r =$result->fetchObject()){
+            $r->share = 3;
+            $r->member_id = $u['id'];
             $d[] = $r;
         }
         return $d;
@@ -463,6 +465,9 @@ class Event extends Controller {
     function updateSharedCalendar(){
         $user = session::get('user');
         $this->db->query("UPDATE `shared_calendar` SET `status`='".$_POST['val']."' WHERE `sharedmemberemail`= '".$user['email']."' and `memberid`='".$_POST['memberid']."' ");
+        if($_POST['val'] == 1){
+
+        }
     }
 
     function updateInviteRequest(){
