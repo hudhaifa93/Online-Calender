@@ -15934,7 +15934,7 @@ a.thumbnail.active {
     text-align: center;
     vertical-align: middle;
     width: 40px;
-    font-size: 35px;
+    font-size: 25px;
 }
 .result_event:hover{
     color: #000000;
@@ -15952,8 +15952,8 @@ a.thumbnail.active {
 }
 .result_event .result_image  small {
     color: #000000;
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 25px;
+    text-transform: uppercase;
 }
 .result_event .result_data .result_des {
     color: #999;
@@ -15964,12 +15964,13 @@ a.thumbnail.active {
 .logo {
     border-radius: 50%;
     color: #000000;
-    font-size: 35px;
+    font-size: 20px;
     font-weight: 700;
 }.logo small {
      color: #000000;
      font-size: 20px;
      font-weight: 700;
+     text-transform: uppercase;
  }
 .circleBase {
     margin-top: -7px;
@@ -15979,11 +15980,15 @@ a.thumbnail.active {
 
 .type1 {
     text-align: center;
-    padding: 0 5px;
+    padding: 3px 0;
     width: 50px;
     height: 50px;
     background: #ffffff;
     border: 3px solid red;
+    font-size: 25px;
+}
+.type1 small {
+    font-size: 25px;
 }
 .type2{
     font-weight: 500    ;
@@ -15998,8 +16003,9 @@ a.thumbnail.active {
     border: 1px solid #f44336;
 }
 .type2 small {
+    font-size: 15px;
     color: #000000;
-
+    text-transform: uppercase;
 }
 .loading {
     background-color: #ffffff;
