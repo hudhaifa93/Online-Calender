@@ -128,6 +128,7 @@
         $(".lc-block").removeClass("toggled");
         $($(this).data('block')).addClass("toggled");
     });
+    localStorage.clear();
 </script>
 
 </body>
