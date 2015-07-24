@@ -12,21 +12,23 @@ var calendar = function (config) {
     function ViewEventHandler(){
         self.id = $("#"+self.options.id);
         self.id.on('click', '.cal-view', function () {
-            config.view = $(this).data('view') ;
-            render();
+            if($(this).data('view') !=  config.view){
+                config.view = $(this).data('view') ;
+                render();
+            }
         });
     }
 
     function render(){
         view = null;
         if(config.view ==  'month'){
-            view = new Month(config);
+             new Month(config);
         }else if(config.view == 'week')
-            view = new Week(config);
+             new Week(config);
         else if(config.view == 'day')
-            view = new Day(config);
+             new Day(config);
         else if(config.view == 'birthday')
-            view = new BirthDay(config);
+             new BirthDay(config);
     }
 
     return (function () {

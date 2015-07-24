@@ -24,9 +24,10 @@ var Day = function (config) {
         };
 
     function drawCalender() {
+        self.id.html("");
         name.title = name.months[ _date.getMonth()] + " " + _date.getDate() + ", " + _date.getFullYear();
         self.id.addClass("fc fc-ltr ui-widget");
-        self.id.html("");
+
         _head(self.id);
 
         $.ajax({
