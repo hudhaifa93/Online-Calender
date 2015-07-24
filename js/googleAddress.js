@@ -52,7 +52,8 @@ function loadAddressDetails(place){
 }
 
 function loadMap(lat,lng){
-
+    if(lat == ""){lat=6.929537}
+    if(lng == ""){lat=79.866271}
 
     var str = '[{ "lat" :"' + lat + '","lng" :"' + lng + '"}]';
     str = JSON.parse(str);

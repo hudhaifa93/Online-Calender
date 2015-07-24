@@ -317,7 +317,7 @@ $(document).ready(function () {
     else{//update
         $("#Type").prop("disabled", true);
         $("#advanceButton").attr("onclick","javascript: updateAdvanceEvent('frmMeeting')");
-        debugger;
+        
         $.ajax({
             url:"process/index.php?route=event&method=getAdvanceEventData",
             type: "post",
@@ -325,11 +325,10 @@ $(document).ready(function () {
             async:false,
             data:"id="+localStorage.getItem("advanceID"),
             success: function (e) {
-                debugger;
                 var data = e;
                 data = JSON.parse(data.success);
                 data = data[0];
-                //console.log(data);
+
                 $('#Type').val(data.notetype);
                 $('#Subject').val(data.subject);
                 if(data.location=="0"){
