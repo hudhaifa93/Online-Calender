@@ -51,10 +51,10 @@ function loadAddressDetails(place){
     }
 }
 
-function loadMap(){
+function loadMap(lat,lng){
 
 
-    var str = '[{ "lat" :"' + $('#latitude').val() + '","lng" :"' + $('#longitude').val() + '"}]';
+    var str = '[{ "lat" :"' + lat + '","lng" :"' + lng + '"}]';
     str = JSON.parse(str);
 
     jQuery('#map-canvas').gmap3({

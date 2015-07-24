@@ -312,7 +312,7 @@ $(document).ready(function () {
             var valueSelected = this.value;
             $("#notetype").val(valueSelected);
         });
-
+        loadMap(6.929537,79.866271);
     }
     else{//update
         $("#Type").prop("disabled", true);
@@ -382,7 +382,7 @@ $(document).ready(function () {
                 $('#StartTime').val(data.starttime);
                 $('#EndTime').val(data.endtime);
 
-                loadMap();
+                loadMap(data.latitude,data.longitude);
                 loadInvitee();
             }
         });
