@@ -269,7 +269,14 @@ class Event extends Controller {
 
         (
         SELECT * FROM `note`
-        WHERE `id` IN(SELECT `noteid` FROM `note_invitee_map` WHERE `status`=1 AND `email` IN(SELECT `email` FROM `member` WHERE id IN(".$_POST['MemberId'].")))
+        WHERE
+        (
+        ( DATE_FORMAT('".$this->post('start')."','%y,%m,%d') = DATE_FORMAT('".$this->post('end')."','%y,%m,%d') AND DATE_FORMAT('".$this->post('start')."','%y,%m,%d') = DATE_FORMAT(`startdate`,'%y,%m,%d') )
+        OR
+        ( DATE_FORMAT('".$this->post('start')."','%y,%m,%d') != DATE_FORMAT('".$this->post('end')."','%y,%m,%d') )
+        )
+        AND
+        `id` IN(SELECT `noteid` FROM `note_invitee_map` WHERE `status`=1 AND `email` IN(SELECT `email` FROM `member` WHERE id IN(".$_POST['MemberId'].")))
         )
 
 
