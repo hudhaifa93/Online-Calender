@@ -605,7 +605,6 @@ function loadConfigureModelDetails(memberid){
         async:false,
         data: { MemberId: memberid},
         success: function (data) {
-            debugger;
             for(var i=0;i<data.length;i++){
                 if(data[i].notetypeid == "1"){
                     $("#Color_Type_Meeting").val(data[i].colorcode);

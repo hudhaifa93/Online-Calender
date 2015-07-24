@@ -18,7 +18,8 @@ var Month = function (config) {
                 month: "month",
                 week: "week",
                 day: "day"
-            }
+            },
+            colorcodes:["bgm-red", "bgm-lightblue", "bgm-yellow", "bgm-green"]
         }, data = null,
         main = {
             _monthFirst: new Date(_date.getFullYear(), _date.getMonth(), 1, 0, 0, 0, 0),
@@ -35,6 +36,33 @@ var Month = function (config) {
         var days = main._monthLast.getDate(), rows = Math.ceil((weekday + days) / 7);
         var end = new Date(d) ;
         end.setDate(d.getDate()+(rows*7));
+
+        $.ajax({
+            url: "process/index.php?route=event&method=getNoteConfigurationByMemberId",
+            type: "post",
+            dataType: 'json',
+            async:false,
+            data: { MemberId: localStorage.getItem("memberId")},
+            success: function (data) {
+                /**for(var i=0;i<data.length;i++){
+                    if(data[i].notetypeid == "1"){
+                        $("#Color_Type_Meeting").val(data[i].colorcode);
+                        $("#Color_Type_Meeting").attr("class","color_type " + data[i].colorcode);
+                    }else if(data[i].notetypeid == "2"){
+                        $("#Color_Type_Note").val(data[i].colorcode);
+                        $("#Color_Type_Note").attr("class","color_type " + data[i].colorcode);
+                    }else if(data[i].notetypeid == "3"){
+                        $("#Color_Type_BirthDay").val(data[i].colorcode);
+                        $("#Color_Type_BirthDay").attr("class","color_type " + data[i].colorcode);
+                    }
+                }**/
+            },
+            failure: function () {
+
+            }
+        });
+
+
         $.ajax({
             url : "process/?route=Event&method=getAllNotesByStartDateAndEndDate",
             data:  { start : dateFormat(d), end: dateFormat(end), MemberId: getMemberIds()},
