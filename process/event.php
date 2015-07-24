@@ -296,9 +296,7 @@ class Event extends Controller {
     }
 
     function getinvitebynoteid(){
-        //print_r($_POST['noteid']);
         $result = $this->db->query("SELECT * FROM note_invitee_map where noteid='".$_POST['noteid']."' and `status` IN (0,1)");
-        //print_r($result);
         if(is_object($result))
         {
             while($r = $result->fetchObject()){
@@ -407,13 +405,15 @@ class Event extends Controller {
 
         return isset($d)?$d : array();
     }
+
     function inviteNoteRequest(){
         $user = session::get('user');
         $this->db->query("select  CONCAT(member.firstname ,' ', member.lastname) as name , note.*  , note_type.description from note_invitee_map
-join note on  note_invitee_map.noteid = note.id
-join member on note.createdby = member.id
-join note_type on note.notetype = note_type.id
- where note_invitee_map.email='".$user['email']."' and note_invitee_map.status = 0  ");
+                    join note on  note_invitee_map.noteid = note.id
+                    join member on note.createdby = member.id
+                    join note_type on note.notetype = note_type.id
+                    where note_invitee_map.email='".$user['email']."' and note_invitee_map.status = 0  ");
+
         while($r = $this->db->fetchObject()){
             $r->share = 2 ;
             $r->subject = $r->name.' invite '.$r->description ;
@@ -427,6 +427,7 @@ join note_type on note.notetype = note_type.id
         $user = session::get('user');
         $this->db->query("UPDATE `shared_calendar` SET `status`='".$_POST['val']."' WHERE `sharedmemberemail`= '".$user['email']."' and `memberid`='".$_POST['memberid']."' ");
     }
+
     function updateInviteRequest(){
         $user = session::get('user');
         $this->db->query("UPDATE `note_invitee_map` SET `status`='".$_POST['val']."' WHERE `email`= '".$user['email']."' and `noteid`='".$_POST['noteid']."' ");
@@ -436,6 +437,16 @@ join note_type on note.notetype = note_type.id
         $this->db->query("select note.* , member.firstname , member.lastname from note join member on note.createdby = member.id where createdby in (".$_POST['memberid'].") and note.status=1 and ( subject like '%".$_GET['str']."%' OR description like '%".$_GET['str']."%' )");
         while($r = $this->db->fetchObject())
             $d[] = $r;
+        echo json_encode($d?$d : array());
+    }
+
+    function getNoteConfigurationByMemberId(){
+        $results = $this->db->query("SELECT * FROM `note_configuration` WHERE memberid=".$this->post('MemberId')."");
+
+        while($r = $results->fetchObject()){
+            $d[] =  $r;
+        }
+
         echo json_encode($d?$d : array());
     }
 }

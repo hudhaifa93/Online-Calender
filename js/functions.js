@@ -258,8 +258,6 @@ function deleteBasicEvent(formName,id){
         });
     }
 
-
-
 function saveAdvanceEvent(formName){
     debugger;
     var Message = "";
@@ -574,13 +572,14 @@ function openShareModal(){
 }
 
 function loadConfigureModelDetails(memberid){
+    debugger;
     $("#configureDetails").html('');
     $.ajax({
-        url: "process/index.php?route=event&method=getSharedMemberDetailsByMemberId",
+        url: "process/index.php?route=event&method=getNoteConfigurationByMemberId",
         type: "post",
         dataType: 'json',
         async:false,
-        data: "memberid="+memberid, // provided this code executes in form.onsubmit event
+        data: { MemberId: memberid},
         success: function (e) {
             debugger;
             var data = e;
@@ -592,7 +591,7 @@ function loadConfigureModelDetails(memberid){
             else
             {
                 $.each( data, function( key, value ) {
-                    $("#configureDetails").append($("<input type='checkbox' style='margin-right: 10px;' class='shareCheckBox' id='"+value.id+"' ><label id='label"+value.id+"'>"+value.firstname+" "+value.lastname+"</label><br>"));
+                    //$("#configureDetails").append($("<input type='checkbox' style='margin-right: 10px;' class='shareCheckBox' id='"+value.id+"' ><label id='label"+value.id+"'>"+value.firstname+" "+value.lastname+"</label><br>"));
                 });
             }
         },
