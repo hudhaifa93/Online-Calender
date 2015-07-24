@@ -4,10 +4,9 @@ function __autoload($class_name) {
     include "process/".strtolower($class_name) . '.php';
 }
 include 'include/head.php' ?>
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 
 
-    <script src="js/sweet-alert.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/sweet-alert.css">
     <style type="text/css">
         body {
             margin: 0px auto;
@@ -100,11 +99,10 @@ include 'include/head.php' ?>
 
     </style>
 
-
-
     <body>
 
         <?= include "include/header.php" ?>
+
 
         <section class="main" >
             <div class="content" >
@@ -114,16 +112,11 @@ include 'include/head.php' ?>
                         <h2>&nbsp;</h2>
                     </div>
 
-                    <div class="col-lg-3 pull-right  " style="position: relative" >
-                        <div class=" glyphicon glyphicon-calendar pull-right min-calendar   " style="width: 50px ;height: 50px;background: #ffffff;padding: 10px;font-size: 30px;margin: 5px" ></div>
-                        <div class="clearfix" ></div>
-                        <div id="calender" class="hidden"style="position: absolute;z-index: 99999" ></div>
-                    </div>
 
                     <div class="clearfix" ></div>
                     <div style="background-color:#FFFFFF; overflow: auto;" > <!--heshani added a new div-->
-                        
-						<form role="form" id="frmMeeting">
+
+                        <form role="form" id="frmMeeting">
 
                             <input type=hidden name=status value="1">
                             <input type=hidden name=createdby id="createdby" value="">
@@ -158,8 +151,8 @@ include 'include/head.php' ?>
                                     <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="city" placeholder="City"/>
                                     <input  style="float: left;  width: 25%;  margin-right: 10px;" type="text" class="googleAddress form-control" id="state" placeholder="State"/>
                                     <input  style="float: left;  width: 25%;" type="text" class="googleAddress form-control" id="country" placeholder="Country"/>
-                                    <input readonly style="float: left;  width: 25%;  margin-right: 10px;margin-top: 10px;" type="text" class="googleAddress form-control" id="latitude" placeholder="Latitude"/>
-                                    <input readonly style="float: left;  width: 25%;margin-top: 10px;" type="text" class="googleAddress form-control" id="longitude" placeholder="Longitude"/>
+                                    <input readonly style="float: left;  width: 25%;  margin-right: 10px;margin-top: 10px;" type="text" class="googleAddress form-control" id="latitude" name="latitude" placeholder="Latitude"/>
+                                    <input readonly style="float: left;  width: 25%;margin-top: 10px;" type="text" class="googleAddress form-control" id="longitude" name="longitude" placeholder="Longitude"/>
                                 </div>
                             </div>
                             <div class="col-xs-6 form-group">
@@ -188,27 +181,27 @@ include 'include/head.php' ?>
                                 <label>Repeat</label>
                                 <input type="checkbox" id="repeat" >
                             </div>
-							
+
                             <div id="repeatAllocation" style="display:none">
                                 <div class="col-xs-6 form-group"><!--put a b color or something for this -->
-                                    
-                                           
-                                            <div class="col-xs-6 form-group">
-                                                <select name="" id="repeats" class="form-control" style="">
-                                                    <option value="M">Monthly</option>
-                                                    <option value="W">Weekly</option>
-                                                    <option value="Y">Yearly</option>
-                                                </select>
-                                            </div>
-                                            <!--<div class="col-xs-6 form-group">-->
-                                            <!--<strong>Repeats Every</strong>-->
-                                            <!--</div>-->
-                                            <!--<div class="col-xs-6 form-group">-->
-                                            <!--<select name="" id="repeatCombo" class="form-control" style="">-->
 
-                                            <!--</select>-->
-                                            <!--</div>-->
-                                       
+
+                                    <div class="col-xs-6 form-group">
+                                        <select name="" id="repeats" class="form-control" style="">
+                                            <option value="M">Monthly</option>
+                                            <option value="W">Weekly</option>
+                                            <option value="Y">Yearly</option>
+                                        </select>
+                                    </div>
+                                    <!--<div class="col-xs-6 form-group">-->
+                                    <!--<strong>Repeats Every</strong>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-xs-6 form-group">-->
+                                    <!--<select name="" id="repeatCombo" class="form-control" style="">-->
+
+                                    <!--</select>-->
+                                    <!--</div>-->
+
                                 </div>
                             </div>
                             <div class="col-xs-12 form-group">
@@ -235,15 +228,14 @@ include 'include/head.php' ?>
             </div>
         </section>
 
-        <?= include "include/footer.php" ?>
+        <?php include "include/footer.php" ?>
     </body>
-<?= include "include/foot.php" ?>
+<?php include "include/foot.php"; ?>
+
+
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script src="js/googleAddress.js"></script>
-<script src="js/functions.js"></script>
+<script src="js/jquery-ui.js"></script>
 <script src="js/timepicker/jquery.ui.timepicker.js"></script>
 <script>
 
@@ -392,6 +384,9 @@ $(document).ready(function () {
                 $('#state').val(data.state);
                 $('#country').val(data.country);
 
+                $('#longitude').val(data.longitude);
+                $('#latitude').val(data.latitude);
+
                 $('#StartTime').val(data.starttime);
                 $('#EndTime').val(data.endtime);
 
@@ -400,41 +395,6 @@ $(document).ready(function () {
         });
 
     }
-
-
-//                $("#repeats")
-//                        .change(function () {
-//                            debugger;
-//                            if ($("#repeats option:selected").val() == "week") {
-//                                var combo = $("#repeatCombo");
-//                                combo.empty();
-//                                for (var i = 1; i < 11; i++) {
-//                                    combo.append($("<option />").val(i).text(i));
-//                                }
-//                            }
-//                            else if ($("#repeats option:selected").val() == "day") {
-//                                var combo = $("#repeatCombo");
-//                                for (var i = 1; i < 31; i++) {
-//                                    combo.append($("<option />").val(i).text(i));
-//                                }
-//                            }
-//                            else if ($("#repeats option:selected").val() == "Y") {
-//                                var combo = $("#repeatCombo");
-//                                combo.empty();
-//                                for (var i = 1; i < 5; i++) {
-//                                    combo.append($("<option />").val(i).text(i));
-//                                }
-//                            }
-//                            else if ($("#repeats option:selected").val() == "M") {
-//                                var combo = $("#repeatCombo");
-//                                combo.empty();
-//                                for (var i = 1; i < 24; i++) {
-//                                    combo.append($("<option />").val(i).text(i));
-//                                }
-//                            }
-//                        })
-//                        .change();
-
 });
 
 function loadInvitee(){
@@ -506,10 +466,5 @@ function removeFromInvitedList(id) {
 }
 
 
-    var app1 = new calendar({
-        id : 'min_cal',
-        view : 'month',
-        min : true
-    });
 </script>
 </html>

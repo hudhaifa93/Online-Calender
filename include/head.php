@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="css/app.min.1.css"/>
     <link rel="stylesheet" href="css/app.min.2.css"/>
     <link rel="stylesheet" href="css/socicon.min.css"/>
-    <link rel="stylesheet" href="css/jquery-ui.css"/>
     <style>
         .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
             border-color: #eee #eee #0a6ebd;
