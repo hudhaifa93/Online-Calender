@@ -59,7 +59,6 @@
                                     <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
-
                             <div class="tab-pane" id="birthdayTab">
                                 <form role="form" id="birthdayForm">
                                     <input type=hidden class="createdby" name="createdby" value="">
@@ -85,7 +84,6 @@
                                     <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div class="modal-footer"></div>
@@ -194,11 +192,7 @@
                         <h4 class="modal-title" id="" >Calendars Shared With Me</h4>
                     </div>
                     <div class="modal-body">
-
-                        <div id="sharedList">
-
-                        </div>
-
+                        <div id="sharedList"></div>
                         <div class="pull-right">
                             <button type="button" class="btn btn-sm btn-primary" onclick="drawSharedCalender()">View</button>
                             <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
@@ -281,6 +275,10 @@
                                     <option value="bgm-indigo" class="bgm-indigo"></option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-sm btn-primary" onclick="saveConfigureCalendar()">View</button>
+                            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                     <div class="modal-footer"></div>
