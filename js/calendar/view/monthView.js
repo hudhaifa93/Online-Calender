@@ -361,7 +361,7 @@ var Month = function (config) {
                 var btn=$('<button class="share btn btn-primary  " type="button" > Share </button>');
                 btn.data('id',event.data('eventid'));
                 btn.data('type',event.data('eventtype'));
-                $('#editButton').before(btn);
+
 
                 $("#viewHead").text("Note");
                 $("#ViewSubject").text(event.data('subject'));
@@ -370,6 +370,7 @@ var Month = function (config) {
                 $('#editButton').html('Edit');
                 if(event.data('createdby')==localStorage.getItem("memberId"))
                 {
+                    $('#editButton').before(btn);
                 $('#editButton').attr("onclick","editAdvanceNote("+event.data('eventid')+")");
                 $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
                     $('#editButton').show();
@@ -387,12 +388,13 @@ var Month = function (config) {
                 btn.data('id',event.data('eventid'));
                 btn.data('type',event.data('eventtype'));
 
-                $('#editButton').before(btn);
+
                 $("#viewHead").text("Birthday");
                 loadViewModaData(event.data('eventid'),'Birthday');
                 $('#editButton').html('Edit');
                 if(event.data('createdby')==localStorage.getItem("memberId"))
                 {
+                    $('#editButton').before(btn);
                     $('#editButton').attr("onclick","makebirthdayEditable('"+event.data('eventid')+"')");
                     $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
                     $("#viewButtonDelete").show();

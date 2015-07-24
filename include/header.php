@@ -115,7 +115,6 @@
         </li>
     </ul>
 </header>
-
 <!--common-->
 <div id="CommonViewModal" class="modal fade">
     <style>
@@ -125,7 +124,7 @@
         }
     </style>
     <div class="modal-dialog modal-lg">
-        <div class="modal-content" style="background-color: rgb(116, 186, 207);">
+        <div class="modal-content" id="Common_View_Model">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="viewHead" ></h4>
@@ -175,7 +174,6 @@
         </div>
     </div>
 </div>
-
 <!--common-->
 <div id="ShareModal" class="modal fade">
     <div class="modal-dialog modal-lg">
