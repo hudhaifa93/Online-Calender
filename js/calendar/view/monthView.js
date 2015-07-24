@@ -119,7 +119,7 @@ var Month = function (config) {
         }
 
         function _body() {
-            //_date = main._monthFirst;
+            _date = new Date(main._monthFirst);
             var d = main._monthFirst;
             var weekday = d.getDay() != 0 ? d.getDay() - 1 : 6;
             var days = main._monthLast.getDate(), rows = Math.ceil((weekday + days) / 7);
