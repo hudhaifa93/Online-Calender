@@ -105,40 +105,74 @@ function editAdvanceNote(id) {
 
 function validateLogin(formName) {
     re = true;
-    if($("#inputUsername").val() < 5){
+    if($("#inputUsername").val().length == 0 || !validateEmail($("#inputUsername").val())  ){
         re = false;
-        $("#inputUsername").css("border",'red');
-    }
-    if(re)
-    $.ajax({
-        url: "process/index.php?route=user&method=validateLogin",//event.php
-        type: "post",
-        dataType: 'json',
-        data: $('#' + formName).serialize(), // provided this code executes in form.onsubmit event
-        success: function (output) {
-            /* debugger */;
-            //$('#'+formName)[0].reset();
-            if (output.success > 0) {
-                localStorage.setItem("memberId", output.success);
-                localStorage.setItem("advanceID", "0");
-                location.reload();
-                //window.location.href = "/Online-Calender/Calendar.html";
+        $("#inputUsername").css("border-bottom",'1px solid #f44336');
+    }else
+        $("#inputUsername").css("border-bottom",'1px solid #e0e0e0');
 
-            }
-            else {
+    if($("#loginPassword").val().length == 0 ){
+        re = false;
+        $("#loginPassword").css("border-bottom",'1px solid #f44336');
+    }else
+        $("#loginPassword").css("border-bottom",'1px solid #e0e0e0');
+
+        if(re)
+        $.ajax({
+            url: "process/index.php?route=user&method=validateLogin",//event.php
+            type: "post",
+            dataType: 'json',
+            data: $('#' + formName).serialize(), // provided this code executes in form.onsubmit event
+            success: function (output) {
+                /* debugger */;
+                //$('#'+formName)[0].reset();
+                if (output.success > 0) {
+                    localStorage.setItem("memberId", output.success);
+                    localStorage.setItem("advanceID", "0");
+                    location.reload();
+                    //window.location.href = "/Online-Calender/Calendar.html";
+
+                }
+                else {
+                    showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
+                }
+            },
+            failure: function () {
                 showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
             }
-        },
-        failure: function () {
-            showalert("An Error Occurred Please Contact Admin.", "alert-danger", "", "");
-        }
-    });
+        });
+
 }
 
 function createNewSignUp(formName){
     var Message="";
     Message ="You Have Been Successfully Registered.";
+    re = true;
+    if($("#inputFirstname").val().length < 3   ){
+        re = false;
+        $("#inputFirstname").css("border-bottom",'1px solid #f44336'),$('.fname').removeClass('hidden');
+    }else
+        $("#inputFirstname").css("border-bottom",'1px solid #e0e0e0'),$('.fname').addClass('hidden');
 
+    if($("#inputLastname").val().length < 3   ){
+        re = false;
+        $("#inputLastname").css("border-bottom",'1px solid #f44336'),$('.lname').removeClass('hidden');
+    }else
+        $("#inputLastname").css("border-bottom",'1px solid #e0e0e0'),$('.lname').addClass('hidden');
+
+    if( ! checkEmailList($("#inputEmail").val()) ){
+        re = false;
+        $("#inputEmail").css("border-bottom",'1px solid #f44336'),$('.email').removeClass('hidden');
+    }else
+        $("#inputEmail").css("border-bottom",'1px solid #e0e0e0'),$('.email').addClass('hidden');
+
+    if( $("#inputpassword").val().length > 15 || $("#inputpassword").val().length  <6   ){
+        re = false;
+        $("#inputpassword").css("border-bottom",'1px solid #f44336'),$('.password').removeClass('hidden');
+    }else
+        $("#inputpassword").css("border-bottom",'1px solid #e0e0e0'),$('.password').addClass('hidden');
+
+    if(re)
     $.ajax({
             url: "process/index.php?route=user&method=createNewSignUp",//event.php
             type: "post",

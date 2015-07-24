@@ -1,6 +1,9 @@
+<?php include 'include/head.php' ?>
 <?php
-
-include 'include/head.php' ?>
+if(!session::get('user')){
+    header('Location: index.php');
+}
+?>
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 
 

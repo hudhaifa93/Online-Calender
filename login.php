@@ -73,6 +73,7 @@
         <div class="fg-line">
             <input type="text" class="form-control" id="inputFirstname" name="inputFirstname"
                    placeholder="Firstname">
+            <small class="fname error hidden" > First Name Must Be contain at least 3 characters </small>
         </div>
     </div>
 
@@ -82,6 +83,7 @@
         <div class="fg-line">
             <input type="text" style="margin-top: 10px;" class="form-control" id="inputLastname"
                    name="inputLastname" placeholder="Lastname">
+            <small class="lname error hidden" > Last Name Must Be contain at least 3 characters </small>
         </div>
     </div>
 
@@ -90,6 +92,7 @@
         <div class="fg-line">
             <input type="email" style="margin-top: 10px;" class="form-control" id="inputEmail" name="inputEmail"
                    placeholder="Email">
+            <small class="email error hidden" > Invalid Email Address or This Email Already use in over system </small>
         </div>
     </div>
     <div class="input-group m-b-20">
@@ -97,6 +100,7 @@
         <div class="fg-line">
             <input type="password" style="margin-top: 10px;" class="form-control" maxlength="20" id="inputpassword"
                    name="inputpassword" placeholder="Desired Password">
+            <small class="password error hidden" > Password Must me contain 6 - 15 characters  </small>
         </div>
     </div>
 
@@ -104,7 +108,7 @@
 
     <div class="checkbox">
         <label>
-            <input type="checkbox" value="">
+            <input type="checkbox" value="" id="check_box">
             <i class="input-helper"></i>
             Accept the license agreement
         </label>

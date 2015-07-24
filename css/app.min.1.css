@@ -16013,3 +16013,6 @@ a.thumbnail.active {
     background-position:95% center !important;
     background-repeat: no-repeat;
 }
+.error{
+    color: #f32c1e;
+}

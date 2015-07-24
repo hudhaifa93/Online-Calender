@@ -3,7 +3,12 @@ function __autoload($class_name) {
     include "process/".strtolower($class_name) . '.php';
 }
 
-$user = session::get('user'); ?>
+$user = session::get('user');
+
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head lang="en">

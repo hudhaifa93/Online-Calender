@@ -67,4 +67,10 @@ class user extends controller {
         session::remove('user');
     }
 
+    function checkEmail(){
+        $this->db->query("select count(*) as id from member where email = '".$_POST['email']."'");
+        $r = $this->db->fetchObject();
+        echo $r->id ;
+    }
+
 } 
