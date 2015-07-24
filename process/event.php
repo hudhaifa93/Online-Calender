@@ -485,6 +485,13 @@ class Event extends Controller {
         echo json_encode($d?$d : array());
     }
 
+    function saveNoteConfiguration(){
+        $results = $this->db->query("SELECT * FROM `note_configuration` WHERE memberid=".$this->post('MemberId')."");
+        while($r = $results->fetchObject()){
+            $d[] =  $r;
+        }
+        echo json_encode($d?$d : array());
+    }
 
     function updateBirthday(){
 //    print_r($_POST);
@@ -496,4 +503,5 @@ class Event extends Controller {
             echo json_encode($id? array("success" => "failure") : array("failure" => "failure" ));
         }
     }
+
 }
