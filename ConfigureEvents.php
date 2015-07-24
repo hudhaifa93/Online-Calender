@@ -474,7 +474,7 @@ function loadInvitee(){
     });
 }
 
-function showalert(message, alerttype) {
+function showalertMeeting(message, alerttype) {
 
     $('#alert').append('<div id="alertdiv" class="alert ' + alerttype + '"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>')
 
@@ -486,11 +486,11 @@ function showalert(message, alerttype) {
 }
 
 function addToInvitedList() {
-
+    debugger;
     var Email = $("#MeetingInviteeEmail").val();
 
     var data =checkEmailListForMeeting(Email);
-    if(data=="true")
+    if(data==true)
     {
         var fullEmail = Email;
         Email = Email.split("@");
@@ -499,7 +499,7 @@ function addToInvitedList() {
     }
     else
     {
-        showalert("Email Not Valid Or Not Registered With System.", "alert-danger");
+        showalertMeeting("Email Not Valid Or Not Registered With System.", "alert-danger");
 
     }
 }
@@ -541,7 +541,7 @@ function removeMFromInvitedList(id) {
         data: { deleteinvite : email}, // provided this code executes in form.onsubmit event
         success: function (output) {
             if(output.success=="success"){
-                showalert("Invite Revoked.", "alert-success", "", "");
+                showalertMeeting("Invite Revoked.", "alert-success");
                 $("." + id+"List").remove();
             }
         },
