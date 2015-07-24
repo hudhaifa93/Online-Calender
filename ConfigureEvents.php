@@ -205,11 +205,11 @@ include 'include/head.php' ?>
                         </form>
                         <form id="inviteeForm" style="margin-top:10px">
                             <div class="col-xs-6 form-group" style="margin-top:10px;">
-                                <input type="email"  class="form-control"  id="InviteeEmail" placeholder="InviteeEmail"/><button type="button" style=" float: left;  margin-top: 5px;" class="btn btn-sm btn-primary"onclick="addToInvitedList()">Add to List</button>
+                                <input type="email"  class="form-control"  id="MeetingInviteeEmail" placeholder="InviteeEmail"/><button type="button" style=" float: left;  margin-top: 5px;" class="btn btn-sm btn-primary"onclick="addToInvitedList()">Add to List</button>
                                 <!--<button type="button" style="  margin-left: 10px;  float: left;  margin-top: 2px;" class="btn btn-sm btn-primary"onclick="inviteList()">Invite</button>-->
                             </div>
                             <div class="col-xs-12 form-group">
-                                <div id="InvitedList">
+                                <div id="MeetingInvitedList">
                                 </div>
                             </div>
                         </form>
@@ -424,7 +424,7 @@ function loadInvitee(){
                 var Email = value.email;
                 var fullEmail = Email;
                 Email = Email.split("@");
-                $("#InvitedList").append($('<div data-status="'+value.status+'" class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
+                $("#MeetingInvitedList").append($('<div data-status="'+value.status+'" class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
             });
 
 
@@ -436,11 +436,12 @@ function loadInvitee(){
 }
 
 function addToInvitedList() {
-    var Email = $("#InviteeEmail").val();
+    debugger;
+    var Email = $("#MeetingInviteeEmail").val();
     var fullEmail = Email;
     Email = Email.split("@");
-    $("#InvitedList").append($('<div class="tags ' + Email[0] + 'List" >' + fullEmail + '<a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
-    $("#InviteeEmail").val("")
+    $("#MeetingInvitedList").append($('<div class="tags ' + Email[0] + 'List" >' + fullEmail + '<a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
+    $("#MeetingInviteeEmail").val("")
 }
 
 function removeFromInvitedList(id) {
