@@ -1,8 +1,3 @@
-/**
- * Created by Hudhaifa Yoosuf on 6/21/15.
- */
-
-//
 
 function showalert(message, alerttype, id, type) {
 
@@ -43,23 +38,9 @@ function showalert(message, alerttype, id, type) {
 
         });
     }
-
-//    $("<div class='new_"+ alerttype +"' >"+ message +"</div>").appendTo('body');
-
-  //  $('#alert').append('<div id="alertdiv" class="alert ' + alerttype + '"><a class="close" data-dismiss="alert" aria-label="close">&times;</a><span>' + message + '</span></div>')
-
-//    setTimeout(function () { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
-//        if (type == "modal") {
-//            location.reload();
-//        }
-//        else if(type=="redirect"){
-//            window.location.href = id;
-//        }
-//        $(".new_"+alerttype).remove();
-//    }, 3000);
 }
 
-    function getOnlyCurrentDate() {
+function getOnlyCurrentDate() {
     var d = new Date();
 
     var month = d.getMonth() + 1;
@@ -72,7 +53,7 @@ function showalert(message, alerttype, id, type) {
     return output;
 }
 
-    function dateFormat(d, format) {
+function dateFormat(d, format) {
     var h = "";
     switch (format) {
         case "YYYY-m-d":
@@ -100,7 +81,7 @@ function showalert(message, alerttype, id, type) {
 
 }
 
-    function setSessionsForAdvanceNote(date) {
+function setSessionsForAdvanceNote(date) {
     localStorage.setItem("advanceID", "0");
     localStorage.setItem("tempSubject", $("#Subject").val());
     localStorage.setItem("tempDescription", $("#description").val());
@@ -108,21 +89,20 @@ function showalert(message, alerttype, id, type) {
     window.location.href = "/Online-Calender/ConfigureEvents.html";
 }
 
-    function clearSessionsForAdvanceNote() {
+function clearSessionsForAdvanceNote() {
     localStorage.setItem("advanceID", "0");
     localStorage.setItem("tempSubject", "0");
     localStorage.setItem("tempDescription", "0");
     localStorage.setItem("tempClickedDate", "0");
 }
 
-    function editAdvanceNote(id) {
+function editAdvanceNote(id) {
 
     localStorage.setItem("advanceID", id);
     window.location.href = "/Online-Calender/ConfigureEvents.html";
 }
 
-    function validateLogin(formName) {
-    debugger;
+function validateLogin(formName) {
 
     $.ajax({
         url: "process/index.php?route=user&method=validateLogin",//event.php
@@ -149,8 +129,7 @@ function showalert(message, alerttype, id, type) {
     });
 }
 
-    function createNewSignUp(formName){
-    debugger;
+function createNewSignUp(formName){
     var Message="";
     Message ="You Have Been Successfully Registered.";
 
@@ -178,8 +157,7 @@ function showalert(message, alerttype, id, type) {
         });
 }
 
-    function saveBasicEvent(formName) {
-    debugger;
+function saveBasicEvent(formName) {
     var Message = "";
     if (formName == "birthdayForm") {
         $(".ClickedDate").val($("#Byear").val() + "-" + $("#Bmonth").val() + "-" + $("#Bdate").val());
@@ -214,8 +192,7 @@ function showalert(message, alerttype, id, type) {
     });
 }
 
-    function editBasicEvent(formName,id) {
-    debugger;
+function editBasicEvent(formName,id) {
     var Message = "";
     if (formName == "birthdayForm") {
         $(".ClickedDate").val($("#Byear").val() + "-" + $("#Bmonth").val() + "-" + $("#Bdate").val());
@@ -248,8 +225,7 @@ function showalert(message, alerttype, id, type) {
     });
 }
 
-    function deleteBasicEvent(formName,id){
-        debugger;
+function deleteBasicEvent(formName,id){
         var Message = "";
         if (formName == "birthdayForm") {
             Message = "Birthday Has Been Deleted Successfully.";
@@ -282,95 +258,7 @@ function showalert(message, alerttype, id, type) {
         });
     }
 
-    getNotification();
-    function getNotification(){
-    getData();
-    setInterval(function(){
-        getData();
-    },60000);
 
-    function getData(){
-        $.ajax({
-            url : "process/?route=event&method=getCurrentEvent",
-            type: "post",
-            data : { date : dateFormat(new Date()) },
-            dataType: "json",
-            success :function(e){
-                if(e.length > 0 ){
-                    $('#notifications').find('.lv-body').html("");
-                    $.each(e,function(k,v){
-                        item = $('<a class="lv-item"></a>');
-                        $('<div class="media">' +
-                            '<div class="pull-left">' +
-                            ' <img class="lv-img-sm" src="img/profile-pics/1.jpg" alt="">' +
-                            ' </div>' +
-                            ' <div class="media-body">' +
-                            '<div class="lv-title">'+ v.name +'</div>' +
-                            '<small class="lv-small">'+ v.subject +'</small>' +
-                            ' </div>' +
-                            ' </div>' ).appendTo(item);
-                        if(typeof  v.share != 'undefined'){
-                            if(v.share == 1)
-                                item.data('member_id', v.id).data('share',true).data('name',v.name).addClass('sharedCalendar');
-                            else if(v.share == 2)
-                                item.data('noteid', v.id).data('share',true).data('name',v.name).addClass('invite');
-                        }
-                        $('#notifications').find('.lv-body').append(item);
-                    });
-                    $('.tm-notification').html( '<i class="tmn-counts" >'+e.length+'</i>');
-                }
-            }
-        });
-        $('#notifications').on('click','.sharedCalendar,.invite',function(){
-            self = $(this);
-            bootbox.dialog({
-                message: "Request for share Calendar",
-                title: self.data('name'),
-                buttons: {
-                    success: {
-                        label: "Confirm",
-                        className: "btn-success",
-                        callback: function() {
-                            if(self.hasClass('invite'))
-                                changeInviteRequest(1);
-                            else if(self.hasClass('sharedCalendar'))
-                            changeShare(1);
-                        }
-                    },
-                    danger: {
-                        label: "Delete Request",
-                        className: "btn-danger",
-                        callback: function() {
-                            if(self.hasClass('invite'))
-                                changeInviteRequest(2);
-                            else if(self.hasClass('sharedCalendar'))
-                                changeShare(2);
-                        }
-                    }}
-            });
-            function changeShare(v){
-                $.ajax({
-                    url : "process/?route=event&method=updateSharedCalendar",
-                    data: { memberid:self.data('member_id') , val:v },
-                    type:'post',
-                    success :function(){
-                        location.reload();
-                    }
-                });
-            }
-            function changeInviteRequest(v){
-                $.ajax({
-                    url : "process/?route=event&method=updateInviteRequest",
-                    data: { noteid:self.data('noteid') , val:v },
-                    type:'post',
-                    success :function(){
-                        location.reload();
-                    }
-                });
-            }
-        });
-    }
-}
 
 function saveAdvanceEvent(formName){
     debugger;
@@ -523,8 +411,6 @@ function updateAdvanceEvent(formName){
 }
 
 function inviteList(noteid,flag){
-    debugger
-
     var email = [] ;
     var str ="";
     $( ".tags" ).each(function( index ) {
@@ -569,7 +455,6 @@ function inviteList(noteid,flag){
 }
 
 function ShareCalenderList(memberid){//called to set shared members or update shared members
-    debugger
     var email = [] ;
     var str ="";
     $( ".tags" ).each(function( index ) {
@@ -640,7 +525,6 @@ function loadShareCalenderList(memberid){
 }
 
 function loadSharedCalenderList(memberid){
-    debugger;
     $("#sharedList").html('');
     $.ajax({
         url: "process/index.php?route=event&method=getSharedMemberDetailsByMemberId",
@@ -685,6 +569,129 @@ function drawSharedCalender(){
     location.reload();
 }
 
+function openShareModal(){
+    $('#shareCalenderModal').modal('show');
+}
+
+function loadConfigureModelDetails(memberid){
+    $("#configureDetails").html('');
+    $.ajax({
+        url: "process/index.php?route=event&method=getSharedMemberDetailsByMemberId",
+        type: "post",
+        dataType: 'json',
+        async:false,
+        data: "memberid="+memberid, // provided this code executes in form.onsubmit event
+        success: function (e) {
+            debugger;
+            var data = e;
+            data = JSON.parse(data.success);
+            if(data=="" || data==[])
+            {
+                $("#configureDetails").append("<div>Sorry, Configure Calender Could Not Load. Please Contact Administrator.</div>");
+            }
+            else
+            {
+                $.each( data, function( key, value ) {
+                    $("#configureDetails").append($("<input type='checkbox' style='margin-right: 10px;' class='shareCheckBox' id='"+value.id+"' ><label id='label"+value.id+"'>"+value.firstname+" "+value.lastname+"</label><br>"));
+                });
+            }
+        },
+        failure: function () {
+
+        }
+    });
+}
+
+getNotification();
+function getNotification(){
+    getData();
+    setInterval(function(){
+        getData();
+    },60000);
+
+    function getData(){
+        $.ajax({
+            url : "process/?route=event&method=getCurrentEvent",
+            type: "post",
+            data : { date : dateFormat(new Date()) },
+            dataType: "json",
+            success :function(e){
+                if(e.length > 0 ){
+                    $('#notifications').find('.lv-body').html("");
+                    $.each(e,function(k,v){
+                        item = $('<a class="lv-item"></a>');
+                        $('<div class="media">' +
+                            '<div class="pull-left">' +
+                            ' <img class="lv-img-sm" src="img/profile-pics/1.jpg" alt="">' +
+                            ' </div>' +
+                            ' <div class="media-body">' +
+                            '<div class="lv-title">'+ v.name +'</div>' +
+                            '<small class="lv-small">'+ v.subject +'</small>' +
+                            ' </div>' +
+                            ' </div>' ).appendTo(item);
+                        if(typeof  v.share != 'undefined'){
+                            if(v.share == 1)
+                                item.data('member_id', v.id).data('share',true).data('name',v.name).addClass('sharedCalendar');
+                            else if(v.share == 2)
+                                item.data('noteid', v.id).data('share',true).data('name',v.name).addClass('invite');
+                        }
+                        $('#notifications').find('.lv-body').append(item);
+                    });
+                    $('.tm-notification').html( '<i class="tmn-counts" >'+e.length+'</i>');
+                }
+            }
+        });
+        $('#notifications').on('click','.sharedCalendar,.invite',function(){
+            self = $(this);
+            bootbox.dialog({
+                message: "Request for share Calendar",
+                title: self.data('name'),
+                buttons: {
+                    success: {
+                        label: "Confirm",
+                        className: "btn-success",
+                        callback: function() {
+                            if(self.hasClass('invite'))
+                                changeInviteRequest(1);
+                            else if(self.hasClass('sharedCalendar'))
+                                changeShare(1);
+                        }
+                    },
+                    danger: {
+                        label: "Delete Request",
+                        className: "btn-danger",
+                        callback: function() {
+                            if(self.hasClass('invite'))
+                                changeInviteRequest(2);
+                            else if(self.hasClass('sharedCalendar'))
+                                changeShare(2);
+                        }
+                    }}
+            });
+            function changeShare(v){
+                $.ajax({
+                    url : "process/?route=event&method=updateSharedCalendar",
+                    data: { memberid:self.data('member_id') , val:v },
+                    type:'post',
+                    success :function(){
+                        location.reload();
+                    }
+                });
+            }
+            function changeInviteRequest(v){
+                $.ajax({
+                    url : "process/?route=event&method=updateInviteRequest",
+                    data: { noteid:self.data('noteid') , val:v },
+                    type:'post',
+                    success :function(){
+                        location.reload();
+                    }
+                });
+            }
+        });
+    }
+}
+
 logout();
 function logout(){
     $('.logout').click(function(e){
@@ -696,10 +703,6 @@ function logout(){
         });
         return false;
     });
-}
-
-function openShareModal(){
-    $('#shareCalenderModal').modal('show');
 }
 
 share();
@@ -804,6 +807,7 @@ function loadViewModaData(id,type){
         }
     });
 }
+
 /*
 
  <div id="share" class="modal fade">
@@ -847,7 +851,9 @@ $('#txtSearch').keyup(function(){
     }else
         $('.search_result').addClass('hidden').html("");
 });
+
 $('.main').click(function(){$('.search_result').addClass('hidden').html("");});
+
 $('.search_result').on('click','.result_event',function(){
     $('.search_result').addClass('hidden').html("");
     $("#txtSearch").val("");

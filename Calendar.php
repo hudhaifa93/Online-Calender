@@ -209,6 +209,23 @@
             </div>
         </div>
 
+        <div id="ConfigureModal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="" >Configure Calendar</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="configureDetails">
+                            <span>Hello</span>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+
     </body>
 
     <script type="text/javascript" src="js/jquery.js" ></script>
@@ -239,23 +256,8 @@
             $(".createdby").val(localStorage.getItem("memberId"));
             loadShareCalenderList(localStorage.getItem("memberId"));
             loadSharedCalenderList(localStorage.getItem("memberId"));
+            loadConfigureModelDetails(localStorage.getItem("memberId"));
             $("#shareCalenderButton").attr("onclick","ShareCalenderList('"+localStorage.getItem("memberId")+"')");
-
-            $(".shareCal").click(function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                $('#ShareModal').modal('show');
-                return false;
-            } );
-
-            $(".export").click(function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                window.location.href="/Online-Calender/savepdf.html";
-                return false;
-            } );
-
-
 
             $(".viewshareCal").click(function(e) {
                 e.preventDefault();
@@ -275,6 +277,27 @@
 
                 $('#ViewShareModal').modal('show');
 
+                return false;
+            } );
+
+            $(".shareCal").click(function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('#ShareModal').modal('show');
+                return false;
+            } );
+
+            $(".export").click(function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                window.location.href="/Online-Calender/savepdf.html";
+                return false;
+            } );
+
+            $(".configure").click(function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('#ConfigureModal').modal('show');
                 return false;
             } );
 
