@@ -602,6 +602,10 @@ function loadConfigureModelDetails(memberid){
     });
 }
 
+function saveConfigureCalendar(){
+    
+}
+
 getNotification();
 function getNotification(){
     getData();
