@@ -445,9 +445,10 @@ function updateAdvanceEvent(formName){
 }
 
 function inviteList(noteid,flag){
+    debugger;
     var email = [] ;
     var str ="";
-    $( ".tags" ).each(function( index ) {
+    $( ".mtags" ).each(function( index ) {
         /* debugger */;
         if(flag=="N"){
 
@@ -549,7 +550,7 @@ function loadShareCalenderList(memberid){
                     var Email = value.sharedmemberemail;
                     var fullEmail = Email;
                     Email = Email.split("@");
-                    $("#ShareCalenderList").append($('<div data-status="'+value.status+'" class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
+                    $("#ShareCalenderList").append($('<div data-status="'+value.status+'" class="tags ' + Email[0] + 'IList" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
                 });
 
 
@@ -590,6 +591,34 @@ function loadSharedCalenderList(memberid){
 
         }
     });
+}
+
+function removeFromInvitedList(id) {
+    debugger;
+    var email = [] ;
+    var removedTag = $("." + id+"IList");
+    var str = $( removedTag ).text();
+    str = str.split("x");
+    email.push({
+        "memberid" : localStorage.getItem("memberId"),
+        "sharedmemberemail" : str[0],
+        "status" : $( removedTag ).data('status') });
+
+    $.ajax({
+        url: "process/index.php?route=event&method=deleteSharedCalendar",
+        type: "post",
+        dataType: 'json',
+        data: { sharedMembersList : email}, // provided this code executes in form.onsubmit event
+        success: function (output) {
+            if(output.success=="success"){
+                showalert("Shared Calender Revoked.", "alert-success", "", "");
+                $("." + id+"List").remove();
+            }
+        },
+        failure: function () {
+        }
+    });
+
 }
 
 function drawSharedCalender(){

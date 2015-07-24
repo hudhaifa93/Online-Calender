@@ -418,13 +418,13 @@ function loadInvitee(){
             var data = e;
             data = JSON.parse(data.success);
 
-            $("#InvitedList").html('');
+            $("#MeetingInvitedList").html('');
 
             $.each( data, function( key, value ) {
                 var Email = value.email;
                 var fullEmail = Email;
                 Email = Email.split("@");
-                $("#MeetingInvitedList").append($('<div data-status="'+value.status+'" class="tags ' + Email[0] + 'List" >' + fullEmail + ' <a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
+                $("#MeetingInvitedList").append($('<div data-status="'+value.status+'" class="tags mtags ' + Email[0] + 'MList" >' + fullEmail + ' <a class="" onclick="removeMFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
             });
 
 
@@ -440,15 +440,15 @@ function addToInvitedList() {
     var Email = $("#MeetingInviteeEmail").val();
     var fullEmail = Email;
     Email = Email.split("@");
-    $("#MeetingInvitedList").append($('<div class="tags ' + Email[0] + 'List" >' + fullEmail + '<a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
+    $("#MeetingInvitedList").append($('<div class="tags mtags ' + Email[0] + 'MList" >' + fullEmail + '<a class="" onclick="removeMFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
     $("#MeetingInviteeEmail").val("")
 }
 
-function removeFromInvitedList(id) {
+function removeMFromInvitedList(id) {
     debugger;
 
     var email = [] ;
-    var removedTag = $("." + id+"List");
+    var removedTag = $("." + id+"MList");
     var str = $( removedTag ).text();
     str = str.split("x");
     email.push({
