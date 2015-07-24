@@ -255,13 +255,9 @@ class Event extends Controller {
         SELECT * FROM `note`
         WHERE
         (
-        DATE_FORMAT(`startdate`,'%y,%m,%d') BETWEEN DATE_FORMAT('".$this->post('start')."','%W') AND DATE_FORMAT('".$this->post('end')."','%W')
+        ( DATE_FORMAT('".$this->post('start')."','%d') = DATE_FORMAT('".$this->post('end')."','%d') AND DATE_FORMAT('".$this->post('start')."','%w') = DATE_FORMAT(`startdate`,'%w') )
         OR
-        DATE_FORMAT(`enddate`,'%W') BETWEEN DATE_FORMAT('".$this->post('start')."','%W') AND DATE_FORMAT('".$this->post('end')."','%W')
-        OR
-        DATE_FORMAT('".$this->post('start')."','%W') BETWEEN DATE_FORMAT(`startdate`,'%W') AND DATE_FORMAT(`enddate`,'%W')
-        OR
-        DATE_FORMAT('".$this->post('end')."','%W') BETWEEN DATE_FORMAT(`startdate`,'%W') AND DATE_FORMAT(`enddate`,'%W')
+        ( DATE_FORMAT('".$this->post('start')."','%d') != DATE_FORMAT('".$this->post('end')."','%d') )
         )
         AND `status` = 1 AND  `repeat` = 'W' AND `createdby` IN(".$this->post('MemberId').") ORDER BY `starttime` , `endtime`-`starttime`
         )
