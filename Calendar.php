@@ -32,7 +32,6 @@
                     <div class="modal-body">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="active"><a href="#eventTab" role="tab" data-toggle="tab">Note</a></li>
-<!--                            <li><a href="#MeetingTab" role="tab" data-toggle="tab">Meeting</a></li>-->
                             <li><a href="#birthdayTab" role="tab" data-toggle="tab">Birthday / Anniversary</a></li>
                         </ul>
                         <div class="tab-content">
