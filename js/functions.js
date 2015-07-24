@@ -626,7 +626,7 @@ function getNotification(){
                         n = v.name.split(" ");
                         item = $('<a class="lv-item"></a>');
                         $('<div class="media">' +
-                            '<div class="pull-left circleBase type2">' +
+                            '<div class="pull-left circleBase type2" style="background: '+"#"+Math.floor(Math.random()*16777215).toString(16)+'" >' +
                             " <span class='result_image' >"+n[0].charAt(0).toUpperCase()+"<small>"+n[1].charAt(0).toLowerCase()+"</small></span> " +
                             ' </div>' +
                             ' <div class="media-body">' +
@@ -932,4 +932,6 @@ $('.search_result').on('click','.result_event',function(){
 
 });
 
-$('#profile-logo').css('background', "#"+Math.floor(Math.random()*16777215).toString(16));
+$(function(){
+    $('#profile-logo').css('background', "#"+Math.floor(Math.random()*16777215).toString(16));
+});
