@@ -219,7 +219,7 @@ var Month = function (config) {
 
                             if(notes[n].repeat == "M"){
                                 if(dateFormat(Cur_Date,'d')>= dateFormat(new Date(notes[n].startdate),'d') && dateFormat(Cur_Date,'d')<= dateFormat(new Date(notes[n].enddate),'d')){
-                                    w += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ getColorByEventType(notes[n].notetype) + '" data-eventid="'+notes[n].id+'" data-eventtype="'+notes[n].notetype+'" data-eventdate="'+notes[n].startdate+'" data-subject="'+notes[n].subject+'" data-description="'+notes[n].description+'" data-createdby="'+notes[n].createdby+'" >' +
+                                    w += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ name.colorcodes[notes[n].notetype] + '" data-eventid="'+notes[n].id+'" data-eventtype="'+notes[n].notetype+'" data-eventdate="'+notes[n].startdate+'" data-subject="'+notes[n].subject+'" data-description="'+notes[n].description+'" data-createdby="'+notes[n].createdby+'" >' +
                                         '<div class="fc-content">';
 
                                     if(notes[n].createdby != localStorage.getItem("memberId")){
@@ -232,7 +232,7 @@ var Month = function (config) {
                                 }
                             }else if(notes[n].repeat == "W"){
                                 if(dateFormat(Cur_Date,'D')>= dateFormat(new Date(notes[n].startdate),'D') && dateFormat(Cur_Date,'D')<= dateFormat(new Date(notes[n].enddate),'D')){
-                                    w += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ getColorByEventType(notes[n].notetype) + '" data-eventid="'+notes[n].id+'" data-eventtype="'+notes[n].notetype+'" data-eventdate="'+notes[n].startdate+'" data-subject="'+notes[n].subject+'" data-description="'+notes[n].description+'" data-createdby="'+notes[n].createdby+'" >' +
+                                    w += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ name.colorcodes[notes[n].notetype] + '" data-eventid="'+notes[n].id+'" data-eventtype="'+notes[n].notetype+'" data-eventdate="'+notes[n].startdate+'" data-subject="'+notes[n].subject+'" data-description="'+notes[n].description+'" data-createdby="'+notes[n].createdby+'" >' +
                                         '<div class="fc-content">';
 
                                     if(notes[n].createdby != localStorage.getItem("memberId")){
@@ -246,7 +246,7 @@ var Month = function (config) {
                             }
                             else{
                                 if(dateFormat(Cur_Date,'m-d')>= dateFormat(new Date(notes[n].startdate),'m-d') && dateFormat(Cur_Date,'m-d')<= dateFormat(new Date(notes[n].enddate),'m-d')){
-                                    w += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ getColorByEventType(notes[n].notetype) + '" data-eventid="'+notes[n].id+'" data-eventtype="'+notes[n].notetype+'" data-eventdate="'+notes[n].startdate+'" data-subject="'+notes[n].subject+'" data-description="'+notes[n].description+'" data-createdby="'+notes[n].createdby+'" >' +
+                                    w += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable editevent '+ name.colorcodes[notes[n].notetype] + '" data-eventid="'+notes[n].id+'" data-eventtype="'+notes[n].notetype+'" data-eventdate="'+notes[n].startdate+'" data-subject="'+notes[n].subject+'" data-description="'+notes[n].description+'" data-createdby="'+notes[n].createdby+'" >' +
                                         '<div class="fc-content">';
 
                                     if(notes[n].createdby != localStorage.getItem("memberId")){
