@@ -256,7 +256,7 @@
             $(".createdby").val(localStorage.getItem("memberId"));
             loadShareCalenderList(localStorage.getItem("memberId"));
             loadSharedCalenderList(localStorage.getItem("memberId"));
-            loadConfigureModelDetails(localStorage.getItem("memberId"));
+            //loadConfigureModelDetails(localStorage.getItem("memberId"));
             $("#shareCalenderButton").attr("onclick","ShareCalenderList('"+localStorage.getItem("memberId")+"')");
 
             $(".viewshareCal").click(function(e) {

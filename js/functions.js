@@ -590,9 +590,10 @@ function loadConfigureModelDetails(memberid){
             }
             else
             {
-                $.each( data, function( key, value ) {
+                $("#configureDetails").append("<div>Loading.</div>");
+                //$.each( data, function( key, value ) {
                     //$("#configureDetails").append($("<input type='checkbox' style='margin-right: 10px;' class='shareCheckBox' id='"+value.id+"' ><label id='label"+value.id+"'>"+value.firstname+" "+value.lastname+"</label><br>"));
-                });
+                //});
             }
         },
         failure: function () {
