@@ -1053,3 +1053,12 @@ $('.color_type').on('change', function (e) {
     var cc = this.value;
     $(this).attr("class","color_type " + cc);
 });
+var app1 = new calendar({
+    id : 'min_cal',
+    view : 'month',
+    min : true
+});
+$(".min-calendar").click(function(e){
+    e.stopPropagation();
+    $("#min_cal").toggleClass('hidden');
+});
