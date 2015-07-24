@@ -157,7 +157,8 @@ class Event extends Controller {
 
     function getCurrentEvent(){
         if($date = $this->post('date')){
-            $result = $this->db->query(" select note.* ,concat(member.firstname , ' ' , member.lastname) as name  from `note` join member  on member.id = note.createdby WHERE  DATE_FORMAT(startdate, '%m-%d')   = DATE_FORMAT('$date', '%m-%d')  ");
+            $user = session::get('user');
+            $result = $this->db->query(" select note.* ,concat(member.firstname , ' ' , member.lastname) as name  from `note` join member  on member.id = note.createdby WHERE  DATE_FORMAT(startdate, '%m-%d')   = DATE_FORMAT('$date', '%m-%d') AND  member.id = ".$user['id']);
             while($r = $result->fetchObject()){
                 $d1[] =  $r;
             }

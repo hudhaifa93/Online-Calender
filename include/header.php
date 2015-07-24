@@ -3,7 +3,7 @@
         <li class="logo">
             <a href="/">CODE HUNTERS</a>
         </li>
-        <li style="margin-left: 5%;position: relative">
+        <li style="margin-left: 20%;position: relative">
             <input class="visible-lg visible-md " type="text" id="txtSearch">
             <div class="search_result hidden"  ></div>
         </li>
