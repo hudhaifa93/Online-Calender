@@ -1,6 +1,8 @@
 <?php include "include/head.php"; ?>
     <body>
+
         <?php include 'include/header.php'; ?>
+
         <section class="main" >
             <div class="content" >
                 <div class="container" >
@@ -24,7 +26,7 @@
 
         <div id="CommonModal" class="modal fade">
             <div class="modal-dialog modal-lg">
-                <div class="modal-content">
+                <div class="modal-content"  style="background-color: rgb(116, 186, 207);">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="ClickedDate"></h4>
@@ -99,7 +101,7 @@
                 }
             </style>
             <div class="modal-dialog modal-lg">
-                <div class="modal-content">
+                <div class="modal-content" style="background-color: rgb(116, 186, 207);">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="viewHead" ></h4>
@@ -152,7 +154,7 @@
 
         <div id="share" class="modal fade">
             <div class="modal-dialog modal-lg">
-                <div class="modal-content">
+                <div class="modal-content" style="background-color: rgb(116, 186, 207);">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" > Share </h4>
@@ -177,7 +179,7 @@
 
         <div id="ShareModal" class="modal fade">
             <div class="modal-dialog modal-lg">
-                <div class="modal-content">
+                <div class="modal-content" style="background-color: rgb(116, 186, 207);">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="" >Share My Calender</h4>
@@ -202,7 +204,7 @@
 
         <div id="ViewShareModal" class="modal fade">
             <div class="modal-dialog modal-lg">
-                <div class="modal-content">
+                <div class="modal-content" style="background-color: rgb(116, 186, 207);">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="" >Calendars Shared With Me</h4>
@@ -221,7 +223,7 @@
 
         <div id="ConfigureModal" class="modal fade">
             <div class="modal-dialog modal-lg">
-                <div class="modal-content">
+                <div class="modal-content" style="background-color: rgb(116, 186, 207);">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="" >Configure Calendar</h4>
@@ -313,6 +315,7 @@
                 </div>
             </div>
         </div>
+
     </body>
 
     <?php include "include/foot.php" ?>
