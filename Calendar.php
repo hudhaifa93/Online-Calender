@@ -328,9 +328,11 @@
             view : 'month',
             min : true
         });
-        $(".min-calendar").click(function(){
+        $(".min-calendar").click(function(e){
+            e.stopPropagation();
             $("#min_cal").toggleClass('hidden');
         });
+
 
         $(document).ready(function () {
 
@@ -407,7 +409,9 @@
 
         $('body').on('click','.remove',function(){
             $(this).closest('.tags').remove();
-        });
+        }).click(function(e){
+               if( !$("#min_cal").hasClass('hidden'))  $("#min_cal").addClass('hidden');
+            });
 
         function removeFromInvitedList(id) {
             debugger;

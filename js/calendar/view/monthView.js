@@ -256,7 +256,7 @@ var Month = function (config) {
 
     function getTenses(d) {
         if (d.getMonth() == _date.getMonth())
-            if (d.getDate() == today.getDate())
+            if (d.getDate() == today.getDate() && today.getMonth() == d.getMonth())
                 return " fc-today ";
             else if (d.getDate() > _date.getDate())
                 return " fc-future ";
@@ -267,13 +267,15 @@ var Month = function (config) {
     }
 
     function Event() {
-        self.id.on('click', '.fc-day', function () {
+        self.id.on('click', '.fc-day', function (e) {
+            e.stopPropagation();
             console.log($(this).index());
             console.log($(this).closest('.fc-week').index());
             openModal($(this).data('date'));
         });
 
-        self.id.on('click', '.editevent', function () {
+        self.id.on('click', '.editevent', function (e) {
+            e.stopPropagation();
             openModelForView($(this));
         });
 
@@ -459,7 +461,8 @@ var Month = function (config) {
         self.id = $("#" + self.options.id);
         self.id.data('year', _date.getFullYear());
         self.id.data('month', _date.getMonth());
-        self.id.on('click', '#prevMonthView', function () {
+        self.id.on('click', '#prevMonthView', function (e) {
+            e.stopPropagation();
             var mon = self.id.data('month'),
                 year = self.id.data('year');
 
@@ -475,7 +478,8 @@ var Month = function (config) {
             drawCalender();
         });
 
-        self.id.on('click', '#nextMonthView', function () {
+        self.id.on('click', '#nextMonthView', function (e) {
+            e.stopPropagation();
             var mon = self.id.data('month'),
                 year = self.id.data('year');
 
