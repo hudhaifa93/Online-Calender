@@ -288,6 +288,21 @@ $(document).ready(function () {
             }
         });
 
+    $("#StartTime,#EndTime").change(function () {
+       debugger
+            var sdate = $('#StartTime').timepicker("getTime");
+            var edate = $('#EndTime').timepicker("getTime");
+            if (this.id == 'StartTime') {
+                if (sdate > edate) {
+                    $('#EndTime').timepicker("setTime", sdate);
+                }
+            } else {
+                if (edate < sdate) {
+                    $('#StartTime').timepicker("setTime", edate);
+                }
+            }
+        });
+
     $("#fullday").change(function () {
         if (this.checked) {
             $("#timeAllocation").hide();
