@@ -515,6 +515,9 @@ function ShareCalenderList(memberid){//called to set shared members or update sh
     }
 }
 
+loadShareCalenderList(localStorage.getItem("memberId"));
+loadSharedCalenderList(localStorage.getItem("memberId"));
+
 function loadShareCalenderList(memberid){
 
     $("#ShareCalenderList").html('');
@@ -644,6 +647,8 @@ function saveConfigureCalendar(){
         }
     });
 }
+
+
 
 getNotification();
 function getNotification(){
