@@ -470,7 +470,7 @@ class Event extends Controller {
     }
 
     function search(){
-        $this->db->query("select note.* , member.firstname , member.lastname from note join member on note.createdby = member.id where createdby in (".$_POST['memberid'].") and note.status=1 and ( subject like '%".$_GET['str']."%' OR description like '%".$_GET['str']."%' )");
+        $this->db->query("select note.* , member.firstname , member.lastname from note join member on note.createdby = member.id where createdby in (".$_POST['memberid'].") and note.status=1 and ( subject like '".$_GET['str']."%' OR description like '".$_GET['str']."%' )");
         while($r = $this->db->fetchObject())
             $d[] = $r;
         echo json_encode($d?$d : array());
