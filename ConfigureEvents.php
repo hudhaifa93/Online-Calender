@@ -1,6 +1,5 @@
 <?php
 
-
 include 'include/head.php' ?>
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 
@@ -130,8 +129,8 @@ include 'include/head.php' ?>
                                     <!--<option value="3">Birthday</option>-->
                                 </select>
                             </div>
-                            <div class="col-xs-6 form-group pull-right">
-
+                            <div class="col-xs-6 form-group">
+                                <button type="button" class="btn btn-sm btn-info pull-right" style="margin-top: 30px;" onclick="window.history.back()">Back</button>
                             </div>
                             <div class="col-xs-12 form-group">
                                 <label>Subject</label>
@@ -220,6 +219,7 @@ include 'include/head.php' ?>
 
                         <div class="col-xs-12 form-group">
                             <button type="button" id="advanceButton" class="btn btn-sm btn-primary" onClick="">CREATE</button>
+                            <button type="button" class="btn btn-sm btn-default" onclick="window.history.back()">Close</button>
                         </div>
                     </div>
                 </div>

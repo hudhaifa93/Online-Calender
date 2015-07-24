@@ -151,7 +151,7 @@
             <div style="background-color:#FFFFFF; overflow: auto;  height: 500px; margin-bottom: 20px;" > <!--heshani added a new div-->
 
 				<div class="panel panel-default">
-                    <div class="panel-heading" ><strong>Export to PDF</strong></div>
+                    <div class="panel-heading" ><strong>Export to PDF</strong> <button type="button" class="btn btn-sm btn-info pull-right" style="margin-right:10px;margin-top: :5px" onclick="window.history.back()">Back</button></div>
 					<div class="panel-body">
 
                         <div class="col-xs-6 form-group">
