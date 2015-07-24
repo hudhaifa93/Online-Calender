@@ -315,152 +315,132 @@
         </div>
     </body>
 
-    <script type="text/javascript" src="js/jquery.js" ></script>
-    <script type="text/javascript" src="js/bootstrap.min.js" ></script>
-    <script type="text/javascript" src="js/bootbox.js" ></script>
-    <script type="text/javascript" src="js/jquery-ui.custom.min.js" ></script>
-    <script type="text/javascript" src="js/calendar/main.js?v=1.1" ></script>
-    <script type="text/javascript" src="js/calendar/view/monthView.js?v=1.1" ></script>
-    <script type="text/javascript" src="js/calendar/view/weekView.js?v=1.1" ></script>
-    <script type="text/javascript" src="js/calendar/view/dayView.js?v=1.1" ></script>
-    <script type="text/javascript" src="js/calendar/view/birthdayView.js?v=1.1" ></script>
-    <script type="text/javascript" src="js/common.js?" ></script>
+    <?php include "include/foot.php" ?>
 
-    <script src="js/sweet-alert.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/sweet-alert.css">
+<script type="text/javascript" >
 
-    <script type="text/javascript" >
+    var app = new calendar({
+        id : 'calender',
+        view : 'month'
+    });
+    var app1 = new calendar({
+        id : 'min_cal',
+        view : 'month',
+        min : true
+    });
+    $(".min-calendar").click(function(e){
+        e.stopPropagation();
+        $("#min_cal").toggleClass('hidden');
+    });
 
-        var app = new calendar({
-            id : 'calender',
-            view : 'month'
-        });
-        var app1 = new calendar({
-            id : 'min_cal',
-            view : 'month',
-            min : true
-        });
-        $(".min-calendar").click(function(e){
+
+    $(document).ready(function () {
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $(".createdby").val(localStorage.getItem("memberId"));
+        loadShareCalenderList(localStorage.getItem("memberId"));
+        loadSharedCalenderList(localStorage.getItem("memberId"));
+        //loadConfigureModelDetails(localStorage.getItem("memberId"));
+        $("#shareCalenderButton").attr("onclick","ShareCalenderList('"+localStorage.getItem("memberId")+"')");
+
+        $(".viewshareCal").click(function(e) {
+            e.preventDefault();
             e.stopPropagation();
-            $("#min_cal").toggleClass('hidden');
-        });
-
-
-        $(document).ready(function () {
-
-            $('[data-toggle="tooltip"]').tooltip();
-
-            $(".createdby").val(localStorage.getItem("memberId"));
-            loadShareCalenderList(localStorage.getItem("memberId"));
-            loadSharedCalenderList(localStorage.getItem("memberId"));
-            //loadConfigureModelDetails(localStorage.getItem("memberId"));
-            $("#shareCalenderButton").attr("onclick","ShareCalenderList('"+localStorage.getItem("memberId")+"')");
-
-            $(".viewshareCal").click(function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                debugger;
-                if(localStorage.getItem("sharedClicked")=="" || localStorage.getItem("sharedClicked")==[] || localStorage.getItem("sharedClicked")==null){
-
-                }
-                else
-                {
-                    var sharedobject = jQuery.parseJSON(localStorage.getItem("sharedClicked"));
-                    $('.shareCheckBox').prop('checked', false);
-                    $.each(sharedobject, function(index, value) {
-                        $('#'+value.memberid).prop('checked', true);
-                    });
-                }
-                $('#ViewShareModal').modal('show');
-
-                return false;
-            } );
-
-            $(".shareCal").click(function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                $('#ShareModal').modal('show');
-                return false;
-            } );
-
-            $(".export").click(function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                window.location.href="/Online-Calender/savepdf.html";
-                return false;
-            } );
-
-            $(".configure").click(function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                $('#ConfigureModal').modal('show');
-                return false;
-            });
-
-            $('.color_type').on('change', function (e) {
-                var cc = this.value;
-                $(this).attr("class","color_type " + cc);
-            });
-
-        });
-
-        function addToInvitedList() {
-            var Email = $("#InviteeEmail").val();
-            if(validateEmail( Email )){
-                var fullEmail = Email;
-                Email = Email.split("@");
-                $("#InvitedList").append($('<div data-status="0" class="tags ' + Email[0] + 'List" >' + fullEmail + '<a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
-                $("#InviteeEmail").val("");
-            }
-        }
-
-        function addToShareList() {
-            var Email = $("#shareEmail").val();
-            if(validateEmail( Email )){
-                $('<div class="tags " >' +
-                    '<input type="hidden" name="email[]" value="'+Email+'" >' + Email +
-                    '<i class="glyphicon glyphicon-remove remove pull-right" ></i>' +
-                    '</div> ').appendTo('#shareList');
-                $("#shareEmail").val("");
-            }
-        }
-
-        $('body').on('click','.remove',function(){
-            $(this).closest('.tags').remove();
-        }).click(function(e){
-               if( !$("#min_cal").hasClass('hidden'))  $("#min_cal").addClass('hidden');
-            });
-
-        function removeFromInvitedList(id) {
             debugger;
-            var email = [] ;
-            var removedTag = $("." + id+"List");
-            var str = $( removedTag ).text();
-            str = str.split("x");
-            email.push({
-                "memberid" : localStorage.getItem("memberId"),
-                "sharedmemberemail" : str[0],
-                "status" : $( removedTag ).data('status') });
+            if(localStorage.getItem("sharedClicked")=="" || localStorage.getItem("sharedClicked")==[] || localStorage.getItem("sharedClicked")==null){
 
-            $.ajax({
-                url: "process/index.php?route=event&method=deleteSharedCalendar",
-                type: "post",
-                dataType: 'json',
-                data: { sharedMembersList : email}, // provided this code executes in form.onsubmit event
-                success: function (output) {
-                    if(output.success=="success"){
-                        showalert("Shared Calender Revoked.", "alert-success", "", "");
-                        $("." + id+"List").remove();
-                    }
-                },
-                failure: function () {
-                }
-            });
+            }
+            else
+            {
+                var sharedobject = jQuery.parseJSON(localStorage.getItem("sharedClicked"));
+                $('.shareCheckBox').prop('checked', false);
+                $.each(sharedobject, function(index, value) {
+                    $('#'+value.memberid).prop('checked', true);
+                });
+            }
+            $('#ViewShareModal').modal('show');
 
+            return false;
+        } );
+
+        $(".shareCal").click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $('#ShareModal').modal('show');
+            return false;
+        } );
+
+        $(".export").click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href="/Online-Calender/savepdf.html";
+            return false;
+        } );
+
+        $(".configure").click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $('#ConfigureModal').modal('show');
+            return false;
+        } );
+    });
+
+    function addToInvitedList() {
+        var Email = $("#InviteeEmail").val();
+        if(validateEmail( Email )){
+            var fullEmail = Email;
+            Email = Email.split("@");
+            $("#InvitedList").append($('<div data-status="0" class="tags ' + Email[0] + 'List" >' + fullEmail + '<a class="" onclick="removeFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
+            $("#InviteeEmail").val("");
         }
+    }
 
-    </script>
+    function addToShareList() {
+        var Email = $("#shareEmail").val();
+        if(validateEmail( Email )){
+            $('<div class="tags " >' +
+                '<input type="hidden" name="email[]" value="'+Email+'" >' + Email +
+                '<i class="glyphicon glyphicon-remove remove pull-right" ></i>' +
+                '</div> ').appendTo('#shareList');
+            $("#shareEmail").val("");
+        }
+    }
 
-    <script type="text/javascript" src="js/functions.js" ></script>
+    $('body').on('click','.remove',function(){
+        $(this).closest('.tags').remove();
+    }).click(function(e){
+            if( !$("#min_cal").hasClass('hidden'))  $("#min_cal").addClass('hidden');
+        });
+
+    function removeFromInvitedList(id) {
+        debugger;
+        var email = [] ;
+        var removedTag = $("." + id+"List");
+        var str = $( removedTag ).text();
+        str = str.split("x");
+        email.push({
+            "memberid" : localStorage.getItem("memberId"),
+            "sharedmemberemail" : str[0],
+            "status" : $( removedTag ).data('status') });
+
+        $.ajax({
+            url: "process/index.php?route=event&method=deleteSharedCalendar",
+            type: "post",
+            dataType: 'json',
+            data: { sharedMembersList : email}, // provided this code executes in form.onsubmit event
+            success: function (output) {
+                if(output.success=="success"){
+                    showalert("Shared Calender Revoked.", "alert-success", "", "");
+                    $("." + id+"List").remove();
+                }
+            },
+            failure: function () {
+            }
+        });
+
+    }
+
+</script>
 
 </html>
