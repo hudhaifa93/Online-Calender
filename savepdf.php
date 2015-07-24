@@ -1,4 +1,5 @@
-
+<?php include "include/head.php"; ?>
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 <body>
 <style type="text/css">
     input[type=checkbox], input[type=radio] {
@@ -135,6 +136,72 @@
 
 
 </style>
+<?php include 'include/header.php'; ?>
+
+<section class="main" >
+    <div class="content" >
+        <div class="container" >
+            <div class="block-header">
+                <h2>&nbsp;</h2>
+                <h2>&nbsp;</h2>
+                <h2>&nbsp;</h2>
+                <h2>&nbsp;</h2>
+            </div>
+
+            <div style="background-color:#FFFFFF; overflow: auto;  height: 500px; margin-bottom: 20px;" > <!--heshani added a new div-->
+
+				<div class="panel panel-default">
+                    <div class="panel-heading" ><strong>Export to PDF</strong></div>
+					<div class="panel-body">
+
+                        <div class="col-xs-6 form-group">
+                            <div class="col-xs-6 form-group">
+                                <label>Start Date</label>
+                                <input type="text" class="form-control" name="startDate" id="StartDate" placeholder="Start Date"/>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label>End Date</label>
+                                <input type="text" class="form-control" name="endDate" id="EndDate" placeholder="End Date"/>
+                            </div>
+                            <div class="col-xs-6">
+                                <label style="margin-right: 10px;"><input checked="checked" id="M" type="checkbox" style="margin-right: 10px;" name="">Meeting</label>
+
+                                <label style="margin-right: 10px;"><input checked="checked" id="B" type="checkbox"  style="margin-right: 10px;" name="">Birthday</label>
+
+                                <label style="margin-right: 10px;"><input checked="checked" id="N" type="checkbox"  style="margin-right: 10px;" name="">Note</label>
+                             </div>
+                            <div class="col-xs-6" styl="clear:both">
+                                <button type="button"  id="loadbutton" class="btn btn-sm btn-primary">Load Table</button>
+                                <button type="button"  id="" class="btn btn-sm btn-primary" onclick="javascript:exportPDF();">EXPORT</button>
+                            </div>
+
+                         </div>
+                        </div>
+					</div>
+                <div id="editor"></div>
+                <div id="customers">
+                    <h2 style="text-align: center;display:none;">Code Hunters - Data Export List</h2>
+                    <table id="tab_customers" style="width: 100%" class="table table-striped">
+
+                    </table>
+                    <p style="text-align: center;display:none;">* Exported Using Code Hunters Online Calender *</p>
+                </div>
+				</div>
+				
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<?php include "include/footer.php" ?>
+</body>
+<?php include "include/foot.php" ?>
+<script src="js/jquery-ui.js"></script>
+<script src="js/timepicker/jquery.ui.timepicker.js"></script>
+<script type="text/javascript" src="js/jspdf/jspdf.js"></script>
+<script type="text/javascript" src="js/jspdf/jspdf.debug.js"></script>
+<script type="text/javascript" src="js/jspdf/jspdf.plugin.autotable.js"></script>
 <script>
 
     $(document).ready(function () {
@@ -185,23 +252,23 @@
                 {
                     var tablerows='';
                     var tablehead ='<colgroup>'+
-                            '<col >'+
-                            '<col >'+
-                            '<col >'+
-                            '<col >'+
-                            '<col >'+
-                            '<col >'+
-                            '</colgroup>'+
-                            '<thead>'+
-                            '<tr class="warning">'+
-                            '<th>Type</th>'+
-                            '<th>Subject</th>'+
-                            '<th>Description</th>'+
-                            '<th>Start Date</th>'+
-                            '<th>End Date</th>'+
-                            '<th>Location</th>'+
-                            '</tr>'+
-                            '</thead>';
+                        '<col >'+
+                        '<col >'+
+                        '<col >'+
+                        '<col >'+
+                        '<col >'+
+                        '<col >'+
+                        '</colgroup>'+
+                        '<thead>'+
+                        '<tr class="warning">'+
+                        '<th>Type</th>'+
+                        '<th>Subject</th>'+
+                        '<th>Description</th>'+
+                        '<th>Start Date</th>'+
+                        '<th>End Date</th>'+
+                        '<th>Location</th>'+
+                        '</tr>'+
+                        '</thead>';
 
                     data = []
 
@@ -307,61 +374,3 @@
     }
 
 </script>
-<script type="text/javascript" src="js/jspdf/jspdf.js"></script>
-<script type="text/javascript" src="js/jspdf/jspdf.debug.js"></script>
-<script type="text/javascript" src="js/jspdf/jspdf.plugin.autotable.js"></script>
-
-<section class="main" >
-    <div class="content" >
-        <div class="container" >
-            <div class="block-header">
-                <h2>&nbsp;</h2>
-                <h2>&nbsp;</h2>
-                <h2>&nbsp;</h2>
-                <h2>&nbsp;</h2>
-            </div>
-
-            <div style="background-color:#FFFFFF; overflow: auto;  height: 500px; margin-bottom: 20px;" > <!--heshani added a new div-->
-
-				<div class="panel panel-default">
-                    <div class="panel-heading" ><strong>Export to PDF</strong></div>
-					<div class="panel-body">
-
-                        <div class="col-xs-6 form-group">
-                            <div class="col-xs-6 form-group">
-                                <label>Start Date</label>
-                                <input type="text" class="form-control" name="startDate" id="StartDate" placeholder="Start Date"/>
-                            </div>
-                            <div class="col-xs-6 form-group">
-                                <label>End Date</label>
-                                <input type="text" class="form-control" name="endDate" id="EndDate" placeholder="End Date"/>
-                            </div>
-                            <div class="col-xs-6">
-                                <label style="margin-right: 10px;"><input checked="checked" id="M" type="checkbox" style="margin-right: 10px;" name="">Meeting</label>
-
-                                <label style="margin-right: 10px;"><input checked="checked" id="B" type="checkbox"  style="margin-right: 10px;" name="">Birthday</label>
-
-                                <label style="margin-right: 10px;"><input checked="checked" id="N" type="checkbox"  style="margin-right: 10px;" name="">Note</label>
-                             </div>
-                            <div class="col-xs-6" styl="clear:both">
-                                <button type="button"  id="loadbutton" class="btn btn-sm btn-primary">Load Table</button>
-                                <button type="button"  id="" class="btn btn-sm btn-primary" onclick="javascript:exportPDF();">EXPORT</button>
-                            </div>
-
-                         </div>
-                        </div>
-					</div>
-                <div id="editor"></div>
-                <div id="customers">
-                    <h2 style="text-align: center;display:none;">Code Hunters - Data Export List</h2>
-                    <table id="tab_customers" style="width: 100%" class="table table-striped">
-
-                    </table>
-                    <p style="text-align: center;display:none;">* Exported Using Code Hunters Online Calender *</p>
-                </div>
-				</div>
-				
-            </div>
-        </div>
-    </div>
-</section>

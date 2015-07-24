@@ -1,8 +1,6 @@
 <?php
 
-function __autoload($class_name) {
-    include "process/".strtolower($class_name) . '.php';
-}
+
 include 'include/head.php' ?>
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 

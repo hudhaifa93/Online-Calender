@@ -859,7 +859,7 @@ $('#txtSearch').keyup(function(){
             data : {memberid:getMemberIds()},
             type : 'post',
             success: function(e){
-                self.removeClass('loading');
+                    self.removeClass('loading');
                 $('.search_result').html("");
                 for(a in e){
                     $("<a class='result_event' data-createdby='"+e[a].createdby+"' data-eventid='"+e[a].id+"' data-eventtype='"+e[a].notetype+"' >  " +
@@ -988,3 +988,57 @@ function updateBirthday(id)
     });
 }
 
+
+$('[data-toggle="tooltip"]').tooltip();
+
+$(".createdby").val(localStorage.getItem("memberId"));
+loadShareCalenderList(localStorage.getItem("memberId"));
+loadSharedCalenderList(localStorage.getItem("memberId"));
+//loadConfigureModelDetails(localStorage.getItem("memberId"));
+$("#shareCalenderButton").attr("onclick","ShareCalenderList('"+localStorage.getItem("memberId")+"')");
+
+$(".viewshareCal").click(function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if(localStorage.getItem("sharedClicked")=="" || localStorage.getItem("sharedClicked")==[] || localStorage.getItem("sharedClicked")==null){
+
+    }
+    else
+    {
+        var sharedobject = jQuery.parseJSON(localStorage.getItem("sharedClicked"));
+        $('.shareCheckBox').prop('checked', false);
+        $.each(sharedobject, function(index, value) {
+            $('#'+value.memberid).prop('checked', true);
+        });
+    }
+    $('#ViewShareModal').modal('show');
+
+    return false;
+} );
+
+$(".shareCal").click(function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $('#ShareModal').modal('show');
+    return false;
+} );
+
+$(".export").click(function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    window.location.href="savepdf.php";
+    return false;
+} );
+
+$(".configure").click(function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    loadConfigureModelDetails(localStorage.getItem("memberId"));
+    $('#ConfigureModal').modal('show');
+    return false;
+});
+
+$('.color_type').on('change', function (e) {
+    var cc = this.value;
+    $(this).attr("class","color_type " + cc);
+});
