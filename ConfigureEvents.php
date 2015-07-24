@@ -97,6 +97,25 @@ if(!session::get('user')){
         .ui-timepicker{margin-top: 10px;}
         .periods{padding-right: 10px;}
 
+        .fade.in {
+            opacity: 1;
+        }
+        .alert-danger {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
     </style>
 
     <body>
@@ -137,7 +156,7 @@ if(!session::get('user')){
                             </div>
                             <div class="col-xs-12 form-group">
                                 <label>Subject</label>
-                                <input type="text" class="form-control" name="subject" id="Subject" placeholder="Subject"/>
+                                <input type="text" class="form-control" data-validate="require" name="subject" id="Subject" placeholder="Subject"/>
                             </div>
 
                             <div class="col-xs-12 form-group">
@@ -206,10 +225,14 @@ if(!session::get('user')){
                                 <textarea class="form-control custom-control" name="description" id="Description" rows="5" style="resize:none" placeholder="Meeting Description"></textarea>
                             </div>
                         </form>
+
                         <form id="inviteeForm" style="margin-top:10px">
                             <div class="col-xs-6 form-group" style="margin-top:10px;">
                                 <input type="email"  class="form-control"  id="MeetingInviteeEmail" placeholder="InviteeEmail"/><button type="button" style=" float: left;  margin-top: 5px;" class="btn btn-sm btn-primary"onclick="addToInvitedList()">Add to List</button>
                                 <!--<button type="button" style="  margin-left: 10px;  float: left;  margin-top: 2px;" class="btn btn-sm btn-primary"onclick="inviteList()">Invite</button>-->
+                            </div>
+                            <div class="col-xs-6 form-group" style="margin-top:10px;">
+                                <div id="alert"></div>
                             </div>
                             <div class="col-xs-12 form-group">
                                 <div id="MeetingInvitedList">
@@ -236,7 +259,6 @@ if(!session::get('user')){
 <script src="js/jquery-ui.js"></script>
 <script src="js/timepicker/jquery.ui.timepicker.js"></script>
 <script>
-
 
 $(document).ready(function () {
 
@@ -292,7 +314,7 @@ $(document).ready(function () {
         });
 
     $("#StartTime,#EndTime").change(function () {
-       debugger
+
             var sdate = $('#StartTime').timepicker("getTime");
             var edate = $('#EndTime').timepicker("getTime");
             if (this.id == 'StartTime') {
@@ -432,7 +454,6 @@ function loadInvitee(){
         dataType: 'json',
         data: "noteid="+localStorage.getItem("advanceID"), // provided this code executes in form.onsubmit event
         success: function (e) {
-            debugger;
             var data = e;
             data = JSON.parse(data.success);
 
@@ -453,17 +474,56 @@ function loadInvitee(){
     });
 }
 
-function addToInvitedList() {
-    debugger;
-    var Email = $("#MeetingInviteeEmail").val();
-    var fullEmail = Email;
-    Email = Email.split("@");
-    $("#MeetingInvitedList").append($('<div class="tags mtags ' + Email[0] + 'MList" >' + fullEmail + '<a class="" onclick="removeMFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
-    $("#MeetingInviteeEmail").val("")
+function showalert(message, alerttype) {
+
+    $('#alert').append('<div id="alertdiv" class="alert ' + alerttype + '"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>')
+
+    setTimeout(function () { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
+
+        $("#alertdiv").remove();
+
+    }, 3000);
 }
 
+function addToInvitedList() {
+
+    var Email = $("#MeetingInviteeEmail").val();
+
+    var data =checkEmailListForMeeting(Email);
+    if(data=="true")
+    {
+        var fullEmail = Email;
+        Email = Email.split("@");
+        $("#MeetingInvitedList").append($('<div class="tags mtags ' + Email[0] + 'MList" >' + fullEmail + '<a class="" onclick="removeMFromInvitedList(' + "'" + Email[0] + "'" + ')">x</a></div>'));
+        $("#MeetingInviteeEmail").val("")
+    }
+    else
+    {
+        showalert("Email Not Valid Or Not Registered With System.", "alert-danger");
+
+    }
+}
+function checkEmailListForMeeting(email){
+    if(validateEmail(email)){
+        r= false;
+        $.ajax({
+            url : "process/?route=user&method=checkEmail" ,
+            async: false,
+            data : {email : email},
+            type :'post',
+            success : function(e){
+                r = e == 0 ? false : true ;
+            },
+            failure : function(){
+                console.log('error');
+            }
+        });
+        return r ;
+    }else
+        return false;
+
+}
 function removeMFromInvitedList(id) {
-    debugger;
 
     var email = [] ;
     var removedTag = $("." + id+"MList");

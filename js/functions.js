@@ -322,6 +322,8 @@ function deleteBasicEvent(formName,id){
     }
 
 function saveAdvanceEvent(formName){
+    debugger;
+
     /* debugger */;
     var Message = "";
     var createddate = getOnlyCurrentDate();

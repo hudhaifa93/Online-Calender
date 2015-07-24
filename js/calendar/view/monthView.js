@@ -371,8 +371,8 @@ var Month = function (config) {
                 if(event.data('createdby')==localStorage.getItem("memberId"))
                 {
                     $('#editButton').before(btn);
-                $('#editButton').attr("onclick","editAdvanceNote("+event.data('eventid')+")");
-                $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
+                    $('#editButton').attr("onclick","editAdvanceNote("+event.data('eventid')+")");
+                    $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
                     $('#editButton').show();
                     $("#viewButtonDelete").show();
                 }
