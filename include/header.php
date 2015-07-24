@@ -7,6 +7,11 @@
             <input class="visible-lg visible-md " type="text" id="txtSearch">
             <div class="search_result hidden"  ></div>
         </li>
+        <li>
+            <div class=" glyphicon glyphicon-calendar pull-right min-calendar   " style="color: #ffffff;font-size: 30px;margin: 5px" ></div>
+            <div class="clearfix" ></div>
+            <div id="min_cal" class="hidden"style="position: absolute;z-index: 99999" ></div>
+        </li>
         <li class="pull-right">
             <ul class="top-menu">
 

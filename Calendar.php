@@ -323,6 +323,14 @@
             id : 'calender',
             view : 'month'
         });
+        var app1 = new calendar({
+            id : 'min_cal',
+            view : 'month',
+            min : true
+        });
+        $(".min-calendar").click(function(){
+            $("#min_cal").toggleClass('hidden');
+        });
 
         $(document).ready(function () {
 

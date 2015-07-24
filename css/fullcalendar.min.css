@@ -765,3 +765,19 @@ a.fc-more:hover {
 .panel {
     margin-bottom: 20px;
 }
+
+
+.min #fc-actions {
+    display: none;
+}
+.min .fc-toolbar {
+    padding: 0;
+    margin: 0;
+    background-color: #0A60A3;
+}
+.min .fc-bg {
+    height: 70px !important;
+}
+.min .fc-day-header {
+    background: #064475;
+}

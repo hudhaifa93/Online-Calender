@@ -140,7 +140,8 @@ var Month = function (config) {
                 '</tr>';
 
             function _row() {
-                var h = '<div class="fc-row fc-week ui-widget-content" style="height: 135px;">' +
+                var sty = typeof self.options.min == 'undefined' ? "style='height: 135px'" : "";
+                var h = '<div class="fc-row fc-week ui-widget-content" '+sty+'  >' +
                     '<div class="fc-bg">' +
                     '<table>' +
                     '<tbody>' +
@@ -266,39 +267,6 @@ var Month = function (config) {
     }
 
     function Event() {
-        self.id.on('click', '#prevMonthView', function () {
-            var mon = self.id.data('month'),
-                year = self.id.data('year');
-
-            if (mon == 0) {
-                mon = 12;
-                year--;
-            } else
-                mon--;
-            self.id.data('year', year);
-            self.id.data('month', mon);
-            main._monthFirst = new Date(year, mon, 1, 0, 0, 0, 0);
-            main._monthLast = new Date(year, mon + 1, 1, 0, 0, 0, -1);
-            drawCalender();
-        });
-
-        self.id.on('click', '#nextMonthView', function () {
-            var mon = self.id.data('month'),
-                year = self.id.data('year');
-
-            if (mon == 12) {
-                mon = 0;
-                year++;
-            } else
-                mon++;
-            self.id.data('year', year);
-            self.id.data('month', mon);
-            main._monthFirst = new Date(year, mon, 1, 0, 0, 0, 0);
-            main._monthLast = new Date(year, mon + 1, 1, 0, 0, 0, -1);
-
-            drawCalender();
-        });
-
         self.id.on('click', '.fc-day', function () {
             console.log($(this).index());
             console.log($(this).closest('.fc-week').index());
@@ -491,7 +459,43 @@ var Month = function (config) {
         self.id = $("#" + self.options.id);
         self.id.data('year', _date.getFullYear());
         self.id.data('month', _date.getMonth());
-        Event();
+        self.id.on('click', '#prevMonthView', function () {
+            var mon = self.id.data('month'),
+                year = self.id.data('year');
+
+            if (mon == 0) {
+                mon = 12;
+                year--;
+            } else
+                mon--;
+            self.id.data('year', year);
+            self.id.data('month', mon);
+            main._monthFirst = new Date(year, mon, 1, 0, 0, 0, 0);
+            main._monthLast = new Date(year, mon + 1, 1, 0, 0, 0, -1);
+            drawCalender();
+        });
+
+        self.id.on('click', '#nextMonthView', function () {
+            var mon = self.id.data('month'),
+                year = self.id.data('year');
+
+            if (mon == 12) {
+                mon = 0;
+                year++;
+            } else
+                mon++;
+            self.id.data('year', year);
+            self.id.data('month', mon);
+            main._monthFirst = new Date(year, mon, 1, 0, 0, 0, 0);
+            main._monthLast = new Date(year, mon + 1, 1, 0, 0, 0, -1);
+
+            drawCalender();
+        });
+        if(typeof self.options.min == 'undefined')
+            Event();
+        else
+            self.id.addClass('min');
+
         drawCalender();
     }());
 

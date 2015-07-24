@@ -490,10 +490,15 @@
                     <div class="block-header">
                         <h2>&nbsp;</h2>
                         <h2>&nbsp;</h2>
-                        <h2>&nbsp;</h2>
-                        <h2>&nbsp;</h2>
                     </div>
-					
+
+                    <div class="col-lg-3 pull-right  " style="position: relative" >
+                        <div class=" glyphicon glyphicon-calendar pull-right min-calendar   " style="width: 50px ;height: 50px;background: #ffffff;padding: 10px;font-size: 30px;margin: 5px" ></div>
+                        <div class="clearfix" ></div>
+                        <div id="calender" class="hidden"style="position: absolute;z-index: 99999" ></div>
+                    </div>
+
+                    <div class="clearfix" ></div>
                     <div style="background-color:#FFFFFF; overflow: auto;" > <!--heshani added a new div-->
                         
 						<form role="form" id="frmMeeting">
@@ -504,7 +509,7 @@
                             <input type=hidden id="locationId"  value="">
                             <input type=hidden id="repeatId"  value="">
 
-                            <div class="col-xs-12 form-group" style="margin-top:15px;">
+                            <div class="col-xs-6 form-group" style="margin-top:15px;">
                                 <label>Type</label>
                                 <select name="" id="Type" class="form-control" style="width:30%;">
                                     <option value="1">Meeting</option>
@@ -512,12 +517,14 @@
                                     <!--<option value="3">Birthday</option>-->
                                 </select>
                             </div>
+                            <div class="col-xs-6 form-group pull-right">
+
+                            </div>
                             <div class="col-xs-6 form-group">
                                 <label>Subject</label>
                                 <input type="text" class="form-control" name="subject" id="Subject" placeholder="Subject"/>
                             </div>
-                            <div class="col-xs-6 form-group">
-                            </div>
+
                             <div class="col-xs-12 form-group">
                                 <label>Location</label>
                                 <input type="checkbox" id="addLocation">
@@ -613,4 +620,14 @@
             </center>
         </footer>
     </body>
-</html>                                		                                		
+</html>
+<script type="text/javascript" src="js/calendar/main.js?v=1.1" ></script>
+<script type="text/javascript" src="js/calendar/view/monthView.js?v=1.1" ></script>
+<script type="text/javascript" src="js/calendar/view/weekView.js?v=1.1" ></script>
+<script type="text/javascript" src="js/calendar/view/dayView.js?v=1.1" ></script>
+<script type="text/javascript" src="js/calendar/view/birthdayView.js?v=1.1" ></script>
+<script type="text/javascript" src="js/common.js?" ></script>
+<script type="text/javascript" >
+
+
+</script>
