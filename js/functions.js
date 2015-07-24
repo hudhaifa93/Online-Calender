@@ -595,7 +595,7 @@ function openShareModal(){
 }
 
 function loadConfigureModelDetails(memberid){
-    /* debugger */;
+    debugger;
     $("#configureDetails").html('');
     $.ajax({
         url: "process/index.php?route=event&method=getNoteConfigurationByMemberId",
@@ -603,20 +603,19 @@ function loadConfigureModelDetails(memberid){
         dataType: 'json',
         async:false,
         data: { MemberId: memberid},
-        success: function (e) {
-            /* debugger */;
-            var data = e;
-            data = JSON.parse(data.success);
-            if(data=="" || data==[])
-            {
-                $("#configureDetails").append("<div>Sorry, Configure Calender Could Not Load. Please Contact Administrator.</div>");
-            }
-            else
-            {
-                $("#configureDetails").append("<div>Loading.</div>");
-                //$.each( data, function( key, value ) {
-                    //$("#configureDetails").append($("<input type='checkbox' style='margin-right: 10px;' class='shareCheckBox' id='"+value.id+"' ><label id='label"+value.id+"'>"+value.firstname+" "+value.lastname+"</label><br>"));
-                //});
+        success: function (data) {
+            debugger;
+            for(var i=0;i<data.length;i++){
+                if(data[i].notetypeid == "1"){
+                    $("#Color_Type_Meeting").val(data[i].colorcode);
+                    $("#Color_Type_Meeting").attr("class","color_type " + data[i].colorcode);
+                }else if(data[i].notetypeid == "2"){
+                    $("#Color_Type_Note").val(data[i].colorcode);
+                    $("#Color_Type_Note").attr("class","color_type " + data[i].colorcode);
+                }else if(data[i].notetypeid == "3"){
+                    $("#Color_Type_BirthDay").val(data[i].colorcode);
+                    $("#Color_Type_BirthDay").attr("class","color_type " + data[i].colorcode);
+                }
             }
         },
         failure: function () {
