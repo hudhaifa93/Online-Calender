@@ -86,7 +86,7 @@ function setSessionsForAdvanceNote(date) {
     localStorage.setItem("tempSubject", $("#Subject").val());
     localStorage.setItem("tempDescription", $("#description").val());
     localStorage.setItem("tempClickedDate", date);
-    window.location.href = "/Online-Calender/ConfigureEvents.html";
+    window.location.href = "/ConfigureEvents.php";
 }
 
 function clearSessionsForAdvanceNote() {
@@ -99,7 +99,7 @@ function clearSessionsForAdvanceNote() {
 function editAdvanceNote(id) {
 
     localStorage.setItem("advanceID", id);
-    window.location.href = "/Online-Calender/ConfigureEvents.html";
+    window.location.href = "/ConfigureEvents.php";
 }
 
 function validateLogin(formName) {
