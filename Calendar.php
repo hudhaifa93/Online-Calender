@@ -227,73 +227,85 @@
                         <h4 class="modal-title" id="" >Configure Calendar</h4>
                     </div>
                     <div class="modal-body">
-                        <div>
-                            <div>
-                                <label>Birth Day</label>
-                                <select id="Color_Type_BirthDay">
-                                    <option value="bgm-brown" class="bgm-brown"></option>
-                                    <option value="bgm-pink" class="bgm-pink"></option>
-                                    <option value="bgm-red" class="bgm-red"></option>
-                                    <option value="bgm-blue" class="bgm-blue"></option>
-                                    <option value="bgm-purple" class="bgm-purple"></option>
-                                    <option value="bgm-lightblue" class="bgm-lightblue"></option>
-                                    <option value="bgm-cyan" class="bgm-cyan"></option>
-                                    <option value="bgm-teal" class="bgm-teal"></option>
-                                    <option value="bgm-green" class="bgm-green"></option>
-                                    <option value="bgm-yellow" class="bgm-yellow"></option>
-                                    <option value="bgm-amber" class="bgm-amber"></option>
-                                    <option value="bgm-orange" class="bgm-orange"></option>
-                                    <option value="bgm-deeporange" class="bgm-deeporange"></option>
-                                    <option value="bgm-gray" class="bgm-gray"></option>
-                                    <option value="bgm-bluegray" class="bgm-bluegray"></option>
-                                    <option value="bgm-indigo" class="bgm-indigo"></option>
-                                </select>
-                            </div>
-                            <div>
-                                <label>Note</label>
-                                <select id="Color_Type_Note">
-                                    <option value="bgm-brown" class="bgm-brown"></option>
-                                    <option value="bgm-pink" class="bgm-pink"></option>
-                                    <option value="bgm-red" class="bgm-red"></option>
-                                    <option value="bgm-blue" class="bgm-blue"></option>
-                                    <option value="bgm-purple" class="bgm-purple"></option>
-                                    <option value="bgm-lightblue" class="bgm-lightblue"></option>
-                                    <option value="bgm-cyan" class="bgm-cyan"></option>
-                                    <option value="bgm-teal" class="bgm-teal"></option>
-                                    <option value="bgm-green" class="bgm-green"></option>
-                                    <option value="bgm-yellow" class="bgm-yellow"></option>
-                                    <option value="bgm-amber" class="bgm-amber"></option>
-                                    <option value="bgm-orange" class="bgm-orange"></option>
-                                    <option value="bgm-deeporange" class="bgm-deeporange"></option>
-                                    <option value="bgm-gray" class="bgm-gray"></option>
-                                    <option value="bgm-bluegray" class="bgm-bluegray"></option>
-                                    <option value="bgm-indigo" class="bgm-indigo"></option>
-                                </select>
-                            </div>
-                            <div>
-                                <label>Meeting</label>
-                                <select id="Color_Type_Meeting">
-                                    <option value="bgm-brown" class="bgm-brown"></option>
-                                    <option value="bgm-pink" class="bgm-pink"></option>
-                                    <option value="bgm-red" class="bgm-red"></option>
-                                    <option value="bgm-blue" class="bgm-blue"></option>
-                                    <option value="bgm-purple" class="bgm-purple"></option>
-                                    <option value="bgm-lightblue" class="bgm-lightblue"></option>
-                                    <option value="bgm-cyan" class="bgm-cyan"></option>
-                                    <option value="bgm-teal" class="bgm-teal"></option>
-                                    <option value="bgm-green" class="bgm-green"></option>
-                                    <option value="bgm-yellow" class="bgm-yellow"></option>
-                                    <option value="bgm-amber" class="bgm-amber"></option>
-                                    <option value="bgm-orange" class="bgm-orange"></option>
-                                    <option value="bgm-deeporange" class="bgm-deeporange"></option>
-                                    <option value="bgm-gray" class="bgm-gray"></option>
-                                    <option value="bgm-bluegray" class="bgm-bluegray"></option>
-                                    <option value="bgm-indigo" class="bgm-indigo"></option>
-                                </select>
-                            </div>
-                        </div>
+                        <table>
+                            <tr>
+                                <td style="padding:5px;">
+                                    <label>Birth Day</label>
+                                </td>
+                                <td style="padding:5px;">
+                                    <select id="Color_Type_BirthDay" class="color_type" style="width: 50px;">
+                                        <option value="bgm-brown" class="bgm-brown"></option>
+                                        <option value="bgm-purple" class="bgm-purple"></option>
+                                        <option value="bgm-pink" class="bgm-pink"></option>
+                                        <option value="bgm-red" class="bgm-red"></option>
+                                        <option value="bgm-deeporange" class="bgm-deeporange"></option>
+                                        <option value="bgm-orange" class="bgm-orange"></option>
+                                        <option value="bgm-amber" class="bgm-amber"></option>
+                                        <option value="bgm-yellow" class="bgm-yellow"></option>
+                                        <option value="bgm-green" class="bgm-green"></option>
+                                        <option value="bgm-teal" class="bgm-teal"></option>
+                                        <option value="bgm-cyan" class="bgm-cyan"></option>
+                                        <option value="bgm-blue" class="bgm-blue"></option>
+                                        <option value="bgm-indigo" class="bgm-indigo"></option>
+                                        <option value="bgm-lightblue" class="bgm-lightblue"></option>
+                                        <option value="bgm-gray" class="bgm-gray"></option>
+                                        <option value="bgm-bluegray" class="bgm-bluegray"></option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:5px;">
+                                    <label>Note</label>
+                                </td>
+                                <td style="padding:5px;">
+                                    <select id="Color_Type_Note" class="color_type" style="width: 50px;">
+                                        <option value="bgm-brown" class="bgm-brown"></option>
+                                        <option value="bgm-purple" class="bgm-purple"></option>
+                                        <option value="bgm-pink" class="bgm-pink"></option>
+                                        <option value="bgm-red" class="bgm-red"></option>
+                                        <option value="bgm-deeporange" class="bgm-deeporange"></option>
+                                        <option value="bgm-orange" class="bgm-orange"></option>
+                                        <option value="bgm-amber" class="bgm-amber"></option>
+                                        <option value="bgm-yellow" class="bgm-yellow"></option>
+                                        <option value="bgm-green" class="bgm-green"></option>
+                                        <option value="bgm-teal" class="bgm-teal"></option>
+                                        <option value="bgm-cyan" class="bgm-cyan"></option>
+                                        <option value="bgm-blue" class="bgm-blue"></option>
+                                        <option value="bgm-indigo" class="bgm-indigo"></option>
+                                        <option value="bgm-lightblue" class="bgm-lightblue"></option>
+                                        <option value="bgm-gray" class="bgm-gray"></option>
+                                        <option value="bgm-bluegray" class="bgm-bluegray"></option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:5px;">
+                                    <label>Meeting</label>
+                                </td>
+                                <td style="padding:5px;">
+                                    <select id="Color_Type_Meeting" class="color_type" style="width: 50px;">
+                                        <option value="bgm-brown" class="bgm-brown"></option>
+                                        <option value="bgm-purple" class="bgm-purple"></option>
+                                        <option value="bgm-pink" class="bgm-pink"></option>
+                                        <option value="bgm-red" class="bgm-red"></option>
+                                        <option value="bgm-deeporange" class="bgm-deeporange"></option>
+                                        <option value="bgm-orange" class="bgm-orange"></option>
+                                        <option value="bgm-amber" class="bgm-amber"></option>
+                                        <option value="bgm-yellow" class="bgm-yellow"></option>
+                                        <option value="bgm-green" class="bgm-green"></option>
+                                        <option value="bgm-teal" class="bgm-teal"></option>
+                                        <option value="bgm-cyan" class="bgm-cyan"></option>
+                                        <option value="bgm-blue" class="bgm-blue"></option>
+                                        <option value="bgm-indigo" class="bgm-indigo"></option>
+                                        <option value="bgm-lightblue" class="bgm-lightblue"></option>
+                                        <option value="bgm-gray" class="bgm-gray"></option>
+                                        <option value="bgm-bluegray" class="bgm-bluegray"></option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
                         <div class="pull-right">
-                            <button type="button" class="btn btn-sm btn-primary" onclick="saveConfigureCalendar()">View</button>
+                            <button type="button" class="btn btn-sm btn-primary" onclick="saveConfigureCalendar()">Save</button>
                             <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -383,7 +395,13 @@
                 e.stopPropagation();
                 $('#ConfigureModal').modal('show');
                 return false;
-            } );
+            });
+
+            $('.color_type').on('change', function (e) {
+                var cc = this.value;
+                $(this).attr("class","color_type " + cc);
+            });
+
         });
 
         function addToInvitedList() {
