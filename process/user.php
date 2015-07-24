@@ -35,7 +35,7 @@ class user extends controller {
         if(is_object($result)){
             $id = $this->db->last_id();
             $result = $this->db->query(" insert into member_password_map values('".$id."','". $_POST['inputEmail']."','".$hashPass."','1')");
-
+            $result = $this->db->query(" INSERT INTO `note_configuration` (`memberid`, `notetypeid`, `colorcode`) VALUES('".$id."', 1, 'bgm-lightblue'),('".$id."', 2, 'bgm-yellow'),('".$id."', 3, 'bgm-green')");
             $user['id'] = $id ;
             $user['email'] = $_POST['inputEmail'] ;
             $user['name'] = $_POST['inputFirstname']." ".$_POST['inputLastname'] ;
