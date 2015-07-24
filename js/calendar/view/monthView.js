@@ -3,7 +3,7 @@ var Month = function (config) {
     var $window = $(window);
     var self = this,
         defaults,
-        _date = new Date(),
+        _date = new Date(),today=new Date(),
         notes,
         name = {
             days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
@@ -255,7 +255,7 @@ var Month = function (config) {
 
     function getTenses(d) {
         if (d.getMonth() == _date.getMonth())
-            if (d.getDate() == _date.getDate())
+            if (d.getDate() == today.getDate())
                 return " fc-today ";
             else if (d.getDate() > _date.getDate())
                 return " fc-future ";
