@@ -781,3 +781,16 @@ a.fc-more:hover {
 .min .fc-day-header {
     background: #064475;
 }
+.min .fc-event.fc-draggable {
+    cursor: default ;
+}
+.min{
+    -webkit-box-shadow: -16px 15px 53px 0px rgba(0,0,0,0.75) !important;
+    -moz-box-shadow: -16px 15px 53px 0px rgba(0,0,0,0.75) !important;
+    box-shadow: -16px 15px 53px 0px rgba(0,0,0,0.75) !important ;
+}
+.min .fc {
+    -webkit-box-shadow : none;
+    -moz-box-shadow: none;
+    box-shadow: none !important;
+}
