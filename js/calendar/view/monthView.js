@@ -402,6 +402,7 @@ var Month = function (config) {
 
                 if(event.data('createdby')==localStorage.getItem("memberId"))
                 {
+                    $('#editButton').attr("onclick",'makebirthdayEditable()');
                     $("#viewButtonDelete").attr("onclick","deleteBasicEvent('eventForm','"+event.data('eventid')+"')");
                     $("#viewButtonDelete").show();
                 }

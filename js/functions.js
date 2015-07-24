@@ -283,7 +283,7 @@ function saveAdvanceEvent(formName){
     }
     else
     {   //time entered
-        timeslot="&timeslotid=1&starttime="+$("#StartTime").val()+"&endtime="+$("#EndTime").val();
+        timeslot="&timeslotid=1&starttime="+$("#StartTime").val().replace(":", "")+"&endtime="+$("#EndTime").val().replace(":", "");
     }
 
     if($('#addLocation:checkbox:checked').length > 0){
@@ -356,7 +356,7 @@ function updateAdvanceEvent(formName){
         timeslot="&timeslotid=0&starttime=0&endtime=0";
     }
     else{   //time entered
-        timeslot="&timeslotid=1&starttime="+$("#StartTime").val()+"&endtime="+$("#EndTime").val();
+        timeslot="&timeslotid=1&starttime="+$("#StartTime").val().replace(":", "")+"&endtime="+$("#EndTime").val().replace(":", "");
     }
 
     if($('#addLocation:checkbox:checked').length > 0){
@@ -739,6 +739,9 @@ function share(){
 function loadViewModaData(id,type){
 
     $("#CommonViewModal label").hide();
+    $("#CommonViewModal label").text('');
+    $("#CommonViewModal input").val('');
+    $("#birthdayedit").hide();
 
     $.ajax({
         url: "process/index.php?route=event&method=getAdvanceEventData",//event.php
@@ -760,12 +763,18 @@ function loadViewModaData(id,type){
                     $("#ViewEndDate").text(data.enddate);$("#ViewEndDate").show();
                 }
                 else{
-                    $("#ViewDescription").text(dateFormat(new Date(data.startdate),'d')+" - "+dateFormat(new Date(data.startdate),'m')+" - "+dateFormat(new Date(data.startdate),'y'));
+                    $("#birthdayedit").show();
+                    $("#ViewSubject").hide();
+                    $("#ViewDescription").hide();
+                    $("#EBirthDayName").val(data.subject).attr('readonly',true);
+                    $("#EBdate").val(dateFormat(new Date(data.startdate),'d')).attr('readonly',true);
+                    $("#EBmonth").val(dateFormat(new Date(data.startdate),'m')).attr('readonly',true);
+                    $("#EByear").val(dateFormat(new Date(data.startdate),'y')).attr('readonly',true);
                 }
                 if(data.timeslotid=="1")
                 {
-                    $("#ViewStartTime").text(data.starttime);$("#ViewStartTime").show();
-                    $("#ViewEndTime").text(data.endtime);$("#ViewEndTime").show();
+                    $("#ViewStartTime").text(getHourlyTime(data.starttime));$("#ViewStartTime").show();
+                    $("#ViewEndTime").text(getHourlyTime(data.endtime));$("#ViewEndTime").show();
                 }
                 if(data.location != "0")
                 {
@@ -812,23 +821,6 @@ function loadViewModaData(id,type){
         }
     });
 }
-
-/*
-
- <div id="share" class="modal fade">
- <div class="modal-dialog modal-lg">
- <div class="modal-content">
- <div class="modal-header">
- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
- <h4 class="modal-title" > Share </h4>
- </div>
- <div class="modal-body" >
- <input type="email" multiple  >
- </div>
- </div>
- </div>
- </div>
- */
 
 $('#txtSearch').keyup(function(){
     self = $(this);
@@ -932,6 +924,15 @@ $('.search_result').on('click','.result_event',function(){
 
 });
 
-$(function(){
-    $('#profile-logo').css('background', "#"+Math.floor(Math.random()*16777215).toString(16));
-});
+$('#profile-logo').css('background', "#"+Math.floor(Math.random()*16777215).toString(16));
+
+
+function makebirthdayEditable(){
+    debugger;
+    $("#EBirthDayName").attr('readonly',false);
+    $("#EBdate").attr('readonly',false);
+    $("#EBmonth").attr('readonly',false);
+    $("#EByear").attr('readonly',false);
+    $('#editButton').attr("onclick",'updateBirthday()');
+
+}

@@ -92,6 +92,12 @@
         </div>
 
         <div id="CommonViewModal" class="modal fade">
+            <style>
+                .form-control
+                {
+                    padding: 6px 12px;
+                }
+            </style>
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -99,6 +105,16 @@
                         <h4 class="modal-title" id="viewHead" ></h4>
                     </div>
                     <div class="modal-body">
+                        <div style="display: none" id="birthdayedit">
+                            <div class= "col-xs-12 form-group">
+                                <input type="text" class="form-control" id="EBirthDayName" name="subject" placeholder="Name" readonly/>
+                            </div>
+                            <div class= "col-xs-12 form-group">
+                                <input type="text" style="width: 10%;float: left;" class="form-control" id="EBdate" placeholder="Date" readonly/>
+                                <input type="text" style="width: 10%;float: left;" class="form-control" id="EBmonth" placeholder="Month" readonly/>
+                                <input type="text" style="width: 10%;float: left;" class="form-control" id="EByear" placeholder="Year" readonly/>
+                            </div>
+                        </div>
                         <div class= "col-xs-12 form-group">
                             <label type="text" class="form-control" style="display:none" id="ViewSubject"> </label>
                         </div>
