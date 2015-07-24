@@ -26,7 +26,7 @@
 
         <div id="CommonModal" class="modal fade">
             <div class="modal-dialog modal-lg">
-                <div class="modal-content"  style="background-color: rgb(116, 186, 207);">
+                <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="ClickedDate"></h4>
@@ -101,7 +101,7 @@
                 }
             </style>
             <div class="modal-dialog modal-lg">
-                <div class="modal-content" style="background-color: rgb(116, 186, 207);">
+                <div class="modal-content" id="Common_View_Model">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title" id="viewHead" ></h4>
@@ -326,8 +326,6 @@
         id : 'calender',
         view : 'month'
     });
-
-
 
 
     $( document ).ready(function() {

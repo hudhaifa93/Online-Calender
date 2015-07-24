@@ -339,7 +339,7 @@ var Month = function (config) {
             $('#CommonViewModal').modal('show').find('.share').remove();
             if(event.data('eventtype')=="1")//meeting
             {
-
+                $('#Common_View_Model').attr("class","modal-content " + name.colorcodes[1]);
                 $("#viewHead").text("Meeting");
                 $('#editButton').html('Edit');
                 if(event.data('createdby')==localStorage.getItem("memberId"))
@@ -355,9 +355,9 @@ var Month = function (config) {
                     $('#editButton').hide();
                     $("#viewButtonDelete").hide();
                 }
-
             }
             if(event.data('eventtype')=="2"){
+                $('#Common_View_Model').attr("class","modal-content " + name.colorcodes[2]);
                 var btn=$('<button class="share btn btn-primary  " type="button" > Share </button>');
                 btn.data('id',event.data('eventid'));
                 btn.data('type',event.data('eventtype'));
@@ -382,6 +382,7 @@ var Month = function (config) {
                 }
             }
             if(event.data('eventtype')=="3"){
+                $('#Common_View_Model').attr("class","modal-content " + name.colorcodes[3]);
                 var btn=$('<button class="share btn btn-primary  " type="button" > Share </button>');
                 btn.data('id',event.data('eventid'));
                 btn.data('type',event.data('eventtype'));
@@ -401,9 +402,8 @@ var Month = function (config) {
                     $("#viewButtonDelete").hide();
                 }
             }
-
-
         }
+
         function openModelForEdit(event) {
             resetModalButton();
 
