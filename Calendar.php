@@ -381,9 +381,16 @@
         $(".configure").click(function(e) {
             e.preventDefault();
             e.stopPropagation();
+            loadConfigureModelDetails(localStorage.getItem("memberId"));
             $('#ConfigureModal').modal('show');
             return false;
-        } );
+        });
+
+        $('.color_type').on('change', function (e) {
+            var cc = this.value;
+            $(this).attr("class","color_type " + cc);
+        });
+
     });
 
     function addToInvitedList() {
