@@ -59,29 +59,72 @@
     <a onclick="validateLogin('loginForm')" class="btn btn-login btn-danger btn-float waves-effect waves-button waves-float"><i class="md md-arrow-forward"></i></a>
     </form>
 
+    <ul class="login-navigation">
+        <li data-block="#l-register" class="bgm-orange">Sign Up</li>
+    </ul>
+
 </div>
 
 <!-- Register -->
 <div class="lc-block" id="l-register">
+    <form id="signupForm">
     <div class="input-group m-b-20">
         <span class="input-group-addon"><i class="md md-person"></i></span>
         <div class="fg-line">
-            <input type="text" class="form-control" placeholder="Username" id="inputUsername" >
+            <input type="text" class="form-control" id="inputFirstname" name="inputFirstname"
+                   placeholder="Firstname">
         </div>
     </div>
 
     <div class="input-group m-b-20">
+        <span class="input-group-addon"><i class="md md-person"></i></span>
+
+        <div class="fg-line">
+            <input type="text" style="margin-top: 10px;" class="form-control" id="inputLastname"
+                   name="inputLastname" placeholder="Lastname">
+        </div>
+    </div>
+
+    <div class="input-group m-b-20">
+        <span class="input-group-addon"><i class="md md-mail"></i></span>
+        <div class="fg-line">
+            <input type="email" style="margin-top: 10px;" class="form-control" id="inputEmail" name="inputEmail"
+                   placeholder="Email">
+        </div>
+    </div>
+    <div class="input-group m-b-20">
         <span class="input-group-addon"><i class="md md-accessibility"></i></span>
         <div class="fg-line">
-            <input type="password" class="form-control" placeholder="Password"  id="loginPassword" >
+            <input type="password" style="margin-top: 10px;" class="form-control" maxlength="20" id="inputpassword"
+                   name="inputpassword" placeholder="Desired Password">
         </div>
     </div>
 
     <div class="clearfix"></div>
 
-</div>
-<?php include 'include/foot.php' ?>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" value="">
+            <i class="input-helper"></i>
+            Accept the license agreement
+        </label>
+    </div>
+    </form>
+    <a onclick="createNewSignUp('signupForm')" class="btn btn-login btn-danger btn-float waves-effect waves-button waves-float"><i class="md md-arrow-forward"></i></a>
 
+    <ul class="login-navigation">
+        <li data-block="#l-login" class="bgm-green">Login</li>
+    </ul>
+</div>
+
+</body>
+<?php include 'include/foot.php' ?>
+<script>
+    $('.login-navigation li').click(function(){
+        $(".lc-block").removeClass("toggled");
+        $($(this).data('block')).addClass("toggled");
+    });
+</script>
 
 </body>
 </html>

@@ -647,7 +647,7 @@ function getNotification(){
     getData();
     setInterval(function(){
         getData();
-    },60000);
+    },5000);
 
     function getData(){
         $.ajax({
