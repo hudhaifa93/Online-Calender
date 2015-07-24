@@ -150,11 +150,17 @@ var BirthDay = function (config) {
                             _isFound = true;
                         }
 
-                        b += '<div class="panel-body" style="background-color:#CAF6FC;">' +
-                            '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + ' ';
+                        b += '<div class="panel-body" style="background-color:#CAF6FC;">';
 
                         if(_CurBday[i].createdby != localStorage.getItem("memberId")){
-                            b += '<span class="fc-time">&#10010;</span>';
+                            b += '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
+                                '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + ' ' +
+                                '<span class="fc-time">('+getSharedMemberNameByMemberId(_CurBday[i].createdby)+')</span>';
+                        }else{
+                            b += '<a style="cursor:pointer" class="editevent" data-eventid="'+_CurBday[i].id+'" data-eventtype="'+_CurBday[i].notetype+'" data-eventdate="'+_CurBday[i].startdate+'" data-subject="'+_CurBday[i].subject+'" data-description="'+_CurBday[i].description+'" data-createdby="'+_CurBday[i].createdby+'">' +
+                                '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
+                                '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + ' ' +
+                                '</a>';
                         }
 
                         b += '</strong>' +
@@ -177,12 +183,17 @@ var BirthDay = function (config) {
                             _isFound = true;
                         }
 
-                        b += '<div class="panel-body" style="background-color:#CAF6FC;">' +
-                            '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
-                            '<strong style="float: left;margin-left: 10px;">' +  _CurBday[i].subject + ' ';
+                        b += '<div class="panel-body" style="background-color:#CAF6FC;">';
 
                         if(_CurBday[i].createdby != localStorage.getItem("memberId")){
-                            b += '<span class="fc-time">&#10010;</span>';
+                            b += '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
+                                '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + ' ' +
+                                '<span class="fc-time">('+getSharedMemberNameByMemberId(_CurBday[i].createdby)+')</span>';
+                        }else{
+                            b += '<a style="cursor:pointer" class="editevent" data-eventid="'+_CurBday[i].id+'" data-eventtype="'+_CurBday[i].notetype+'" data-eventdate="'+_CurBday[i].startdate+'" data-subject="'+_CurBday[i].subject+'" data-description="'+_CurBday[i].description+'" data-createdby="'+_CurBday[i].createdby+'">' +
+                                '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
+                                '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + ' ' +
+                                '</a>';
                         }
 
                         b += '</strong>' +
@@ -215,12 +226,17 @@ var BirthDay = function (config) {
                                         _isFound = true;
                                     }
 
-                                    b += '<div class="panel-body" style="background-color:#CAF6FC;">' +
-                                        '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
-                                        '<strong style="float: left;margin-left: 10px;">' +  _CurBday[i].subject + ' ';
+                                    b += '<div class="panel-body" style="background-color:#CAF6FC;">';
 
                                     if(_CurBday[i].createdby != localStorage.getItem("memberId")){
-                                        b += '<span class="fc-time">&#10010;</span>';
+                                        b += '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
+                                            '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + ' ' +
+                                            '<span class="fc-time">('+getSharedMemberNameByMemberId(_CurBday[i].createdby)+')</span>';
+                                    }else{
+                                        b += '<a style="cursor:pointer" class="editevent" data-eventid="'+_CurBday[i].id+'" data-eventtype="'+_CurBday[i].notetype+'" data-eventdate="'+_CurBday[i].startdate+'" data-subject="'+_CurBday[i].subject+'" data-description="'+_CurBday[i].description+'" data-createdby="'+_CurBday[i].createdby+'">' +
+                                            '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
+                                            '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + ' ' +
+                                            '</a>';
                                     }
 
                                     b += '</strong>' +
@@ -237,12 +253,17 @@ var BirthDay = function (config) {
                                     _isFound = true;
                                 }
 
-                                b += '<div class="panel-body" style="background-color:#CAF6FC;">' +
-                                    '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
-                                    '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + ' ';
+                                b += '<div class="panel-body" style="background-color:#CAF6FC;">';
 
                                 if(_CurBday[i].createdby != localStorage.getItem("memberId")){
-                                    b += '<span class="fc-time">&#10010;</span>';
+                                    b += '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
+                                        '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + ' ' +
+                                        '<span class="fc-time">('+getSharedMemberNameByMemberId(_CurBday[i].createdby)+')</span>';
+                                }else{
+                                    b += '<a style="cursor:pointer" class="editevent" data-eventid="'+_CurBday[i].id+'" data-eventtype="'+_CurBday[i].notetype+'" data-eventdate="'+_CurBday[i].startdate+'" data-subject="'+_CurBday[i].subject+'" data-description="'+_CurBday[i].description+'" data-createdby="'+_CurBday[i].createdby+'">' +
+                                        '<strong style="float: left;margin-left: 10px;">' +  (new Date(_CurBday[i].startdate)).getDate() + '</strong>' +
+                                        '<strong style="float: left;margin-left: 10px;">' + _CurBday[i].subject + ' ' +
+                                        '</a>';
                                 }
 
                                 b += '</strong>' +
