@@ -144,7 +144,7 @@ include 'include/head.php' ?>
 
                             <div id="locationAllocation" style="display:none;">
                                 <div class="col-xs-6 form-group">
-                                    <div id="map-canvas" style="width:100%;height:500px;"></div>
+                                    <div id="map-canvas" style="width:100%;height:250px;"></div>
                                 </div>
                                 <div class="col-xs-6 form-group">
                                     <input type="text" class="form-control" id="autocomplete" placeholder="Enter your address"/>
