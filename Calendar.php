@@ -217,15 +217,76 @@
                         <h4 class="modal-title" id="" >Configure Calendar</h4>
                     </div>
                     <div class="modal-body">
-                        <div id="configureDetails">
-                            <span>Hello</span>
+                        <div>
+                            <div>
+                                <label>Birth Day</label>
+                                <select id="Color_Type_BirthDay">
+                                    <option value="bgm-brown" class="bgm-brown"></option>
+                                    <option value="bgm-pink" class="bgm-pink"></option>
+                                    <option value="bgm-red" class="bgm-red"></option>
+                                    <option value="bgm-blue" class="bgm-blue"></option>
+                                    <option value="bgm-purple" class="bgm-purple"></option>
+                                    <option value="bgm-lightblue" class="bgm-lightblue"></option>
+                                    <option value="bgm-cyan" class="bgm-cyan"></option>
+                                    <option value="bgm-teal" class="bgm-teal"></option>
+                                    <option value="bgm-green" class="bgm-green"></option>
+                                    <option value="bgm-yellow" class="bgm-yellow"></option>
+                                    <option value="bgm-amber" class="bgm-amber"></option>
+                                    <option value="bgm-orange" class="bgm-orange"></option>
+                                    <option value="bgm-deeporange" class="bgm-deeporange"></option>
+                                    <option value="bgm-gray" class="bgm-gray"></option>
+                                    <option value="bgm-bluegray" class="bgm-bluegray"></option>
+                                    <option value="bgm-indigo" class="bgm-indigo"></option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>Note</label>
+                                <select id="Color_Type_Note">
+                                    <option value="bgm-brown" class="bgm-brown"></option>
+                                    <option value="bgm-pink" class="bgm-pink"></option>
+                                    <option value="bgm-red" class="bgm-red"></option>
+                                    <option value="bgm-blue" class="bgm-blue"></option>
+                                    <option value="bgm-purple" class="bgm-purple"></option>
+                                    <option value="bgm-lightblue" class="bgm-lightblue"></option>
+                                    <option value="bgm-cyan" class="bgm-cyan"></option>
+                                    <option value="bgm-teal" class="bgm-teal"></option>
+                                    <option value="bgm-green" class="bgm-green"></option>
+                                    <option value="bgm-yellow" class="bgm-yellow"></option>
+                                    <option value="bgm-amber" class="bgm-amber"></option>
+                                    <option value="bgm-orange" class="bgm-orange"></option>
+                                    <option value="bgm-deeporange" class="bgm-deeporange"></option>
+                                    <option value="bgm-gray" class="bgm-gray"></option>
+                                    <option value="bgm-bluegray" class="bgm-bluegray"></option>
+                                    <option value="bgm-indigo" class="bgm-indigo"></option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>Meeting</label>
+                                <select id="Color_Type_Meeting">
+                                    <option value="bgm-brown" class="bgm-brown"></option>
+                                    <option value="bgm-pink" class="bgm-pink"></option>
+                                    <option value="bgm-red" class="bgm-red"></option>
+                                    <option value="bgm-blue" class="bgm-blue"></option>
+                                    <option value="bgm-purple" class="bgm-purple"></option>
+                                    <option value="bgm-lightblue" class="bgm-lightblue"></option>
+                                    <option value="bgm-cyan" class="bgm-cyan"></option>
+                                    <option value="bgm-teal" class="bgm-teal"></option>
+                                    <option value="bgm-green" class="bgm-green"></option>
+                                    <option value="bgm-yellow" class="bgm-yellow"></option>
+                                    <option value="bgm-amber" class="bgm-amber"></option>
+                                    <option value="bgm-orange" class="bgm-orange"></option>
+                                    <option value="bgm-deeporange" class="bgm-deeporange"></option>
+                                    <option value="bgm-gray" class="bgm-gray"></option>
+                                    <option value="bgm-bluegray" class="bgm-bluegray"></option>
+                                    <option value="bgm-indigo" class="bgm-indigo"></option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer"></div>
                 </div>
             </div>
         </div>
-
     </body>
 
     <script type="text/javascript" src="js/jquery.js" ></script>
@@ -274,7 +335,6 @@
                         $('#'+value.memberid).prop('checked', true);
                     });
                 }
-
                 $('#ViewShareModal').modal('show');
 
                 return false;
@@ -300,8 +360,6 @@
                 $('#ConfigureModal').modal('show');
                 return false;
             } );
-
-
         });
 
         function addToInvitedList() {
@@ -313,6 +371,7 @@
                 $("#InviteeEmail").val("");
             }
         }
+        
         function addToShareList() {
             var Email = $("#shareEmail").val();
             if(validateEmail( Email )){
@@ -322,14 +381,11 @@
                     '</div> ').appendTo('#shareList');
                 $("#shareEmail").val("");
             }
-
         }
 
         $('body').on('click','.remove',function(){
             $(this).closest('.tags').remove();
         });
-
-
 
         function removeFromInvitedList(id) {
             debugger;
@@ -354,16 +410,9 @@
                     }
                 },
                 failure: function () {
-
                 }
             });
-
-
-
-
         }
-
-
 
     </script>
 
