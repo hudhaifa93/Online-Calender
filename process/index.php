@@ -5,7 +5,7 @@
  * Date: 7/11/15
  * Time: 8:53 AM
  */
-//error_reporting(0);
+error_reporting(0);
 
 // url pattern domain.com/process/index.php?route="Class name"&method="Class Method name "
 // from submit using post method
