@@ -104,7 +104,12 @@ function editAdvanceNote(id) {
 }
 
 function validateLogin(formName) {
-
+    re = true;
+    if($("#inputUsername").val() < 5){
+        re = false;
+        $("#inputUsername").css("border",'red');
+    }
+    if(re)
     $.ajax({
         url: "process/index.php?route=user&method=validateLogin",//event.php
         type: "post",
@@ -655,7 +660,7 @@ function getNotification(){
     getData();
     setInterval(function(){
         getData();
-    },5000);
+    },600000);
 
     function getData(){
         $.ajax({
@@ -683,6 +688,8 @@ function getNotification(){
                                 item.data('member_id', v.id).data('share',true).data('name',v.name).addClass('sharedCalendar');
                             else if(v.share == 2)
                                 item.data('noteid', v.id).data('share',true).data('name',v.name).addClass('invite');
+                            else if(v.share == 3)
+                                item.data('noteid', v.id).data('shared_id',v.createdby).data('name',v.name).addClass('shareEvent_list');
                         }
                         $('#notifications').find('.lv-body').append(item);
                     });
@@ -690,7 +697,7 @@ function getNotification(){
                 }
             }
         });
-        $('#notifications').on('click','.sharedCalendar,.invite',function(){
+        $('#notifications').on('click','.sharedCalendar,.invite,.shareEvent_list',function(){
             self = $(this);
             bootbox.dialog({
                 message: "Request for share Calendar",
@@ -704,6 +711,8 @@ function getNotification(){
                                 changeInviteRequest(1);
                             else if(self.hasClass('sharedCalendar'))
                                 changeShare(1);
+                            else if(self.hasClass('shareEvent_list'))
+                                shareEvent(1);
                         }
                     },
                     danger: {
@@ -714,6 +723,8 @@ function getNotification(){
                                 changeInviteRequest(2);
                             else if(self.hasClass('sharedCalendar'))
                                 changeShare(2);
+                            else if(self.hasClass('shareEvent_list'))
+                                shareEvent(2);
                         }
                     }}
             });
@@ -734,6 +745,16 @@ function getNotification(){
                     type:'post',
                     success :function(){
                         location.reload();
+                    }
+                });
+            }
+            function shareEvent(v){
+                $.ajax({
+                    url : "process/?route=event&method=updateEventShared",
+                    data: { noteid:self.data('noteid') , shared_id : self.data('shared_id') , val:v },
+                    type:'post',
+                    success :function(e){
+                        console.log(e);
                     }
                 });
             }

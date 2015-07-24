@@ -508,4 +508,16 @@ class Event extends Controller {
         }
     }
 
+    function updateEventShared(){
+        $user = session::get('user');
+        if($_POST['val'] == 1){
+            $this->db->query("select * from note where id = ".$_POST['noteid']);
+            $r = $this->db->fetchObject();
+            $this->db->query("INSERT INTO `note`
+            (`id`, `subject`, `description`, `timeslotid`, `status`, `startdate`, `enddate`, `starttime`, `endtime`, `createddate`, `createdby`, `notetype`, `location`, `repeat`)
+             VALUES (null,'$r->subject','$r->description','$r->timeslotid','$r->status','$r->startdate','$r->enddate','$r->starttime','$r->endtime','$r->createddate','".$user['id']."','$r->notetype','$r->location','$r->repeat')");
+        }
+
+        $this->db->query("update share_note set status= ".$_POST['val']." where member_id = ".$user['id']." and event_id = ".$_POST['noteid'] ." and  shared_id = ".$_POST['shared_id'] );
+    }
 }
