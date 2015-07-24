@@ -12,6 +12,6 @@ if(session::get('user')){
     include 'Calendar.php';
     exit(0);
 }else{
-    include 'login.html';
+    include 'login.php';
     exit(0);
 }

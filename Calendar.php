@@ -326,15 +326,7 @@
         id : 'calender',
         view : 'month'
     });
-    var app1 = new calendar({
-        id : 'min_cal',
-        view : 'month',
-        min : true
-    });
-    $(".min-calendar").click(function(e){
-        e.stopPropagation();
-        $("#min_cal").toggleClass('hidden');
-    });
+
 
 
     function addToInvitedList() {
