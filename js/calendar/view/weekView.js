@@ -207,7 +207,7 @@ var Week = function (config) {
                             }
                             if(notes[n].repeat == "M"){
                                 if(dateFormat(Cur_Date,'d')>= dateFormat(new Date(notes[n].startdate),'d') && dateFormat(Cur_Date,'d')<= dateFormat(new Date(notes[n].enddate),'d') && notes[n].starttime == "0" && notes[n].endtime == "0"){
-                                    fe += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ name.colorcodes[notes[n].notetype] + '">' +
+                                    fe += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable editevent '+ name.colorcodes[notes[n].notetype] + '" data-eventid="'+notes[n].id+'" data-eventtype="'+notes[n].notetype+'" data-eventdate="'+notes[n].startdate+'" data-subject="'+notes[n].subject+'" data-description="'+notes[n].description+'" data-createdby="'+notes[n].createdby+'" >' +
                                         '<div class="fc-content">';
 
                                     if(notes[n].createdby != localStorage.getItem("memberId")){
@@ -227,7 +227,7 @@ var Week = function (config) {
                                 }
                             }else if(notes[n].repeat == "W"){
                                 if(dateFormat(Cur_Date,'D')>= dateFormat(new Date(notes[n].startdate),'D') && dateFormat(Cur_Date,'D')<= dateFormat(new Date(notes[n].enddate),'D') && notes[n].starttime == "0" && notes[n].endtime == "0"){
-                                    fe += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ name.colorcodes[notes[n].notetype] + '">' +
+                                    fe += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable editevent '+ name.colorcodes[notes[n].notetype] + '" data-eventid="'+notes[n].id+'" data-eventtype="'+notes[n].notetype+'" data-eventdate="'+notes[n].startdate+'" data-subject="'+notes[n].subject+'" data-description="'+notes[n].description+'" data-createdby="'+notes[n].createdby+'" >' +
                                         '<div class="fc-content">';
 
                                     if(notes[n].createdby != localStorage.getItem("memberId")){
@@ -248,7 +248,7 @@ var Week = function (config) {
                             }
                             else{
                                 if(dateFormat(Cur_Date,'m-d')>= dateFormat(new Date(notes[n].startdate),'m-d') && dateFormat(Cur_Date,'m-d')<= dateFormat(new Date(notes[n].enddate),'m-d') && notes[n].starttime == "0" && notes[n].endtime == "0"){
-                                    fe += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable '+ name.colorcodes[notes[n].notetype] + '">' +
+                                    fe += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-day-grid-event fc-event fc-start fc-end fc-draggable fc-resizable editevent '+ name.colorcodes[notes[n].notetype] + '" data-eventid="'+notes[n].id+'" data-eventtype="'+notes[n].notetype+'" data-eventdate="'+notes[n].startdate+'" data-subject="'+notes[n].subject+'" data-description="'+notes[n].description+'" data-createdby="'+notes[n].createdby+'" >' +
                                         '<div class="fc-content">';
 
                                     if(notes[n].createdby != localStorage.getItem("memberId")){
@@ -433,7 +433,7 @@ var Week = function (config) {
                                     top = startHours * 40;
                                     bottom = endHours * 40;
 
-                                    ec += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-time-grid-event fc-event fc-start fc-not-end fc-draggable ' + name.colorcodes[_events[s].notetype] + '" style="top:'+top+'px; bottom: -'+bottom+'px; z-index: 1; left: '+left+'%; right: '+right+'%;">' +
+                                    ec += '<a data-toggle="tooltip" title="'+tooltip+'" class="fc-time-grid-event fc-event fc-start fc-not-end fc-draggable editevent ' + name.colorcodes[_events[s].notetype] + '" style="top:'+top+'px; bottom: -'+bottom+'px; z-index: 1; left: '+left+'%; right: '+right+'%;"  data-eventid="'+_events[s].id+'" data-eventtype="'+_events[s].notetype+'" data-eventdate="'+_events[s].startdate+'" data-subject="'+_events[s].subject+'" data-description="'+_events[s].description+'" data-createdby="'+_events[s].createdby+'" >' +
                                         '<div class="fc-content">' +
                                         '<div class="fc-time" data-start="10:00" data-full="12:00 AM - 12:00 AM">';
 
